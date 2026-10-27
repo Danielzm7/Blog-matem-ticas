@@ -585,19 +585,19 @@ main > section + section { margin-top: 112px; }
   margin-bottom: 20px;
 }
 .etapas__habilidad {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 10px;
   width: fit-content;
-  margin: 32px 0 16px;
-  padding: 10px 20px 10px 14px;
+  margin: 28px 0 14px;
+  padding: 7px 16px 7px 12px;
   background: var(--tinta);
   border-radius: 999px;
   box-shadow: 0 3px 0 #0C1226;
-  color: #fff; font-size: 1rem; font-weight: 500;
+  color: #fff; font-size: .82rem; font-weight: 500;
 }
 .etapas__habilidad::before {
   content: ""; display: block;
-  width: 16px; height: 16px; margin: 0;
-  border-radius: 4px; background: var(--cielo); box-shadow: none;
+  width: 12px; height: 12px; margin: 0;
+  border-radius: 3px; background: var(--cielo); box-shadow: none;
 }
 .etapas__chips { gap: 8px; }
 .chip--enlace {
