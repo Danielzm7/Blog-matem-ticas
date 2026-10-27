@@ -210,18 +210,9 @@ main, .pie { position: relative; z-index: 1; }
   display: flex; align-items: center; gap: 24px;
   min-height: 96px;
 }
-.logo-espacio {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 176px; height: 56px; flex-shrink: 0;
-  border: 2px dashed #9AAACB; border-radius: 14px;
-  background: rgba(255, 255, 255, .7);
-  color: var(--texto-2);
-  font-family: var(--f-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em;
-  text-decoration: none;
-}
-.logo-espacio--claro {
-  border-color: #5A6889; background: transparent; color: var(--claro-sobre-tinta);
-}
+.logo { display: inline-flex; flex-shrink: 0; text-decoration: none; background: #fff; border-radius: 16px; padding: 4px 12px; }
+.logo img { display: block; height: 72px; width: auto; }
+.logo--pie { padding: 6px 12px; }
 
 .menu { margin-left: auto; }
 .menu ul { display: flex; gap: 4px; }
@@ -853,8 +844,8 @@ main > section + section { margin-top: 112px; }
   :root { --lateral: 20px; --radio-seccion: 32px; }
   body { font-size: 1rem; }
   .cabecera__fila { min-height: 76px; gap: 12px; }
-  .logo-espacio { width: 148px; height: 48px; font-size: .64rem; }
-  .pie .logo-espacio { width: 176px; height: 56px; }
+  .logo { padding: 3px 8px; border-radius: 14px; }
+  .logo img, .logo--pie img { height: 58px; }
 
   .portada { padding-top: 28px; gap: 28px; }
   .portada__sub { font-size: 1.08rem; }
