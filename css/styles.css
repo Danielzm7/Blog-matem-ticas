@@ -467,6 +467,35 @@ main > section + section { margin-top: 112px; }
   50% { translate: 0 -3px; rotate: 1deg; }
 }
 
+/* Botón globo menta ("Ver todas las entradas") */
+.boton-menta {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 8px 8px 8px 22px;
+  background: var(--menta); color: var(--tinta);
+  border: 2px solid var(--tinta); border-radius: 999px;
+  font: 700 16px/1.2 var(--f-texto);
+  text-decoration: none; white-space: nowrap;
+  box-shadow: 0 4px 0 var(--tinta);
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s cubic-bezier(.34, 1.56, .64, 1), background-color .25s;
+}
+.boton-menta:hover { background: #9BE4C6; transform: translateY(-3px) rotate(-1.5deg); box-shadow: 0 7px 0 var(--tinta); }
+.boton-menta:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--tinta); }
+.boton-menta:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.boton-menta__flecha {
+  display: grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--tinta); color: #fff;
+  transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+.boton-menta__flecha svg { width: 16px; height: 16px; }
+.boton-menta:hover .boton-menta__flecha { transform: translateX(3px); }
+.boton-menta__punto {
+  position: absolute; top: -11px; left: 14px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--sol); border: 2px solid var(--tinta);
+}
+
 .enlace-flecha {
   display: inline-flex; align-items: center; gap: 8px;
   min-height: 44px;
@@ -949,7 +978,7 @@ main > section + section { margin-top: 112px; }
 
   main > section + section { margin-top: 80px; }
   .portada + .seccion { margin-top: 16px; }
-  .seccion__encabezado { margin-bottom: 28px; }
+  .seccion__encabezado { margin-bottom: 28px; row-gap: 20px; }
   .encabezado-nociones { grid-template-columns: 1fr; grid-template-areas: "etiqueta" "titulo" "apoyo" "boton"; margin-bottom: 28px; }
   .boton-globo { justify-self: start; margin-top: 20px; }
 
@@ -1021,6 +1050,7 @@ main > section + section { margin-top: 112px; }
   .tarjeta-nocion--oscura:hover .tarjeta-nocion__formas,
   .enlace-flecha:hover svg { transform: none; }
   .chip--enlace:hover { transform: none; }
+  .boton-menta:hover, .boton-menta:active, .boton-menta:hover .boton-menta__flecha { transform: none; }
   .boton-globo:hover, .boton-globo:active, .boton-globo:hover .boton-globo__flecha { transform: none; }
   .recurso:hover .hoja__papel { transform: rotate(-3deg) translateY(8%); }
 }
