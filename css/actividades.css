@@ -109,7 +109,7 @@ html.ac-sin-scroll main { z-index: 100; }
 
 /* ---------- Panel de juego ---------- */
 .ac-panel {
-  --k: 1; --emo: 84px; --emo-mesa: calc(72px * var(--k)); --optw: 150px; --opth: 150px; --num: 78px; --cell: 112px; --c10: 76px; --big: 190px; --cuadro: 38px; --barra: 150px; --circ: 120px; --circbtn: 170px;
+  --k: 1; --emo: 84px; --emo-mesa: calc(72px * var(--k)); --optw: 150px; --opth: 150px; --num: 78px; --cell: 112px; --c10: 76px; --big: 190px; --cuadro: 38px; --barra: 150px; --circ: 120px; --circbtn: 170px; --fgrande: 190px; --fbtn: 150px;
   position: relative; overflow: hidden;
   padding: 36px 40px 40px;
   background: #fff; border: 2px solid var(--borde); border-radius: 44px;
@@ -549,6 +549,148 @@ html.ac-sin-scroll main { z-index: 100; }
 .ac-modelo--coral { background: #FFE3DF; padding: 14px 48px; }
 .ac-opt__num--cuerpo { font-size: calc(38px * var(--k)); }
 
+/* ---------- Edad de 8 años o más ---------- */
+.ac-portada--tinta { background: var(--tinta); }
+.ac-portada--tinta::before { border: 2px dashed #FFD45E; }
+.ac-portada--tinta h1 { color: #fff; }
+.ac-portada--tinta .ac-portada__parrafo { color: #C9D3EE; }
+.ac-btn-sol {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 52px;
+  padding: 15px 26px; border-radius: 999px; background: #FFD45E; color: var(--tinta);
+  font-weight: 700; font-size: 16px; text-decoration: none;
+  box-shadow: 0 5px 0 #B58B00;
+  transition: transform .18s var(--curva), box-shadow .18s var(--curva);
+}
+.ac-btn-sol:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #B58B00; }
+.ac-btn-sol:active { transform: translateY(4px); box-shadow: 0 1px 0 #B58B00; }
+.ac-portada--tinta .ac-btn-sol:focus-visible { outline-color: #fff; }
+.ac-ficha--8 { font-size: 110px; rotate: -5deg; }
+
+/* Controles: modo y filtro por tema */
+.ac-controles { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.ac-modo { display: inline-flex; gap: 4px; padding: 4px; background: #fff; border: 3px solid var(--tinta); border-radius: 999px; }
+.ac-modo__b {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-height: 48px; padding: 8px 22px; background: transparent; color: var(--tinta); border: 0; border-radius: 999px;
+  font: 700 16px/1.1 var(--f-texto); cursor: pointer; transition: background-color .18s, color .18s;
+}
+.ac-modo__b .ac-mono { font-size: 11px; color: inherit; }
+.ac-modo__b[aria-pressed="true"] { background: var(--tinta); color: #fff; }
+.ac-modo__b:focus-visible { outline: 3px solid var(--sol); outline-offset: 2px; }
+.ac-filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+.ac-filtro {
+  min-height: 44px; padding: 8px 18px; background: #fff; color: var(--tinta); border: 2px solid #E1E9F7; border-radius: 999px;
+  font: 700 14px/1.1 var(--f-texto); cursor: pointer; transition: background-color .18s, border-color .18s;
+}
+.ac-filtro[aria-pressed="true"] { background: #FFD45E; border-color: var(--tinta); }
+.ac-modo-linea { margin: 14px 0 24px; font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: #4A5676; }
+.ac-tarjeta[hidden] { display: none; }
+.ac-tarjeta__tema { display: block; margin-bottom: 6px; font-size: 11px; color: #4A5676; }
+
+/* Tamaños de texto de los botones de respuesta */
+.ac-opt__num--t40 { font-size: calc(40px * var(--k)); }
+.ac-opt__num--t44 { font-size: calc(44px * var(--k)); }
+.ac-opt__num--t46 { font-size: calc(46px * var(--k)); }
+.ac-opt__num--t48 { font-size: calc(48px * var(--k)); }
+.ac-opt__num--t52 { font-size: calc(52px * var(--k)); }
+.ac-opt__num--t54 { font-size: calc(54px * var(--k)); }
+.ac-opt__num--t56 { font-size: calc(56px * var(--k)); }
+.ac-opt__num--t60 { font-size: calc(60px * var(--k)); }
+.ac-opt__num--t64 { font-size: calc(64px * var(--k)); }
+.ac-opt__num--t70 { font-size: calc(70px * var(--k)); }
+.ac-opt__num--t78 { font-size: calc(78px * var(--k)); }
+
+/* Juegos 1, 2 y 3: operaciones */
+.ac-suma--8 .ac-casilla--grande { width: calc(150px * var(--k)); height: calc(120px * var(--k)); min-width: 72px; }
+.ac-suma--8 .ac-casilla__q { font-size: calc(56px * var(--k)); }
+.ac-suma--ng .ac-sumando__num { font-size: calc(56px * var(--k)); }
+.ac-sumando--duda { border: 3px dashed var(--tinta); animation: ac-balanceo 2.2s ease-in-out infinite; }
+.ac-e4 .ac-sumando--duda { animation-name: ac-sube-baja; animation-duration: 1.6s; }
+
+/* Juego 4: valor de la cifra */
+.ac-cifras { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; padding: 18px 28px; max-width: 100%; background: #FFF3C9; border-radius: 34px; }
+.ac-cifra, .ac-cifras__parte {
+  display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px;
+  background: #fff; border: 3px solid #E1E9F7; border-radius: 14px;
+  font-family: var(--f-titulo); font-weight: 800; font-size: clamp(44px, 11vw, 72px); line-height: 1.1;
+}
+.ac-cifras__parte { font-size: clamp(36px, 9vw, 64px); padding-inline: 16px; }
+.ac-cifra--ref { background: #FFD45E; border-color: var(--tinta); }
+.ac-cifras__punto, .ac-cifras__signo { font-family: var(--f-titulo); font-weight: 800; font-size: clamp(30px, 7vw, 48px); line-height: 1; align-self: flex-end; padding-bottom: 6px; }
+.ac-cifras__signo { align-self: center; padding: 0 6px; color: var(--coral); }
+.ac-casilla--parte { width: auto; height: auto; min-width: 96px; padding: 4px 18px; }
+.ac-casilla--parte .ac-casilla__q { font-size: clamp(36px, 9vw, 56px); }
+
+/* Juego 5: fracciones */
+.ac-pastel {
+  display: block; flex: 0 0 auto; width: var(--fg); height: var(--fg);
+  border: 3px solid var(--tinta); border-radius: 50%; box-sizing: border-box;
+}
+.ac-pastel--grande { --fg: var(--fgrande); }
+.ac-pastel--boton { --fg: var(--fbtn); }
+.ac-modelo--pastel { background: var(--sol-t); padding: 20px 34px; }
+.ac-opt--pastel { min-width: 170px; min-height: 170px; padding: 10px; }
+
+/* Juego 6: secuencias */
+.ac-serie { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; max-width: 100%; padding: 22px 26px; background: #D9F5E9; border-radius: 34px; }
+.ac-casilla--serie { width: calc(116px * var(--k)); height: calc(110px * var(--k)); min-width: 60px; min-height: 60px; }
+.ac-casilla--serie .ac-casilla__q { font-size: calc(50px * var(--k)); }
+
+/* Juego 7: compras y vueltos */
+.ac-compra { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; }
+.ac-etiqueta { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 26px; background: #fff; border: 3px solid var(--tinta); border-radius: 24px; }
+.ac-etiqueta__emoji { font-size: calc(54px * var(--k)); line-height: 1; }
+.ac-etiqueta__precio { font-family: var(--f-titulo); font-weight: 800; font-size: calc(28px * var(--k)); line-height: 1.1; }
+.ac-etiqueta__desc {
+  position: absolute; top: -18px; right: -18px; display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; background: var(--coral); color: var(--tinta); border: 3px solid var(--tinta); border-radius: 50%;
+  font-family: var(--f-titulo); font-weight: 800; font-size: 18px; line-height: 1;
+}
+.ac-billete { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 26px; background: #FFF3C9; border: 3px dashed var(--tinta); border-radius: 18px; }
+.ac-billete__valor { font-family: var(--f-titulo); font-weight: 800; font-size: calc(34px * var(--k)); line-height: 1.1; }
+
+/* Juego 8: tiempo */
+.ac-tiempo { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 14px; }
+.ac-caja-t { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-width: 150px; padding: 14px 20px; border: 3px solid var(--tinta); border-radius: 26px; }
+.ac-caja-t .ac-mono { color: var(--tinta); }
+.ac-caja-t__valor { font-family: var(--f-titulo); font-weight: 800; font-size: calc(40px * var(--k)); line-height: 1.1; text-align: center; }
+.ac-caja-t--ini { background: #FFF3C9; }
+.ac-caja-t--dur { background: #D9F5E9; }
+.ac-caja-t--fin { background: #ECE7FD; }
+.ac-caja-t--duda { background: #FFF8DC; border-style: dashed; }
+
+/* Juego 9: unidades */
+.ac-conversion { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 18px; }
+.ac-ficha-u { padding: 14px 28px; background: #FFF3C9; border-radius: 30px; font-family: var(--f-titulo); font-weight: 800; font-size: calc(60px * var(--k)); line-height: 1.1; }
+.ac-ficha-u--a { background: #D9F5E9; font-size: calc(52px * var(--k)); }
+.ac-casilla--conv { width: calc(170px * var(--k)); height: calc(110px * var(--k)); min-width: 96px; }
+.ac-casilla--conv .ac-casilla__q { font-size: calc(56px * var(--k)); }
+.ac-leyenda { padding: 18px 30px; background: #DDF1FD; border-radius: 34px; text-align: center; }
+.ac-leyenda .ac-mono { color: var(--tinta); }
+
+/* Juego 10: perímetro y área */
+.ac-medidas { --cu: 36px; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: ". ancho" "alto marco"; gap: 8px; align-items: center; max-width: 100%; }
+.ac-medidas__ancho { grid-area: ancho; text-align: center; font-size: 14px; color: var(--tinta); }
+.ac-medidas__alto { grid-area: alto; font-size: 14px; color: var(--tinta); writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; }
+.ac-marco { grid-area: marco; min-width: 0; padding: 4px; background: #fff; border: 3px solid var(--tinta); border-radius: 14px; }
+.ac-rejilla { display: grid; grid-template-columns: repeat(var(--w), minmax(0, 1fr)); gap: 2px; width: calc(var(--w) * var(--cu) + (var(--w) - 1) * 2px); max-width: 100%; }
+.ac-cuadrito { display: block; aspect-ratio: 1; background: #FFD45E; border: 2px solid var(--tinta); border-radius: 5px; box-sizing: border-box; }
+.ac-cuadrito--fuera { background: transparent; border: 2px dotted #D3E2F6; }
+
+/* Juego 11: ángulos */
+.ac-angulo { position: relative; width: 240px; height: 130px; background: #DDF1FD; border-radius: 26px; overflow: hidden; }
+.ac-angulo__rayo { position: absolute; left: 120px; top: 106px; width: 100px; height: 6px; border-radius: 3px; background: var(--tinta); transform-origin: 0 50%; }
+.ac-angulo__rayo--giro { background: var(--coral); }
+.ac-angulo__punto { position: absolute; left: 112px; top: 101px; width: 16px; height: 16px; border-radius: 50%; background: var(--tinta); }
+.ac-angulos-suma { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; padding: 20px 24px; background: #DDF1FD; border-radius: 34px; }
+.ac-casilla--ang { width: calc(130px * var(--k)); height: calc(100px * var(--k)); min-width: 84px; min-height: 70px; }
+.ac-casilla--ang .ac-casilla__q { font-size: calc(48px * var(--k)); }
+
+/* Juego 12: probabilidad */
+.ac-bolsa { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; max-width: min(520px, 100%); padding: 20px 26px; background: #ECE7FD; border: 3px solid var(--tinta); border-radius: 34px; }
+.ac-bola { display: block; width: 40px; height: 40px; border: 3px solid var(--tinta); border-radius: 50%; box-sizing: border-box; }
+.ac-color-bola { display: block; width: 76px; height: 76px; border: 4px solid var(--tinta); border-radius: 50%; box-sizing: border-box; }
+
 /* ---------- Aparición al desplazarse ---------- */
 .js .ac-rev { opacity: 0; transform: translateY(16px); transition: opacity .6s var(--curva), transform .6s var(--curva); }
 .js .ac-rev.is-in { opacity: 1; transform: none; }
@@ -592,13 +734,26 @@ html.ac-sin-scroll main { z-index: 100; }
   .ac-nota { padding: 22px 22px; }
   .ac-edades { gap: 22px; }
   .ac-edad { --t: 100px; font-size: 48px; }
-  .ac-panel { --c10: 48px; --big: 140px; --cuadro: 28px; --barra: 110px; --circ: 96px; --circbtn: 130px; }
+  .ac-panel { --c10: 48px; --big: 140px; --cuadro: 28px; --barra: 110px; --circ: 96px; --circbtn: 130px; --fgrande: 150px; --fbtn: 120px; }
   .ac-franja { --mk: .85; }
   .ac-du__tarjeta { padding: 18px 14px; gap: 14px 18px; }
   .ac-du__barras { gap: 6px; }
   .ac-poligono { padding: 18px 28px; }
   .ac-grafica { padding: 16px 14px; }
   .ac-regla__num { font-size: 11px; }
+  .ac-medidas { --cu: 22px; }
+  .ac-cifras { padding: 18px 14px; gap: 4px; }
+  .ac-cifra { padding: 4px 6px; border-width: 2px; }
+  .ac-cifras__parte { font-size: 30px; padding-inline: 8px; border-width: 2px; }
+  .ac-cifras__signo { font-size: 26px; padding: 0 2px; }
+  .ac-casilla--parte { min-width: 64px; padding: 2px 10px; }
+  .ac-casilla--parte .ac-casilla__q { font-size: 30px; }
+  .ac-serie { padding: 16px 14px; gap: 8px; }
+  .ac-etiqueta { padding: 12px 18px; }
+  .ac-caja-t { min-width: 140px; }
+  .ac-bolsa { padding: 16px 18px; }
+  .ac-controles { gap: 14px 16px; }
+  .ac-ficha--8 { font-size: 64px; }
   .ac-par { padding: 16px 28px; }
   .ac-calendario { padding: 12px 12px; }
   .ac-chip-cal { padding: 6px 10px; font-size: 16px; }
@@ -611,7 +766,7 @@ html.ac-sin-scroll main { z-index: 100; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ac-portada, .ac-ficha, .ac-flota, .ac-salta, .ac-grande--otro, .ac-casilla--duda,
+  .ac-portada, .ac-ficha, .ac-flota, .ac-salta, .ac-grande--otro, .ac-casilla--duda, .ac-sumando--duda,
   .ac-msg--ok, .ac-msg--err, .ac-ok, .ac-sacude-a, .ac-sacude-b, .ac-panel--completa { animation: none !important; }
   .ac-ficha { transform: none; }
   .js .ac-rev { opacity: 1; transform: none; transition: none; }

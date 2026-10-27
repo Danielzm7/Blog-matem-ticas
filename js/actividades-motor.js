@@ -26,7 +26,10 @@
   function iniciar(cfg) {
     var juegos = cfg.juegos;
     var total = juegos.length;
-    var progreso = juegos.map(function () { return { solved: 0 }; });
+    // Retos resueltos por juego y por modo (0 = Explorador, 1 = Experto). Sin selector de modo solo se usa el 0.
+    var progreso = juegos.map(function () { return { s: [0, 0] }; });
+    var modo = 0;
+    function resueltos(i) { return progreso[i].s[modo]; }
     var actual = 0;
     var reto = null;       // { juego, firma, instruccion, ... }
     var nivel = 0;
@@ -45,6 +48,7 @@
     juegos.forEach(function (j, i) {
       var b = h('button', { class: 'ac-tarjeta', type: 'button', 'aria-pressed': 'false' }, [
         h('span', { class: 'ac-tarjeta__img', 'aria-hidden': 'true', style: 'background:' + j.color }, [h('span', { text: j.emoji })]),
+        j.tema ? h('span', { class: 'ac-mono ac-tarjeta__tema', text: j.tema }) : '',
         h('h3', { text: j.titulo }),
         h('p', { text: j.resumen }),
         h('span', { class: 'ac-tarjeta__estrellas', 'aria-hidden': 'true' })
@@ -55,15 +59,15 @@
     });
 
     function pintarProgreso() {
-      var s = progreso[actual].solved;
+      var s = resueltos(actual);
       var n = Math.min(s, 5);
       $('ac-estrellas').textContent = estrellas(n, 5);
       $('ac-conteo').textContent = s >= 5 ? '¡5 estrellas! Sigue jugando'
         : s + (s === 1 ? ' reto resuelto' : ' retos resueltos');
       tarjetas.forEach(function (t, i) {
-        t.querySelector('.ac-tarjeta__estrellas').textContent = estrellas(Math.min(progreso[i].solved, 5), 5);
+        t.querySelector('.ac-tarjeta__estrellas').textContent = estrellas(Math.min(resueltos(i), 5), 5);
         t.setAttribute('aria-pressed', i === actual ? 'true' : 'false');
-        t.setAttribute('aria-label', juegos[i].titulo + '. ' + juegos[i].resumen + ' ' + Math.min(progreso[i].solved, 5) + ' de 5 estrellas.');
+        t.setAttribute('aria-label', juegos[i].titulo + '. ' + juegos[i].resumen + ' ' + Math.min(resueltos(i), 5) + ' de 5 estrellas.');
       });
     }
 
@@ -134,7 +138,7 @@
         resuelto: function () {
           if (!vivo() || resuelto) return;
           resuelto = true;
-          progreso[actual].solved++;
+          progreso[actual].s[modo]++;
           ultimoOk = sorteo(MSG_OK, ultimoOk);
           mensaje('ok', '🌟 ' + MSG_OK[ultimoOk]);
           escenario.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
@@ -156,7 +160,7 @@
       var j = juegos[actual];
       ciclo++;
       resuelto = false;
-      nivel = Math.min(2, Math.floor(progreso[actual].solved / 2));
+      nivel = modo * 2 + Math.min(2, Math.floor(resueltos(actual) / 2));
       var previo = reto && reto.juego === actual ? reto : null;
       var r = null;
       for (var i = 0; i < 60; i++) {
@@ -194,9 +198,32 @@
     }
 
     $('ac-reiniciar').addEventListener('click', function () {
-      progreso[actual].solved = 0;
+      progreso[actual].s[modo] = 0;
       pintarProgreso();
       nuevoReto();
+    });
+
+    // ---------- Modo (Explorador / Experto) y filtro por tema: solo si la página los trae ----------
+    var botonesModo = [].slice.call(document.querySelectorAll('[data-modo]'));
+    botonesModo.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var nuevo = +b.getAttribute('data-modo');
+        if (nuevo === modo) return;
+        modo = nuevo;
+        botonesModo.forEach(function (o) { o.setAttribute('aria-pressed', +o.getAttribute('data-modo') === modo ? 'true' : 'false'); });
+        var linea = $('ac-modo-linea');
+        if (linea) linea.textContent = linea.getAttribute(modo ? 'data-experto' : 'data-explorador');
+        pintarProgreso();
+        nuevoReto();
+      });
+    });
+    var chipsTema = [].slice.call(document.querySelectorAll('[data-tema]'));
+    chipsTema.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var tema = c.getAttribute('data-tema');
+        chipsTema.forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+        tarjetas.forEach(function (t, i) { t.hidden = !!tema && juegos[i].tema !== tema; });
+      });
     });
 
     // ---------- Pantalla ampliada (dentro de la página, sin API Fullscreen) ----------
@@ -233,8 +260,9 @@
     // Solo para revisar el comportamiento (no revela respuestas).
     window.ActividadesMotor.estado = function () {
       return {
-        actual: actual, nivel: nivel, resuelto: resuelto,
-        solved: progreso.map(function (p) { return p.solved; }),
+        actual: actual, nivel: nivel, modo: modo, resuelto: resuelto,
+        solved: progreso.map(function (p) { return p.s[modo]; }),
+        solvedModos: progreso.map(function (p) { return p.s.slice(); }),
         completa: panel.classList.contains('ac-panel--completa')
       };
     };
