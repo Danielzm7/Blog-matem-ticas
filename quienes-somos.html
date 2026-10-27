@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¿Quiénes somos? · Didáctica de las matemáticas en la primera infancia</title>
+  <meta name="description" content="Quiénes somos: el grupo de estudiantes de Licenciatura en Educación Infantil de la Universidad del Quindío detrás del blog de didáctica de las matemáticas en la primera infancia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/quienes-somos.css">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel qs-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html" aria-current="page">Quiénes somos</a></li>
+              <li><a href="#">Aprendimos</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a href="#">Recursos</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html" aria-current="page">Quiénes somos</a></li>
+              <li><a href="#">Aprendimos</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a href="#">Recursos</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <!-- 1. Portada -->
+      <section class="contenedor qs-portada" aria-labelledby="qs-titulo">
+        <div class="qs-portada__texto">
+          <p class="qs-etiqueta"><span aria-hidden="true" style="display:inline-flex;gap:6px"><i></i><i></i><i></i></span>Sobre el blog</p>
+          <h1 class="qs-h1" id="qs-titulo">¿Quiénes <span class="qs-h1__sub">somos?<svg class="qs-h1__onda" aria-hidden="true" viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M3 10 Q 28 0 53 10 T 103 10 T 153 10 T 197 10"/></svg></span></h1>
+          <p class="qs-portada__parrafo">Somos un grupo de estudiantes que busca explorar formas creativas y significativas de enseñar matemáticas durante la primera infancia.</p>
+          <div class="qs-portada__botones">
+            <a class="qs-btn qs-btn--oscuro" href="#equipo">Conoce a nuestro equipo ↓</a>
+            <a class="qs-btn qs-btn--claro" href="#proposito">Nuestro propósito</a>
+          </div>
+          <p class="qs-portada__linea">Licenciatura en Educación Infantil · Universidad del Quindío</p>
+        </div>
+
+        <div class="qs-portada__ilu" aria-hidden="true">
+          <div class="qs-ilu-caja">
+            <div class="qs-ilu">
+              <div class="qs-ilu__circulo"></div>
+              <div class="qs-ilu__anillo"></div>
+              <svg class="qs-adorno qs-adorno--estrella" viewBox="0 0 48 48"><path d="M24 4.5l5.9 12 13.2 1.9-9.6 9.3 2.3 13.1L24 34.6l-11.8 6.2 2.3-13.1-9.6-9.3 13.2-1.9z" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.4" stroke-linejoin="round"/></svg>
+              <svg class="qs-adorno qs-adorno--mas" viewBox="0 0 40 40"><path d="M16 4h8v12h12v8H24v12h-8V24H4v-8h12z" fill="#5BB8F0"/></svg>
+              <svg class="qs-adorno qs-adorno--triangulo" viewBox="0 0 100 90"><path d="M50 8 L92 82 L8 82 Z" fill="#FF7A6B" stroke="#1F2A44" stroke-width="5" stroke-linejoin="round"/></svg>
+              <span class="qs-adorno qs-adorno--anillo"></span>
+              <span class="qs-adorno qs-adorno--punto"></span>
+              <span class="qs-tile qs-ilu__t1">1</span>
+              <span class="qs-tile qs-ilu__t2">2</span>
+              <span class="qs-tile qs-ilu__t3">3</span>
+              <div class="qs-ilu__persona"><svg viewBox="0 0 100 100"><use href="#qs-persona"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Contexto académico -->
+      <section class="contenedor" aria-labelledby="qs-contexto-titulo">
+        <div class="qs-contexto qs-rev">
+          <div class="qs-contexto__texto">
+            <p class="qs-eyebrow qs-eyebrow--cielo">El origen del proyecto</p>
+            <h2 class="qs-h2" id="qs-contexto-titulo">Contexto académico</h2>
+            <p>Texto provisional que explique de dónde nace este blog: un trabajo de la asignatura de Didáctica de las matemáticas en la primera infancia, dentro de la formación como licenciadas en Educación Infantil.</p>
+            <div class="qs-reservado">
+              <span class="qs-mono">Espacio reservado</span>
+              <p>Aquí se incorporará la información definitiva sobre la asignatura, la institución y los objetivos académicos del trabajo.</p>
+            </div>
+          </div>
+          <div class="qs-fichas">
+            <div class="qs-ficha qs-ficha--coral">
+              <p class="qs-mono"><span class="qs-forma qs-forma--circulo" aria-hidden="true"></span>Programa</p>
+              <p>Licenciatura en Educación Infantil</p>
+            </div>
+            <div class="qs-ficha qs-ficha--sol">
+              <p class="qs-mono"><span class="qs-forma qs-forma--cuadro" style="--c:var(--sol)" aria-hidden="true"></span>Asignatura</p>
+              <p>Didáctica de las matemáticas en la primera infancia</p>
+            </div>
+            <div class="qs-ficha qs-ficha--menta">
+              <p class="qs-mono"><span class="qs-forma qs-forma--triangulo" style="--c:var(--menta)" aria-hidden="true"></span>Institución</p>
+              <p>Universidad del Quindío</p>
+            </div>
+            <div class="qs-ficha qs-ficha--objetivo">
+              <p class="qs-mono"><span class="qs-forma qs-forma--rombo" aria-hidden="true"></span>Objetivo del trabajo</p>
+              <p>Por definir con la información final.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Equipo -->
+      <section class="contenedor" id="equipo" aria-labelledby="qs-equipo-titulo">
+        <div class="qs-equipo__cab qs-rev">
+          <p class="qs-eyebrow qs-eyebrow--coral">Tres integrantes</p>
+          <h2 class="qs-h2" id="qs-equipo-titulo">Conoce a nuestro equipo</h2>
+          <p>Toca la foto o el botón «Conoce más» para descubrir quién está detrás de cada propuesta.</p>
+        </div>
+        <div class="qs-equipo__lista">
+        <article class="qs-integrante qs-integrante--coral qs-rev qs-hover" data-integrante>
+          <div class="qs-foto">
+            <button class="qs-foto__boton" type="button" aria-label="Ver la presentación de la integrante 1" aria-expanded="false" aria-controls="qs-detalle-1">
+              <!-- FOTO REAL: reemplaza este div por <img class="qs-foto__interno" src="img/foto-1.jpg" alt="Nombre de la integrante 1"> -->
+              <div class="qs-foto__interno" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#qs-persona"/></svg></div>
+            </button>
+            <span class="qs-foto__etiqueta" aria-hidden="true">FOTO 1</span>
+            <span class="qs-foto__insignia" aria-hidden="true">1</span>
+          </div>
+          <h3>Nombre de la integrante</h3>
+          <p class="qs-rol">Rol o aporte · por definir</p>
+          <p class="qs-frase">Frase breve provisional que presente a la integrante en una línea.</p>
+          <button class="qs-mas" type="button" aria-expanded="false" aria-controls="qs-detalle-1">
+            <span class="qs-mas__texto">Conoce más</span><span class="qs-mas__signo" aria-hidden="true"></span>
+          </button>
+          <div class="qs-detalle" id="qs-detalle-1" hidden>
+            <dl>
+              <dt>Presentación</dt>
+              <dd>Texto provisional: aquí irá una breve presentación personal y académica de la integrante, en dos o tres frases cercanas.</dd>
+              <dt>Formación</dt>
+              <dd>Licenciatura en Educación Infantil · Universidad del Quindío · IV semestre</dd>
+              <dt>Aporte al proyecto</dt>
+              <dd>Rol o aporte por definir (por ejemplo: diseño de actividades, redacción, recursos).</dd>
+              <dt>Intereses</dt>
+              <dd><ul class="chips"><li class="chip">Interés 1</li><li class="chip">Interés 2</li><li class="chip">Interés 3</li></ul></dd>
+            </dl>
+          </div>
+        </article>
+        <article class="qs-integrante qs-integrante--sol qs-rev qs-hover" data-integrante>
+          <div class="qs-foto">
+            <button class="qs-foto__boton" type="button" aria-label="Ver la presentación de la integrante 2" aria-expanded="false" aria-controls="qs-detalle-2">
+              <!-- FOTO REAL: reemplaza este div por <img class="qs-foto__interno" src="img/foto-2.jpg" alt="Nombre de la integrante 2"> -->
+              <div class="qs-foto__interno" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#qs-persona"/></svg></div>
+            </button>
+            <span class="qs-foto__etiqueta" aria-hidden="true">FOTO 2</span>
+            <span class="qs-foto__insignia" aria-hidden="true">2</span>
+          </div>
+          <h3>Nombre de la integrante</h3>
+          <p class="qs-rol">Rol o aporte · por definir</p>
+          <p class="qs-frase">Frase breve provisional que presente a la integrante en una línea.</p>
+          <button class="qs-mas" type="button" aria-expanded="false" aria-controls="qs-detalle-2">
+            <span class="qs-mas__texto">Conoce más</span><span class="qs-mas__signo" aria-hidden="true"></span>
+          </button>
+          <div class="qs-detalle" id="qs-detalle-2" hidden>
+            <dl>
+              <dt>Presentación</dt>
+              <dd>Texto provisional: aquí irá una breve presentación personal y académica de la integrante, en dos o tres frases cercanas.</dd>
+              <dt>Formación</dt>
+              <dd>Licenciatura en Educación Infantil · Universidad del Quindío · IV semestre</dd>
+              <dt>Aporte al proyecto</dt>
+              <dd>Rol o aporte por definir (por ejemplo: diseño de actividades, redacción, recursos).</dd>
+              <dt>Intereses</dt>
+              <dd><ul class="chips"><li class="chip">Interés 1</li><li class="chip">Interés 2</li><li class="chip">Interés 3</li></ul></dd>
+            </dl>
+          </div>
+        </article>
+        <article class="qs-integrante qs-integrante--menta qs-rev qs-hover" data-integrante>
+          <div class="qs-foto">
+            <button class="qs-foto__boton" type="button" aria-label="Ver la presentación de la integrante 3" aria-expanded="false" aria-controls="qs-detalle-3">
+              <!-- FOTO REAL: reemplaza este div por <img class="qs-foto__interno" src="img/foto-3.jpg" alt="Nombre de la integrante 3"> -->
+              <div class="qs-foto__interno" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#qs-persona"/></svg></div>
+            </button>
+            <span class="qs-foto__etiqueta" aria-hidden="true">FOTO 3</span>
+            <span class="qs-foto__insignia" aria-hidden="true">3</span>
+          </div>
+          <h3>Nombre de la integrante</h3>
+          <p class="qs-rol">Rol o aporte · por definir</p>
+          <p class="qs-frase">Frase breve provisional que presente a la integrante en una línea.</p>
+          <button class="qs-mas" type="button" aria-expanded="false" aria-controls="qs-detalle-3">
+            <span class="qs-mas__texto">Conoce más</span><span class="qs-mas__signo" aria-hidden="true"></span>
+          </button>
+          <div class="qs-detalle" id="qs-detalle-3" hidden>
+            <dl>
+              <dt>Presentación</dt>
+              <dd>Texto provisional: aquí irá una breve presentación personal y académica de la integrante, en dos o tres frases cercanas.</dd>
+              <dt>Formación</dt>
+              <dd>Licenciatura en Educación Infantil · Universidad del Quindío · IV semestre</dd>
+              <dt>Aporte al proyecto</dt>
+              <dd>Rol o aporte por definir (por ejemplo: diseño de actividades, redacción, recursos).</dd>
+              <dt>Intereses</dt>
+              <dd><ul class="chips"><li class="chip">Interés 1</li><li class="chip">Interés 2</li><li class="chip">Interés 3</li></ul></dd>
+            </dl>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <!-- 4. Propósito -->
+      <section class="contenedor" id="proposito" aria-labelledby="qs-prop-titulo">
+        <div class="qs-prop__cab qs-rev">
+          <div>
+            <p class="qs-eyebrow qs-eyebrow--menta">Nuestro propósito</p>
+            <h2 class="qs-h2" id="qs-prop-titulo">¿Qué buscamos con este proyecto?</h2>
+          </div>
+          <p>Texto provisional que resuma la intención educativa del blog en una o dos frases.</p>
+        </div>
+        <div class="qs-prop__lista">
+          <article class="qs-prop qs-rev qs-hover">
+            <span class="qs-prop__num" aria-hidden="true">01</span>
+            <span class="qs-tile" style="--c:var(--coral)" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><rect x="6" y="26" width="16" height="16" rx="3.5" fill="#fff" stroke="#1F2A44" stroke-width="2.5"/><rect x="26" y="26" width="16" height="16" rx="3.5" fill="#fff" stroke="#1F2A44" stroke-width="2.5"/><rect x="16" y="8" width="16" height="16" rx="3.5" fill="#1F2A44"/></svg>
+            </span>
+            <h3>Explorar recursos didácticos</h3>
+            <p>Descripción provisional: reunir y probar materiales que acerquen las matemáticas a niñas y niños pequeños.</p>
+          </article>
+          <article class="qs-prop qs-prop--cielo qs-rev qs-hover">
+            <span class="qs-prop__num" aria-hidden="true">02</span>
+            <span class="qs-tile" style="--c:var(--cielo)" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><path d="M24 5a13 13 0 0 0-7 24c1.5 1.2 2 2.4 2 4h10c0-1.6.5-2.8 2-4A13 13 0 0 0 24 5Z" fill="#fff" stroke="#1F2A44" stroke-width="2.5" stroke-linejoin="round"/><rect x="18" y="37" width="12" height="5" rx="2.5" fill="#1F2A44"/></svg>
+            </span>
+            <h3>Promover el aprendizaje significativo</h3>
+            <p>Descripción provisional: que cada idea matemática tenga sentido en la vida y en el juego de la infancia.</p>
+          </article>
+          <article class="qs-prop qs-prop--menta qs-rev qs-hover">
+            <span class="qs-prop__num" aria-hidden="true">03</span>
+            <span class="qs-tile" style="--c:var(--menta)" aria-hidden="true">
+              <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="#fff" stroke="#1F2A44" stroke-width="2.5"/><circle cx="24" cy="24" r="11.5" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.5"/><circle cx="24" cy="24" r="4.5" fill="#1F2A44"/></svg>
+            </span>
+            <h3>Diseñar actividades y estrategias</h3>
+            <p>Descripción provisional: proponer actividades matemáticas y orientaciones adecuadas para la primera infancia.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 5. Nuestra mirada -->
+      <section class="contenedor" aria-labelledby="qs-mirada-titulo">
+        <div class="qs-mirada qs-rev">
+          <p class="qs-eyebrow qs-eyebrow--sol qs-eyebrow--claro">Nuestra mirada</p>
+          <h2 class="qs-h2" id="qs-mirada-titulo">Aprender matemáticas jugando y explorando</h2>
+          <p>Creemos que las matemáticas se descubren con las manos, la curiosidad y la vida diaria.</p>
+
+          <div class="qs-bento">
+            <article class="qs-bloque qs-bloque--juego">
+              <p class="qs-mono">01 · Juego</p>
+              <h3>Jugar es pensar con números y formas</h3>
+              <div class="qs-figuras" aria-hidden="true"><i class="qs-fig-circulo"></i><i class="qs-fig-cuadro"></i><i class="qs-fig-triangulo"></i></div>
+            </article>
+            <article class="qs-bloque qs-bloque--curiosidad">
+              <p class="qs-mono">02 · Curiosidad</p>
+              <h3>Preguntar antes de contar</h3>
+              <span class="qs-gigante" aria-hidden="true">?</span>
+            </article>
+            <article class="qs-bloque qs-bloque--exp">
+              <p class="qs-mono">03 · Experimentar</p>
+              <h3>Probar, mover, comparar</h3>
+              <span class="qs-gigante" aria-hidden="true">=</span>
+            </article>
+            <article class="qs-bloque qs-bloque--mat">
+              <div>
+                <p class="qs-mono">04 · Materiales concretos</p>
+                <h3>Bloques, fichas y objetos que se tocan</h3>
+              </div>
+              <div class="qs-mini" aria-hidden="true"><span class="qs-tile qs-tile--sm">1</span><span class="qs-tile qs-tile--sm">2</span><span class="qs-tile qs-tile--sm">3</span></div>
+            </article>
+            <article class="qs-bloque qs-bloque--sit">
+              <div>
+                <p class="qs-mono">05 · Situaciones cotidianas</p>
+                <h3>Contar pasos, repartir la merienda, comparar tamaños</h3>
+              </div>
+              <div class="qs-bolas" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>…</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Lo que nos guía -->
+      <section class="contenedor qs-valores" aria-labelledby="qs-valores-titulo">
+        <div class="qs-rev">
+          <p class="qs-eyebrow qs-eyebrow--lila">Compromisos del grupo · propuesta</p>
+          <h2 class="qs-h2" id="qs-valores-titulo">Lo que nos guía</h2>
+        </div>
+        <div class="qs-valores__lista">
+          <article class="qs-valor qs-valor--coral qs-rev qs-hover">
+            <span class="qs-forma qs-forma--circulo" style="--c:var(--coral)" aria-hidden="true"></span>
+            <h3>Creatividad con sentido</h3>
+            <p>Cada recurso se piensa para jugar y también para aprender.</p>
+          </article>
+          <article class="qs-valor qs-valor--sol qs-rev qs-hover">
+            <span class="qs-forma qs-forma--cuadro" style="--c:var(--sol)" aria-hidden="true"></span>
+            <h3>Respeto por cada niña y niño</h3>
+            <p>Cada ritmo y cada forma de explorar tienen valor.</p>
+          </article>
+          <article class="qs-valor qs-valor--menta qs-rev qs-hover">
+            <span class="qs-forma qs-forma--triangulo" style="--c:var(--menta)" aria-hidden="true"></span>
+            <h3>Rigor y referencias</h3>
+            <p>Lo que proponemos se apoya en autores y fuentes confiables.</p>
+          </article>
+          <article class="qs-valor qs-valor--lila qs-rev qs-hover">
+            <span class="qs-forma qs-forma--rombo" style="--c:var(--lila)" aria-hidden="true"></span>
+            <h3>Recursos que se pueden usar</h3>
+            <p>Actividades claras para docentes, familias y estudiantes.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 7. Llamado final -->
+      <section class="contenedor" aria-labelledby="qs-cta-titulo">
+        <div class="qs-cta qs-rev">
+          <div class="qs-cta__texto">
+            <p class="qs-eyebrow qs-eyebrow--sol">Sigue explorando</p>
+            <h2 class="qs-h2" id="qs-cta-titulo">¿Jugamos con las matemáticas?</h2>
+            <p>Explora las actividades y los recursos que preparamos para la primera infancia.</p>
+          </div>
+          <div class="qs-cta__acciones">
+            <div class="qs-cta__botones">
+              <a class="qs-btn qs-btn--oscuro" href="#">Ver actividades →</a>
+              <a class="qs-btn qs-btn--claro" href="#">Ir a recursos</a>
+            </div>
+            <p class="qs-mono">Contacto · correo por definir</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="#">Aprendimos</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="#">Recursos</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/quienes-somos.js"></script>
+</body>
+</html>
