@@ -576,20 +576,47 @@ main > section + section { margin-top: 112px; }
   background: var(--cielo-t);
 }
 .etapas h2 { font-size: clamp(2rem, 3.6vw, 3rem); margin-bottom: 16px; }
-.etiqueta--punto::before {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--sol); box-shadow: 0 0 0 1.5px var(--tinta);
-  margin-right: 0;
+.etapas__edad {
+  padding: 7px 16px 7px 14px;
+  background: #fff; color: var(--tinta);
+  border: 2px solid var(--tinta); border-radius: 999px;
+  box-shadow: 0 3px 0 var(--tinta);
+  font-size: 1rem; font-weight: 500; letter-spacing: .12em;
+  margin-bottom: 20px;
 }
-.etapas__habilidad { margin: 32px 0 12px; }
+.etapas__habilidad {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 14px;
+  color: var(--tinta); font-size: .92rem; font-weight: 500;
+}
 .etapas__habilidad::before { display: none; }
+.etapas__habilidad::after {
+  content: ""; width: 72px; border-top: 2.5px dashed rgba(31, 42, 68, .35);
+}
 .etapas__chips { gap: 8px; }
 .chip--enlace {
-  min-height: 40px; padding: 0 16px; font-size: .95rem;
+  gap: 8px;
+  min-height: 42px; padding: 0 14px 0 12px; font-size: .95rem;
   text-decoration: none;
-  transition: background-color .2s, border-color .2s;
+  border: 2px solid var(--tinta);
+  box-shadow: 0 3px 0 rgba(31, 42, 68, .22);
+  transition: background-color .2s, transform .25s var(--curva), box-shadow .25s var(--curva);
 }
-.chip--enlace:hover { background: var(--sol); border-color: var(--sol); }
+.chip--enlace::before {
+  content: ""; width: 12px; height: 12px; flex-shrink: 0;
+  background: var(--c, var(--coral));
+}
+.forma-coral { --c: var(--coral); }
+.forma-cielo { --c: var(--cielo); }
+.forma-menta { --c: var(--menta); }
+.forma-lila { --c: var(--lila); }
+.forma-tinta { --c: var(--tinta); }
+.forma-coral::before, .forma-tinta::before { border-radius: 50%; }
+.forma-cielo::before { border-radius: 3px; }
+.forma-menta::before { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.forma-lila::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.chip--enlace:hover { background: var(--sol); transform: translateY(-2px); box-shadow: 0 5px 0 rgba(31, 42, 68, .22); }
+.chip--enlace:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
 
 .edades {
   display: grid;
@@ -987,6 +1014,7 @@ main > section + section { margin-top: 112px; }
   .tarjeta-nocion:hover .tarjeta-nocion__icono svg,
   .tarjeta-nocion--oscura:hover .tarjeta-nocion__formas,
   .enlace-flecha:hover svg { transform: none; }
+  .chip--enlace:hover { transform: none; }
   .boton-globo:hover, .boton-globo:active, .boton-globo:hover .boton-globo__flecha { transform: none; }
   .recurso:hover .hoja__papel { transform: rotate(-3deg) translateY(8%); }
 }
