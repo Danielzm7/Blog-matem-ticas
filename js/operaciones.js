@@ -23,6 +23,10 @@
     return Number.isInteger(r) && r >= 0 && r <= 12;
   });
 
+  // Colores de los recuadros (los mismos tonos de la marca); en cada cambio se usan tres distintos
+  var colores = ['#FF7A6B', '#FFD45E', '#7FD8B5', '#B7A6F2', '#5BB8F0'];
+  var actuales = [0, 1, 2];
+
   var reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
   var indice = 0;
   var temporizador = null;
@@ -51,7 +55,18 @@
     };
   }
 
+  function recolorear() {
+    var nuevos = [];
+    while (nuevos.length < 3) {
+      var c = Math.floor(Math.random() * colores.length);
+      if (nuevos.indexOf(c) === -1 && actuales.indexOf(c) !== nuevos.length) nuevos.push(c);
+    }
+    actuales = nuevos;
+    bloques.forEach(function (b, i) { b.style.setProperty('--c', colores[nuevos[i]]); });
+  }
+
   function siguiente() {
+    recolorear();
     indice = (indice + 1) % lista.length;
     var o = lista[indice];
     var r = calcular[o[1]](o[0], o[2]);

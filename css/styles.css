@@ -334,19 +334,22 @@ main, .pie { position: relative; z-index: 1; }
   position: relative;
   width: 100%; max-width: 520px;
   aspect-ratio: 1 / 1;
-  container-type: inline-size;
 }
 .il-circulo {
   position: absolute; inset: 9%;
   border-radius: 50%;
-  /* Lila más luminoso, con luz arriba a la izquierda y profundidad suave abajo */
-  background: radial-gradient(circle at 32% 28%, #DCD3FB 0%, #C9BCF7 45%, #BBABF4 100%);
-  box-shadow:
-    inset 0 -22px 44px rgba(31, 42, 68, .10),
-    inset 0 18px 36px rgba(255, 255, 255, .45),
-    0 24px 48px -28px rgba(91, 70, 170, .45);
+  background: var(--lila);
   animation: girar 40s linear infinite;
 }
+/* Ábaco pequeño en el centro: por encima del morado y por debajo de lo demás */
+.il-abaco {
+  position: absolute; left: 50%; top: 53%;
+  width: 24%;
+  translate: -50% -50%;
+  rotate: -5deg;
+  animation: flotar-suave 8s ease-in-out infinite;
+}
+@keyframes flotar-suave { 50% { transform: translateY(-6px); } }
 .il-circulo__orbita {
   position: absolute; inset: 10%;
   border-radius: 50%;
@@ -372,37 +375,6 @@ main, .pie { position: relative; z-index: 1; }
   --giro: -10deg;
 }
 .il-estrella { position: absolute; top: 42%; right: 6%; width: 17%; --giro: 12deg; }
-/* Decoración central: ábaco 1-2-3 sobre un halo claro */
-.il-centro { position: absolute; inset: 9%; pointer-events: none; }
-.il-centro__halo {
-  position: absolute; left: 50%; top: 45%; width: 58%; aspect-ratio: 1;
-  translate: -50% -50%; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, .18) 62%, rgba(255, 255, 255, 0) 72%);
-}
-.il-abaco {
-  position: absolute; left: 50%; top: 44%; width: 46%;
-  translate: -50% -50%;
-  filter: drop-shadow(0 8px 0 var(--sombra-bloque));
-  --giro: -3deg;
-}
-.il-ficha {
-  position: absolute;
-  display: grid; place-items: center;
-  width: 13%; aspect-ratio: 1;
-  border-radius: 30%;
-  border: 2.5px solid var(--tinta);
-  background: #fff;
-  font-family: var(--f-titulo); font-weight: 800; line-height: 1;
-  font-size: 8.5cqi;
-  box-shadow: 0 5px 0 var(--sombra-bloque);
-}
-.il-ficha--mas.flota, .il-ficha--mas { left: 14%; top: 22%; background: var(--sol); --giro: -8deg; animation-delay: -3s; }
-.il-ficha--por.flota, .il-ficha--por { right: 14%; top: 60%; background: var(--cielo-t); --giro: 10deg; animation-delay: -5s; }
-.il-chispa { position: absolute; width: 2.4%; aspect-ratio: 1; border-radius: 50%; background: #fff; opacity: .9; }
-.il-chispa--1 { left: 30%; top: 14%; }
-.il-chispa--2 { right: 26%; top: 24%; width: 1.8%; background: var(--sol); }
-.il-chispa--3 { left: 22%; top: 64%; width: 1.6%; }
-
 .il-suma {
   position: absolute; left: 50%; bottom: 6%;
   translate: -50% 0;
@@ -414,6 +386,7 @@ main, .pie { position: relative; z-index: 1; }
 }
 .il-suma__op { min-width: 1.1ch; text-align: center; }
 .il-suma__valor { display: inline-block; will-change: transform, opacity; }
+.il-suma .bloque, .il-suma .bloque::before, .il-suma .bloque::after { transition: background-color .45s ease; }
 
 .flota { animation: flotar var(--d, 9s) ease-in-out infinite; }
 .il-aro.flota { animation-delay: -2s; }
