@@ -303,6 +303,15 @@ main, .pie { position: relative; z-index: 1; }
   border-radius: 14px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
+.portada__brote {
+  display: inline-block;
+  width: .8em; height: .94em; margin-left: .16em;
+  vertical-align: baseline;
+  overflow: visible;
+}
+.portada__brote-hojas { transform-box: fill-box; transform-origin: 50% 100%; }
+.portada__brote { animation: brotar 6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes brotar { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(4deg); } }
 .portada__sub {
   font-size: 1.2rem; color: var(--texto-2);
   max-width: 34em; margin-bottom: 32px;
