@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Didáctica de las matemáticas en la primera infancia</title>
+  <meta name="description" content="Maqueta de la página de inicio del blog de didáctica de las matemáticas en la primera infancia. Licenciatura en Educación Infantil, Universidad del Quindío.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- Iconos de las nociones: color de la noción + tinta -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-conteo" viewBox="0 0 48 48">
+      <circle cx="9" cy="31" r="4.5" fill="#1F2A44"/>
+      <circle cx="21.5" cy="28" r="7.5" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.5"/>
+      <circle cx="36.5" cy="24" r="9.5" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="i-clasificacion" viewBox="0 0 48 48">
+      <rect x="6" y="6" width="15" height="15" rx="3" fill="#5BB8F0" stroke="#1F2A44" stroke-width="2.5"/>
+      <circle cx="34.5" cy="13.5" r="7.5" fill="#1F2A44"/>
+      <circle cx="13.5" cy="34.5" r="7.5" fill="#5BB8F0" stroke="#1F2A44" stroke-width="2.5"/>
+      <rect x="27" y="27" width="15" height="15" rx="3" fill="#1F2A44"/>
+    </symbol>
+    <symbol id="i-seriacion" viewBox="0 0 48 48">
+      <rect x="5" y="30" width="8" height="12" rx="2" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.5"/>
+      <rect x="15.5" y="23" width="8" height="19" rx="2" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.5"/>
+      <rect x="26" y="15" width="8" height="27" rx="2" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.5"/>
+      <rect x="36.5" y="6" width="8" height="36" rx="2" fill="#1F2A44"/>
+    </symbol>
+    <symbol id="i-patrones" viewBox="0 0 48 48">
+      <path d="M8 16 L14 22 L8 28 L2 22 Z" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.2" stroke-linejoin="round"/>
+      <circle cx="24" cy="22" r="5.5" fill="#1F2A44"/>
+      <path d="M40 16 L46 28 L34 28 Z" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M8 32 L13 37 L8 42 L3 37 Z" fill="#1F2A44"/>
+      <circle cx="24" cy="37" r="4.5" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.2"/>
+      <path d="M40 32 L45 42 L35 42 Z" fill="#1F2A44"/>
+    </symbol>
+    <symbol id="i-medicion" viewBox="0 0 48 48">
+      <g transform="rotate(-35 24 24)">
+        <rect x="3" y="16" width="42" height="16" rx="3" fill="#B7A6F2" stroke="#1F2A44" stroke-width="2.5"/>
+        <path d="M10 16v7M17 16v4M24 16v7M31 16v4M38 16v7" stroke="#1F2A44" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </symbol>
+    <symbol id="i-espacio" viewBox="0 0 48 48">
+      <rect x="20" y="20" width="22" height="22" rx="3" fill="#1F2A44"/>
+      <path d="M17 6 L31 31 L3 31 Z" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-problemas" viewBox="0 0 48 48">
+      <path d="M24 4.5l5.9 12 13.2 1.9-9.6 9.3 2.3 13.1L24 34.6l-11.8 6.2 2.3-13.1-9.6-9.3 13.2-1.9z" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="24" cy="24" r="3.5" fill="#1F2A44"/>
+    </symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-descargar" viewBox="0 0 24 24">
+      <path d="M12 4v11M7 10.5l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <div class="papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo-espacio" href="#" aria-label="Inicio">
+          <span>Espacio del logo</span>
+        </a>
+
+        <nav class="menu" aria-label="Principal">
+          <ul>
+            <li><a href="#" aria-current="page">Inicio</a></li>
+            <li><a href="#">Quiénes somos</a></li>
+            <li><a href="#">Aprendimos</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="#">Recursos</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+
+        <form class="buscador" role="search" action="#">
+          <label class="sr-only" for="buscar">Buscar actividades</label>
+          <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+          <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+        </form>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="#" aria-current="page">Inicio</a></li>
+              <li><a href="#">Quiénes somos</a></li>
+              <li><a href="#">Aprendimos</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a href="#">Recursos</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <!-- 1. Portada -->
+      <section class="portada contenedor" aria-labelledby="portada-titulo">
+        <div class="portada__texto">
+          <p class="etiqueta aparece" style="--i:0">Didáctica de las matemáticas · Primera infancia</p>
+          <h1 id="portada-titulo" class="portada__titulo aparece" style="--i:1">Título principal del <mark>blog</mark></h1>
+          <p class="portada__sub aparece" style="--i:2">Descripción provisional del blog. Aquí irá un párrafo breve que presenta el propósito del espacio y a quién está dirigido.</p>
+          <div class="portada__botones aparece" style="--i:3">
+            <a class="btn btn--principal" href="#">Explorar actividades</a>
+            <a class="btn btn--secundario" href="#">Ver recursos</a>
+          </div>
+          <ul class="publico aparece" style="--i:4" aria-label="Público">
+            <li><span class="publico__marca publico__marca--coral" aria-hidden="true"></span>Estudiantes</li>
+            <li><span class="publico__marca publico__marca--cielo" aria-hidden="true"></span>Docentes</li>
+            <li><span class="publico__marca publico__marca--menta" aria-hidden="true"></span>Familias</li>
+          </ul>
+        </div>
+
+        <div class="ilustracion" aria-hidden="true">
+          <div class="ilustracion__lienzo">
+            <div class="il-circulo"><span class="il-circulo__orbita"></span><span class="il-circulo__punto"></span></div>
+            <div class="il-aro flota" style="--d:9s"></div>
+            <svg class="il-triangulo flota" style="--d:8s" viewBox="0 0 100 90"><path d="M50 6 L94 84 L6 84 Z" fill="#5BB8F0" stroke="#1F2A44" stroke-width="5" stroke-linejoin="round"/></svg>
+            <svg class="il-dado flota" style="--d:10s" viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="22" fill="#fff" stroke="#1F2A44" stroke-width="5"/><g fill="#1F2A44"><circle cx="30" cy="30" r="8"/><circle cx="70" cy="30" r="8"/><circle cx="50" cy="50" r="8"/><circle cx="30" cy="70" r="8"/><circle cx="70" cy="70" r="8"/></g></svg>
+            <svg class="il-estrella flota" style="--d:7s" viewBox="0 0 48 48"><path d="M24 4.5l5.9 12 13.2 1.9-9.6 9.3 2.3 13.1L24 34.6l-11.8 6.2 2.3-13.1-9.6-9.3 13.2-1.9z" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            <div class="il-suma">
+              <span class="bloque bloque--coral bloque--sm">1</span>
+              <span class="il-suma__op">+</span>
+              <span class="bloque bloque--sol bloque--sm">2</span>
+              <span class="il-suma__op">=</span>
+              <span class="bloque bloque--menta bloque--sm">3</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- 2. Explora por noción -->
+    <section class="seccion contenedor" aria-labelledby="nociones-titulo">
+      <div class="seccion__encabezado">
+        <div>
+          <p class="etiqueta">Nociones matemáticas</p>
+          <h2 id="nociones-titulo">Explora por noción</h2>
+        </div>
+        <p class="seccion__intro">Descripción provisional de la sección. Una o dos líneas que expliquen cómo se organizan las actividades.</p>
+      </div>
+
+      <ul class="nociones">
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-coral"><svg aria-hidden="true"><use href="#i-conteo"/></svg></span>
+          <h3>Conteo</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-cielo"><svg aria-hidden="true"><use href="#i-clasificacion"/></svg></span>
+          <h3>Clasificación</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-sol"><svg aria-hidden="true"><use href="#i-seriacion"/></svg></span>
+          <h3>Seriación</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-menta"><svg aria-hidden="true"><use href="#i-patrones"/></svg></span>
+          <h3>Patrones</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-lila"><svg aria-hidden="true"><use href="#i-medicion"/></svg></span>
+          <h3>Medición</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-coral"><svg aria-hidden="true"><use href="#i-espacio"/></svg></span>
+          <h3>Espacio y forma</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion" href="#">
+          <span class="tarjeta-nocion__icono tinte-sol"><svg aria-hidden="true"><use href="#i-problemas"/></svg></span>
+          <h3>Resolución de problemas</h3>
+          <p>Descripción breve provisional de la noción.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+        <li><a class="tarjeta tarjeta-nocion tarjeta-nocion--oscura" href="#">
+          <span class="tarjeta-nocion__formas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <h3>Todas las actividades</h3>
+          <p>Texto provisional para invitar a ver el listado completo.</p>
+          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </a></li>
+      </ul>
+    </section>
+
+    <!-- 3. Actividades para cada etapa -->
+    <section class="contenedor" aria-labelledby="etapas-titulo">
+      <div class="bloque-seccion bloque-seccion--cielo">
+        <div class="seccion__encabezado">
+          <div>
+            <p class="etiqueta">Por edades</p>
+            <h2 id="etapas-titulo">Actividades para cada etapa</h2>
+          </div>
+          <p class="seccion__intro">Descripción provisional sobre cómo se agrupan las actividades según la edad.</p>
+        </div>
+
+        <ul class="edades">
+          <li><a class="tarjeta-edad" href="#">
+            <span class="bloque bloque--coral bloque--edad"><span class="bloque__num">3</span><span class="bloque__unidad">años</span></span>
+            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
+            <span class="chips"><span class="chip">Contar</span><span class="chip">Comparar</span></span>
+          </a></li>
+          <li><a class="tarjeta-edad" href="#">
+            <span class="bloque bloque--sol bloque--edad"><span class="bloque__num">4</span><span class="bloque__unidad">años</span></span>
+            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
+            <span class="chips"><span class="chip">Contar</span><span class="chip">Ordenar</span></span>
+          </a></li>
+          <li><a class="tarjeta-edad" href="#">
+            <span class="bloque bloque--menta bloque--edad"><span class="bloque__num">5</span><span class="bloque__unidad">años</span></span>
+            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
+            <span class="chips"><span class="chip">Ordenar</span><span class="chip">Medir</span></span>
+          </a></li>
+          <li><a class="tarjeta-edad" href="#">
+            <span class="bloque bloque--lila bloque--edad"><span class="bloque__num">6</span><span class="bloque__unidad">años</span></span>
+            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
+            <span class="chips"><span class="chip">Medir</span><span class="chip">Resolver</span></span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Entradas recientes -->
+    <section class="seccion contenedor" aria-labelledby="entradas-titulo">
+      <div class="seccion__encabezado">
+        <div>
+          <p class="etiqueta">Blog</p>
+          <h2 id="entradas-titulo">Entradas recientes</h2>
+        </div>
+        <a class="enlace-flecha" href="#">Ver todas las entradas <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      </div>
+
+      <div class="entradas">
+        <article class="tarjeta entrada-destacada">
+          <div class="espacio-imagen espacio-imagen--16x9"><span class="dato">Imagen 16:9</span></div>
+          <div class="entrada-destacada__cuerpo">
+            <div class="meta"><span class="chip chip--coral">Conteo</span><span class="dato">00 / 00 / 0000</span></div>
+            <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
+            <p>Descripción provisional de la entrada destacada. Dos o tres líneas que resumen de qué trata la publicación.</p>
+          </div>
+        </article>
+
+        <div class="entradas__lista">
+          <article class="tarjeta entrada-h">
+            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--sol"></div>
+            <div>
+              <div class="meta"><span class="chip chip--cielo">Clasificación</span><span class="dato">00 / 00 / 0000</span></div>
+              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
+              <p>Descripción provisional breve.</p>
+            </div>
+          </article>
+          <article class="tarjeta entrada-h">
+            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--menta"></div>
+            <div>
+              <div class="meta"><span class="chip chip--menta">Patrones</span><span class="dato">00 / 00 / 0000</span></div>
+              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
+              <p>Descripción provisional breve.</p>
+            </div>
+          </article>
+          <article class="tarjeta entrada-h">
+            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--lila"></div>
+            <div>
+              <div class="meta"><span class="chip chip--lila">Medición</span><span class="dato">00 / 00 / 0000</span></div>
+              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
+              <p>Descripción provisional breve.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Situaciones didácticas y juegos -->
+    <section class="contenedor" aria-labelledby="situaciones-titulo">
+      <div class="bloque-seccion bloque-seccion--lila situaciones">
+        <div class="situaciones__texto">
+          <p class="etiqueta">Jugamos y enseñamos</p>
+          <h2 id="situaciones-titulo">Situaciones didácticas y juegos</h2>
+          <p class="seccion__intro">Texto provisional que presenta cómo se describe cada situación didáctica en el blog.</p>
+          <ol class="puntos">
+            <li><span class="bloque bloque--coral bloque--xs" aria-hidden="true">1</span><div><strong>Noción, edad y tiempo</strong><span>Descripción provisional del punto.</span></div></li>
+            <li><span class="bloque bloque--sol bloque--xs" aria-hidden="true">2</span><div><strong>Materiales concretos</strong><span>Descripción provisional del punto.</span></div></li>
+            <li><span class="bloque bloque--menta bloque--xs" aria-hidden="true">3</span><div><strong>Qué observar</strong><span>Descripción provisional del punto.</span></div></li>
+          </ol>
+          <a class="btn btn--principal" href="#">Ver situaciones</a>
+        </div>
+
+        <div class="ficha-pila">
+          <div class="ficha-pila__fondo ficha-pila__fondo--sol" aria-hidden="true"></div>
+          <div class="ficha-pila__fondo ficha-pila__fondo--menta" aria-hidden="true"></div>
+          <article class="ficha" aria-label="Ejemplo de ficha de situación didáctica">
+            <header class="ficha__cabeza">
+              <span class="dato">Ficha de situación didáctica</span>
+              <span class="dato ficha__num">N.º 00</span>
+            </header>
+            <h3>Nombre de la situación</h3>
+            <dl class="ficha__campos">
+              <div><dt>Noción</dt><dd>Nombre de la noción</dd></div>
+              <div><dt>Edad sugerida</dt><dd>0 años</dd></div>
+              <div><dt>Tiempo</dt><dd>00 min</dd></div>
+              <div class="ficha__ancho"><dt>Materiales</dt><dd>Lista provisional de materiales</dd></div>
+              <div class="ficha__ancho"><dt>Momentos</dt><dd class="chips"><span class="chip chip--coral">Inicio</span><span class="chip chip--cielo">Exploración</span><span class="chip chip--sol">Juego guiado</span><span class="chip chip--menta">Cierre</span></dd></div>
+              <div class="ficha__ancho"><dt>Qué observar</dt><dd>Texto provisional sobre lo que se observa durante la situación.</dd></div>
+            </dl>
+            <div class="ficha__versiones">
+              <div class="tinte-menta"><span class="dato">Más sencilla</span><p>Variación provisional.</p></div>
+              <div class="tinte-coral"><span class="dato">Más retadora</span><p>Variación provisional.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Recursos para imprimir -->
+    <section class="seccion contenedor" aria-labelledby="recursos-titulo">
+      <div class="seccion__encabezado">
+        <div>
+          <p class="etiqueta">Recursos</p>
+          <h2 id="recursos-titulo">Recursos para imprimir</h2>
+        </div>
+        <a class="enlace-flecha" href="#">Ver todos los recursos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      </div>
+
+      <ul class="recursos">
+        <li class="tarjeta recurso">
+          <div class="hoja tinte-coral" aria-hidden="true">
+            <div class="hoja__papel prev-tarjetas"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="recurso__cuerpo">
+            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
+            <h3>Tarjetas imprimibles</h3>
+            <a class="btn btn--pequeno" href="#" aria-label="Descargar Tarjetas imprimibles"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
+          </div>
+        </li>
+        <li class="tarjeta recurso">
+          <div class="hoja tinte-sol" aria-hidden="true">
+            <div class="hoja__papel prev-tablero"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="recurso__cuerpo">
+            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
+            <h3>Tablero de juego</h3>
+            <a class="btn btn--pequeno" href="#" aria-label="Descargar Tablero de juego"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
+          </div>
+        </li>
+        <li class="tarjeta recurso">
+          <div class="hoja tinte-cielo" aria-hidden="true">
+            <div class="hoja__papel prev-registro"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="recurso__cuerpo">
+            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
+            <h3>Plantilla de registro</h3>
+            <a class="btn btn--pequeno" href="#" aria-label="Descargar Plantilla de registro"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
+          </div>
+        </li>
+        <li class="tarjeta recurso">
+          <div class="hoja tinte-menta" aria-hidden="true">
+            <div class="hoja__papel prev-guia"><b></b><i></i><i></i><i></i><u></u><i></i><i></i></div>
+          </div>
+          <div class="recurso__cuerpo">
+            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
+            <h3>Guía para familias</h3>
+            <a class="btn btn--pequeno" href="#" aria-label="Descargar Guía para familias"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 7. Orientaciones pedagógicas -->
+    <section class="contenedor" aria-labelledby="orientaciones-titulo">
+      <div class="bloque-seccion bloque-seccion--tinta orientaciones">
+        <div class="orientaciones__intro">
+          <p class="etiqueta etiqueta--clara">Enfoque</p>
+          <h2 id="orientaciones-titulo">Orientaciones pedagógicas</h2>
+          <p class="seccion__intro">Texto provisional que introduce los principios que orientan las propuestas del blog.</p>
+        </div>
+        <ol class="orientaciones__lista">
+          <li><span class="forma forma--circulo" aria-hidden="true"></span><div><h3>El juego como método</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">01</span></li>
+          <li><span class="forma forma--cuadrado" aria-hidden="true"></span><div><h3>Exploración con materiales concretos</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">02</span></li>
+          <li><span class="forma forma--triangulo" aria-hidden="true"></span><div><h3>Resolución de problemas</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">03</span></li>
+          <li><span class="forma forma--rombo" aria-hidden="true"></span><div><h3>Experiencias cotidianas</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">04</span></li>
+          <li><span class="forma forma--aro" aria-hidden="true"></span><div><h3>Evaluación formativa</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">05</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 8. Conoce al grupo -->
+    <section class="seccion contenedor" aria-labelledby="grupo-titulo">
+      <div class="tarjeta grupo">
+        <div class="grupo__fotos" aria-hidden="true">
+          <span class="foto foto--coral"><span class="dato">Foto</span></span>
+          <span class="foto foto--cielo"><span class="dato">Foto</span></span>
+          <span class="foto foto--menta"><span class="dato">Foto</span></span>
+        </div>
+        <div class="grupo__texto">
+          <p class="etiqueta">Quiénes somos</p>
+          <h2 id="grupo-titulo">Conoce al grupo</h2>
+          <p>Texto provisional de presentación del grupo que escribe el blog.</p>
+        </div>
+        <a class="btn btn--principal" href="#">Conocer al grupo</a>
+      </div>
+    </section>
+    </main>
+
+  <!-- 9. Pie de página -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo-espacio logo-espacio--claro"><span>Espacio del logo</span></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="#">Aprendimos</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="#">Recursos</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="#">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+</body>
+</html>
