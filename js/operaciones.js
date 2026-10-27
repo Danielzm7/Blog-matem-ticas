@@ -23,8 +23,8 @@
     return Number.isInteger(r) && r >= 0 && r <= 12;
   });
 
-  // Colores de los recuadros (los mismos tonos de la marca); en cada cambio se usan tres distintos
-  var colores = ['#FF7A6B', '#FFD45E', '#7FD8B5', '#B7A6F2', '#5BB8F0'];
+  // Colores de los recuadros; en cada cambio se usan tres distintos
+  var colores = ['#FF7A6B', '#FFD45E', '#7FD8B5', '#5BB8F0']; // sin lila: se pierde sobre el círculo morado
   var actuales = [0, 1, 2];
 
   var reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
