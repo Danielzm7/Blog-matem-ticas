@@ -244,6 +244,7 @@ main, .pie { position: relative; z-index: 1; }
   background: #fff; border: 2px solid var(--tinta); border-radius: 18px;
   box-shadow: 0 4px 0 var(--tinta);
 }
+.menu .submenu li + li { margin-top: 8px; }
 .menu .submenu a:hover { background: #FFE9A3; box-shadow: 0 4px 0 var(--tinta); }
 
 .buscador { position: relative; width: 220px; flex-shrink: 0; }

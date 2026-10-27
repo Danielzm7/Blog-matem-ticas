@@ -75,13 +75,13 @@ html.ac-sin-scroll main { z-index: 100; }
 .ac-btn-oscuro:active { transform: translateY(4px); box-shadow: 0 1px 0 #0C1226; }
 
 .ac-portada__arte { position: relative; min-height: 340px; }
-.ac-ficha3 {
+.ac-ficha {
   --t: 200px; position: absolute; left: 50%; top: 50%;
   margin: 0; border-radius: 44px; font-size: 130px;
   translate: -50% -50%; rotate: -6deg;
   animation: ac-flota 5s ease-in-out infinite;
 }
-.ac-ficha3::before, .ac-ficha3::after { top: -26px; width: 48px; height: 40px; }
+.ac-ficha::before, .ac-ficha::after { top: -26px; width: 48px; height: 40px; }
 .ac-flota { position: absolute; font-size: 62px; line-height: 1; animation: ac-flota 4.6s ease-in-out infinite; }
 .ac-flota--1 { left: 2%; top: 4%; animation-delay: -.8s; }
 .ac-flota--2 { right: 4%; top: 2%; animation-delay: -2.2s; }
@@ -334,6 +334,74 @@ html.ac-sin-scroll main { z-index: 100; }
 .ac-edad::before, .ac-edad::after { top: -17px; width: 31px; height: 26px; }
 .ac-edad--tinta { --c: var(--tinta); color: var(--sol); }
 
+/* ---------- Edad de 4 años ---------- */
+.ac-portada--sol { background: var(--sol-t); }
+.ac-portada--sol::before { border: 2px dashed #E8C65A; }
+.ac-ficha--4 { rotate: 5deg; }
+.ac-flota--r1 { rotate: -14deg; } .ac-flota--r2 { rotate: 12deg; } .ac-flota--r3 { rotate: -8deg; } .ac-flota--r4 { rotate: 16deg; }
+.ac-e4 .ac-casilla--duda { animation-name: ac-sube-baja; animation-duration: 1.6s; }
+@keyframes ac-sube-baja { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* Rectángulo */
+.ac-fig[data-forma="rectangulo"] { width: calc(var(--s) * 1.4); height: calc(var(--s) * .78); }
+.ac-f-rectangulo { border-radius: 16%; }
+
+/* Juego 1: junta y cuenta */
+.ac-suma { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 18px; }
+.ac-grupo-suma { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 8px; min-width: 96px; max-width: 330px; min-height: 96px; padding: 14px 18px; border-radius: 28px; }
+.ac-signo { font-family: var(--f-titulo); font-weight: 800; font-size: calc(72px * var(--k)); line-height: 1; }
+.ac-signo--mas { color: var(--coral); }
+.ac-signo--igual { color: var(--cielo); }
+.ac-casilla--grande { width: calc(120px * var(--k)); height: calc(120px * var(--k)); }
+.ac-casilla--ok { background: var(--menta-t); border: 3px solid var(--menta); }
+
+/* Juego 2: nombra las figuras */
+.ac-modelo__nombre { font-family: var(--f-titulo); font-weight: 800; font-size: clamp(34px, calc(48px * var(--k)), 52px); line-height: 1.1; padding-inline: 18px; }
+.ac-panel--completa .ac-modelo__nombre { font-size: 52px; }
+
+/* Juego 3: fila de números */
+.ac-banda--lila { background: var(--lila-t); gap: 12px; align-items: flex-start; }
+.ac-numcol { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ac-casilla--num { width: calc(110px * var(--k)); height: calc(110px * var(--k)); min-width: 64px; min-height: 64px; }
+.ac-casilla--num .ac-casilla__q { font-size: calc(60px * var(--k)); }
+.ac-puntos--coral.ac-puntos--chico { color: var(--coral); }
+.ac-numcol .ac-puntos { max-width: calc(110px * var(--k)); }
+
+/* Juego 4: canastas */
+.ac-canasta--34 { border-radius: 34px; min-width: 200px; }
+
+/* Juego 5: insignias de orden */
+.ac-tap--insignia { position: relative; }
+.ac-tap--insignia.ac-hecho { opacity: .5; }
+.ac-insignia {
+  position: absolute; top: -6px; right: -6px; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%; background: var(--tinta); color: #fff;
+  font: 800 18px/1 var(--f-titulo);
+}
+
+/* Juego 6: escenas con la caja */
+.ac-opt--escena { min-width: var(--optw); min-height: var(--opth); padding: 10px; }
+.ac-escena { --e: calc(var(--k) * 1px); position: relative; display: block; width: calc(170 * var(--e)); height: calc(170 * var(--e)); }
+.ac-escena__caja {
+  position: absolute; left: 50%; top: 50%; width: calc(64 * var(--e)); height: calc(54 * var(--e));
+  translate: -50% -50%; background: #FFF8DC; border: 3px solid var(--tinta); border-radius: 14px;
+}
+.ac-escena__obj {
+  position: absolute; left: 50%; top: 50%; line-height: 1; font-size: calc(36 * var(--e));
+  translate: calc(-50% + var(--dx) * var(--e)) calc(-50% + var(--dy) * var(--e));
+}
+
+/* Juego 8: sombras */
+.ac-tap--sombra { background: #EEF3FB; border-radius: 26px; }
+.ac-tap--sombra.ac-sel { background: #FFE9A3; }
+
+/* Enlaces entre edades */
+.ac-edades a { display: flex; flex-direction: column; align-items: center; gap: 14px; text-decoration: none; color: var(--tinta); border-radius: 34px; }
+.ac-edades a .ac-edad { opacity: 1; transition: transform .2s var(--curva); }
+.ac-edades a:hover .ac-edad { transform: translateY(-5px) rotate(-3deg); }
+.ac-edades a .ac-mono { color: var(--tinta); text-decoration: underline; text-underline-offset: 4px; }
+.ac-edad--coral { --c: var(--coral); }
+
 /* ---------- Aparición al desplazarse ---------- */
 .js .ac-rev { opacity: 0; transform: translateY(16px); transition: opacity .6s var(--curva), transform .6s var(--curva); }
 .js .ac-rev.is-in { opacity: 1; transform: none; }
@@ -345,7 +413,7 @@ html.ac-sin-scroll main { z-index: 100; }
 @media (max-width: 900px) {
   .ac-portada { grid-template-columns: 1fr; padding: 40px 32px; }
   .ac-portada__arte { min-height: 280px; }
-  .ac-ficha3 { --t: 160px; font-size: 104px; }
+  .ac-ficha { --t: 160px; font-size: 104px; }
   .ac-flota { font-size: 48px; }
   .ac-panel { padding: 30px 28px 34px; }
 }
@@ -354,8 +422,8 @@ html.ac-sin-scroll main { z-index: 100; }
   .ac-portada { padding: 32px 22px; border-radius: 32px; }
   .ac-portada__parrafo { font-size: 18px; }
   .ac-portada__arte { min-height: 240px; }
-  .ac-ficha3 { --t: 130px; font-size: 84px; border-radius: 34px; }
-  .ac-ficha3::before, .ac-ficha3::after { top: -18px; width: 32px; height: 28px; }
+  .ac-ficha { --t: 130px; font-size: 84px; border-radius: 34px; }
+  .ac-ficha::before, .ac-ficha::after { top: -18px; width: 32px; height: 28px; }
   .ac-flota { font-size: 40px; }
   .ac-tarjetas { grid-template-columns: 1fr; }
   .ac-panel {
@@ -383,9 +451,9 @@ html.ac-sin-scroll main { z-index: 100; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ac-portada, .ac-ficha3, .ac-flota, .ac-salta, .ac-grande--otro, .ac-casilla--duda,
+  .ac-portada, .ac-ficha, .ac-flota, .ac-salta, .ac-grande--otro, .ac-casilla--duda,
   .ac-msg--ok, .ac-msg--err, .ac-ok, .ac-sacude-a, .ac-sacude-b, .ac-panel--completa { animation: none !important; }
-  .ac-ficha3 { transform: none; }
+  .ac-ficha { transform: none; }
   .js .ac-rev { opacity: 1; transform: none; transition: none; }
   .ac-tarjeta, .ac-opt, .ac-tap, .ac-peq, .ac-btn-oscuro, .ac-canasta { transition: none; }
   .ac-tarjeta:hover, .ac-opt:not(:disabled):hover, .ac-tap:not(:disabled):hover, .ac-peq:hover, .ac-btn-oscuro:hover { transform: none; }
