@@ -222,35 +222,39 @@
 
     <!-- 3. Actividades para cada etapa -->
     <section class="contenedor" aria-labelledby="etapas-titulo">
-      <div class="bloque-seccion bloque-seccion--cielo">
-        <div class="seccion__encabezado">
-          <div>
-            <p class="etiqueta">Por edades</p>
-            <h2 id="etapas-titulo">Actividades para cada etapa</h2>
-          </div>
+      <div class="etapas">
+        <div class="etapas__texto">
+          <p class="etiqueta etiqueta--punto">Por edad</p>
+          <h2 id="etapas-titulo">Actividades para cada etapa</h2>
           <p class="seccion__intro">Descripción provisional sobre cómo se agrupan las actividades según la edad.</p>
+          <p class="etiqueta etapas__habilidad" id="etapas-habilidad">O por habilidad</p>
+          <ul class="chips etapas__chips" aria-labelledby="etapas-habilidad"><li><a class="chip chip--enlace" href="#">Contar</a></li><li><a class="chip chip--enlace" href="#">Comparar</a></li><li><a class="chip chip--enlace" href="#">Ordenar</a></li><li><a class="chip chip--enlace" href="#">Medir</a></li><li><a class="chip chip--enlace" href="#">Resolver</a></li></ul>
         </div>
 
         <ul class="edades">
-          <li><a class="tarjeta-edad" href="#">
-            <span class="bloque bloque--coral bloque--edad"><span class="bloque__num">3</span><span class="bloque__unidad">años</span></span>
-            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
-            <span class="chips"><span class="chip">Contar</span><span class="chip">Comparar</span></span>
+          <li><a class="edad" href="#" aria-label="3 años">
+            <span class="edad__bloque edad__bloque--coral"><span class="edad__num">3</span></span>
+            <span class="edad__texto">años</span>
           </a></li>
-          <li><a class="tarjeta-edad" href="#">
-            <span class="bloque bloque--sol bloque--edad"><span class="bloque__num">4</span><span class="bloque__unidad">años</span></span>
-            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
-            <span class="chips"><span class="chip">Contar</span><span class="chip">Ordenar</span></span>
+          <li><a class="edad" href="#" aria-label="4 años">
+            <span class="edad__bloque edad__bloque--sol"><span class="edad__num">4</span></span>
+            <span class="edad__texto">años</span>
           </a></li>
-          <li><a class="tarjeta-edad" href="#">
-            <span class="bloque bloque--menta bloque--edad"><span class="bloque__num">5</span><span class="bloque__unidad">años</span></span>
-            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
-            <span class="chips"><span class="chip">Ordenar</span><span class="chip">Medir</span></span>
+          <li><a class="edad" href="#" aria-label="5 años">
+            <span class="edad__bloque edad__bloque--menta"><span class="edad__num">5</span></span>
+            <span class="edad__texto">años</span>
           </a></li>
-          <li><a class="tarjeta-edad" href="#">
-            <span class="bloque bloque--lila bloque--edad"><span class="bloque__num">6</span><span class="bloque__unidad">años</span></span>
-            <span class="tarjeta-edad__texto">Descripción provisional de la etapa.</span>
-            <span class="chips"><span class="chip">Medir</span><span class="chip">Resolver</span></span>
+          <li><a class="edad" href="#" aria-label="6 años">
+            <span class="edad__bloque edad__bloque--lila"><span class="edad__num">6</span></span>
+            <span class="edad__texto">años</span>
+          </a></li>
+          <li><a class="edad" href="#" aria-label="7 años">
+            <span class="edad__bloque edad__bloque--cielo"><span class="edad__num">7</span></span>
+            <span class="edad__texto">años</span>
+          </a></li>
+          <li><a class="edad" href="#" aria-label="8+ años">
+            <span class="edad__bloque edad__bloque--tinta"><span class="edad__num">8+</span></span>
+            <span class="edad__texto">años</span>
           </a></li>
         </ul>
       </div>
