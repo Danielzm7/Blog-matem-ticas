@@ -301,7 +301,7 @@ main, .pie { position: relative; z-index: 1; }
   grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
   align-items: center;
   gap: 40px;
-  padding-top: 56px; padding-bottom: 24px;
+  padding-top: 56px; padding-bottom: 0;
 }
 .portada__titulo {
   font-size: clamp(2.6rem, 6.2vw, 5rem);
@@ -402,6 +402,8 @@ main, .pie { position: relative; z-index: 1; }
 
 /* ---------- Secciones ---------- */
 main > section + section { margin-top: 112px; }
+/* El lienzo de la ilustración ya deja ~30 px libres abajo: el hueco visible queda en ~64 px */
+.portada + .seccion { margin-top: 28px; }
 
 .seccion__encabezado {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -790,7 +792,7 @@ main > section + section { margin-top: 112px; }
   .entradas { grid-template-columns: 1fr; }
   .situaciones, .orientaciones { grid-template-columns: 1fr; gap: 44px; }
   .bloque-seccion { padding: 56px 40px; }
-  .portada { grid-template-columns: 1fr; padding-bottom: 16px; }
+  .portada { grid-template-columns: 1fr; }
   .ilustracion__lienzo { max-width: 460px; }
   .pie__columnas { grid-template-columns: repeat(3, 1fr); }
   .pie__marca { grid-column: 1 / -1; }
@@ -803,7 +805,7 @@ main > section + section { margin-top: 112px; }
   .logo-espacio { width: 148px; height: 48px; font-size: .64rem; }
   .pie .logo-espacio { width: 176px; height: 56px; }
 
-  .portada { padding-top: 28px; padding-bottom: 8px; gap: 28px; }
+  .portada { padding-top: 28px; gap: 28px; }
   .portada__sub { font-size: 1.08rem; }
   .portada__botones .btn { flex: 1 1 100%; }
   .ilustracion__lienzo { max-width: 340px; }
@@ -813,6 +815,7 @@ main > section + section { margin-top: 112px; }
   .il-suma__op { font-size: 1.6rem; }
 
   main > section + section { margin-top: 80px; }
+  .portada + .seccion { margin-top: 16px; }
   .seccion__encabezado { margin-bottom: 28px; }
 
   .nociones { gap: 12px; }
