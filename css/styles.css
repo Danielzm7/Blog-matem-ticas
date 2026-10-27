@@ -232,6 +232,20 @@ main, .pie { position: relative; z-index: 1; }
   background: var(--sol); box-shadow: inset 0 0 0 2px var(--tinta);
 }
 
+.menu__sub { position: relative; }
+.menu__flecha { font-size: .7em; margin-left: 6px; }
+.menu .submenu {
+  display: none; position: absolute; left: 0; top: 100%; z-index: 30;
+  flex-direction: column; gap: 0; padding-top: 8px; min-width: 100%;
+}
+.menu__sub:hover > .submenu, .menu__sub:focus-within > .submenu { display: flex; }
+.menu .submenu a {
+  min-height: 48px; padding: 0 20px; width: 100%;
+  background: #fff; border: 2px solid var(--tinta); border-radius: 18px;
+  box-shadow: 0 4px 0 var(--tinta);
+}
+.menu .submenu a:hover { background: #FFE9A3; box-shadow: 0 4px 0 var(--tinta); }
+
 .buscador { position: relative; width: 220px; flex-shrink: 0; }
 .buscador input {
   width: 100%; min-height: 46px;
@@ -282,6 +296,7 @@ main, .pie { position: relative; z-index: 1; }
   font-weight: 600; font-size: 1.08rem; text-decoration: none;
 }
 .panel-movil__lista a:hover { background: var(--fondo); }
+.panel-movil__lista a.panel-movil__sub { padding-left: 38px; font-size: 15px; min-height: 44px; }
 
 /* ---------- 1. Portada ---------- */
 .portada {
