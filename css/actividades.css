@@ -109,7 +109,7 @@ html.ac-sin-scroll main { z-index: 100; }
 
 /* ---------- Panel de juego ---------- */
 .ac-panel {
-  --k: 1; --emo: 84px; --emo-mesa: calc(72px * var(--k)); --optw: 150px; --opth: 150px; --num: 78px; --cell: 112px; --c10: 76px; --big: 190px; --cuadro: 38px;
+  --k: 1; --emo: 84px; --emo-mesa: calc(72px * var(--k)); --optw: 150px; --opth: 150px; --num: 78px; --cell: 112px; --c10: 76px; --big: 190px; --cuadro: 38px; --barra: 150px; --circ: 120px; --circbtn: 170px;
   position: relative; overflow: hidden;
   padding: 36px 40px 40px;
   background: #fff; border: 2px solid var(--borde); border-radius: 44px;
@@ -291,7 +291,7 @@ html.ac-sin-scroll main { z-index: 100; }
 
 /* ---------- Pantalla ampliada ---------- */
 .ac-panel--completa {
-  --c10: 96px; --big: 240px; --cuadro: 48px; --k: 1.5; --emo: 150px; --optw: 200px; --opth: 200px; --num: 120px; --cell: 130px;
+  --c10: 96px; --big: 240px; --cuadro: 48px; --barra: 180px; --circ: 160px; --circbtn: 220px; --k: 1.5; --emo: 150px; --optw: 200px; --opth: 200px; --num: 120px; --cell: 130px;
   position: fixed; inset: 0; z-index: 100; overflow-y: auto;
   display: flex; flex-direction: column;
   border: 0; border-radius: 0;
@@ -450,6 +450,66 @@ html.ac-sin-scroll main { z-index: 100; }
 .ac-insignia--grande { width: 40px; height: 40px; font-size: 22px; top: -10px; right: -10px; }
 .ac-opt.ac-hecho:disabled { opacity: 1; }
 
+/* ---------- Edad de 6 años ---------- */
+.ac-portada--lila { background: var(--lila-t); }
+.ac-portada--lila::before { border: 2px dashed #B7A6F2; }
+.ac-portada--lila .ac-portada__parrafo { color: #3A3560; }
+
+/* Juegos 1 y 2: operaciones */
+.ac-sumando--solo { padding: 16px 26px; border-radius: 30px; min-width: 0; }
+.ac-suma--6 .ac-suma > .ac-signo, .ac-suma--6 .ac-signo { font-size: calc(60px * var(--k)); }
+.ac-suma--6 .ac-sumando:first-child { background: #FFF3C9; }
+.ac-suma--6 .ac-sumando:nth-child(3) { background: #D9F5E9; }
+
+/* Juego 3: monedas */
+.ac-franja--sol { background: var(--sol-t); padding: 22px 26px; max-width: 640px; }
+.ac-moneda {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: calc(var(--m) * 1px * var(--mk, 1)); height: calc(var(--m) * 1px * var(--mk, 1));
+  border: 4px solid var(--tinta); border-radius: 50%; box-shadow: 0 4px 0 rgba(31, 42, 68, .25);
+  font-family: var(--f-texto); font-weight: 800; color: var(--tinta); line-height: 1;
+}
+.ac-moneda span { font-size: inherit; }
+.ac-opt__num--dinero { font-size: calc(54px * var(--k)); }
+.ac-opt__num--hora { font-size: calc(58px * var(--k)); }
+
+/* Juego 4: reloj de manecillas */
+.ac-reloj { position: relative; width: 260px; height: 260px; background: #fff; border: 6px solid var(--tinta); border-radius: 50%; box-shadow: 0 8px 0 rgba(31, 42, 68, .18); }
+.ac-reloj__num { position: absolute; translate: -50% -50%; font-family: var(--f-titulo); font-weight: 800; font-size: 22px; line-height: 1; }
+.ac-reloj__mano { position: absolute; left: 50%; bottom: 50%; transform-origin: 50% 100%; transform: translateX(-50%) rotate(var(--ang, 0deg)); }
+.ac-reloj__mano--hora { width: 12px; height: 62px; background: var(--tinta); border-radius: 8px; }
+.ac-reloj__mano--min { width: 8px; height: 92px; background: var(--coral); border-radius: 8px; }
+.ac-reloj__centro { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; translate: -50% -50%; background: var(--tinta); border-radius: 50%; }
+
+/* Juego 5: decenas y unidades */
+.ac-du { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 100%; }
+.ac-du__tarjeta { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 18px 24px; padding: 22px 30px; background: var(--lila-t); border-radius: 34px; max-width: 100%; }
+.ac-du__barras { display: flex; align-items: flex-end; gap: 8px; }
+.ac-du__barra {
+  width: 24px; height: var(--barra, 150px); border: 3px solid var(--tinta); border-radius: 8px;
+  background: linear-gradient(to bottom, var(--coral) 80%, #fff 80%); background-size: 100% 10%;
+}
+.ac-du__sueltos { display: grid; grid-template-columns: repeat(5, 24px); gap: 6px; }
+.ac-du__cuadrito { width: 24px; height: 24px; background: var(--sol); border: 3px solid var(--tinta); border-radius: 6px; }
+.ac-du__nota { margin: 0; font-family: var(--f-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); text-align: center; }
+
+/* Juego 6: círculos partidos */
+.ac-opt--circ { min-width: var(--circbtn); min-height: var(--circbtn); }
+.ac-circ { position: relative; display: block; width: var(--circ); height: var(--circ); border: 4px solid var(--tinta); border-radius: 50%; overflow: hidden; }
+.ac-circ--cruz::before, .ac-circ--cruz::after { content: ""; position: absolute; background: var(--tinta); }
+.ac-circ--cruz::before { left: calc(50% - 1.5px); top: 0; width: 3px; height: 100%; }
+.ac-circ--cruz::after { top: calc(50% - 1.5px); left: 0; height: 3px; width: 100%; }
+
+/* Juego 7: saltos */
+.ac-casilla--salto { width: calc(110px * var(--k)); height: calc(110px * var(--k)); min-width: 64px; min-height: 64px; }
+.ac-casilla--salto .ac-casilla__q { font-size: calc(56px * var(--k)); }
+
+/* Juego 8: polígonos */
+.ac-poligono { display: flex; align-items: center; justify-content: center; padding: 22px 56px; background: var(--cielo-t); border-radius: 34px; }
+.ac-fig--recto i { border-radius: 0; }
+.ac-f-pentagono { clip-path: polygon(50% 3%, 97% 38%, 79% 95%, 21% 95%, 3% 38%); }
+.ac-f-hexagono { clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%); }
+
 /* ---------- Aparición al desplazarse ---------- */
 .js .ac-rev { opacity: 0; transform: translateY(16px); transition: opacity .6s var(--curva), transform .6s var(--curva); }
 .js .ac-rev.is-in { opacity: 1; transform: none; }
@@ -493,12 +553,16 @@ html.ac-sin-scroll main { z-index: 100; }
   .ac-nota { padding: 22px 22px; }
   .ac-edades { gap: 22px; }
   .ac-edad { --t: 100px; font-size: 48px; }
-  .ac-panel { --c10: 48px; --big: 140px; --cuadro: 28px; }
+  .ac-panel { --c10: 48px; --big: 140px; --cuadro: 28px; --barra: 110px; --circ: 96px; --circbtn: 130px; }
+  .ac-franja { --mk: .85; }
+  .ac-du__tarjeta { padding: 18px 14px; gap: 14px 18px; }
+  .ac-du__barras { gap: 6px; }
+  .ac-poligono { padding: 18px 28px; }
   .ac-grafica { padding: 16px 14px; }
   .ac-grafica__emoji { width: 40px; font-size: 34px; }
   .ac-grafica__fila { gap: 10px; }
   .ac-opciones--enorme { gap: 18px; }
-  .ac-panel--completa { --c10: 56px; --cuadro: 30px; --k: 1; --emo: 100px; --optw: 130px; --opth: 150px; --num: 84px; --cell: 76px; border-radius: 0; padding: 24px 16px 32px; }
+  .ac-panel--completa { --c10: 56px; --cuadro: 30px; --barra: 130px; --circ: 110px; --circbtn: 150px; --k: 1; --emo: 100px; --optw: 130px; --opth: 150px; --num: 84px; --cell: 76px; border-radius: 0; padding: 24px 16px 32px; }
   .ac-panel--completa > :first-child { padding-right: 64px; }
 }
 

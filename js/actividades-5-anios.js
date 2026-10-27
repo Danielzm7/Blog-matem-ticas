@@ -8,41 +8,7 @@
   var figura = C.figura, emoji = C.emoji, puntos = C.puntos, boton = C.boton;
   var elegir = C.elegir, fila = C.fila, enfocarPrimero = C.enfocarPrimero;
 
-  // Tres números: el correcto y dos cercanos (±1, ±2) dentro del rango, sin repetir.
-  function numeros(v, min, max) {
-    var cerca = [v - 2, v - 1, v + 1, v + 2].filter(function (x) { return x >= min && x <= max; });
-    var otros = barajar(cerca).slice(0, 2);
-    // Si el rango es tan estrecho que faltan, se completan con los más cercanos libres.
-    for (var d = 3; otros.length < 2 && d < 12; d++) {
-      [v - d, v + d].forEach(function (x) { if (otros.length < 2 && x >= min && x <= max && otros.indexOf(x) < 0) otros.push(x); });
-    }
-    return barajar([v].concat(otros));
-  }
-  function botonesNumero(esc, ctx, opciones, correcto) {
-    var lista = opciones.map(function (v) {
-      return { el: boton('ac-opt', String(v), [h('span', { class: 'ac-opt__num', text: String(v), 'aria-hidden': 'true' })]), ok: v === correcto };
-    });
-    esc.appendChild(fila('ac-opciones', lista.map(function (o) { return o.el; })));
-    elegir(ctx, lista);
-    return lista;
-  }
-  // Cuando se acierta, la casilla «?» se llena con el valor.
-  function rellenarAlAcertar(lista, casilla, texto) {
-    lista.forEach(function (o) {
-      o.el.addEventListener('click', function () {
-        if (!o.ok) return;
-        casilla.classList.remove('ac-casilla--duda');
-        casilla.classList.add('ac-casilla--ok');
-        casilla.innerHTML = '';
-        casilla.appendChild(h('span', { class: 'ac-casilla__q', text: String(texto) }));
-      });
-    });
-  }
-  function interrogante(extra) {
-    return h('span', { class: 'ac-casilla ac-casilla--duda ' + (extra || '') }, [
-      h('span', { class: 'ac-casilla__q', text: '?', 'aria-label': 'Casilla vacía' })
-    ]);
-  }
+  var numeros = C.numeros, botonesNumero = C.botonesNumero, rellenarAlAcertar = C.rellenarAlAcertar, interrogante = C.interrogante;
 
   // ---------- 1. Cuadro del diez ----------
   var RANGO_P = [[1, 5], [4, 9], [3, 9]];
