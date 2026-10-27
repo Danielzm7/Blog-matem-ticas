@@ -5,6 +5,8 @@
 
 html { scroll-behavior: smooth; }
 html.ac-sin-scroll, html.ac-sin-scroll body { overflow: hidden; }
+/* main y el pie comparten z-index 1: en pantalla ampliada main sube para que el pie no se vea encima. */
+html.ac-sin-scroll main { z-index: 100; }
 
 .ac-mono {
   font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 1.4;
