@@ -305,7 +305,7 @@ main, .pie { position: relative; z-index: 1; }
 }
 .portada__brote {
   display: inline-block;
-  width: .8em; height: .94em; margin-left: .16em;
+  width: .66em; height: .8em; margin-left: .12em;
   vertical-align: baseline;
   overflow: visible;
 }
