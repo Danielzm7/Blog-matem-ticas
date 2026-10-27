@@ -210,9 +210,9 @@ main, .pie { position: relative; z-index: 1; }
   display: flex; align-items: center; gap: 24px;
   min-height: 96px;
 }
-.logo { display: inline-flex; flex-shrink: 0; text-decoration: none; background: #fff; border-radius: 16px; padding: 4px 12px; }
-.logo img { display: block; height: 72px; width: auto; }
-.logo--pie { padding: 6px 12px; }
+.logo { display: inline-flex; flex-shrink: 0; text-decoration: none; }
+.logo img { display: block; height: 80px; width: auto; }
+.logo--pie img { height: 96px; }
 
 .menu { margin-left: auto; }
 .menu ul { display: flex; gap: 4px; }
@@ -844,8 +844,8 @@ main > section + section { margin-top: 112px; }
   :root { --lateral: 20px; --radio-seccion: 32px; }
   body { font-size: 1rem; }
   .cabecera__fila { min-height: 76px; gap: 12px; }
-  .logo { padding: 3px 8px; border-radius: 14px; }
-  .logo img, .logo--pie img { height: 58px; }
+  .logo img { height: 62px; }
+  .logo--pie img { height: 80px; }
 
   .portada { padding-top: 28px; gap: 28px; }
   .portada__sub { font-size: 1.08rem; }
