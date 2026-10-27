@@ -8,24 +8,7 @@
   var figura = C.figura, boton = C.boton, elegir = C.elegir, fila = C.fila;
   var numeros = C.numeros, botonesNumero = C.botonesNumero, rellenarAlAcertar = C.rellenarAlAcertar, interrogante = C.interrogante;
 
-  function sumando(n) {
-    return h('div', { class: 'ac-sumando ac-sumando--solo', 'aria-label': String(n) }, [
-      h('span', { class: 'ac-sumando__num', text: String(n), 'aria-hidden': 'true' })
-    ]);
-  }
-  function operacion(a, signo, b, claseSigno) {
-    var duda = interrogante('ac-casilla--grande');
-    return {
-      duda: duda,
-      el: fila('ac-suma ac-suma--6', [
-        sumando(a),
-        h('span', { class: 'ac-signo ' + claseSigno, text: signo, 'aria-hidden': 'true' }),
-        sumando(b),
-        h('span', { class: 'ac-signo ac-signo--igual', text: '=', 'aria-hidden': 'true' }),
-        duda
-      ])
-    };
-  }
+  var operacion = C.operacion;
 
   // ---------- 1. Sumas ----------
   var MAX_SUMA = [10, 15, 20];

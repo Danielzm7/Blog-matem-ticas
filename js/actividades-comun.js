@@ -133,6 +133,23 @@
     return r;
   }
 
+  // Operación «a ? b = ?»: dos recuadros con los números, el signo y una casilla «?».
+  function operacion(a, signo, b, clase) {
+    var duda = interrogante('ac-casilla--grande');
+    var caja = function (n) {
+      return h('div', { class: 'ac-sumando ac-sumando--solo', 'aria-label': String(n) }, [
+        h('span', { class: 'ac-sumando__num', text: String(n), 'aria-hidden': 'true' })
+      ]);
+    };
+    return {
+      duda: duda,
+      el: fila('ac-suma ac-suma--6 ' + (clase || ''), [
+        caja(a), h('span', { class: 'ac-signo ac-signo--mas', text: signo, 'aria-hidden': 'true' }), caja(b),
+        h('span', { class: 'ac-signo ac-signo--igual', text: '=', 'aria-hidden': 'true' }), duda
+      ])
+    };
+  }
+
   var FORMAS6 = FORMAS.slice();
   FORMAS6.splice(2, 0, { id: 'rectangulo', nombre: 'rectángulo', fem: false });
 
@@ -140,6 +157,6 @@
     COLORES: COLORES, FORMAS: FORMAS, FORMAS6: FORMAS6, azar: azar, entre: entre, uno: uno, barajar: barajar,
     muestra: muestra, px: px, nombreFigura: nombreFigura, figura: figura, emoji: emoji, puntos: puntos,
     boton: boton, elegir: elegir, fila: fila, enfocarPrimero: enfocarPrimero,
-    numeros: numeros, botonesNumero: botonesNumero, rellenarAlAcertar: rellenarAlAcertar, interrogante: interrogante, reloj: reloj
+    numeros: numeros, botonesNumero: botonesNumero, rellenarAlAcertar: rellenarAlAcertar, interrogante: interrogante, reloj: reloj, operacion: operacion
   };
 })();
