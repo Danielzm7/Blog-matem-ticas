@@ -207,14 +207,17 @@ main, .pie { position: relative; z-index: 1; }
 
 /* ---------- Cabecera ---------- */
 .cabecera__fila {
-  display: flex; align-items: center; gap: 24px;
-  min-height: 96px;
+  display: flex; align-items: center; gap: 28px;
+  padding-block: 22px;
+}
+.cabecera__centro {
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; justify-content: center; gap: 28px;
 }
 .logo { display: inline-flex; flex-shrink: 0; text-decoration: none; }
-.logo img { display: block; height: 80px; width: auto; }
+.logo img { display: block; height: 72px; width: auto; object-fit: contain; }
 .logo--pie img { height: 96px; }
 
-.menu { margin-left: auto; }
 .menu ul { display: flex; gap: 4px; }
 .menu a {
   display: inline-flex; align-items: center;
@@ -229,7 +232,7 @@ main, .pie { position: relative; z-index: 1; }
   background: var(--sol); box-shadow: inset 0 0 0 2px var(--tinta);
 }
 
-.buscador { position: relative; width: 236px; flex-shrink: 0; }
+.buscador { position: relative; width: 220px; flex-shrink: 0; }
 .buscador input {
   width: 100%; min-height: 46px;
   padding: 0 18px 0 46px;
@@ -246,10 +249,10 @@ main, .pie { position: relative; z-index: 1; }
   width: 20px; height: 20px; color: var(--tinta); pointer-events: none;
 }
 
-.cabecera__acciones { display: none; margin-left: auto; gap: 8px; }
+.cabecera__acciones { display: none; gap: 8px; }
 .boton-icono {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 48px; height: 48px;
+  width: 46px; height: 46px;
   border: 2px solid var(--tinta); border-radius: 999px;
   background: #fff; color: var(--tinta); cursor: pointer;
   box-shadow: 0 3px 0 var(--tinta);
@@ -819,9 +822,12 @@ main > section + section { margin-top: 112px; }
    Responsive
    ========================================================= */
 @media (max-width: 1180px) {
-  .menu, .cabecera__fila > .buscador { display: none; }
+  .cabecera__centro { display: none; }
   .cabecera__acciones { display: flex; }
-  .cabecera__fila { min-height: 84px; }
+  .logo--programa { margin-left: auto; }
+  .cabecera__fila { gap: 16px; }
+  .logo img { height: 64px; }
+  .logo--pie img { height: 96px; }
   .cabecera { position: relative; }
 }
 @media (min-width: 1181px) {
@@ -843,8 +849,8 @@ main > section + section { margin-top: 112px; }
 @media (max-width: 640px) {
   :root { --lateral: 20px; --radio-seccion: 32px; }
   body { font-size: 1rem; }
-  .cabecera__fila { min-height: 76px; gap: 12px; }
-  .logo img { height: 62px; }
+  .cabecera__fila { padding-block: 11px; gap: 12px; }
+  .logo img { height: 54px; }
   .logo--pie img { height: 80px; }
 
   .portada { padding-top: 28px; gap: 28px; }
