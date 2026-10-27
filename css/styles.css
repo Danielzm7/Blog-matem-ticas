@@ -215,7 +215,7 @@ main, .pie { position: relative; z-index: 1; }
   display: flex; align-items: center; justify-content: center; gap: 28px;
 }
 .logo { display: inline-flex; flex-shrink: 0; text-decoration: none; }
-.logo img { display: block; height: 72px; width: auto; object-fit: contain; }
+.logo img { display: block; height: 92px; width: auto; object-fit: contain; }
 .logo--pie img { height: 96px; }
 
 .menu ul { display: flex; gap: 4px; }
@@ -821,16 +821,16 @@ main > section + section { margin-top: 112px; }
 /* =========================================================
    Responsive
    ========================================================= */
-@media (max-width: 1180px) {
+@media (max-width: 1279px) {
   .cabecera__centro { display: none; }
   .cabecera__acciones { display: flex; }
   .logo--programa { margin-left: auto; }
   .cabecera__fila { gap: 16px; }
-  .logo img { height: 64px; }
+  .logo img { height: 80px; }
   .logo--pie img { height: 96px; }
   .cabecera { position: relative; }
 }
-@media (min-width: 1181px) {
+@media (min-width: 1280px) {
   .panel-movil { display: none; }
 }
 
@@ -850,7 +850,7 @@ main > section + section { margin-top: 112px; }
   :root { --lateral: 20px; --radio-seccion: 32px; }
   body { font-size: 1rem; }
   .cabecera__fila { padding-block: 11px; gap: 12px; }
-  .logo img { height: 54px; }
+  .logo img { height: 66px; }
   .logo--pie img { height: 80px; }
 
   .portada { padding-top: 28px; gap: 28px; }
