@@ -586,13 +586,15 @@ main > section + section { margin-top: 112px; }
 }
 .etapas__habilidad {
   display: flex; align-items: center; gap: 14px;
-  margin: 32px 0 14px;
+  width: fit-content;
+  margin: 32px 0 16px;
+  padding: 6px 14px;
+  background: var(--menta);
+  border: 2px solid var(--tinta); border-radius: 999px;
+  box-shadow: 0 3px 0 var(--tinta);
   color: var(--tinta); font-size: .92rem; font-weight: 500;
 }
 .etapas__habilidad::before { display: none; }
-.etapas__habilidad::after {
-  content: ""; width: 72px; border-top: 2.5px dashed rgba(31, 42, 68, .35);
-}
 .etapas__chips { gap: 8px; }
 .chip--enlace {
   gap: 8px;
