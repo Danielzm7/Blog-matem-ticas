@@ -181,7 +181,7 @@
 .tm-grupo--1 { background: #FFD45E; }
 .tm-grupo--2 { background: #DDF1FD; }
 .tm-pasa { display: flex; flex-direction: column; align-items: center; min-width: 0; text-align: center; }
-.tm-pasa svg { width: 74px; height: 24px; }
+.tm-pasa svg { width: 112px; height: 39px; }
 .tm-pasa small { max-width: 9em; font-size: 11px; line-height: 1.2; color: var(--texto-2); }
 .tm-circuito__pie { margin-top: 12px; text-align: center; }
 .tm-preguntas { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 0; }
@@ -376,7 +376,7 @@
   .tm-ticket li { font-size: 17px; }
   .tm-circuito { padding: 14px 12px 12px; }
   .tm-grupo { padding: 8px 12px; font-size: 14px; }
-  .tm-pasa svg { width: 54px; }
+  .tm-pasa svg { width: 72px; height: 25px; }
   .tm-mas { padding: 24px 20px; border-radius: 28px; }
   .tm-cierre { padding: 28px 24px; border-radius: 32px; }
   .tm-cierre__botones .tm-btn { flex: 1 1 100%; }
