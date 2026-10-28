@@ -22,7 +22,7 @@
 
   // Diapositivas de la Exposición 1: img/exposicion-1/s01.jpg … s19.jpg (1280×720).
   // Cuando las imágenes estén en la carpeta, cambia a true.
-  var DIAPOS_1_LISTAS = false;
+  var DIAPOS_1_LISTAS = true;
   var ALT_1 = [
     'Portada: Referentes curriculares, realizado por las dos integrantes',
     'Índice de la presentación',
