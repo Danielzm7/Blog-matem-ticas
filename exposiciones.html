@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exposiciones · Semillas Matemáticas · Didáctica de las matemáticas en la primera infancia</title>
+  <meta name="description" content="Exposiciones: los siete trabajos expuestos en el curso, cada uno con sus imágenes y sus diapositivas, para mirarlos con calma.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/exposiciones.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel ex-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li class="menu__sub">
+                <a href="#" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Recursos</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+              <li><a href="#">Recursos</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <nav class="contenedor ex-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page"><strong>Exposiciones</strong></span>
+      </nav>
+
+      <!-- Portada -->
+      <section class="contenedor" aria-labelledby="ex-titulo">
+        <div class="ex-portada">
+          <span class="ex-portada__borde" aria-hidden="true"></span>
+          <span class="ex-portada__disco" aria-hidden="true"></span>
+          <div class="ex-portada__texto">
+            <p class="ex-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Siete exposiciones</p>
+            <h1 id="ex-titulo">Exposiciones</h1>
+            <p class="ex-portada__parrafo">Aquí reunimos los siete trabajos expuestos en el curso: cada uno con sus imágenes y sus diapositivas, para mirarlos con calma y volver cuando quieras.</p>
+            <div class="ex-portada__botones">
+              <a class="ex-btn ex-btn--oscuro" href="#expo-1">Ver la primera exposición <span aria-hidden="true">↓</span></a>
+              <a class="ex-btn ex-btn--claro" href="#ex-indice-sec">Ir al índice</a>
+            </div>
+          </div>
+          <div class="ex-arte" aria-hidden="true">
+            <span class="bloque bloque--coral ex-ficha2">2</span>
+            <span class="bloque bloque--lila ex-ficha5">5</span>
+            <span class="bloque bloque--sol ex-ficha7">7</span>
+            <span class="ex-fig ex-fig--1 ex-fig--g ex-e1"><i></i><i></i><i></i></span>
+            <span class="ex-fig ex-fig--5 ex-fig--f" style="--a:#7FD8B5"></span>
+            <span class="ex-fig ex-fig--4 ex-fig--p" style="--a:#FF7A6B"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Índice -->
+      <section class="contenedor ex-seccion" id="ex-indice-sec" aria-labelledby="ex-h-indice">
+        <p class="ex-eyebrow" id="ex-h-indice">Índice</p>
+        <nav id="ex-indice" class="ex-indice" aria-label="Índice de exposiciones"></nav>
+        <noscript><p>Para ver las exposiciones necesitas activar JavaScript en tu navegador.</p></noscript>
+      </section>
+
+      <!-- A. Exposición 1, destacada -->
+      <section class="contenedor ex-seccion ex-rev" aria-label="Exposición 1">
+        <article class="ex-card ex-card--tinte ex-destacada ex-expo ex-e1" id="expo-1" data-expo="1"></article>
+      </section>
+
+      <!-- B. Exposiciones 2 y 3 -->
+      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 2 y 3">
+        <div class="ex-par">
+          <article class="ex-card ex-expo ex-e2" id="expo-2" data-expo="2"></article>
+          <article class="ex-card ex-card--tinte ex-expo ex-e3" id="expo-3" data-expo="3"></article>
+        </div>
+      </section>
+
+      <!-- C. Bloque de texto -->
+      <section class="contenedor ex-seccion ex-rev" aria-labelledby="ex-h-idea">
+        <div class="ex-idea">
+          <div class="ex-idea__figs" aria-hidden="true">
+            <span class="ex-fig ex-fig--1 ex-e1" style="--d:8s"><i></i><i></i><i></i></span>
+            <span class="ex-fig ex-fig--5" style="--a:#B7A6F2"></span>
+            <span class="ex-fig ex-fig--4" style="--a:#7FD8B5"></span>
+          </div>
+          <div>
+            <p class="ex-eyebrow ex-eyebrow--coral">Una idea para seguir</p>
+            <h2 id="ex-h-idea">Explicar también es aprender</h2>
+            <p>Preparar una exposición obliga a entender un tema lo bastante bien como para contárselo a otras personas. Por eso cada trabajo vive aquí con sus propias imágenes y sus propias diapositivas.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- D. Exposiciones 4 y 5 -->
+      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 4 y 5">
+        <div class="ex-pila">
+          <article class="ex-card ex-card--tinte ex-h ex-h--texto-izq ex-expo ex-e4" id="expo-4" data-expo="4"></article>
+          <article class="ex-card ex-h ex-h--carr-izq ex-expo ex-e5" id="expo-5" data-expo="5"></article>
+        </div>
+      </section>
+
+      <!-- E. Franja oscura -->
+      <section class="contenedor ex-seccion ex-rev" aria-label="Diapositivas publicadas">
+        <div class="ex-franja">
+          <div>
+            <p class="ex-mono ex-franja__mono">Diapositivas publicadas</p>
+            <p class="ex-franja__cuenta" id="ex-cuenta">0 de 7</p>
+          </div>
+          <div class="ex-franja__der">
+            <div class="ex-barras" id="ex-barras" role="img" aria-label="0 de 7 diapositivas publicadas"></div>
+            <p>Las exposiciones que todavía no tienen enlace aparecen con la etiqueta «Próximamente» hasta que se publique su presentación.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- F. Exposiciones 6 y 7 -->
+      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 6 y 7">
+        <div class="ex-par">
+          <article class="ex-card ex-card--tinte ex-expo ex-e6" id="expo-6" data-expo="6"></article>
+          <article class="ex-card ex-escalon ex-expo ex-e7" id="expo-7" data-expo="7"></article>
+        </div>
+      </section>
+
+      <!-- G. Cierre -->
+      <section class="contenedor ex-seccion ex-fin ex-rev" aria-labelledby="ex-h-cierre">
+        <div class="ex-cierre">
+          <div>
+            <h2 id="ex-h-cierre">¿Seguimos explorando?</h2>
+            <p>Después de las exposiciones, pasa a jugar: hay actividades de matemáticas para cada edad.</p>
+          </div>
+          <div class="ex-cierre__botones">
+            <a class="ex-btn ex-btn--oscuro" href="index.html#etapas">Ver actividades por edad <span aria-hidden="true">→</span></a>
+            <a class="ex-btn ex-btn--claro" href="index.html">Volver al inicio</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="#">Recursos</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/exposiciones.js"></script>
+</body>
+</html>
