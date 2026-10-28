@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Temas · Semillas Matemáticas · Didáctica de las matemáticas en la primera infancia</title>
+  <meta name="description" content="Temas: los principales temas y actividades que trabajamos en clase durante el semestre, y cómo se conectan entre sí.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/temas.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel tm-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li class="menu__sub">
+                <a href="#" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+              <li><a href="temas.html" aria-current="page">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+              <li><a href="temas.html" aria-current="page">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <nav class="contenedor tm-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page"><strong>Temas</strong></span>
+      </nav>
+
+      <!-- Portada -->
+      <section class="contenedor" aria-labelledby="tm-titulo">
+        <div class="tm-portada">
+          <span class="tm-portada__borde" aria-hidden="true"></span>
+          <span class="tm-portada__disco" aria-hidden="true"></span>
+          <div class="tm-portada__texto">
+            <p class="tm-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Seis temas</p>
+            <h1 id="tm-titulo">Temas</h1>
+            <p class="tm-portada__parrafo">Aquí reunimos los principales temas y actividades que trabajamos en clase durante el semestre: de qué trató cada uno y cómo se conectan entre sí.</p>
+            <div class="tm-portada__botones">
+              <a class="tm-btn tm-btn--oscuro" href="#t1">Empezar por el primero <span aria-hidden="true">↓</span></a>
+              <a class="tm-btn tm-btn--claro" href="#mapa">Ver el mapa de temas</a>
+            </div>
+          </div>
+          <div class="tm-arte" aria-hidden="true">
+            <span class="bloque bloque--sol tm-ficha6">6</span>
+            <span class="bloque bloque--cielo tm-fichaq">?</span>
+            <span class="bloque bloque--menta tm-fichac">✓</span>
+            <span class="tm-fig tm-fig--geo tm-fig--g" style="--a:#FF7A6B"><i></i><i></i><i></i></span>
+            <span class="tm-fig tm-fig--frac tm-fig--f" style="--a:#B7A6F2"></span>
+            <span class="tm-fig tm-fig--puntos tm-fig--p" style="--a:#FF7A6B"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mapa de temas -->
+      <section class="contenedor tm-mapa tm-rev" id="mapa" aria-labelledby="tm-h-mapa">
+        <p class="tm-eyebrow">Mapa de temas</p>
+        <h2 id="tm-h-mapa" class="tm-h2">Cómo se conectan</h2>
+        <p class="tm-intro">La evaluación fue uno de los primeros temas del semestre, y de ella se desglosan los tipos de evaluación. Toca cualquier punto del mapa para ir a su explicación.</p>
+        <ol class="tm-nodos" id="tm-nodos" aria-label="Mapa de temas"></ol>
+        <noscript><p>Para ver el mapa necesitas activar JavaScript en tu navegador.</p></noscript>
+        <p class="tm-leyenda"><span><i class="tm-leyenda__sol" aria-hidden="true"></i>Tema</span><span><i class="tm-leyenda__pun" aria-hidden="true"></i>Actividad</span></p>
+      </section>
+
+      <div class="contenedor tm-temas">
+
+        <!-- 01 · Actividad del emisario -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t1-titulo">
+          <article class="tm-tema tm-card tm-card--tinte tm-t1" id="t1">
+            <span class="tm-fig tm-fig--formas tm-esquina" aria-hidden="true"><i></i><i></i><i></i></span>
+            <div class="tm-g tm-g--5-7">
+              <div>
+                <header class="tm-cab"><span class="tm-num">01</span><div><span class="tm-tipo tm-tipo--act">Actividad</span><h2 id="t1-titulo" class="tm-h2">Actividad del emisario</h2></div></header>
+                <p class="tm-p">La actividad consistió en realizar un <strong>circuito en grupos</strong>: el grupo 1 designaba a una representante que pasaba al grupo 2 para conocer las respuestas a cada pregunta de saberes previos, preguntas que las estudiantes debíamos responder.</p>
+                <div class="tm-circuito" role="img" aria-label="Esquema: el grupo 1 envía a una representante al grupo 2 para conocer sus respuestas a cada pregunta">
+                  <div class="tm-circuito__fila">
+                    <span class="tm-grupo tm-grupo--1">Grupo 1</span>
+                    <span class="tm-pasa">
+                      <svg viewBox="0 0 80 26" aria-hidden="true"><path d="M3 20C16 2 52 0 74 15" fill="none" stroke="#1F2A44" stroke-width="2.4" stroke-linecap="round"/><path d="M64 15l11 1.5-5.5 9" fill="none" stroke="#1F2A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <small>una representante pasa</small>
+                    </span>
+                    <span class="tm-grupo tm-grupo--2">Grupo 2</span>
+                  </div>
+                  <p class="tm-mono tm-circuito__pie">Para conocer sus respuestas a cada pregunta</p>
+                </div>
+              </div>
+              <div>
+                <p class="tm-mono tm-rotulo">Saberes previos · seis preguntas</p>
+                <ul class="tm-preguntas" aria-label="Preguntas de saberes previos">
+                  <li class="tm-q"><span class="tm-q__n">01</span><span class="tm-q__t">¿Qué son las matemáticas?</span></li>
+                  <li class="tm-q"><span class="tm-q__n">02</span><span class="tm-q__t">¿Qué es la didáctica de las matemáticas?</span></li>
+                  <li class="tm-q"><span class="tm-q__n">03</span><span class="tm-q__t">¿Cómo se aprenden las matemáticas?</span></li>
+                  <li class="tm-q"><span class="tm-q__n">04</span><span class="tm-q__t">¿Para qué se enseñan las matemáticas?</span></li>
+                  <li class="tm-q"><span class="tm-q__n">05</span><span class="tm-q__t">¿Cómo se deberían enseñar las matemáticas?</span></li>
+                  <li class="tm-q"><span class="tm-q__n">06</span><span class="tm-q__t">¿Cómo se debería evaluar el aprendizaje de las matemáticas?</span></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 02 · Evaluación -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t2-titulo">
+          <article class="tm-tema tm-card tm-t2" id="t2">
+            <div class="tm-g tm-g--1-1">
+              <div>
+                <header class="tm-cab"><span class="tm-num">02</span><div><span class="tm-tipo">Tema</span><h2 id="t2-titulo" class="tm-h2">Evaluación</h2></div></header>
+                <p class="tm-p">Uno de los primeros temas de este semestre fue la evaluación: cómo se desarrolla normalmente en el aula y cómo podemos ejecutarla según las necesidades de los estudiantes.</p>
+                <p class="tm-p">Para trabajarlo hicimos diversas actividades, entre ellas un <strong>padlet</strong> con preguntas de saberes previos. Esa actividad hace parte de la <strong>evaluación diagnóstica</strong>.</p>
+              </div>
+              <div class="tm-def">
+                <p class="tm-mono tm-def__rot">¿Qué es la evaluación?</p>
+                <p class="tm-def__txt">Un proceso <span>continuo y sistemático</span> que permite conocer los aprendizajes, avances y dificultades de los estudiantes. Consiste en recoger y analizar información para <span>orientar la enseñanza</span>, brindar retroalimentación y mejorar el aprendizaje.</p>
+              </div>
+            </div>
+            <p class="tm-mono tm-rotulo tm-rotulo--sep">Padlet · evaluación diagnóstica · preguntas de saberes previos</p>
+            <ul class="tm-notas" aria-label="Preguntas del padlet">
+              <li><span class="tm-nota__n">1</span>¿Por qué se evalúa?</li>
+              <li><span class="tm-nota__n">2</span>¿Para quién se evalúa?</li>
+              <li><span class="tm-nota__n">3</span>¿Para qué sirve la evaluación?</li>
+              <li><span class="tm-nota__n">4</span>¿Cómo te sientes normalmente cuando sabes que vas a ser evaluado?</li>
+              <li><span class="tm-nota__n">5</span>¿Cómo te gustaría que te evaluaran?</li>
+            </ul>
+            <div class="tm-pie-tema">
+              <a class="tm-btn tm-btn--oscuro tm-btn--chico" href="#t3">De aquí se desglosan los tipos de evaluación <span aria-hidden="true">↓</span></a>
+              <span class="tm-fig tm-fig--puntos tm-fig--p2" style="--a:#5BB8F0" aria-hidden="true"></span>
+            </div>
+          </article>
+        </section>
+
+        <!-- 03 · Tipos de evaluación -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t3-titulo">
+          <article class="tm-tema tm-card tm-card--tinte tm-t3" id="t3">
+            <span class="tm-fig tm-fig--frac tm-esquina" style="--a:#FF7A6B" aria-hidden="true"></span>
+            <header class="tm-cab"><span class="tm-num">03</span><div><span class="tm-tipo">Tema</span><h2 id="t3-titulo" class="tm-h2">Tipos de evaluación</h2></div></header>
+            <p class="tm-p">Del tema de la evaluación se desglosan cuatro tipos. Elige uno para ver en qué consiste.</p>
+            <div class="tm-g tm-g--5-7 tm-g--centro tm-tipos-g">
+              <div class="tm-tipos" role="tablist" aria-label="Tipos de evaluación" id="tm-tipos">
+                <span class="tm-tipos__caja" aria-hidden="true"><span>Tipos de evaluación</span></span>
+              </div>
+              <div class="tm-tipo-panel" role="tabpanel" id="tm-tipo-panel" aria-live="polite" tabindex="0">
+                <p class="tm-mono tm-tipo-panel__rot"><i aria-hidden="true"></i><span id="tm-tp-rot"></span></p>
+                <h3 id="tm-tp-tit"></h3>
+                <p class="tm-momento"><span id="tm-tp-etq"></span><b id="tm-tp-mom"></b></p>
+                <p id="tm-tp-txt"></p>
+              </div>
+            </div>
+            <p class="tm-mono tm-rotulo tm-rotulo--sep">La evaluación se puede entender a partir de cinco preguntas fundamentales</p>
+            <ul class="tm-pildoras" aria-label="Cinco preguntas fundamentales">
+              <li>¿Por qué se evalúa?</li><li>¿Qué se evalúa?</li><li>¿Cuándo se evalúa?</li><li>¿Cómo se evalúa?</li><li>¿Para qué se evalúa?</li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- 04 · Evaluación formativa (sin tarjeta) -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t4-titulo">
+          <article class="tm-tema tm-t4" id="t4">
+            <div class="tm-g tm-g--1-1 tm-g--arriba">
+              <div>
+                <header class="tm-cab"><span class="tm-num">04</span><div><span class="tm-tipo">Tema</span><h2 id="t4-titulo" class="tm-h2">Evaluación formativa</h2></div></header>
+                <p class="tm-p">La evaluación formativa es un <strong>proceso continuo</strong> que permite identificar qué están aprendiendo los estudiantes, qué dificultades tienen y qué apoyos necesitan para avanzar. Con esta información, el docente brinda orientaciones y ajusta sus actividades para mejorar el aprendizaje.</p>
+                <div class="tm-ejemplo">
+                  <p class="tm-mono">Ejemplo</p>
+                  <p>Durante una actividad de lectura, la docente observa que un niño tiene dificultad para comprender una historia. Le hace preguntas, le ofrece pistas y lo acompaña para que logre comprenderla.</p>
+                </div>
+                <p class="tm-callout"><span class="tm-check" aria-hidden="true"></span><span><strong>Su propósito principal</strong> es acompañar y mejorar el aprendizaje, más allá de asignar una nota.</span></p>
+              </div>
+              <div class="tm-vuelo">
+                <p class="tm-mono tm-vuelo__rot">Furman (2021): la evaluación formativa se asemeja al trabajo de un piloto durante un vuelo</p>
+                <div class="tm-ruta" id="tm-ruta" aria-hidden="true"></div>
+                <div class="tm-paradas" role="tablist" aria-label="Paradas del vuelo" id="tm-paradas"></div>
+                <div class="tm-parada-panel" role="tabpanel" id="tm-parada-panel" aria-live="polite" tabindex="0">
+                  <p class="tm-mono" id="tm-pp-rot"></p>
+                  <h3 id="tm-pp-tit"></h3>
+                  <p class="tm-pp-sig"><span class="tm-flecha-c" aria-hidden="true">→</span><span id="tm-pp-sig"></span></p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 05 · Retroalimentación -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t5-titulo">
+          <article class="tm-tema tm-card tm-card--tinte tm-t5" id="t5">
+            <div class="tm-g tm-g--1-1 tm-g--arriba">
+              <div>
+                <header class="tm-cab"><span class="tm-num">05</span><div><span class="tm-tipo">Tema</span><h2 id="t5-titulo" class="tm-h2">Retroalimentación</h2></div></header>
+                <p class="tm-p">La <strong>retroalimentación formativa</strong> es la orientación que brinda el docente durante el aprendizaje para que el estudiante reconozca qué hizo bien, qué necesita mejorar y cómo puede hacerlo.</p>
+                <p class="tm-p">No consiste solo en poner una nota o decir «está mal», sino en dar indicaciones claras que le permitan avanzar.</p>
+              </div>
+              <div>
+                <p class="tm-mono tm-rotulo">Ejemplo · un niño escribe una oración sin espacios y la docente puede decirle</p>
+                <blockquote class="tm-burbuja"><p>Tu oración expresa una idea clara. Ahora vamos a separar las palabras para que se lean mejor. Revisa dónde termina cada palabra e inténtalo nuevamente.</p></blockquote>
+                <p class="tm-callout"><span class="tm-check" aria-hidden="true"></span><span><strong>Su propósito</strong> es ayudar a aprender y mejorar, dando al estudiante la oportunidad de corregir y seguir practicando.</span></p>
+              </div>
+            </div>
+            <p class="tm-mono tm-rotulo tm-rotulo--sep">Seis ideas clave sobre la retroalimentación formativa</p>
+            <ol class="tm-ideas" aria-label="Seis ideas clave sobre la retroalimentación formativa">
+              <li><span class="tm-ideas__n">1</span><span>Constituye el núcleo del proceso formativo porque acompaña y orienta al estudiante.</span></li>
+              <li><span class="tm-ideas__n">2</span><span>No es solo transmitir información, implica un diálogo que favorece la comprensión.</span></li>
+              <li><span class="tm-ideas__n">3</span><span>Permite al estudiante reconocer avances, identificar dificultades y autorregularse.</span></li>
+              <li><span class="tm-ideas__n">4</span><span>Solo es formativa si logra impactar en la mejora de los aprendizajes.</span></li>
+              <li><span class="tm-ideas__n">5</span><span>Es un proceso cognitivo y afectivo, por lo que importa tanto el contenido como la forma y el momento en que se comunica.</span></li>
+              <li><span class="tm-ideas__n">6</span><span>Bien utilizada, motiva, genera confianza y potencia el aprendizaje.</span></li>
+            </ol>
+            <p class="tm-fuente">Anijovich y González (2011)</p>
+          </article>
+        </section>
+
+        <!-- 06 · Ticket de salida -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t6-titulo">
+          <article class="tm-tema tm-oscuro tm-t6" id="t6">
+            <span class="tm-oscuro__circ" aria-hidden="true"></span>
+            <div class="tm-g tm-g--1-1">
+              <div>
+                <header class="tm-cab"><span class="tm-num">06</span><div><span class="tm-tipo">Tema</span><h2 id="t6-titulo" class="tm-h2">Ticket de salida</h2></div></header>
+                <p class="tm-p">Teniendo en cuenta la temática de la evaluación, la docente realizó una actividad llamada <strong>«Ticket de salida»</strong>, cuyo objetivo fue reflexionar sobre nuestra experiencia como estudiantes con los diferentes tipos de evaluación y cómo podemos aplicarlos en nuestra práctica docente.</p>
+              </div>
+              <div class="tm-ticket">
+                <p class="tm-mono tm-ticket__rot">Ticket de salida · completa las frases</p>
+                <ul>
+                  <li><span>Antes de esta experiencia pensaba que evaluar era</span><i aria-hidden="true"></i></li>
+                  <li><span>Ahora pienso que evaluar significa</span><i aria-hidden="true"></i></li>
+                  <li><span>Una idea que me llevo para mi práctica docente es</span><i aria-hidden="true"></i></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Más temas -->
+        <section class="tm-seccion tm-rev" aria-labelledby="tm-h-mas">
+          <div class="tm-mas">
+            <span class="tm-mas__mas" aria-hidden="true">+</span>
+            <div>
+              <h2 id="tm-h-mas">Aquí se irán sumando más temas</h2>
+              <p>Esta página crece con el curso: los próximos temas del semestre se añadirán a continuación.</p>
+            </div>
+            <span class="tm-mas__prox">Próximamente</span>
+          </div>
+        </section>
+
+        <!-- Cierre -->
+        <section class="tm-seccion tm-fin tm-rev" aria-labelledby="tm-h-cierre">
+          <div class="tm-cierre">
+            <div>
+              <h2 id="tm-h-cierre">¿Seguimos explorando?</h2>
+              <p>Mira cómo explicamos estos temas en las exposiciones, o pasa a jugar: hay actividades de matemáticas para cada edad.</p>
+            </div>
+            <div class="tm-cierre__botones">
+              <a class="tm-btn tm-btn--oscuro" href="exposiciones.html">Ver exposiciones <span aria-hidden="true">→</span></a>
+              <a class="tm-btn tm-btn--claro" href="index.html">Volver al inicio</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/temas.js?v=1"></script>
+</body>
+</html>
