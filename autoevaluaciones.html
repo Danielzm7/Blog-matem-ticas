@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <title>Autoevaluaciones · Semillas Matemáticas</title>
+  <meta name="description" content="Las autoevaluaciones de Sharon, Yuliana y Angie sobre lo que aprendieron en Didáctica de las matemáticas en la primera infancia, contadas con sus propias palabras.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=6">
+  <link rel="stylesheet" href="css/autoevaluaciones.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel ae-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li class="menu__sub">
+                <a href="#" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="situaciones.html">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones.html" aria-current="page">Autoevaluaciones</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="situaciones.html">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones.html" aria-current="page">Autoevaluaciones</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <nav class="contenedor ae-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><strong aria-current="page">Autoevaluaciones</strong>
+      </nav>
+
+      <div class="contenedor">
+        <section class="ae-portada" aria-labelledby="ae-titulo">
+          <span class="ae-portada__disco" aria-hidden="true"></span>
+          <div class="ae-portada__texto">
+            <p class="ae-pildora"><span aria-hidden="true"><i style="background:#5BB8F0"></i><i style="background:#FF7A6B"></i><i style="background:#7FD8B5"></i></span>Tres voces, un mismo curso</p>
+            <h1 id="ae-titulo">Autoevaluaciones</h1>
+            <p class="ae-portada__p">Un recorrido por lo que cada una aprendió en Didáctica de las matemáticas en la primera infancia, contado con sus propias palabras.</p>
+            <ul class="ae-nombres"><li><a class="ae-nombre" href="#sharon" style="--c:#5BB8F0"><i aria-hidden="true"></i>Sharon</a></li><li><a class="ae-nombre" href="#yuliana" style="--c:#FF7A6B"><i aria-hidden="true"></i>Yuliana</a></li><li><a class="ae-nombre" href="#angie" style="--c:#7FD8B5"><i aria-hidden="true"></i>Angie</a></li></ul>
+          </div>
+          <div class="ae-retratos" aria-hidden="true">
+            <img class="ae-ret ae-ret--s" src="img/integrante-1-completa.jpg" alt="" width="480" height="480">
+            <img class="ae-ret ae-ret--y" src="img/integrante-2.jpg" alt="" width="480" height="480">
+            <img class="ae-ret ae-ret--a" src="img/integrante-3.jpg" alt="" width="480" height="480">
+            <span class="ae-ficha ae-ficha--ok">✓</span>
+            <span class="ae-ficha ae-ficha--mas">+</span>
+          </div>
+        </section>
+
+        <section class="ae-sec ae-persona ae-sharon ae-rev" id="sharon" data-persona aria-labelledby="ae-h-sharon">
+          <div class="ae-lateral">
+            <div class="ae-foto"><img src="img/integrante-1-completa.jpg" width="480" height="480" alt="Retrato de Sharon" loading="lazy" decoding="async"></div>
+            <span class="ae-chip">Autoevaluación</span>
+            <h2 id="ae-h-sharon">Sharon</h2>
+            <p class="ae-lic">Licenciatura en<br>Educación Infantil</p>
+            <a class="ae-sig" href="#yuliana">Siguiente: Yuliana ↓</a>
+          </div>
+          <div class="ae-hoja">
+            <span class="ae-comilla" aria-hidden="true">“</span>
+            <p class="ae-guia">Así lo cuenta Sharon · toca para resaltar</p>
+            <ul class="ae-resaltes" aria-label="Frases para resaltar"><li><button class="ae-res" type="button" data-f="1" aria-pressed="false"><i aria-hidden="true"></i>Juego y material</button></li><li><button class="ae-res" type="button" data-f="2" aria-pressed="false"><i aria-hidden="true"></i>Preguntas que invitan</button></li><li><button class="ae-res" type="button" data-f="3" aria-pressed="false"><i aria-hidden="true"></i>Por mejorar</button></li></ul>
+            <div class="ae-texto"><p>Durante este semestre, en la asignatura de Didáctica de las Matemáticas, mis expectativas estuvieron enfocadas en conocer estrategias que pudiera aplicar en mi práctica docente para favorecer el aprendizaje de los niños, teniendo en cuenta sus necesidades, ritmos y formas de aprender. A lo largo del curso, comprendí la importancia del <span class="ae-fr" data-f="1">juego, el material manipulativo y los retos matemáticos</span> para promover experiencias significativas que despierten la curiosidad y fortalezcan el pensamiento matemático.</p><p>Considero que asumí mi proceso de formación con compromiso, disposición para aprender y participación en las actividades propuestas. Las exposiciones y los espacios de reflexión me permitieron ampliar mis conocimientos y reconocer la importancia de acompañar a los niños mediante <span class="ae-fr" data-f="2">preguntas que los inviten a explorar, explicar sus ideas y construir sus propias soluciones</span>. Como aspecto por mejorar, me propongo <span class="ae-fr" data-f="3">profundizar en los referentes curriculares y fortalecer el diseño de actividades que respondan a las características de cada grupo</span>.</p></div>
+          </div>
+        </section>
+
+        <section class="ae-sec ae-persona ae-yuliana ae-persona--der ae-rev" id="yuliana" data-persona aria-labelledby="ae-h-yuliana">
+          <div class="ae-lateral">
+            <div class="ae-foto"><img src="img/integrante-2.jpg" width="480" height="480" alt="Retrato de Yuliana" loading="lazy" decoding="async"></div>
+            <span class="ae-chip">Autoevaluación</span>
+            <h2 id="ae-h-yuliana">Yuliana</h2>
+            <p class="ae-lic">Licenciatura en<br>Educación Infantil</p>
+            <a class="ae-sig" href="#angie">Siguiente: Angie ↓</a>
+          </div>
+          <div class="ae-hoja">
+            <span class="ae-comilla" aria-hidden="true">“</span>
+            <p class="ae-guia">Así lo cuenta Yuliana · toca para resaltar</p>
+            <ul class="ae-resaltes" aria-label="Frases para resaltar"><li><button class="ae-res" type="button" data-f="1" aria-pressed="false"><i aria-hidden="true"></i>Analizar y buscar estrategias</button></li><li><button class="ae-res" type="button" data-f="2" aria-pressed="false"><i aria-hidden="true"></i>Responsabilidad</button></li><li><button class="ae-res" type="button" data-f="3" aria-pressed="false"><i aria-hidden="true"></i>Ritmos de aprendizaje</button></li></ul>
+            <div class="ae-texto"><p>A lo largo del curso de Matemáticas, amplié mis conocimientos y aprendí nuevas formas de comprender y trabajar los contenidos. Las actividades realizadas me ayudaron a <span class="ae-fr" data-f="1">fortalecer mi capacidad para analizar situaciones, buscar estrategias y encontrar soluciones</span>. También procuré <span class="ae-fr" data-f="2">participar con responsabilidad y mantener una buena disposición, incluso cuando algunos temas me resultaron difíciles</span>.</p><p>Este curso me permitió valorar las matemáticas como parte de la vida diaria y de mi preparación como futura docente. Me llevo aprendizajes que puedo aplicar en mi formación y en mi práctica, especialmente la importancia de <span class="ae-fr" data-f="3">explicar los temas de distintas maneras y de tener en cuenta los ritmos de aprendizaje de cada estudiante</span>. Reconozco mis avances y sé que puedo seguir fortaleciendo mis habilidades.</p></div>
+          </div>
+        </section>
+
+        <section class="ae-sec ae-persona ae-angie ae-rev" id="angie" data-persona aria-labelledby="ae-h-angie">
+          <div class="ae-lateral">
+            <div class="ae-foto"><img src="img/integrante-3.jpg" width="480" height="480" alt="Retrato de Angie" loading="lazy" decoding="async"></div>
+            <span class="ae-chip">Autoevaluación</span>
+            <h2 id="ae-h-angie">Angie</h2>
+            <p class="ae-lic">Licenciatura en<br>Educación Infantil</p>
+            <a class="ae-sig" href="#">Volver arriba ↑</a>
+          </div>
+          <div class="ae-hoja">
+            <span class="ae-comilla" aria-hidden="true">“</span>
+            <p class="ae-guia">Así lo cuenta Angie · toca para resaltar</p>
+            <ul class="ae-resaltes" aria-label="Frases para resaltar"><li><button class="ae-res" type="button" data-f="1" aria-pressed="false"><i aria-hidden="true"></i>Razonamiento y problemas</button></li><li><button class="ae-res" type="button" data-f="2" aria-pressed="false"><i aria-hidden="true"></i>Compromiso</button></li><li><button class="ae-res" type="button" data-f="3" aria-pressed="false"><i aria-hidden="true"></i>Matemáticas en la vida</button></li></ul>
+            <div class="ae-texto"><p>Durante el desarrollo del curso de Matemáticas, he logrado fortalecer mis conocimientos y comprender mejor diferentes conceptos y procesos matemáticos. A través de las actividades, ejercicios y espacios de aprendizaje, he desarrollado habilidades para <span class="ae-fr" data-f="1">el razonamiento lógico, la resolución de problemas y la aplicación de los contenidos en situaciones prácticas</span>. Además, he mantenido una <span class="ae-fr" data-f="2">actitud de compromiso y disposición para aprender</span>, participando activamente en las experiencias propuestas y buscando superar las dificultades que se han presentado.</p><p>Asimismo, considero que el curso me permitió reconocer <span class="ae-fr" data-f="3">la importancia de las matemáticas en la vida cotidiana y en mi formación profesional</span>. Poco a poco he ganado mayor confianza al enfrentar actividades que requieren análisis, interpretación y uso de estrategias matemáticas, logrando avances significativos en mi proceso de aprendizaje.</p></div>
+          </div>
+        </section>
+
+        <section class="ae-sec ae-rev" aria-labelledby="ae-h-cierre">
+          <div class="ae-cierre">
+            <div>
+              <h2 id="ae-h-cierre">¿Quieres conocer a quienes escriben?</h2>
+              <p>Pasa por la página de quiénes somos o sigue jugando con las matemáticas.</p>
+            </div>
+            <div class="ae-cierre__botones">
+              <a class="ae-btn ae-btn--oscuro" href="quienes-somos.html">Quiénes somos <span aria-hidden="true">→</span></a>
+              <a class="ae-btn ae-btn--claro" href="index.html">Volver al inicio</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/icono-blog.png" width="288" height="288" alt="Icono de Semillas Matemáticas" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="situaciones.html">Situaciones y juegos</a></li>
+            <li><a href="autoevaluaciones.html">Autoevaluaciones</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/autoevaluaciones.js?v=1"></script>
+</body>
+</html>

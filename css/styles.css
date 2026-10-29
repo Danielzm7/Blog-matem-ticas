@@ -221,7 +221,7 @@ main, .pie { position: relative; z-index: 1; }
 .menu ul { display: flex; gap: 4px; }
 .menu a {
   display: inline-flex; align-items: center;
-  min-height: 44px; padding: 0 14px;
+  min-height: 44px; padding: 0 11px;
   border-radius: 999px;
   font-weight: 600; font-size: .98rem;
   text-decoration: none; white-space: nowrap;
@@ -962,7 +962,7 @@ main > section + section { margin-top: 112px; }
 /* =========================================================
    Responsive
    ========================================================= */
-@media (max-width: 1299px) {
+@media (max-width: 1279px) {
   .cabecera__centro { display: none; }
   .cabecera__acciones { display: flex; }
   .logo--programa { margin-left: auto; }
@@ -971,8 +971,16 @@ main > section + section { margin-top: 112px; }
   .logo--pie img { height: 96px; }
   .cabecera { position: relative; }
 }
-@media (min-width: 1300px) {
+@media (min-width: 1280px) {
   .panel-movil { display: none; }
+  /* Fila 1: logo · menú (una sola línea) · escudo. Fila 2: buscador centrado. */
+  .cabecera__fila { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "uni menu esc" "bus bus bus"; align-items: center; gap: 0 28px; padding-bottom: 14px; }
+  .cabecera__centro { display: contents; }
+  .logo--uni { grid-area: uni; }
+  .logo--programa { grid-area: esc; }
+  .menu { grid-area: menu; justify-self: center; }
+  .menu ul { flex-wrap: nowrap; }
+  .buscador { grid-area: bus; justify-self: center; margin-top: 4px; }
 }
 
 @media (max-width: 1080px) {
