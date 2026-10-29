@@ -119,7 +119,15 @@
       pantalla: true,
       imagenes: [
         { src: 'img/expo4/s01.jpg', alt: 'Portada: La visión del niño desde sus dimensiones del desarrollo, con las integrantes Paola Andrea Moreno, Luisa Fernanda Osorno y Sailuz Elinor Reverol' },
-        { src: 'img/expo4/s02.jpg', alt: 'Índice: juego de la telaraña, el desarrollo infantil es integral, dimensiones socioafectiva, corporal, cognitiva, comunicativa, estética, espiritual y ética, conclusión, actividad evaluativa y referencias' }
+        { src: 'img/expo4/s02.jpg', alt: 'Índice: juego de la telaraña, el desarrollo infantil es integral, dimensiones socioafectiva, corporal, cognitiva, comunicativa, estética, espiritual y ética, conclusión, actividad evaluativa y referencias' },
+        { src: 'img/expo4/s03.jpg', alt: 'La telaraña: niños jugando junto a una telaraña dibujada en rojo' },
+        { src: 'img/expo4/s04.jpg', alt: 'El desarrollo infantil es integral: todas las dimensiones se desarrollan al mismo tiempo, cada niño es único y hay que mirarlo en su totalidad' },
+        { src: 'img/expo4/s05.jpg', alt: 'Dimensión socioafectiva y dimensión corporal' },
+        { src: 'img/expo4/s06.jpg', alt: 'Dimensión cognitiva y dimensión comunicativa' },
+        { src: 'img/expo4/s07.jpg', alt: 'Dimensiones estética, espiritual y ética' },
+        { src: 'img/expo4/s08.jpg', alt: 'Conclusión: el desarrollo integral se construye con la conexión entre todas las dimensiones' },
+        { src: 'img/expo4/s09.jpg', alt: 'Actividad evaluativa' },
+        { src: 'img/expo4/s10.jpg', alt: 'Referencias: Ministerio de Educación Nacional (1998), Lineamientos pedagógicos para la educación preescolar' }
       ],
       diapositivas: 'https://aulasvirtuales.uniquindio.edu.co/mod/resource/view.php?id=2890112'
     }
