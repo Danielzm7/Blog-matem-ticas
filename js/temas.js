@@ -78,12 +78,12 @@
     a.style.setProperty('--a', d.a); a.style.setProperty('--t', d.t);
     a.setAttribute('aria-label', (act ? 'Actividad ' : 'Tema ') + d.numero + ': ' + d.titulo);
     var li = h('li', {}, [a]);
-    // Flechas decorativas entre nodos consecutivos. La primera fila (01 a 05) va hacia la derecha,
-    // el 05 baja al 06 y la segunda fila (06, 07, 08) vuelve hacia la izquierda.
-    if (i < 4) li.classList.add('tm-conecta');
-    else if (i === 4) li.classList.add('tm-conecta', 'tm-conecta--abajo');
+    // Flechas decorativas entre nodos consecutivos. La primera fila (01 a 04) va hacia la derecha,
+    // el 04 baja al 05 y la segunda fila (05 a 08) vuelve hacia la izquierda.
+    if (i < 3) li.classList.add('tm-conecta');
+    else if (i === 3) li.classList.add('tm-conecta', 'tm-conecta--abajo');
     else if (i < TEMAS.length - 1) li.classList.add('tm-conecta', 'tm-conecta--izq');
-    if (i >= 5 && i <= 7) li.classList.add('tm-fila2-' + (i + 1));
+    if (i >= 4) li.classList.add('tm-fila2-' + (i + 1));
     nodos.appendChild(li);
   });
 
