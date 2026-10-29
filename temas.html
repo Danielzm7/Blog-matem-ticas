@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=5">
-  <link rel="stylesheet" href="css/temas.css?v=2">
+  <link rel="stylesheet" href="css/temas.css?v=3">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -127,7 +127,7 @@
           <span class="tm-portada__borde" aria-hidden="true"></span>
           <span class="tm-portada__disco" aria-hidden="true"></span>
           <div class="tm-portada__texto">
-            <p class="tm-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Seis temas</p>
+            <p class="tm-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Ocho temas</p>
             <h1 id="tm-titulo">Temas</h1>
             <p class="tm-portada__parrafo">Aquí reunimos los principales temas y actividades que trabajamos en clase durante el semestre: de qué trató cada uno y cómo se conectan entre sí.</p>
             <div class="tm-portada__botones">
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="tm-arte" aria-hidden="true">
-            <span class="bloque bloque--sol tm-ficha6">6</span>
+            <span class="bloque bloque--sol tm-ficha6">8</span>
             <span class="bloque bloque--cielo tm-fichaq">?</span>
             <span class="bloque bloque--menta tm-fichac">✓</span>
             <span class="tm-fig tm-fig--geo tm-fig--g" style="--a:#FF7A6B"><i></i><i></i><i></i></span>
@@ -322,6 +322,51 @@
           </article>
         </section>
 
+        <!-- 07 · Retos matemáticos -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t7-titulo">
+          <article class="tm-tema tm-card tm-card--tinte tm-t7" id="t7">
+            <div class="tm-g tm-g--5-7 tm-g--arriba">
+              <div>
+                <header class="tm-cab"><span class="tm-num">07</span><div><span class="tm-tipo">Tema</span><h2 id="t7-titulo" class="tm-h2">Retos matemáticos</h2></div></header>
+                <p class="tm-p">Los <strong>retos matemáticos</strong> son problemas o situaciones que invitan a los niños a pensar, explorar y buscar soluciones mediante el juego y la experimentación.</p>
+                <p class="tm-p">En la primera infancia, pueden incluir actividades como repartir objetos, completar secuencias, construir figuras o comparar cantidades.</p>
+                <span class="tm-fig tm-fig--geo tm-deco" style="--a:#5BB8F0" aria-hidden="true"><i></i><i></i><i></i></span>
+              </div>
+              <div>
+                <p class="tm-mono tm-rotulo">Estos retos ayudan a los niños a</p>
+                <ol class="tm-ayudas" aria-label="Lo que ayudan a desarrollar los retos matemáticos">
+                  <li><span class="tm-ayudas__n" aria-hidden="true">1</span><p><strong>Desarrollar el pensamiento lógico:</strong> identificar relaciones, patrones y diferencias.</p></li>
+                  <li><span class="tm-ayudas__n" aria-hidden="true">2</span><p><strong>Resolver problemas:</strong> probar distintas estrategias y aprender de los errores.</p></li>
+                  <li><span class="tm-ayudas__n" aria-hidden="true">3</span><p><strong>Fortalecer la autonomía:</strong> tomar decisiones y confiar en sus capacidades.</p></li>
+                  <li><span class="tm-ayudas__n" aria-hidden="true">4</span><p><strong>Comunicar sus ideas:</strong> explicar cómo encontraron una solución y escuchar a sus compañeros.</p></li>
+                  <li><span class="tm-ayudas__n" aria-hidden="true">5</span><p><strong>Relacionar las matemáticas con la vida cotidiana:</strong> contar juguetes, organizar materiales o repartir alimentos.</p></li>
+                </ol>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 08 · Bingo evaluativo -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t8-titulo">
+          <article class="tm-tema tm-card tm-t8" id="t8">
+            <div class="tm-g tm-g--1-1">
+              <div>
+                <header class="tm-cab"><span class="tm-num">08</span><div><span class="tm-tipo tm-tipo--act">Actividad</span><h2 id="t8-titulo" class="tm-h2">Bingo evaluativo</h2></div></header>
+                <p class="tm-p">Este <strong>bingo evaluativo</strong> tuvo como propósito valorar los conocimientos adquiridos durante las exposiciones en clase y brindar retroalimentación para fortalecer nuestra comprensión de los temas abordados.</p>
+              </div>
+              <div class="tm-bingo" aria-hidden="true">
+                <div class="tm-bingo__cab"><i>B</i><i>I</i><i>N</i><i>G</i><i>O</i></div>
+                <div class="tm-bingo__celdas">
+                  <i></i><i class="on"></i><i></i><i></i><i class="on"></i>
+                  <i></i><i></i><i class="on"></i><i></i><i></i>
+                  <i class="on"></i><i></i><i class="lib">★</i><i class="on"></i><i></i>
+                  <i></i><i class="on"></i><i></i><i></i><i class="on"></i>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
         <!-- Más temas -->
         <section class="tm-seccion tm-rev" aria-labelledby="tm-h-mas">
           <div class="tm-mas">
@@ -391,6 +436,6 @@
   </footer>
 
   <script src="js/menu.js"></script>
-  <script src="js/temas.js?v=1"></script>
+  <script src="js/temas.js?v=2"></script>
 </body>
 </html>

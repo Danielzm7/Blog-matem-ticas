@@ -131,7 +131,11 @@
 .tm-nodos > li.tm-conecta::after { content: ""; position: absolute; top: 50%; left: calc(100% + 24px); margin-top: -6.5px; border-left: 11px solid var(--tinta); border-top: 6.5px solid transparent; border-bottom: 6.5px solid transparent; pointer-events: none; }
 .tm-nodos > li.tm-conecta--abajo::before { top: calc(100% + 7px); left: 50%; width: 3px; height: 17px; margin: 0 0 0 -1.5px; }
 .tm-nodos > li.tm-conecta--abajo::after { top: calc(100% + 24px); left: 50%; margin: 0 0 0 -6.5px; border: 0; border-top: 11px solid var(--tinta); border-left: 6.5px solid transparent; border-right: 6.5px solid transparent; }
-.tm-nodos > li.tm-ultimo { grid-column: 5; }
+.tm-nodos > li.tm-conecta--izq::before { left: auto; right: calc(100% + 7px); }
+.tm-nodos > li.tm-conecta--izq::after { left: auto; right: calc(100% + 24px); border-left: 0; border-right: 11px solid var(--tinta); }
+.tm-nodos > li.tm-fila2-6 { grid-column: 5; grid-row: 2; }
+.tm-nodos > li.tm-fila2-7 { grid-column: 4; grid-row: 2; }
+.tm-nodos > li.tm-fila2-8 { grid-column: 3; grid-row: 2; }
 .tm-leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-top: 36px; font-size: 13px; color: var(--texto-2); }
 .tm-leyenda span { display: inline-flex; align-items: center; gap: 8px; }
 .tm-leyenda i { display: inline-block; width: 26px; height: 16px; border: 2px solid var(--tinta); border-radius: 8px; box-sizing: border-box; }
@@ -149,6 +153,8 @@
 .tm-t4 { --a: #7FD8B5; --t: #D9F5E9; }
 .tm-t5 { --a: #B7A6F2; --t: #ECE7FD; }
 .tm-t6 { --a: #FFD45E; --t: #FFF3C9; }
+.tm-t7 { --a: #5BB8F0; --t: #DDF1FD; }
+.tm-t8 { --a: #FF7A6B; --t: #FFE3DF; }
 .tm-esquina { position: absolute; top: 24px; right: 28px; z-index: 1; --s: 56px; }
 
 .tm-g { display: grid; gap: 40px; align-items: center; }
@@ -311,6 +317,30 @@
 .tm-ticket li { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 10px; margin-top: 18px; font-size: 18px; line-height: 1.35; font-weight: 700; }
 .tm-ticket li i { display: block; flex: 1 1 70px; height: 0; min-width: 70px; margin-bottom: 6px; border-bottom: 2px dashed rgba(31, 42, 68, .6); }
 
+/* 07 · Retos matemáticos */
+.tm-deco { --s: 72px; margin-top: 28px; }
+.tm-ayudas { list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0; counter-reset: ayuda; }
+.tm-ayudas li { display: flex; align-items: center; gap: 14px; padding: 14px 18px 14px 14px; background: #fff; border: 2px solid rgba(31, 42, 68, .14); border-radius: 26px; transition: transform .25s var(--curva), box-shadow .25s var(--curva), border-color .25s; }
+.tm-ayudas li:hover { transform: translateY(-4px); border-color: var(--tinta); box-shadow: 0 8px 0 var(--tinta); }
+.tm-ayudas__n { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 40px; width: 40px; height: 40px; background: var(--a); border: 2px solid var(--tinta); border-radius: 50%; font: 800 18px/1 var(--f-titulo); }
+.tm-ayudas p { font-size: 16px; line-height: 1.45; color: #3A4A6E; }
+.tm-ayudas strong { color: var(--tinta); }
+
+/* 08 · Bingo evaluativo (tablero decorativo) */
+.tm-bingo { justify-self: center; width: 100%; max-width: 380px; padding: 18px 18px 22px; background: var(--t); border: 3px solid var(--tinta); border-radius: 30px; box-shadow: 0 8px 0 rgba(31, 42, 68, .18); rotate: 1.5deg; transition: rotate .3s var(--curva), transform .3s var(--curva); }
+.tm-bingo:hover { rotate: 0deg; transform: translateY(-4px); }
+.tm-bingo__cab, .tm-bingo__celdas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.tm-bingo__cab i { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; border: 2px solid var(--tinta); border-radius: 14px; font: 800 24px/1 var(--f-titulo); font-style: normal; }
+.tm-bingo__cab i:nth-child(1) { background: #FFD45E; }
+.tm-bingo__cab i:nth-child(2) { background: #5BB8F0; }
+.tm-bingo__cab i:nth-child(3) { background: #FF7A6B; }
+.tm-bingo__cab i:nth-child(4) { background: #7FD8B5; }
+.tm-bingo__cab i:nth-child(5) { background: #B7A6F2; }
+.tm-bingo__celdas { margin-top: 8px; }
+.tm-bingo__celdas i { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #fff; border: 2px solid rgba(31, 42, 68, .35); border-radius: 14px; font-style: normal; font-size: 20px; }
+.tm-bingo__celdas i.on { background: radial-gradient(circle, var(--a) 0 38%, #fff 40%); border-color: var(--tinta); }
+.tm-bingo__celdas i.lib { background: #FFD45E; border-color: var(--tinta); }
+
 /* Más temas y cierre */
 .tm-mas { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 24px; padding: 28px 32px; background: rgba(255, 255, 255, .6); border: 3px dashed #9AA8C8; border-radius: 36px; }
 .tm-mas > div { flex: 1 1 280px; min-width: 0; }
@@ -336,7 +366,7 @@
 @media (max-width: 1100px) {
   .tm-nodos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
   .tm-nodos > li.tm-conecta::before, .tm-nodos > li.tm-conecta::after { display: none; }
-  .tm-nodos > li.tm-ultimo { grid-column: auto; }
+  .tm-nodos > li[class*="tm-fila2-"] { grid-column: auto; grid-row: auto; }
 }
 @media (max-width: 1000px) {
   .tm-notas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -366,6 +396,8 @@
   .tm-mapa { margin-top: 56px; }
   .tm-preguntas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .tm-notas, .tm-ideas { grid-template-columns: minmax(0, 1fr); }
+  .tm-bingo { padding: 14px 14px 18px; }
+  .tm-bingo__cab i { font-size: 20px; }
   .tm-def { padding: 28px 24px; }
   .tm-tipos__btn { font-size: 12.5px; padding-right: 10px; }
   .tm-tipo-panel { padding: 22px 20px 24px; }
@@ -386,6 +418,6 @@
 @media (prefers-reduced-motion: reduce) {
   .tm-portada, .tm-portada__borde, .tm-fig, .tm-arte .bloque, .tm-oscuro__circ { animation: none !important; }
   .js .tm-rev { opacity: 1; transform: none; transition: none; }
-  .tm-btn, .tm-nodo, .tm-q, .tm-notas li, .tm-tipos__btn, .tm-tipos__btn i, .tm-pildoras li, .tm-parada, .tm-avion, .tm-ruta__puntos i, .tm-ideas li, .tm-ticket { transition: none; }
-  .tm-btn:hover, .tm-nodo:hover, .tm-q:hover, .tm-notas li:hover, .tm-pildoras li:hover, .tm-parada:hover, .tm-ideas li:hover, .tm-ticket:hover { transform: none; }
+  .tm-btn, .tm-nodo, .tm-q, .tm-notas li, .tm-tipos__btn, .tm-tipos__btn i, .tm-pildoras li, .tm-parada, .tm-avion, .tm-ruta__puntos i, .tm-ideas li, .tm-ticket, .tm-ayudas li, .tm-bingo { transition: none; }
+  .tm-btn:hover, .tm-nodo:hover, .tm-q:hover, .tm-notas li:hover, .tm-pildoras li:hover, .tm-parada:hover, .tm-ideas li:hover, .tm-ticket:hover, .tm-ayudas li:hover, .tm-bingo:hover { transform: none; }
 }

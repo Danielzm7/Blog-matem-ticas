@@ -14,7 +14,9 @@
     { numero: '03', tipo: 'tema',      titulo: 'Tipos de evaluación',    a: '#FF7A6B', t: '#FFE3DF', id: 't3' },
     { numero: '04', tipo: 'tema',      titulo: 'Evaluación formativa',   a: '#7FD8B5', t: '#D9F5E9', id: 't4' },
     { numero: '05', tipo: 'tema',      titulo: 'Retroalimentación',      a: '#B7A6F2', t: '#ECE7FD', id: 't5' },
-    { numero: '06', tipo: 'tema',      titulo: 'Ticket de salida',       a: '#FFD45E', t: '#FFF3C9', id: 't6' }
+    { numero: '06', tipo: 'tema',      titulo: 'Ticket de salida',       a: '#FFD45E', t: '#FFF3C9', id: 't6' },
+    { numero: '07', tipo: 'tema',      titulo: 'Retos matemáticos',      a: '#5BB8F0', t: '#DDF1FD', id: 't7' },
+    { numero: '08', tipo: 'actividad', titulo: 'Bingo evaluativo',       a: '#FF7A6B', t: '#FFE3DF', id: 't8' }
   ];
 
   // Los cuatro tipos de evaluación del tema 03.
@@ -76,10 +78,12 @@
     a.style.setProperty('--a', d.a); a.style.setProperty('--t', d.t);
     a.setAttribute('aria-label', (act ? 'Actividad ' : 'Tema ') + d.numero + ': ' + d.titulo);
     var li = h('li', {}, [a]);
-    // Flechas decorativas entre nodos consecutivos: cuatro en la fila y la última hacia abajo.
-    if (i < TEMAS.length - 1) li.classList.add('tm-conecta');
-    if (i === 4) li.classList.add('tm-conecta--abajo');
-    if (i === 5) li.classList.add('tm-ultimo');
+    // Flechas decorativas entre nodos consecutivos. La primera fila (01 a 05) va hacia la derecha,
+    // el 05 baja al 06 y la segunda fila (06, 07, 08) vuelve hacia la izquierda.
+    if (i < 4) li.classList.add('tm-conecta');
+    else if (i === 4) li.classList.add('tm-conecta', 'tm-conecta--abajo');
+    else if (i < TEMAS.length - 1) li.classList.add('tm-conecta', 'tm-conecta--izq');
+    if (i >= 5 && i <= 7) li.classList.add('tm-fila2-' + (i + 1));
     nodos.appendChild(li);
   });
 
