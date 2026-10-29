@@ -79,8 +79,9 @@
     {
       titulo: 'Pensamiento numérico y sistemas numéricos',
       descripcion: 'El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana. En la primera infancia se desarrolla al contar juguetes, comparar dónde hay más o menos objetos, ordenar cantidades y repartir materiales.',
-      integrantes: [], // por añadir
+      integrantes: ['Sharon Liset Sánchez Castro', 'Yuliana Andrea Villada Osorio', 'Angie Yiset Florez Coronado'],
       conceptos: ['Pensamiento numérico', 'Significados del número', 'Contar con sentido', 'Sistema de numeración decimal', 'Significado de las operaciones', 'Estimar y comprobar'],
+      pantalla: true,
       imagenes: IMAGENES_2,
       diapositivas: 'https://semillaseducativas.my.canva.site/'
     },
@@ -431,7 +432,8 @@
         h('p', { class: 'ex-conceptos__tit', text: 'Conceptos clave' }),
         h('ul', {}, d.conceptos.map(function (x) { return h('li', { text: x }); }))
       ]);
-      card.appendChild(h('div', { class: 'ex-izq' }, [c, caja])); card.appendChild(t);
+      var izq = h('div', { class: 'ex-izq' }, [c, caja]);
+      if (TEXTO_PRIMERO[n]) { card.appendChild(t); card.appendChild(izq); } else { card.appendChild(izq); card.appendChild(t); }
       return;
     }
     if (TEXTO_PRIMERO[n]) { card.appendChild(t); card.appendChild(c); } else { card.appendChild(c); card.appendChild(t); }
