@@ -52,7 +52,15 @@
   // Cuando la imagen esté en la carpeta, cambia a true.
   var IMAGEN_2_LISTA = true;
   var IMAGENES_2 = IMAGEN_2_LISTA ? [
-    { src: 'img/expo2/s01.jpg', alt: 'Portada de la exploración interactiva: Pensamiento numérico y sistemas numéricos, con la pregunta «¿Crees que saber contar significa comprender los números?»' }
+    { src: 'img/expo2/s01.jpg', alt: 'Pantalla 1 de 9 de la exploración interactiva. Portada: Pensamiento numérico y sistemas numéricos, con la pregunta «¿Crees que saber contar significa comprender los números?»' },
+    { src: 'img/expo2/s02.jpg', alt: 'Pantalla 2 de 9 de la exploración interactiva. ¿Qué es el pensamiento numérico? Reto breve con estrategias para resolver 8 + 7' },
+    { src: 'img/expo2/s03.jpg', alt: 'Pantalla 3 de 9 de la exploración interactiva. Los números tienen distintos significados: el 5 como cantidad, medida, orden e identificación' },
+    { src: 'img/expo2/s04.jpg', alt: 'Pantalla 4 de 9 de la exploración interactiva. ¿Cómo se construye la comprensión del número? Contamos una colección de fichas' },
+    { src: 'img/expo2/s05.jpg', alt: 'Pantalla 5 de 9 de la exploración interactiva. El sistema de numeración decimal: representar el 32 con decenas y unidades' },
+    { src: 'img/expo2/s06.jpg', alt: 'Pantalla 6 de 9 de la exploración interactiva. El significado de las operaciones: quitar, comparar y diferencia con fichas' },
+    { src: 'img/expo2/s07.jpg', alt: 'Pantalla 7 de 9 de la exploración interactiva. Más de una estrategia: ¿cuántas ruedas tienen 8 triciclos?' },
+    { src: 'img/expo2/s08.jpg', alt: 'Pantalla 8 de 9 de la exploración interactiva. Estimar y comprobar: ¿podría pagar $5.140 si compro algo de $260 y algo de $380?' },
+    { src: 'img/expo2/s09.jpg', alt: 'Pantalla 9 de 9 de la exploración interactiva. ¿Qué significa esto para educación infantil? Reflexión final sobre la práctica docente' }
   ] : [];
 
   var EXPOSICIONES = [
