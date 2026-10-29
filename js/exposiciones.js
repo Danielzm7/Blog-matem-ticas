@@ -91,7 +91,23 @@
       pantalla: true,
       imagenes: [
         { src: 'img/expo3/s01.jpg', alt: 'Portada: Conocimientos básicos, pensamiento espacial y sistemas geométricos, con los nombres de las integrantes Isabella Giraldo Ruiz y Alba Deisy Godoy Ibañez', fit: 'contain' },
-        { src: 'img/expo3/s02.jpg', alt: 'Diapositiva «Contenido»: introducción, la inteligencia espacial, geometría activa, desarrollo del pensamiento geométrico, actividad Kahoot, representación bidimensional del espacio tridimensional, transformaciones geométricas, actividad Gimkit y evaluación', fit: 'contain' }
+        { src: 'img/expo3/s02.jpg', alt: 'Contenido: introducción, la inteligencia espacial, geometría activa, desarrollo del pensamiento geométrico, actividad Kahoot, representación bidimensional del espacio tridimensional, transformaciones geométricas, actividad Gimkit y evaluación', fit: 'contain' },
+        { src: 'img/expo3/s03.jpg', alt: 'Introducción: la geometría intuitiva fue dejada de lado con la matemática moderna y hoy se recupera el sentido espacial', fit: 'contain' },
+        { src: 'img/expo3/s04.jpg', alt: 'Howard Gardner: la inteligencia espacial como base del pensamiento científico, con la pregunta sobre qué profesiones necesitan más pensamiento espacial', fit: 'contain' },
+        { src: 'img/expo3/s05.jpg', alt: 'Puntos importantes: profesiones y disciplinas que requieren un alto desarrollo de la inteligencia espacial', fit: 'contain' },
+        { src: 'img/expo3/s06.jpg', alt: 'La propuesta de renovación curricular enfatiza la geometría activa para restablecer el estudio de los sistemas geométricos', fit: 'contain' },
+        { src: 'img/expo3/s07.jpg', alt: 'Geometría activa: aprender haciendo, moviéndose, dibujando y construyendo', fit: 'contain' },
+        { src: 'img/expo3/s08.jpg', alt: 'Diferencia entre mostrar y hacer, con los ejemplos cuerpos, superficies y líneas, y ángulo', fit: 'contain' },
+        { src: 'img/expo3/s09.jpg', alt: 'Van Hiele: nivel 1 de visualización y nivel 2 de análisis', fit: 'contain' },
+        { src: 'img/expo3/s10.jpg', alt: 'Retroalimentación: actividad Kahoot con su PIN de juego y código QR', fit: 'contain' },
+        { src: 'img/expo3/s11.jpg', alt: 'Van Hiele: nivel 3 de ordenamiento, con el ejemplo cuadrado, rectángulo y paralelogramo', fit: 'contain' },
+        { src: 'img/expo3/s12.jpg', alt: 'Van Hiele: nivel 4 de razonamiento deductivo y nivel 5 de rigor', fit: 'contain' },
+        { src: 'img/expo3/s13.jpg', alt: '¿Cómo se pasa de un nivel a otro? El avance no es automático ni depende solo de la edad', fit: 'contain' },
+        { src: 'img/expo3/s14.jpg', alt: 'Representación bidimensional del espacio tridimensional: vista única, vistas múltiples y perspectiva', fit: 'contain' },
+        { src: 'img/expo3/s15.jpg', alt: 'Transformaciones geométricas: traslación, rotación y reflexión', fit: 'contain' },
+        { src: 'img/expo3/s16.jpg', alt: 'Retroalimentación: actividad Gimkit con código QR y enlace para unirse', fit: 'contain' },
+        { src: 'img/expo3/s17.jpg', alt: 'Evaluación: código QR para el cuestionario en Wordwall', fit: 'contain' },
+        { src: 'img/expo3/s18.jpg', alt: 'Gracias por su atención', fit: 'contain' }
       ],
       diapositivas: 'https://canva.link/k2kqce4uaohuwbv'
     },
