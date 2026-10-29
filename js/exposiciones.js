@@ -13,7 +13,7 @@
   //   descripcion:  texto breve. Vacío = texto provisional.
   //   integrantes:  lista de nombres, por ejemplo ['Nombre 1', 'Nombre 2']. Vacía = «Integrantes por añadir».
   //   imagenes:     lista de { src: 'img/mi-foto.jpg', alt: 'qué se ve en la imagen', fit: 'contain' (opcional: sin recortar) }. Vacía = espacios reservados.
-  //   diapositivas: enlace completo (https://…). Vacío o inválido = «Próximamente».
+  //   diapositivas: enlace externo (https://…) de la presentación; solo se cuenta como «publicada». El botón «Ver exposición» abre exposicion-N.html.
   //   conceptos:    (opcional) lista de ideas clave; si existe, se muestra la caja «Conceptos clave».
   //   autoplay:     (opcional) true = el carrusel avanza solo (se pausa con un clic).
   //   pantalla:     (opcional) true = botón circular de pantalla arriba a la izquierda, que abre las imágenes en modo presentación (pantalla completa).
@@ -324,9 +324,7 @@
           return h('li', {}, real ? [h('span', { class: 'ex-ini', 'aria-hidden': 'true', text: iniciales(x) }), h('span', { text: x })] : [x]);
         })
       : [h('li', { class: 'ex-vacio', text: 'Integrantes por añadir' })]);
-    var boton = esUrl(d.diapositivas)
-      ? h('a', { class: 'ex-diap', href: d.diapositivas.trim(), target: '_blank', rel: 'noopener noreferrer' }, ['Ver exposición ', h('span', { 'aria-hidden': 'true', text: '↗' })])
-      : h('span', { class: 'ex-prox', text: 'Próximamente' });
+    var boton = h('a', { class: 'ex-diap', href: 'exposicion-' + n + '.html' }, ['Ver exposición ', h('span', { 'aria-hidden': 'true', text: '↗' })]);
     return h('div', { class: 'ex-texto' }, [
       h('div', { class: 'ex-texto__cab' }, [h('span', { class: 'ex-etiqueta', text: 'Exposición ' + dos(n) }), figura(n, DURACIONES[n - 1])]),
       h('h2', { class: 'ex-titulo' + (titulo ? '' : ' ex-vacio'), text: titulo || 'Tema por definir' }),

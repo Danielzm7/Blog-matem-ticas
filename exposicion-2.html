@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <title>Exposición 2 · Semillas Matemáticas</title>
+  <meta name="description" content="El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/exposicion-detalle.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel dt-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li class="menu__sub">
+                <a href="#" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" class="dt dt-e2">
+
+      <nav class="contenedor dt-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="exposiciones.html">Exposiciones</a><span aria-hidden="true">/</span><strong aria-current="page">Exposición 02</strong>
+      </nav>
+
+      <div class="contenedor">
+        <section class="dt-panel" aria-labelledby="dt-titulo">
+          <div class="dt-fila1">
+            <span class="dt-etq">Exposición 02</span>
+            <a class="dt-btn dt-btn--claro" href="exposiciones.html"><span aria-hidden="true">←</span> Volver a Exposiciones</a>
+          </div>
+          <div class="dt-fila2">
+            <div>
+              <h1 id="dt-titulo">Pensamiento numérico y sistemas numéricos</h1>
+              <p class="dt-breve">El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana.</p>
+            </div>
+            <figure class="dt-portada-col" style="margin:0">
+              <div class="dt-marco"><img src="img/expo2/s01.jpg" alt="Sitio interactivo de la exposición: portada con la pregunta «¿Crees que saber contar significa comprender los números?»" fetchpriority="high"></div>
+              <figcaption class="dt-pie-foto">Sitio interactivo de la exposición</figcaption>
+            </figure>
+          </div>
+          <div class="dt-fila3">
+            <div>
+              <p class="dt-rotulo">Presentado por</p>
+              <ul class="dt-integ" aria-label="Integrantes"><li><span class="dt-ini" aria-hidden="true">SL</span><span>Sharon Liset Sánchez Castro</span></li><li><span class="dt-ini" aria-hidden="true">YA</span><span>Yuliana Andrea Villada Osorio</span></li><li><span class="dt-ini" aria-hidden="true">AY</span><span>Angie Yiset Florez Coronado</span></li></ul>
+            </div>
+            <div class="dt-accion"><a class="dt-btn dt-btn--oscuro" href="https://semillaseducativas.my.canva.site/" target="_blank" rel="noopener noreferrer">Ver presentación <span class="dt-btn__f" aria-hidden="true">↗</span></a></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="contenedor">
+      <section class="dt-sec dt-texto dt-rev" aria-labelledby="dt-h-expl">
+        <p class="dt-eyebrow">De qué trató</p>
+        <h2 id="dt-h-expl">Lo que se explicó</h2>
+        <p>El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana. En la primera infancia, se desarrolla mediante experiencias como contar juguetes, comparar dónde hay más o menos objetos, ordenar cantidades y repartir materiales, favoreciendo la comprensión del significado de los números.</p><p>La presentación fue una exploración interactiva que abre con una pregunta para pensar: «¿Crees que saber contar significa comprender los números?»</p>
+        
+      </section>
+
+      <section class="dt-sec dt-rev" aria-labelledby="dt-h-temas">
+        <p class="dt-eyebrow">Temas</p>
+        <h2 id="dt-h-temas">Cómo se desarrolla en la primera infancia</h2>
+        <p class="dt-apoyo">Cuatro experiencias que ayudan a comprender el significado de los números.</p>
+        <ol class="dt-temas"><li><span aria-hidden="true">1</span><span>Contar juguetes</span></li><li><span aria-hidden="true">2</span><span>Comparar dónde hay más o menos objetos</span></li><li><span aria-hidden="true">3</span><span>Ordenar cantidades</span></li><li><span aria-hidden="true">4</span><span>Repartir materiales</span></li></ol>
+      </section>
+
+      <section class="dt-sec dt-centro dt-rev" aria-labelledby="dt-h-ev">
+        <p class="dt-eyebrow">Fotos</p>
+        <h2 id="dt-h-ev">Más evidencia de la exposición</h2>
+        <figure class="dt-figura">
+          <div class="dt-marco"><img src="img/expo2/foto.jpg" alt="La exposición en el salón, con el sitio interactivo proyectado en la pantalla." loading="lazy" decoding="async"></div>
+          <figcaption><b>En clase</b>La exposición en el salón, con el sitio interactivo proyectado en la pantalla.</figcaption>
+        </figure>
+      </section>
+
+      <section class="dt-sec dt-centro dt-rev" aria-labelledby="dt-h-pres">
+        <p class="dt-eyebrow">Presentación completa</p>
+        <h2 id="dt-h-pres">La presentación</h2>
+        <div class="dt-carr" role="region" aria-roledescription="carrusel" aria-label="Diapositivas de la exposición 2">
+          <div class="dt-pista" tabindex="0"><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 9"><img src="img/expo2/s01.jpg" alt="Pantalla 1 de 9 de la exploración interactiva. Portada: Pensamiento numérico y sistemas numéricos, con la pregunta «¿Crees que saber contar significa comprender los números?»" loading="eager" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 9"><img src="img/expo2/s02.jpg" alt="Pantalla 2 de 9 de la exploración interactiva. ¿Qué es el pensamiento numérico? Reto breve con estrategias para resolver 8 + 7" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 9"><img src="img/expo2/s03.jpg" alt="Pantalla 3 de 9 de la exploración interactiva. Los números tienen distintos significados: el 5 como cantidad, medida, orden e identificación" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 9"><img src="img/expo2/s04.jpg" alt="Pantalla 4 de 9 de la exploración interactiva. ¿Cómo se construye la comprensión del número? Contamos una colección de fichas" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="5 de 9"><img src="img/expo2/s05.jpg" alt="Pantalla 5 de 9 de la exploración interactiva. El sistema de numeración decimal: representar el 32 con decenas y unidades" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="6 de 9"><img src="img/expo2/s06.jpg" alt="Pantalla 6 de 9 de la exploración interactiva. El significado de las operaciones: quitar, comparar y diferencia con fichas" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="7 de 9"><img src="img/expo2/s07.jpg" alt="Pantalla 7 de 9 de la exploración interactiva. Más de una estrategia: ¿cuántas ruedas tienen 8 triciclos?" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="8 de 9"><img src="img/expo2/s08.jpg" alt="Pantalla 8 de 9 de la exploración interactiva. Estimar y comprobar: ¿podría pagar $5.140 si compro algo de $260 y algo de $380?" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="9 de 9"><img src="img/expo2/s09.jpg" alt="Pantalla 9 de 9 de la exploración interactiva. ¿Qué significa esto para educación infantil? Reflexión final sobre la práctica docente" loading="lazy" decoding="async" draggable="false"></div></div>
+        </div>
+        <a class="dt-btn dt-btn--oscuro" href="https://semillaseducativas.my.canva.site/" target="_blank" rel="noopener noreferrer">Ver presentación <span class="dt-btn__f" aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="dt-sec dt-rev" aria-labelledby="dt-h-mas">
+        <p class="dt-eyebrow dt-eyebrow--sol" id="dt-h-mas">Más exposiciones</p>
+        <div class="dt-nav"><a class="dt-ant" href="exposicion-1.html"><span>← Exposición 01</span><strong>Referentes curriculares</strong></a><a class="dt-sig" href="exposicion-3.html"><span>Exposición 03 →</span><strong>Pensamiento espacial y sistemas geométricos</strong></a></div>
+        <a class="dt-btn dt-btn--oscuro dt-volver" href="exposiciones.html"><span aria-hidden="true">←</span> Volver a todas las exposiciones</a>
+      </section>
+      </div>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/icono-blog.png" width="288" height="288" alt="Icono de Semillas Matemáticas" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/exposicion-detalle.js?v=1"></script>
+</body>
+</html>

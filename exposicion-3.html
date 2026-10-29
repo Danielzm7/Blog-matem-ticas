@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <title>Exposición 3 · Semillas Matemáticas</title>
+  <meta name="description" content="La geometría intuitiva busca recuperar la importancia del pensamiento espacial, que fue dejado de lado con la llegada de la matemática moderna.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/exposicion-detalle.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel dt-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li class="menu__sub">
+                <a href="#" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="exposiciones.html" aria-current="page">Exposiciones</a></li>
+              <li><a href="#">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="#">Reflexión</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" class="dt dt-e3">
+
+      <nav class="contenedor dt-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="exposiciones.html">Exposiciones</a><span aria-hidden="true">/</span><strong aria-current="page">Exposición 03</strong>
+      </nav>
+
+      <div class="contenedor">
+        <section class="dt-panel" aria-labelledby="dt-titulo">
+          <div class="dt-fila1">
+            <span class="dt-etq">Exposición 03</span>
+            <a class="dt-btn dt-btn--claro" href="exposiciones.html"><span aria-hidden="true">←</span> Volver a Exposiciones</a>
+          </div>
+          <div class="dt-fila2">
+            <div>
+              <h1 id="dt-titulo">Pensamiento espacial y sistemas geométricos</h1>
+              <p class="dt-breve">La geometría intuitiva busca recuperar la importancia del pensamiento espacial, que fue dejado de lado con la llegada de la matemática moderna.</p>
+            </div>
+            <figure class="dt-portada-col" style="margin:0">
+              <div class="dt-marco"><img src="img/expo3/portada.jpg" alt="Portada de la presentación: Conocimientos básicos, pensamiento espacial y sistemas geométricos" fetchpriority="high"></div>
+              <figcaption class="dt-pie-foto">Portada de la presentación</figcaption>
+            </figure>
+          </div>
+          <div class="dt-fila3">
+            <div>
+              <p class="dt-rotulo">Presentado por</p>
+              <ul class="dt-integ" aria-label="Integrantes"><li><span class="dt-ini" aria-hidden="true">IG</span><span>Isabella Giraldo Ruiz</span></li><li><span class="dt-ini" aria-hidden="true">AD</span><span>Alba Deisy Godoy Ibañez</span></li></ul>
+            </div>
+            <div class="dt-accion"><a class="dt-btn dt-btn--oscuro" href="https://canva.link/k2kqce4uaohuwbv" target="_blank" rel="noopener noreferrer">Ver presentación <span class="dt-btn__f" aria-hidden="true">↗</span></a></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="contenedor">
+      <section class="dt-sec dt-texto dt-rev" aria-labelledby="dt-h-expl">
+        <p class="dt-eyebrow">De qué trató</p>
+        <h2 id="dt-h-expl">Lo que se explicó</h2>
+        <p>La geometría intuitiva busca recuperar la importancia del pensamiento espacial, que fue dejado de lado con la llegada de la matemática moderna. Este enfoque propone que los estudiantes aprendan mediante experiencias prácticas, la exploración y la representación del espacio, desarrollando habilidades para comprender su entorno.</p><p>Así, se favorece un aprendizaje más significativo, relacionando las matemáticas con situaciones de la vida cotidiana.</p>
+        
+      </section>
+
+      <section class="dt-sec dt-rev" aria-labelledby="dt-h-temas">
+        <p class="dt-eyebrow">Temas</p>
+        <h2 id="dt-h-temas">Contenido de la presentación</h2>
+        <p class="dt-apoyo">Los nueve apartados que recorrió la exposición.</p>
+        <ol class="dt-temas"><li><span aria-hidden="true">1</span><span>Introducción</span></li><li><span aria-hidden="true">2</span><span>La inteligencia espacial (Howard Gardner)</span></li><li><span aria-hidden="true">3</span><span>Geometría activa</span></li><li><span aria-hidden="true">4</span><span>Desarrollo del pensamiento geométrico</span></li><li><span aria-hidden="true">5</span><span>Actividad Kahoot</span></li><li><span aria-hidden="true">6</span><span>Representación bidimensional del espacio tridimensional</span></li><li><span aria-hidden="true">7</span><span>Transformaciones geométricas</span></li><li><span aria-hidden="true">8</span><span>Actividad Gimkit</span></li><li><span aria-hidden="true">9</span><span>Evaluación</span></li></ol>
+      </section>
+
+      <section class="dt-sec dt-centro dt-rev" aria-labelledby="dt-h-ev">
+        <p class="dt-eyebrow">Fotos</p>
+        <h2 id="dt-h-ev">Más evidencia de la exposición</h2>
+        <figure class="dt-figura">
+          <div class="dt-marco"><img src="img/expo3/zoom.jpg" alt="La diapositiva de contenido, presentada durante la clase." loading="lazy" decoding="async"></div>
+          <figcaption><b>En clase virtual</b>La diapositiva de contenido, presentada durante la clase.</figcaption>
+        </figure>
+      </section>
+
+      <section class="dt-sec dt-centro dt-rev" aria-labelledby="dt-h-pres">
+        <p class="dt-eyebrow">Presentación completa</p>
+        <h2 id="dt-h-pres">Las diapositivas</h2>
+        <div class="dt-carr dt-carr--contain dt-carr--muchos" role="region" aria-roledescription="carrusel" aria-label="Diapositivas de la exposición 3">
+          <div class="dt-pista" tabindex="0"><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="1 de 18"><img src="img/expo3/s01.jpg" alt="Portada: Conocimientos básicos, pensamiento espacial y sistemas geométricos, con los nombres de las integrantes Isabella Giraldo Ruiz y Alba Deisy Godoy Ibañez" loading="eager" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 18"><img src="img/expo3/s02.jpg" alt="Contenido: introducción, la inteligencia espacial, geometría activa, desarrollo del pensamiento geométrico, actividad Kahoot, representación bidimensional del espacio tridimensional, transformaciones geométricas, actividad Gimkit y evaluación" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 18"><img src="img/expo3/s03.jpg" alt="Introducción: la geometría intuitiva fue dejada de lado con la matemática moderna y hoy se recupera el sentido espacial" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 18"><img src="img/expo3/s04.jpg" alt="Howard Gardner: la inteligencia espacial como base del pensamiento científico, con la pregunta sobre qué profesiones necesitan más pensamiento espacial" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="5 de 18"><img src="img/expo3/s05.jpg" alt="Puntos importantes: profesiones y disciplinas que requieren un alto desarrollo de la inteligencia espacial" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="6 de 18"><img src="img/expo3/s06.jpg" alt="La propuesta de renovación curricular enfatiza la geometría activa para restablecer el estudio de los sistemas geométricos" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="7 de 18"><img src="img/expo3/s07.jpg" alt="Geometría activa: aprender haciendo, moviéndose, dibujando y construyendo" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="8 de 18"><img src="img/expo3/s08.jpg" alt="Diferencia entre mostrar y hacer, con los ejemplos cuerpos, superficies y líneas, y ángulo" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="9 de 18"><img src="img/expo3/s09.jpg" alt="Van Hiele: nivel 1 de visualización y nivel 2 de análisis" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="10 de 18"><img src="img/expo3/s10.jpg" alt="Retroalimentación: actividad Kahoot con su PIN de juego y código QR" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="11 de 18"><img src="img/expo3/s11.jpg" alt="Van Hiele: nivel 3 de ordenamiento, con el ejemplo cuadrado, rectángulo y paralelogramo" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="12 de 18"><img src="img/expo3/s12.jpg" alt="Van Hiele: nivel 4 de razonamiento deductivo y nivel 5 de rigor" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="13 de 18"><img src="img/expo3/s13.jpg" alt="¿Cómo se pasa de un nivel a otro? El avance no es automático ni depende solo de la edad" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="14 de 18"><img src="img/expo3/s14.jpg" alt="Representación bidimensional del espacio tridimensional: vista única, vistas múltiples y perspectiva" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="15 de 18"><img src="img/expo3/s15.jpg" alt="Transformaciones geométricas: traslación, rotación y reflexión" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="16 de 18"><img src="img/expo3/s16.jpg" alt="Retroalimentación: actividad Gimkit con código QR y enlace para unirse" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="17 de 18"><img src="img/expo3/s17.jpg" alt="Evaluación: código QR para el cuestionario en Wordwall" loading="lazy" decoding="async" draggable="false"></div><div class="dt-slide" role="group" aria-roledescription="diapositiva" aria-label="18 de 18"><img src="img/expo3/s18.jpg" alt="Gracias por su atención" loading="lazy" decoding="async" draggable="false"></div></div>
+        </div>
+        <a class="dt-btn dt-btn--oscuro" href="https://canva.link/k2kqce4uaohuwbv" target="_blank" rel="noopener noreferrer">Ver presentación <span class="dt-btn__f" aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="dt-sec dt-rev" aria-labelledby="dt-h-mas">
+        <p class="dt-eyebrow dt-eyebrow--sol" id="dt-h-mas">Más exposiciones</p>
+        <div class="dt-nav"><a class="dt-ant" href="exposicion-2.html"><span>← Exposición 02</span><strong>Pensamiento numérico y sistemas numéricos</strong></a><a class="dt-sig" href="exposicion-4.html"><span>Exposición 04 →</span><strong>La visión del niño desde sus dimensiones del desarrollo</strong></a></div>
+        <a class="dt-btn dt-btn--oscuro dt-volver" href="exposiciones.html"><span aria-hidden="true">←</span> Volver a todas las exposiciones</a>
+      </section>
+      </div>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/icono-blog.png" width="288" height="288" alt="Icono de Semillas Matemáticas" loading="lazy"></span>
+          <p>Descripción provisional del blog en una o dos líneas.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="#">Reflexión</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+            <li><a href="#">Enlace provisional</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="#">Estudiantes</a></li>
+            <li><a href="#">Docentes</a></li>
+            <li><a href="#">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 0000 Nombre Apellido, Nombre Apellido, Nombre Apellido</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/exposicion-detalle.js?v=1"></script>
+</body>
+</html>
