@@ -992,6 +992,14 @@ main > section + section { margin-top: 112px; }
   .buscador { width: 190px; max-width: none; margin-top: 0; }
   .cabecera .buscador input { padding: 0 8px 0 42px; font-size: .9rem; }
   .cabecera .buscador__icono { left: 14px; }
+  /* Hay espacio de sobra: el menú crece un poco. */
+  .menu a { padding: 0 9px; font-size: 1.05rem; }
+}
+@media (min-width: 1700px) {
+  .cabecera__fila.contenedor { max-width: 1624px; }
+  .menu a { padding: 0 10px; font-size: 1.1rem; }
+  .cabecera .buscador { width: 230px; }
+  .cabecera .buscador input { font-size: 1rem; }
 }
 
 @media (max-width: 1080px) {
