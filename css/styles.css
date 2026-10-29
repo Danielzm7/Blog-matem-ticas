@@ -221,7 +221,7 @@ main, .pie { position: relative; z-index: 1; }
 .menu ul { display: flex; gap: 4px; }
 .menu a {
   display: inline-flex; align-items: center;
-  min-height: 44px; padding: 0 11px;
+  min-height: 44px; padding: 0 7px;
   border-radius: 999px;
   font-weight: 600; font-size: .98rem;
   text-decoration: none; white-space: nowrap;
@@ -973,14 +973,25 @@ main > section + section { margin-top: 112px; }
 }
 @media (min-width: 1280px) {
   .panel-movil { display: none; }
-  /* Fila 1: logo · menú (una sola línea) · escudo. Fila 2: buscador centrado. */
-  .cabecera__fila { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "uni menu esc" "bus bus bus"; align-items: center; gap: 0 28px; padding-bottom: 14px; }
+  /* Franja blanca de ancho completo con patrón de símbolos matemáticos muy suave. */
+  .cabecera {
+    margin-bottom: 26px; padding: 16px 0 18px; background: #FBFDFF url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22116%22 viewBox=%220 0 400 116%22%3E%3Ctext x=%2218%22 y=%2228%22 transform=%22rotate%28-8 18 28%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2226%22 fill=%22%235BB8F0%22 fill-opacity=%22.15%22%3E1%3C/text%3E%3Ctext x=%2258%22 y=%2270%22 transform=%22rotate%2810 58 70%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2230%22 fill=%22%23FF7A6B%22 fill-opacity=%22.15%22%3E%2B%3C/text%3E%3Ctext x=%2296%22 y=%2236%22 transform=%22rotate%28-12 96 36%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2224%22 fill=%22%23FFB400%22 fill-opacity=%22.15%22%3E7%3C/text%3E%3Ctext x=%22140%22 y=%2286%22 transform=%22rotate%286 140 86%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2228%22 fill=%22%233FBF8C%22 fill-opacity=%22.15%22%3E=%3C/text%3E%3Ctext x=%22176%22 y=%2234%22 transform=%22rotate%28-6 176 34%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2230%22 fill=%22%239A86E8%22 fill-opacity=%22.15%22%3E%CF%80%3C/text%3E%3Ctext x=%22214%22 y=%2292%22 transform=%22rotate%2812 214 92%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2222%22 fill=%22%235BB8F0%22 fill-opacity=%22.15%22%3E4%3C/text%3E%3Ctext x=%22250%22 y=%2240%22 transform=%22rotate%28-10 250 40%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2226%22 fill=%22%23FF7A6B%22 fill-opacity=%22.15%22%3E%E2%96%B3%3C/text%3E%3Ctext x=%22292%22 y=%2284%22 transform=%22rotate%288 292 84%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2232%22 fill=%22%23FFB400%22 fill-opacity=%22.15%22%3E%C3%97%3C/text%3E%3Ctext x=%22330%22 y=%2230%22 transform=%22rotate%28-5 330 30%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2224%22 fill=%22%233FBF8C%22 fill-opacity=%22.15%22%3E8%3C/text%3E%3Ctext x=%22368%22 y=%2278%22 transform=%22rotate%2810 368 78%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2224%22 fill=%22%239A86E8%22 fill-opacity=%22.15%22%3E%25%3C/text%3E%3Ctext x=%2236%22 y=%22104%22 transform=%22rotate%28-9 36 104%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2220%22 fill=%22%23FF7A6B%22 fill-opacity=%22.15%22%3E2%3C/text%3E%3Ctext x=%22120%22 y=%2224%22 transform=%22rotate%287 120 24%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2230%22 fill=%22%235BB8F0%22 fill-opacity=%22.15%22%3E%E2%88%92%3C/text%3E%3Ctext x=%22200%22 y=%2264%22 transform=%22rotate%280 200 64%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2222%22 fill=%22%23FFB400%22 fill-opacity=%22.15%22%3E%E2%97%8B%3C/text%3E%3Ctext x=%22270%22 y=%22108%22 transform=%22rotate%28-11 270 108%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2222%22 fill=%22%239A86E8%22 fill-opacity=%22.15%22%3E9%3C/text%3E%3Ctext x=%22345%22 y=%22106%22 transform=%22rotate%285 345 106%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2226%22 fill=%22%233FBF8C%22 fill-opacity=%22.15%22%3E%C3%B7%3C/text%3E%3Ctext x=%2284%22 y=%2296%22 transform=%22rotate%289 84 96%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2222%22 fill=%22%239A86E8%22 fill-opacity=%22.15%22%3E%E2%96%A1%3C/text%3E%3Ctext x=%22160%22 y=%22100%22 transform=%22rotate%28-7 160 100%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2224%22 fill=%22%23FFB400%22 fill-opacity=%22.15%22%3E3%3C/text%3E%3Ctext x=%22392%22 y=%2252%22 transform=%22rotate%2812 392 52%29%22 font-family=%22Figtree%2CArial%2Csans-serif%22 font-weight=%22800%22 font-size=%2220%22 fill=%22%235BB8F0%22 fill-opacity=%22.15%22%3E5%3C/text%3E%3C/svg%3E") 0 0 / 400px 116px repeat;
+    border-bottom: 3px solid var(--tinta); box-shadow: 0 8px 0 rgba(31, 42, 68, .08), 0 14px 30px rgba(31, 42, 68, .07);
+  }
+  /* Fila 1: logo · menú (una línea) · escudo. Fila 2: buscador centrado. */
+  .cabecera__fila.contenedor { max-width: 1464px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "uni menu esc" "bus bus bus"; align-items: center; gap: 0 16px; padding-block: 0; }
   .cabecera__centro { display: contents; }
   .logo--uni { grid-area: uni; }
   .logo--programa { grid-area: esc; }
   .menu { grid-area: menu; justify-self: center; }
-  .menu ul { flex-wrap: nowrap; }
-  .buscador { grid-area: bus; justify-self: center; margin-top: 4px; }
+  .menu > ul { flex-wrap: nowrap; gap: 2px; padding: 3px; background: rgba(255, 255, 255, .82); border: 1px solid rgba(225, 233, 247, .9); border-radius: 999px; }
+  .buscador { grid-area: bus; justify-self: center; width: 100%; max-width: 560px; margin-top: -6px; }
+}
+@media (min-width: 1400px) {
+  .cabecera__fila.contenedor { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "uni menu bus esc"; }
+  .buscador { width: 190px; max-width: none; margin-top: 0; }
+  .cabecera .buscador input { padding: 0 8px 0 42px; font-size: .9rem; }
+  .cabecera .buscador__icono { left: 14px; }
 }
 
 @media (max-width: 1080px) {
