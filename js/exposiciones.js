@@ -80,6 +80,7 @@
       titulo: 'Pensamiento numérico y sistemas numéricos',
       descripcion: 'El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana. En la primera infancia se desarrolla al contar juguetes, comparar dónde hay más o menos objetos, ordenar cantidades y repartir materiales.',
       integrantes: [], // por añadir
+      conceptos: ['Pensamiento numérico', 'Significados del número', 'Contar con sentido', 'Sistema de numeración decimal', 'Significado de las operaciones', 'Estimar y comprobar'],
       imagenes: IMAGENES_2,
       diapositivas: 'https://semillaseducativas.my.canva.site/'
     },
@@ -88,6 +89,7 @@
       titulo: 'Pensamiento espacial y sistemas geométricos',
       descripcion: 'La geometría intuitiva busca recuperar la importancia del pensamiento espacial, que fue dejado de lado con la llegada de la matemática moderna. Propone aprender mediante experiencias prácticas, la exploración y la representación del espacio, para comprender el entorno y relacionar las matemáticas con la vida cotidiana.',
       integrantes: ['Isabella Giraldo Ruiz', 'Alba Deisy Godoy Ibañez'],
+      conceptos: ['Inteligencia espacial (Gardner)', 'Geometría activa', 'Niveles de Van Hiele', 'Representación bidimensional del espacio', 'Transformaciones geométricas'],
       pantalla: true,
       imagenes: [
         { src: 'img/expo3/s01.jpg', alt: 'Portada: Conocimientos básicos, pensamiento espacial y sistemas geométricos, con los nombres de las integrantes Isabella Giraldo Ruiz y Alba Deisy Godoy Ibañez', fit: 'contain' },
@@ -116,6 +118,7 @@
       titulo: 'La visión del niño desde sus dimensiones del desarrollo',
       descripcion: 'El desarrollo infantil ocurre de manera integral: todas las dimensiones del niño están relacionadas y se desarrollan al mismo tiempo. Cada niño es único, tiene su propio ritmo de aprendizaje y crece en un contexto particular; por eso es importante comprenderlo como un ser integral.',
       integrantes: ['Paola Andrea Moreno', 'Luisa Fernanda Osorno', 'Sailuz Elinor Reverol'],
+      conceptos: ['Desarrollo infantil integral', 'Dimensión socioafectiva', 'Dimensión corporal', 'Dimensión cognitiva y comunicativa', 'Dimensiones estética, espiritual y ética'],
       pantalla: true,
       imagenes: [
         { src: 'img/expo4/s01.jpg', alt: 'Portada: La visión del niño desde sus dimensiones del desarrollo, con las integrantes Paola Andrea Moreno, Luisa Fernanda Osorno y Sailuz Elinor Reverol' },
