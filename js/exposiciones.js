@@ -50,7 +50,7 @@
 
   // Exposición 2: captura de la portada de la exploración interactiva (img/expo2/s01.jpg).
   // Cuando la imagen esté en la carpeta, cambia a true.
-  var IMAGEN_2_LISTA = false;
+  var IMAGEN_2_LISTA = true;
   var IMAGENES_2 = IMAGEN_2_LISTA ? [
     { src: 'img/expo2/s01.jpg', alt: 'Portada de la exploración interactiva: Pensamiento numérico y sistemas numéricos, con la pregunta «¿Crees que saber contar significa comprender los números?»' }
   ] : [];
