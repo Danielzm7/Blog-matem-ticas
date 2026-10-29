@@ -7,12 +7,12 @@
   <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <title>Exposiciones · Semillas Matemáticas · Didáctica de las matemáticas en la primera infancia</title>
-  <meta name="description" content="Exposiciones: los siete trabajos expuestos en el curso, cada uno con sus imágenes y sus diapositivas, para mirarlos con calma.">
+  <meta name="description" content="Exposiciones: las cuatro exposiciones grupales del semestre, cada una con sus imágenes y su presentación.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=5">
-  <link rel="stylesheet" href="css/exposiciones.css?v=2">
+  <link rel="stylesheet" href="css/exposiciones.css?v=3">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -127,9 +127,9 @@
           <span class="ex-portada__borde" aria-hidden="true"></span>
           <span class="ex-portada__disco" aria-hidden="true"></span>
           <div class="ex-portada__texto">
-            <p class="ex-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Siete exposiciones</p>
+            <p class="ex-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Cuatro exposiciones</p>
             <h1 id="ex-titulo">Exposiciones</h1>
-            <p class="ex-portada__parrafo">Aquí reunimos los siete trabajos expuestos en el curso: cada uno con sus imágenes y sus diapositivas, para mirarlos con calma y volver cuando quieras.</p>
+            <p class="ex-portada__parrafo">Cuatro exposiciones grupales del semestre: cada grupo preparó una presentación para explicar su tema y compartir con sus compañeros su importancia en la educación infantil.</p>
             <div class="ex-portada__botones">
               <a class="ex-btn ex-btn--oscuro" href="#expo-1">Ver la primera exposición <span aria-hidden="true">↓</span></a>
               <a class="ex-btn ex-btn--claro" href="#ex-indice-sec">Ir al índice</a>
@@ -137,9 +137,9 @@
           </div>
           <div class="ex-arte" aria-hidden="true">
             <span class="bloque bloque--coral ex-ficha2">2</span>
-            <span class="bloque bloque--lila ex-ficha5">5</span>
-            <span class="bloque bloque--sol ex-ficha7">7</span>
-            <span class="ex-fig ex-fig--1 ex-fig--g ex-e1"><i></i><i></i><i></i></span>
+            <span class="bloque bloque--lila ex-ficha5">3</span>
+            <span class="bloque bloque--sol ex-ficha7">4</span>
+            <span class="ex-fig ex-fig--1 ex-fig--g" style="--a:#5BB8F0"><i></i><i></i><i></i></span>
             <span class="ex-fig ex-fig--5 ex-fig--f" style="--a:#7FD8B5"></span>
             <span class="ex-fig ex-fig--4 ex-fig--p" style="--a:#FF7A6B"></span>
           </div>
@@ -153,21 +153,55 @@
         <noscript><p>Para ver las exposiciones necesitas activar JavaScript en tu navegador.</p></noscript>
       </section>
 
-      <!-- A. Exposición 1, destacada -->
-      <section class="contenedor ex-seccion ex-rev" aria-label="Exposición 1">
-        <article class="ex-card ex-card--tinte ex-destacada ex-expo ex-e1" id="expo-1" data-expo="1"></article>
-      </section>
+      <div class="contenedor ex-lista">
 
-      <!-- B. Exposiciones 2 y 3 -->
-      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 2 y 3">
-        <div class="ex-par">
-          <article class="ex-card ex-expo ex-e2" id="expo-2" data-expo="2"></article>
-          <article class="ex-card ex-card--tinte ex-expo ex-e3" id="expo-3" data-expo="3"></article>
+        <!-- A. Exposición 1, destacada -->
+        <section class="ex-seccion ex-rev" aria-label="Exposición 1">
+          <article class="ex-card ex-card--tinte ex-destacada ex-expo ex-e1" id="expo-1" data-expo="1"></article>
+        </section>
+
+        <!-- B. Separador 1 -->
+        <div class="ex-sep ex-rev" aria-hidden="true">
+          <span class="ex-sep__pil">
+            <svg viewBox="0 0 84 30" width="84" height="30"><circle class="ex-bob" style="animation-delay:0s" cx="12" cy="15" r="10" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.4"/><circle class="ex-bob" style="animation-delay:-.5s" cx="42" cy="15" r="10" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.4"/><circle class="ex-bob" style="animation-delay:-1s" cx="72" cy="15" r="10" fill="#5BB8F0" stroke="#1F2A44" stroke-width="2.4"/></svg>
+            <span>Contar, comparar, ordenar</span>
+          </span>
         </div>
-      </section>
 
-      <!-- C. Bloque de texto -->
-      <section class="contenedor ex-seccion ex-rev" aria-labelledby="ex-h-idea">
+        <!-- C. Exposición 2 -->
+        <section class="ex-seccion ex-rev" aria-label="Exposición 2">
+          <article class="ex-card ex-h ex-h--texto-izq ex-expo ex-e2" id="expo-2" data-expo="2"></article>
+        </section>
+
+        <!-- D. Separador 2 -->
+        <div class="ex-sep ex-rev" aria-hidden="true">
+          <span class="ex-sep__pil">
+            <svg viewBox="0 0 84 30" width="84" height="30"><path class="ex-bob" style="animation-delay:0s" d="M13 3.5L24.5 26.5H1.5Z" fill="#B7A6F2" stroke="#1F2A44" stroke-width="2.4" stroke-linejoin="round"/><rect class="ex-bob" style="animation-delay:-.6s" x="31" y="5" width="20" height="20" rx="5" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.4"/><circle class="ex-bob" style="animation-delay:-1.2s" cx="70" cy="15" r="10" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.4"/></svg>
+            <span>Formas y espacio</span>
+          </span>
+        </div>
+
+        <!-- E. Exposición 3 -->
+        <section class="ex-seccion ex-rev" aria-label="Exposición 3">
+          <article class="ex-card ex-card--tinte ex-h ex-h--carr-izq ex-expo ex-e3" id="expo-3" data-expo="3"></article>
+        </section>
+
+        <!-- F. Separador 3 -->
+        <div class="ex-sep ex-rev" aria-hidden="true">
+          <span class="ex-sep__pil">
+            <svg viewBox="0 0 90 30" width="90" height="30"><rect class="ex-bob" style="animation-delay:0s" x="2" y="17" width="13" height="11" rx="3" fill="#5BB8F0" stroke="#1F2A44" stroke-width="2.4"/><rect class="ex-bob" style="animation-delay:-.5s" x="18" y="10" width="13" height="18" rx="3" fill="#FF7A6B" stroke="#1F2A44" stroke-width="2.4"/><rect class="ex-bob" style="animation-delay:-1s" x="34" y="3" width="13" height="25" rx="3" fill="#FFD45E" stroke="#1F2A44" stroke-width="2.4"/><path class="ex-bob" style="animation-delay:-1.5s" d="M69 3l3.2 7.6 8.3.8-6.2 5.6 1.8 8.2L69 21l-7.1 4.2 1.8-8.2-6.2-5.6 8.3-.8z" fill="#7FD8B5" stroke="#1F2A44" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            <span>Crecer paso a paso</span>
+          </span>
+        </div>
+
+        <!-- G. Exposición 4 -->
+        <section class="ex-seccion ex-rev" aria-label="Exposición 4">
+          <article class="ex-card ex-card--tinte ex-h ex-h--texto-izq ex-expo ex-e4" id="expo-4" data-expo="4"></article>
+        </section>
+      </div>
+
+      <!-- H. Lo que aprendimos -->
+      <section class="contenedor ex-seccion ex-seccion--idea ex-rev" aria-labelledby="ex-h-idea">
         <div class="ex-idea">
           <div class="ex-idea__figs" aria-hidden="true">
             <span class="ex-fig ex-fig--1 ex-e1" style="--d:8s"><i></i><i></i><i></i></span>
@@ -175,44 +209,28 @@
             <span class="ex-fig ex-fig--4" style="--a:#7FD8B5"></span>
           </div>
           <div>
-            <p class="ex-eyebrow ex-eyebrow--coral">Una idea para seguir</p>
-            <h2 id="ex-h-idea">Explicar también es aprender</h2>
-            <p>Preparar una exposición obliga a entender un tema lo bastante bien como para contárselo a otras personas. Por eso cada trabajo vive aquí con sus propias imágenes y sus propias diapositivas.</p>
+            <p class="ex-eyebrow ex-eyebrow--coral">Lo que aprendimos</p>
+            <h2 id="ex-h-idea">Más allá de los números</h2>
+            <p>Estas exposiciones nos permitieron comprender que la enseñanza de las matemáticas va más allá de aprender números y realizar operaciones: también implica reconocer formas, explorar el espacio, comparar cantidades, identificar patrones e interpretar información. El estudio de los DBA nos ayudó a reconocer los aprendizajes que se busca promover en los niños y las niñas, y los lineamientos de preescolar nos llevaron a reflexionar sobre su desarrollo integral y la importancia de sus intereses, experiencias y ritmos de aprendizaje.</p>
           </div>
         </div>
       </section>
 
-      <!-- D. Exposiciones 4 y 5 -->
-      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 4 y 5">
-        <div class="ex-pila">
-          <article class="ex-card ex-card--tinte ex-h ex-h--texto-izq ex-expo ex-e4" id="expo-4" data-expo="4"></article>
-          <article class="ex-card ex-h ex-h--carr-izq ex-expo ex-e5" id="expo-5" data-expo="5"></article>
-        </div>
-      </section>
-
-      <!-- E. Franja oscura -->
+      <!-- I. Franja oscura -->
       <section class="contenedor ex-seccion ex-rev" aria-label="Diapositivas publicadas">
         <div class="ex-franja">
           <div>
             <p class="ex-mono ex-franja__mono">Diapositivas publicadas</p>
-            <p class="ex-franja__cuenta" id="ex-cuenta">0 de 7</p>
+            <p class="ex-franja__cuenta" id="ex-cuenta">0 de 4</p>
           </div>
           <div class="ex-franja__der">
-            <div class="ex-barras" id="ex-barras" role="img" aria-label="0 de 7 diapositivas publicadas"></div>
+            <div class="ex-barras" id="ex-barras" role="img" aria-label="0 de 4 diapositivas publicadas"></div>
             <p>Las exposiciones que todavía no tienen enlace aparecen con la etiqueta «Próximamente» hasta que se publique su presentación.</p>
           </div>
         </div>
       </section>
 
-      <!-- F. Exposiciones 6 y 7 -->
-      <section class="contenedor ex-seccion ex-rev" aria-label="Exposiciones 6 y 7">
-        <div class="ex-par">
-          <article class="ex-card ex-card--tinte ex-expo ex-e6" id="expo-6" data-expo="6"></article>
-          <article class="ex-card ex-escalon ex-expo ex-e7" id="expo-7" data-expo="7"></article>
-        </div>
-      </section>
-
-      <!-- G. Cierre -->
+      <!-- J. Cierre -->
       <section class="contenedor ex-seccion ex-fin ex-rev" aria-labelledby="ex-h-cierre">
         <div class="ex-cierre">
           <div>
@@ -268,6 +286,6 @@
   </footer>
 
   <script src="js/menu.js"></script>
-  <script src="js/exposiciones.js?v=3"></script>
+  <script src="js/exposiciones.js?v=4"></script>
 </body>
 </html>

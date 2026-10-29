@@ -7,16 +7,16 @@
   // Cuántos espacios reservados se muestran en el carrusel mientras una exposición no tiene imágenes.
   // Con 1 no aparecen flechas, puntos ni contador.
   var MARCADORES = 3;
-  var MARCADORES_1 = 19; // mientras la Exposición 1 no tenga sus imágenes
 
-  // Una entrada por exposición, en orden (la primera es la Exposición 01, y así hasta la 07).
+  // Una entrada por exposición, en orden (la primera es la Exposición 01, y así hasta la 04).
   //   titulo:       tema expuesto. Vacío = «Tema por definir».
   //   descripcion:  texto breve. Vacío = texto provisional.
   //   integrantes:  lista de nombres, por ejemplo ['Nombre 1', 'Nombre 2']. Vacía = «Integrantes por añadir».
-  //   imagenes:     lista de { src: 'img/mi-foto.jpg', alt: 'qué se ve en la imagen' }. Vacía = espacios reservados.
+  //   imagenes:     lista de { src: 'img/mi-foto.jpg', alt: 'qué se ve en la imagen', fit: 'contain' (opcional: sin recortar) }. Vacía = espacios reservados.
   //   diapositivas: enlace completo (https://…). Vacío o inválido = «Próximamente».
   //   conceptos:    (opcional) lista de ideas clave; si existe, se muestra la caja «Conceptos clave».
   //   autoplay:     (opcional) true = el carrusel avanza solo (se pausa con un clic).
+  //   pantalla:     (opcional) true = botón circular de pantalla arriba a la izquierda, que abre la presentación.
   var AUTO_MS = 7000;   // tiempo entre diapositivas
   var PAUSA_MS = 12000; // cuánto dura la pausa si nadie vuelve a tocar el carrusel
 
@@ -48,29 +48,64 @@
     return { src: 'img/exposicion-1/s' + (i < 9 ? '0' : '') + (i + 1) + '.jpg', alt: 'Diapositiva ' + (i + 1) + ': ' + alt };
   }) : [];
 
+  // Exposición 2: captura de la portada de la exploración interactiva (img/expo2/s01.jpg).
+  // Cuando la imagen esté en la carpeta, cambia a true.
+  var IMAGEN_2_LISTA = false;
+  var IMAGENES_2 = IMAGEN_2_LISTA ? [
+    { src: 'img/expo2/s01.jpg', alt: 'Portada de la exploración interactiva: Pensamiento numérico y sistemas numéricos, con la pregunta «¿Crees que saber contar significa comprender los números?»' }
+  ] : [];
+
   var EXPOSICIONES = [
+    // 01 · Referentes curriculares
     {
       titulo: 'Referentes curriculares',
       descripcion: 'Presentación del Capítulo 2 de los Lineamientos Curriculares de Matemáticas del Ministerio de Educación: la matemática escolar no sirve para aprender procedimientos mecánicos, sino para desarrollar el pensamiento y permitir que el estudiante comprenda y actúe en su realidad.',
       integrantes: ['Karol Daiana Gomez Gomez', 'Elsy Victoria Martínez'],
       conceptos: ['Cinco concepciones de las matemáticas', 'Transposición didáctica', 'Tres pilares curriculares', 'Modelo de Llinares', 'Tres modelos curriculares'],
       autoplay: true,
+      pantalla: true,
       imagenes: IMAGENES_1,
       diapositivas: 'https://canva.link/ccvbb7s7egbsu27'
-    }, // 01
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }, // 02
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }, // 03
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }, // 04
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }, // 05
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }, // 06
-    { titulo: '', descripcion: '', integrantes: [], imagenes: [], diapositivas: '' }  // 07
+    },
+    // 02 · Pensamiento numérico
+    {
+      titulo: 'Pensamiento numérico y sistemas numéricos',
+      descripcion: 'El pensamiento numérico es la capacidad de comprender los números, las cantidades y sus relaciones, y utilizarlos para resolver situaciones de la vida cotidiana. En la primera infancia se desarrolla al contar juguetes, comparar dónde hay más o menos objetos, ordenar cantidades y repartir materiales.',
+      integrantes: [], // por añadir
+      imagenes: IMAGENES_2,
+      diapositivas: 'https://semillaseducativas.my.canva.site/'
+    },
+    // 03 · Pensamiento espacial
+    {
+      titulo: 'Pensamiento espacial y sistemas geométricos',
+      descripcion: 'La geometría intuitiva busca recuperar la importancia del pensamiento espacial, que fue dejado de lado con la llegada de la matemática moderna. Propone aprender mediante experiencias prácticas, la exploración y la representación del espacio, para comprender el entorno y relacionar las matemáticas con la vida cotidiana.',
+      integrantes: ['Isabella Giraldo Ruiz', 'Alba Deisy Godoy Ibañez'],
+      pantalla: true,
+      imagenes: [
+        { src: 'img/expo3/s01.jpg', alt: 'Portada: Conocimientos básicos, pensamiento espacial y sistemas geométricos, con los nombres de las integrantes Isabella Giraldo Ruiz y Alba Deisy Godoy Ibañez', fit: 'contain' },
+        { src: 'img/expo3/s02.jpg', alt: 'Diapositiva «Contenido»: introducción, la inteligencia espacial, geometría activa, desarrollo del pensamiento geométrico, actividad Kahoot, representación bidimensional del espacio tridimensional, transformaciones geométricas, actividad Gimkit y evaluación', fit: 'contain' }
+      ],
+      diapositivas: 'https://canva.link/k2kqce4uaohuwbv'
+    },
+    // 04 · Dimensiones del desarrollo
+    {
+      titulo: 'La visión del niño desde sus dimensiones del desarrollo',
+      descripcion: 'El desarrollo infantil ocurre de manera integral: todas las dimensiones del niño están relacionadas y se desarrollan al mismo tiempo. Cada niño es único, tiene su propio ritmo de aprendizaje y crece en un contexto particular; por eso es importante comprenderlo como un ser integral.',
+      integrantes: ['Paola Andrea Moreno', 'Luisa Fernanda Osorno', 'Sailuz Elinor Reverol'],
+      pantalla: true,
+      imagenes: [
+        { src: 'img/expo4/s01.jpg', alt: 'Portada: La visión del niño desde sus dimensiones del desarrollo, con las integrantes Paola Andrea Moreno, Luisa Fernanda Osorno y Sailuz Elinor Reverol' },
+        { src: 'img/expo4/s02.jpg', alt: 'Índice: juego de la telaraña, el desarrollo infantil es integral, dimensiones socioafectiva, corporal, cognitiva, comunicativa, estética, espiritual y ética, conclusión, actividad evaluativa y referencias' }
+      ],
+      diapositivas: 'https://aulasvirtuales.uniquindio.edu.co/mod/resource/view.php?id=2890112'
+    }
   ];
 
   // =====================================================================
   //  A partir de aquí no hace falta editar nada
   // =====================================================================
-  var ACENTOS = ['#5BB8F0', '#FF7A6B', '#FFD45E', '#7FD8B5', '#B7A6F2', '#FF7A6B', '#7FD8B5'];
-  var DURACIONES = [8, 9, 10, 7, 11, 9, 8];
+  var ACENTOS = ['#5BB8F0', '#FF7A6B', '#FFD45E', '#7FD8B5'];
+  var DURACIONES = [8, 9, 10, 7];
   var reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function h(tag, props, hijos) {
@@ -110,7 +145,7 @@
   function carrusel(n, datos) {
     var imgs = (datos.imagenes || []).filter(function (i) { return i && i.src; });
     var reales = imgs.length > 0;
-    var total = reales ? imgs.length : Math.max(1, n === 1 ? MARCADORES_1 : MARCADORES);
+    var total = reales ? imgs.length : Math.max(1, MARCADORES);
     var auto = !!datos.autoplay && total > 1;
     var slides = [];
     for (var i = 0; i < total; i++) {
@@ -120,7 +155,7 @@
       } else {
         contenido = null;
       }
-      var s = h('div', { class: 'ex-slide' + (reales ? '' : ' ex-slide--vacia'), role: 'group', 'aria-roledescription': 'diapositiva', 'aria-label': (i + 1) + ' de ' + total }, [contenido]);
+      var s = h('div', { class: 'ex-slide' + (reales ? '' : ' ex-slide--vacia') + (reales && imgs[i].fit === 'contain' ? ' ex-slide--contain' : ''), role: 'group', 'aria-roledescription': 'diapositiva', 'aria-label': (i + 1) + ' de ' + total }, [contenido]);
       if (!reales) {
         s.appendChild(figura(n, DURACIONES[n - 1] + 1));
         s.appendChild(h('p', { class: 'ex-slide__num', text: 'Imagen ' + (i + 1) + ' de ' + total }));
@@ -130,7 +165,7 @@
     }
     var pista = h('div', { class: 'ex-pista' + (auto ? ' ex-pista--clic' : ''), tabindex: '0' }, slides);
     if (auto) pista.setAttribute('aria-label', 'Diapositivas de la exposición ' + n + '. Toca o haz clic para pausar o reanudar; usa las flechas del teclado para cambiar de diapositiva.');
-    var marco = h('div', { class: 'ex-carrusel' + (n === 1 ? ' ex-carrusel--16x9' : '') + (total > 9 ? ' ex-carrusel--muchos' : '') + (auto ? ' ex-carrusel--auto' : ''), role: 'region', 'aria-roledescription': 'carrusel', 'aria-label': (auto ? 'Diapositivas' : 'Imágenes') + ' de la exposición ' + n }, [pista]);
+    var marco = h('div', { class: 'ex-carrusel' + (total > 9 ? ' ex-carrusel--muchos' : '') + (auto ? ' ex-carrusel--auto' : ''), role: 'region', 'aria-roledescription': 'carrusel', 'aria-label': (auto ? 'Diapositivas' : 'Imágenes') + ' de la exposición ' + n }, [pista]);
     if (total < 2) return marco;
     var palabra = auto ? 'diapositiva' : 'imagen';
 
@@ -267,23 +302,22 @@
   }
 
   // Orden de los dos componentes en cada tarjeta: el carrusel primero o el texto primero.
-  var TEXTO_PRIMERO = { 4: true, 7: true };
+  var TEXTO_PRIMERO = { 2: true, 4: true };
 
   document.querySelectorAll('[data-expo]').forEach(function (card) {
     var n = +card.getAttribute('data-expo'), d = EXPOSICIONES[n - 1] || {};
     var c = carrusel(n, d), t = texto(n, d);
+    if (d.pantalla && esUrl(d.diapositivas)) {
+      var abrir = h('a', { class: 'ex-pantalla', href: d.diapositivas.trim(), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Abrir la presentación de la exposición ' + n + ' en una pestaña nueva' });
+      abrir.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.2v5.6l4.6-2.8z" fill="currentColor"/><path d="M8 20.5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      c.appendChild(abrir);
+    }
     if (d.conceptos && d.conceptos.length) {
       var caja = h('div', { class: 'ex-conceptos' }, [
         h('p', { class: 'ex-conceptos__tit', text: 'Conceptos clave' }),
         h('ul', {}, d.conceptos.map(function (x) { return h('li', { text: x }); }))
       ]);
-      var izq = h('div', { class: 'ex-izq' }, [c, caja]);
-      card.appendChild(izq); card.appendChild(t);
-      if (esUrl(d.diapositivas)) {
-        var abrir = h('a', { class: 'ex-pantalla', href: d.diapositivas.trim(), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Abrir la presentación de la exposición ' + n + ' en una pestaña nueva' });
-        abrir.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.2v5.6l4.6-2.8z" fill="currentColor"/><path d="M8 20.5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-        c.appendChild(abrir);
-      }
+      card.appendChild(h('div', { class: 'ex-izq' }, [c, caja])); card.appendChild(t);
       return;
     }
     if (TEXTO_PRIMERO[n]) { card.appendChild(t); card.appendChild(c); } else { card.appendChild(c); card.appendChild(t); }

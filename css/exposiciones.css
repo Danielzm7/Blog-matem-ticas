@@ -163,7 +163,7 @@
 .ex-destacada { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 44px; align-items: center; }
 .ex-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
 .ex-pila { display: flex; flex-direction: column; gap: 36px; }
-.ex-h { display: grid; gap: 36px; align-items: center; }
+.ex-h { display: grid; gap: 40px; align-items: center; }
 .ex-h--texto-izq { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
 .ex-h--carr-izq { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
 .ex-escalon { margin-top: 60px; }
@@ -202,7 +202,7 @@
 
 /* ---------- Carrusel ---------- */
 .ex-carrusel {
-  position: relative; width: 100%; aspect-ratio: 4 / 3; min-width: 0;
+  position: relative; width: 100%; aspect-ratio: 16 / 9; min-width: 0;
   background: var(--t); border: 3px solid var(--tinta); border-radius: 26px; box-shadow: 0 7px 0 rgba(31, 42, 68, .14);
   overflow: hidden;
 }
@@ -215,6 +215,7 @@
 .ex-pista:focus-visible { outline: 3px solid var(--tinta); outline-offset: -6px; border-radius: 22px; }
 .ex-slide { position: relative; flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; }
 .ex-slide img { width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.ex-slide--contain img { object-fit: contain; padding-bottom: 38px; box-sizing: border-box; }
 .ex-slide--vacia {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; text-align: center;
   background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .6) 0 16px, rgba(255, 255, 255, 0) 16px 32px), var(--t);
@@ -289,6 +290,18 @@
   .ex-pausa { top: 10px; font-size: 10px; padding: 4px 9px; }
 }
 
+/* ---------- Lista de exposiciones y separadores ---------- */
+.ex-lista { margin-top: 72px; }
+.ex-lista .ex-seccion { margin-top: 0; }
+.ex-sep { display: flex; align-items: center; gap: 18px; margin: 36px 0; }
+.ex-sep::before, .ex-sep::after { content: ""; flex: 1; border-top: 3px dashed #C9D6EE; }
+.ex-sep__pil { display: inline-flex; align-items: center; gap: 12px; padding: 10px 22px 10px 16px; background: #fff; border: 2px solid var(--tinta); border-radius: 999px; box-shadow: 0 5px 0 var(--tinta); }
+.ex-sep__pil svg { display: block; height: 30px; width: auto; overflow: visible; }
+.ex-sep__pil span { font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; }
+.ex-bob { transform-box: fill-box; transform-origin: center; animation: ex-bob 3.4s ease-in-out infinite; }
+@keyframes ex-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.ex-seccion--idea { margin-top: 88px; }
+
 /* ---------- Bloque de texto central ---------- */
 .ex-idea { display: flex; align-items: center; justify-content: center; gap: 40px; max-width: 1040px; margin-inline: auto; }
 .ex-idea__figs { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
@@ -341,6 +354,7 @@
   .ex-card { padding: 14px; }
   .ex-par { gap: 24px; }
   .ex-idea { flex-direction: column; text-align: center; gap: 24px; }
+  .ex-lista { margin-top: 56px; }
   .ex-franja { padding: 36px 32px; }
 }
 @media (max-width: 620px) {
@@ -356,6 +370,9 @@
   .ex-arte .ex-fig--f, .ex-arte .ex-fig--p { --s: 50px; }
   .ex-slide--vacia .ex-fig { --s: 64px; }
   .ex-slide__frase { display: none; }
+  .ex-sep { gap: 10px; }
+  .ex-sep__pil { gap: 8px; padding: 8px 16px 8px 12px; }
+  .ex-sep__pil span { font-size: 11px; }
   .ex-franja { padding: 28px 24px; border-radius: 32px; }
   .ex-barras i { width: 28px; }
   .ex-cierre { padding: 28px 24px; border-radius: 32px; }
@@ -369,6 +386,7 @@
 @media (prefers-reduced-motion: reduce) {
   .ex-portada, .ex-portada__borde, .ex-fig, .ex-arte .bloque { animation: none !important; }
   .js .ex-rev { opacity: 1; transform: none; transition: none; }
+  .ex-bob { animation: none; }
   .ex-card, .ex-btn, .ex-ind, .ex-diap, .ex-diap span, .ex-flecha, .ex-pantalla, .ex-pausa, .ex-punto, .ex-pista { transition: none; scroll-behavior: auto; }
   .ex-card:hover, .ex-btn:hover, .ex-ind:hover, .ex-diap:hover, .ex-flecha:hover { transform: none; }
 }
