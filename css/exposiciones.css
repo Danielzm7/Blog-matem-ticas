@@ -255,7 +255,7 @@
 .ex-pantalla {
   position: absolute; top: 12px; left: 12px; z-index: 3; display: inline-flex; align-items: center; justify-content: center;
   width: 44px; height: 44px; color: #fff; background: #1F2A44; border: 3px solid #fff; border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(31, 42, 68, .3); text-decoration: none;
+  box-shadow: 0 2px 8px rgba(31, 42, 68, .3); text-decoration: none; padding: 0; cursor: pointer; font: inherit;
   transition: transform .18s var(--curva), background-color .18s, color .18s;
 }
 .ex-pantalla svg { width: 22px; height: 22px; }
@@ -390,3 +390,31 @@
   .ex-card, .ex-btn, .ex-ind, .ex-diap, .ex-diap span, .ex-flecha, .ex-pantalla, .ex-pausa, .ex-punto, .ex-pista { transition: none; scroll-behavior: auto; }
   .ex-card:hover, .ex-btn:hover, .ex-ind:hover, .ex-diap:hover, .ex-flecha:hover { transform: none; }
 }
+
+/* ---------- Modo presentación (pantalla completa) ---------- */
+body.ex-modo-abierta { overflow: hidden; }
+.ex-modo { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: #0F1626; cursor: default; }
+.ex-modo__img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; user-select: none; }
+.ex-modo__btn {
+  position: absolute; z-index: 2; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0;
+  color: #fff; background: rgba(31, 42, 68, .88); border: 3px solid #fff; border-radius: 999px; cursor: pointer; font: inherit; font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .4); transition: opacity .3s, background-color .18s, color .18s;
+}
+.ex-modo__btn:hover, .ex-modo__btn:focus-visible { background: #fff; color: #1F2A44; }
+.ex-modo__btn svg { width: 22px; height: 22px; }
+.ex-modo__cerrar { top: 16px; right: 16px; height: 46px; padding: 0 18px 0 12px; }
+.ex-modo__ant, .ex-modo__sig { top: 50%; translate: 0 -50%; width: 52px; height: 52px; }
+.ex-modo__ant { left: 16px; }
+.ex-modo__sig { right: 16px; }
+.ex-modo__cont {
+  position: absolute; z-index: 2; left: 50%; bottom: 16px; translate: -50% 0; padding: 5px 14px; color: #fff; background: rgba(31, 42, 68, .88);
+  border: 2px solid #fff; border-radius: 999px; font: 500 .85rem/1.2 'DM Mono', monospace; transition: opacity .3s;
+}
+.ex-modo.is-quieta { cursor: none; }
+.ex-modo.is-quieta .ex-modo__btn, .ex-modo.is-quieta .ex-modo__cont { opacity: 0; pointer-events: none; }
+@media (max-width: 640px) {
+  .ex-modo__cerrar { top: 10px; right: 10px; }
+  .ex-modo__ant, .ex-modo__sig { width: 44px; height: 44px; }
+  .ex-modo__ant { left: 8px; } .ex-modo__sig { right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .ex-modo__btn, .ex-modo__cont { transition: none; } }

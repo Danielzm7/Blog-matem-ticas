@@ -16,7 +16,7 @@
   //   diapositivas: enlace completo (https://…). Vacío o inválido = «Próximamente».
   //   conceptos:    (opcional) lista de ideas clave; si existe, se muestra la caja «Conceptos clave».
   //   autoplay:     (opcional) true = el carrusel avanza solo (se pausa con un clic).
-  //   pantalla:     (opcional) true = botón circular de pantalla arriba a la izquierda, que abre la presentación.
+  //   pantalla:     (opcional) true = botón circular de pantalla arriba a la izquierda, que abre las imágenes en modo presentación (pantalla completa).
   var AUTO_MS = 7000;   // tiempo entre diapositivas
   var PAUSA_MS = 12000; // cuánto dura la pausa si nadie vuelve a tocar el carrusel
 
@@ -336,15 +336,94 @@
     ]);
   }
 
+  // ---------- Modo presentación (pantalla completa dentro de la misma página) ----------
+  var X_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  var OCULTAR_MS = 2500; // los controles se esconden si el cursor no se mueve
+  var pres = null;
+
+  function presentar(n, laminas, disparador) {
+    if (pres) return;
+    var total = laminas.length, actual = 0, oculto = null;
+    var img = h('img', { class: 'ex-modo__img', alt: '', draggable: 'false' });
+    var contador = h('span', { class: 'ex-modo__cont', 'aria-live': 'polite' });
+    var cerrar = h('button', { class: 'ex-modo__btn ex-modo__cerrar', type: 'button', 'aria-label': 'Salir del modo presentación' });
+    var ant = h('button', { class: 'ex-modo__btn ex-modo__ant', type: 'button', 'aria-label': 'Diapositiva anterior' });
+    var sig = h('button', { class: 'ex-modo__btn ex-modo__sig', type: 'button', 'aria-label': 'Diapositiva siguiente' });
+    cerrar.innerHTML = X_SVG + '<span>Salir</span>'; ant.innerHTML = CHEVRON_IZQ; sig.innerHTML = CHEVRON_DER;
+    var capa = h('div', { class: 'ex-modo', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Presentación de la exposición ' + n }, [img, cerrar, contador]);
+    if (total > 1) { capa.appendChild(ant); capa.appendChild(sig); }
+
+    function pintar(i) {
+      actual = ((i % total) + total) % total;
+      img.src = laminas[actual].src; img.alt = laminas[actual].alt || '';
+      contador.textContent = (actual + 1) + ' / ' + total;
+      var vecina = laminas[(actual + 1) % total]; if (vecina) { var pre = new Image(); pre.src = vecina.src; }
+    }
+    function mostrar() {
+      capa.classList.remove('is-quieta');
+      clearTimeout(oculto);
+      oculto = setTimeout(function () { capa.classList.add('is-quieta'); }, OCULTAR_MS);
+    }
+    function salir() {
+      if (!pres) return;
+      pres = null;
+      clearTimeout(oculto);
+      document.removeEventListener('keydown', teclas, true);
+      document.removeEventListener('fullscreenchange', alCambiarPantalla);
+      document.body.classList.remove('ex-modo-abierta');
+      if (document.fullscreenElement) { try { document.exitFullscreen(); } catch (e) {} }
+      capa.remove();
+      if (disparador && disparador.focus) disparador.focus();
+    }
+    function alCambiarPantalla() { if (!document.fullscreenElement) salir(); }
+    function teclas(e) {
+      if (e.key === 'Escape') { e.preventDefault(); salir(); }
+      else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); pintar(actual + 1); mostrar(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); pintar(actual - 1); mostrar(); }
+      else if (e.key === 'Home') { pintar(0); mostrar(); }
+      else if (e.key === 'End') { pintar(total - 1); mostrar(); }
+      else if (e.key === 'Tab') { // el foco se queda dentro de la presentación
+        var bs = [cerrar].concat(total > 1 ? [ant, sig] : []);
+        var i = bs.indexOf(document.activeElement);
+        e.preventDefault(); bs[(i + (e.shiftKey ? -1 : 1) + bs.length) % bs.length].focus(); mostrar();
+      }
+    }
+    cerrar.addEventListener('click', salir);
+    ant.addEventListener('click', function () { pintar(actual - 1); mostrar(); });
+    sig.addEventListener('click', function () { pintar(actual + 1); mostrar(); });
+    capa.addEventListener('mousemove', mostrar);
+    capa.addEventListener('pointerdown', mostrar);
+    // En el celular se puede deslizar con el dedo.
+    var x0 = null;
+    capa.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    capa.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) { pintar(actual + (dx < 0 ? 1 : -1)); }
+    }, { passive: true });
+
+    pres = capa;
+    pintar(0);
+    document.body.appendChild(capa);
+    document.body.classList.add('ex-modo-abierta');
+    document.addEventListener('keydown', teclas, true);
+    var fs = capa.requestFullscreen && capa.requestFullscreen();
+    if (fs && fs.then) fs.then(function () { document.addEventListener('fullscreenchange', alCambiarPantalla); }, function () {});
+    cerrar.focus({ preventScroll: true });
+    mostrar();
+  }
+
   // Orden de los dos componentes en cada tarjeta: el carrusel primero o el texto primero.
   var TEXTO_PRIMERO = { 2: true, 4: true };
 
   document.querySelectorAll('[data-expo]').forEach(function (card) {
     var n = +card.getAttribute('data-expo'), d = EXPOSICIONES[n - 1] || {};
     var c = carrusel(n, d), t = texto(n, d);
-    if (d.pantalla && esUrl(d.diapositivas)) {
-      var abrir = h('a', { class: 'ex-pantalla', href: d.diapositivas.trim(), target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Abrir la presentación de la exposición ' + n + ' en una pestaña nueva' });
+    var laminas = (d.imagenes || []).filter(function (i) { return i && i.src; });
+    if (d.pantalla && laminas.length) {
+      var abrir = h('button', { class: 'ex-pantalla', type: 'button', 'aria-label': 'Ver las diapositivas de la exposición ' + n + ' en pantalla completa' });
       abrir.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.2v5.6l4.6-2.8z" fill="currentColor"/><path d="M8 20.5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      abrir.addEventListener('click', function () { presentar(n, laminas, abrir); });
       c.appendChild(abrir);
     }
     if (d.conceptos && d.conceptos.length) {
