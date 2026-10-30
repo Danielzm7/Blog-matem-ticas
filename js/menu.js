@@ -11,6 +11,7 @@
     ['exposicion-2.html', 'pensamiento numerico sistemas numericos numeros exposicion 2'],
     ['exposicion-3.html', 'pensamiento espacial sistemas geometricos geometria exposicion 3'],
     ['exposicion-4.html', 'vision del nino dimensiones del desarrollo exposicion 4'],
+    ['juegos.html', 'jugamos y ensenamos juegos todos los juegos por edad'],
     ['situaciones.html', 'situaciones didacticas juegos carrera del 20 juego'],
     ['autoevaluaciones.html', 'autoevaluaciones autoevaluacion reflexion aprendizaje'],
     ['actividades/3-anios.html', '3 anos tres contar cuenta objetos colores figuras actividades'],

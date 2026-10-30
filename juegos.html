@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <title>Jugamos y enseñamos · Semillas Matemáticas</title>
+  <meta name="description" content="Todos los juegos de matemáticas del blog para niñas y niños de 3 a 8 años, organizados por edad, con sugerencias para que el adulto acompañe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=12">
+  <link rel="stylesheet" href="css/juegos.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel jg-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="index.html" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li><a href="situaciones.html">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones.html">Autoevaluaciones</a></li>
+              <li class="menu__sub">
+                <a href="juegos.html" aria-haspopup="true" aria-current="page">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios.html">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios.html">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios.html">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios.html">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios.html">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios.html">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">Quiénes somos</a></li>
+              <li><a href="temas.html">Temas</a></li>
+              <li><a href="exposiciones.html">Exposiciones</a></li>
+              <li><a href="situaciones.html">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones.html">Autoevaluaciones</a></li>
+              <li><a href="juegos.html" aria-current="page">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios.html">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios.html">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios.html">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios.html">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios.html">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios.html">↳ Actividades de 8 años o más</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <nav class="contenedor jg-migas" aria-label="Migas de pan">
+        <a href="index.html">Inicio</a><span aria-hidden="true">/</span><strong aria-current="page">Jugamos y enseñamos</strong>
+      </nav>
+
+      <section class="contenedor" aria-labelledby="jg-titulo">
+        <div class="jg-portada">
+          <div class="jg-portada__texto">
+            <p class="jg-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Juegos de 3 a 8 años</p>
+            <h1 id="jg-titulo">Jugamos y enseñamos</h1>
+            <p class="jg-portada__sub">Aquí están todos los juegos del blog. Cada uno trabaja una idea matemática (contar, comparar, ordenar, medir o resolver) y trae una sugerencia para que el adulto acompañe.</p>
+            <div class="jg-botones">
+              <a class="jg-btn jg-btn--oscuro" href="#juegos">Ver los 52 juegos ↓</a>
+              <a class="jg-btn jg-btn--claro" href="situaciones.html#carrera">Carrera del 20</a>
+            </div>
+          </div>
+          <div class="jg-portada__edades">
+            <p class="jg-mono jg-centro" id="jg-elegir">Elegir una edad</p>
+            <ul class="jg-edades" aria-labelledby="jg-elegir"><li><button class="jg-edad" type="button" data-edad="3" aria-label="Ver juegos de 3 años"><span class="edad__bloque edad__bloque--coral "><span class="edad__num">3</span></span><span class="edad__texto">años</span></button></li><li><button class="jg-edad" type="button" data-edad="4" aria-label="Ver juegos de 4 años"><span class="edad__bloque edad__bloque--sol "><span class="edad__num">4</span></span><span class="edad__texto">años</span></button></li><li><button class="jg-edad" type="button" data-edad="5" aria-label="Ver juegos de 5 años"><span class="edad__bloque edad__bloque--menta "><span class="edad__num">5</span></span><span class="edad__texto">años</span></button></li><li><button class="jg-edad" type="button" data-edad="6" aria-label="Ver juegos de 6 años"><span class="edad__bloque edad__bloque--lila "><span class="edad__num">6</span></span><span class="edad__texto">años</span></button></li><li><button class="jg-edad" type="button" data-edad="7" aria-label="Ver juegos de 7 años"><span class="edad__bloque edad__bloque--cielo "><span class="edad__num">7</span></span><span class="edad__texto">años</span></button></li><li><button class="jg-edad" type="button" data-edad="8" aria-label="Ver juegos de 8 años o más"><span class="edad__bloque edad__bloque--tinta "><span class="edad__num">8+</span></span><span class="edad__texto">años</span></button></li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="contenedor jg-sec" id="juegos" aria-labelledby="jg-juega">
+        <p class="jg-eyebrow">Todos los juegos</p>
+        <h2 class="jg-h2" id="jg-juega">Juega por edad</h2>
+        <p class="jg-intro">Cada edad tiene sus propios juegos, de lo más sencillo a lo más retador. Elige una para ver solo esa.</p>
+        <div class="jg-filtro" role="group" aria-label="Filtrar por edad">
+          <div class="jg-filtro__botones">
+            <button type="button" class="jg-fb" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button type="button" class="jg-fb" data-filtro="3" aria-pressed="false">3 años</button>
+            <button type="button" class="jg-fb" data-filtro="4" aria-pressed="false">4 años</button>
+            <button type="button" class="jg-fb" data-filtro="5" aria-pressed="false">5 años</button>
+            <button type="button" class="jg-fb" data-filtro="6" aria-pressed="false">6 años</button>
+            <button type="button" class="jg-fb" data-filtro="7" aria-pressed="false">7 años</button>
+            <button type="button" class="jg-fb" data-filtro="8" aria-pressed="false">8+ años</button>
+          </div>
+          <p class="jg-contador jg-mono" id="jg-contador" aria-live="polite">52 juegos en total</p>
+        </div>
+        <div class="jg-paneles">
+        <section class="jg-panel" data-edad="3" style="--p:#FFE3DF" aria-labelledby="jg-t3">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--coral jg-mini"><span class="edad__num">3</span></span>
+              <div>
+                <p class="jg-mono">Para 3 años · 8 juegos</p>
+                <h2 id="jg-t3">¡A jugar con los números y las formas!</h2>
+                <p class="jg-panel__fr">Contar, reconocer figuras, clasificar y comparar tamaños y cantidades.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/3-anios.html">Jugar con 3 años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🍎</span>
+              <h3>Cuenta los objetos</h3>
+              <p>Cuenta y toca el número.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Conteo y cantidad</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🔺</span>
+              <h3>Encuentra la misma figura</h3>
+              <p>Busca la figura igual, aunque cambie de color.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Reconocer figuras</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🧺</span>
+              <h3>Clasifica por colores</h3>
+              <p>Toca un objeto y llévalo a su canasta.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Clasificación</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">🐘</span>
+              <h3>Grande y pequeño</h3>
+              <p>Encuentra el más grande o el más pequeño.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Comparar tamaños</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🍓</span>
+              <h3>¿Dónde hay más?</h3>
+              <p>Compara dos grupos de objetos.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Comparar cantidades</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🔁</span>
+              <h3>Completa la serie</h3>
+              <p>Mira el patrón y elige lo que sigue.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Patrones</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🧩</span>
+              <h3>Une las figuras iguales</h3>
+              <p>Toca una figura y luego su pareja.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Emparejar y discriminar</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/3-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🛒</span>
+              <h3>Pon la cantidad</h3>
+              <p>Pon en la canasta los que te piden.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Cantidad y conteo uno a uno</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        <section class="jg-panel" data-edad="4" style="--p:#FFF3C9" aria-labelledby="jg-t4">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--sol jg-mini"><span class="edad__num">4</span></span>
+              <div>
+                <p class="jg-mono">Para 4 años · 8 juegos</p>
+                <h2 id="jg-t4">¡A explorar, ordenar y descubrir!</h2>
+                <p class="jg-panel__fr">Sumar con objetos, nombrar figuras, ordenar por tamaño y ubicarse en el espacio.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/4-anios.html">Jugar con 4 años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">➕</span>
+              <h3>Junta y cuenta</h3>
+              <p>Junta dos grupos y cuenta cuántos hay.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Juntar y contar (suma con objetos)</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🔶</span>
+              <h3>Nombra las figuras</h3>
+              <p>Toca el círculo, el cuadrado, el triángulo...</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Nombrar figuras</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🎨</span>
+              <h3>Una pista de colores</h3>
+              <p>Lleva cada objeto a su canasta.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Clasificación</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">📏</span>
+              <h3>Ordena por tamaño</h3>
+              <p>Toca de uno en uno, en orden.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Seriación</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🔢</span>
+              <h3>¿Qué número falta?</h3>
+              <p>Completa la fila de números.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Secuencia numérica</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🎶</span>
+              <h3>Ritmo de figuras</h3>
+              <p>Descubre el patrón y sigue la serie.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Patrones</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🌓</span>
+              <h3>Une con su sombra</h3>
+              <p>Une cada figura con su sombra.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Discriminación visual</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/4-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">📦</span>
+              <h3>Arriba, abajo, dentro, fuera</h3>
+              <p>¿Dónde está el objeto respecto a la caja?</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Posición en el espacio</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        <section class="jg-panel" data-edad="5" style="--p:#D9F5E9" aria-labelledby="jg-t5">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--menta jg-mini"><span class="edad__num">5</span></span>
+              <div>
+                <p class="jg-mono">Para 5 años · 8 juegos</p>
+                <h2 id="jg-t5">¡A contar, sumar y resolver!</h2>
+                <p class="jg-panel__fr">Sumar y restar hasta 10, comparar números y leer gráficas sencillas.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/5-anios.html">Jugar con 5 años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🔟</span>
+              <h3>Cuadro del diez</h3>
+              <p>Mira los puntos y cuenta hasta 10.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Conteo hasta 10 y descomposición del 10</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🍪</span>
+              <h3>Suma de galletas</h3>
+              <p>Suma dos números y encuentra el total.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Suma hasta 10</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🎈</span>
+              <h3>Se van los globos</h3>
+              <p>Mira cuántos se fueron y cuenta los que quedan.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Resta con objetos</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">🏘️</span>
+              <h3>Números vecinos</h3>
+              <p>¿Qué número va antes, después o en medio?</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Antes, después y entre</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🔍</span>
+              <h3>Figuras escondidas</h3>
+              <p>Descubre qué figura tiene cada objeto.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Figuras en el entorno</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">⚖️</span>
+              <h3>¿Cuál es mayor?</h3>
+              <p>Compara dos números y elige.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Comparar números</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">📊</span>
+              <h3>Lee la gráfica</h3>
+              <p>Mira las barras y responde.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Lectura de datos</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/5-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🪜</span>
+              <h3>Ordena los números</h3>
+              <p>Toca los números en orden.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Orden de los números</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        <section class="jg-panel" data-edad="6" style="--p:#ECE7FD" aria-labelledby="jg-t6">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--lila jg-mini"><span class="edad__num">6</span></span>
+              <div>
+                <p class="jg-mono">Para 6 años · 8 juegos</p>
+                <h2 id="jg-t6">¡A calcular, medir y descubrir!</h2>
+                <p class="jg-panel__fr">Sumas y restas hasta 20, dinero, horas, valor posicional y fracciones.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/6-anios.html">Jugar con 6 años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🧮</span>
+              <h3>Sumas</h3>
+              <p>Suma dos números y encuentra el total.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Suma hasta 20</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">➖</span>
+              <h3>Restas</h3>
+              <p>Quita y encuentra cuánto queda.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Resta hasta 20</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">💰</span>
+              <h3>¿Cuánto dinero hay?</h3>
+              <p>Suma el valor de las monedas.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Sistema monetario</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🕐</span>
+              <h3>¿Qué hora es?</h3>
+              <p>Lee la hora en el reloj de manecillas.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Lectura de la hora</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🏗️</span>
+              <h3>Decenas y unidades</h3>
+              <p>Cuenta barras y cuadritos y forma el número.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Valor posicional</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🍰</span>
+              <h3>Mitades y cuartos</h3>
+              <p>Descubre las partes iguales de un círculo.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Fracciones básicas</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">🦘</span>
+              <h3>Saltos de 2, 5 y 10</h3>
+              <p>Sigue la fila de números que salta.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Conteo de 2 en 2, 5 en 5 y 10 en 10</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/6-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">📐</span>
+              <h3>Lados y esquinas</h3>
+              <p>Cuenta los lados y las esquinas de cada figura.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Geometría: lados y vértices</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        <section class="jg-panel" data-edad="7" style="--p:#DDF1FD" aria-labelledby="jg-t7">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--cielo jg-mini"><span class="edad__num">7</span></span>
+              <div>
+                <p class="jg-mono">Para 7 años · 8 juegos</p>
+                <h2 id="jg-t7">¡A pensar, medir y resolver retos!</h2>
+                <p class="jg-panel__fr">Sumas y restas hasta 100, calendario, medidas y cuerpos geométricos.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/7-anios.html">Jugar con 7 años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">💯</span>
+              <h3>Sumas hasta 100</h3>
+              <p>Suma números de dos cifras.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Suma con decenas y unidades</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🛍️</span>
+              <h3>Grupos iguales</h3>
+              <p>Cuenta cuántos hay en varios grupos iguales.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Preparación para multiplicar</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🎯</span>
+              <h3>Restas hasta 100</h3>
+              <p>Quita y encuentra cuánto queda.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Resta con decenas y unidades</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🗓️</span>
+              <h3>El calendario</h3>
+              <p>Días de la semana y meses del año.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Orden de los días y los meses</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">⏰</span>
+              <h3>Hora y minutos</h3>
+              <p>Lee la hora de 5 en 5 minutos.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Lectura de la hora en minutos</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🎲</span>
+              <h3>¿Par o impar?</h3>
+              <p>Decide si el número es par o impar.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Números pares e impares</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">🖍️</span>
+              <h3>Mide con la regla</h3>
+              <p>Lee cuántos centímetros mide la barra.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Medición en centímetros</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/7-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🧊</span>
+              <h3>Cuerpos geométricos</h3>
+              <p>Descubre la forma de cada objeto.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Figuras en 3D</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        <section class="jg-panel" data-edad="8" style="--p:#E4E9F4" aria-labelledby="jg-t8">
+          <div class="jg-panel__cab">
+            <div class="jg-panel__id"><span class="edad__bloque edad__bloque--tinta jg-mini"><span class="edad__num">8+</span></span>
+              <div>
+                <p class="jg-mono">Para 8 años o más · 12 retos</p>
+                <h2 id="jg-t8">¡Retos para mentes curiosas!</h2>
+                <p class="jg-panel__fr">Multiplicar, dividir, fracciones, perímetro, ángulos y probabilidad.</p>
+              </div>
+            </div>
+            <a class="jg-btn jg-btn--oscuro" href="actividades/8-anios.html">Jugar con 8+ años →</a>
+          </div>
+          <ul class="jg-grid">
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">✖️</span>
+              <h3>Tablas de multiplicar</h3>
+              <p>Multiplica y encuentra el resultado o el factor que falta.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Multiplicación</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">➗</span>
+              <h3>Divisiones</h3>
+              <p>Reparte en partes iguales y halla el cociente.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">División exacta</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🚀</span>
+              <h3>Sumas y restas grandes</h3>
+              <p>Suma y resta con centenas y millares.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Suma y resta con números grandes</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🏛️</span>
+              <h3>Valor de la cifra</h3>
+              <p>Descubre cuánto vale cada cifra de un número.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Valor posicional y aproximación</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🍕</span>
+              <h3>Fracciones</h3>
+              <p>Nombra, compara y reconoce fracciones iguales.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Fracciones y equivalencia</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🌀</span>
+              <h3>Secuencias</h3>
+              <p>Descubre la regla y completa la fila.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Patrones numéricos</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">💵</span>
+              <h3>Compras y vueltos</h3>
+              <p>Calcula cuánto te devuelven o cuánto pagas.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Dinero y porcentajes</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#DDF1FD">
+              <span class="jg-juego__emoji" aria-hidden="true">⏱️</span>
+              <h3>¿Cuánto tiempo pasa?</h3>
+              <p>Calcula la hora final o cuánto dura algo.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Tiempo transcurrido</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#FFE3DF">
+              <span class="jg-juego__emoji" aria-hidden="true">🧪</span>
+              <h3>Unidades de medida</h3>
+              <p>Convierte metros, gramos, litros y más.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Conversión de unidades</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#FFF3C9">
+              <span class="jg-juego__emoji" aria-hidden="true">🟦</span>
+              <h3>Perímetro y área</h3>
+              <p>Mide el contorno y cuenta los cuadritos.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Perímetro y área</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#D9F5E9">
+              <span class="jg-juego__emoji" aria-hidden="true">🧭</span>
+              <h3>Ángulos</h3>
+              <p>Reconoce y mide ángulos.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Clasificación y medida de ángulos</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+            <li><a class="jg-juego" href="actividades/8-anios.html" style="--e:#ECE7FD">
+              <span class="jg-juego__emoji" aria-hidden="true">🎱</span>
+              <h3>¿Qué tan probable es?</h3>
+              <p>Saca una bola de la bolsa y piensa en las posibilidades.</p>
+              <span class="jg-juego__pie"><span class="jg-chip">Probabilidad</span><span class="jg-burbuja" aria-hidden="true"><svg width="16" height="16"><use href="#i-flecha"/></svg></span></span>
+            </a></li>
+          </ul>
+        </section>
+
+        </div>
+      </section>
+
+      <section class="contenedor jg-sec" aria-labelledby="jg-acomp">
+        <p class="jg-eyebrow jg-eyebrow--sol">Para el adulto</p>
+        <h2 class="jg-h2" id="jg-acomp">Cómo acompañar el juego</h2>
+        <div class="jg-tips">
+          <article class="jg-tip" style="--b:#FFE3DF"><span class="jg-fig jg-fig--circ" aria-hidden="true"></span><h3>Cuenten en voz alta</h3><p>Señalen cada objeto con el dedo y digan los números juntos. Así el conteo se vuelve una experiencia compartida.</p></article>
+          <article class="jg-tip" style="--b:#FFF3C9"><span class="jg-fig jg-fig--cuad" aria-hidden="true"></span><h3>Pregunten por qué</h3><p>Después de cada respuesta, invita a explicar cómo la encontró. Pensar en voz alta ayuda a entender.</p></article>
+          <article class="jg-tip" style="--b:#D9F5E9"><span class="jg-fig jg-fig--tri" aria-hidden="true"></span><h3>Lleven el juego a casa</h3><p>Busquen lo mismo con objetos reales: zapatos, frutas, monedas o un reloj. Cada juego trae su propia sugerencia.</p></article>
+        </div>
+      </section>
+
+      <section class="contenedor jg-sec" aria-labelledby="jg-carrera">
+        <div class="jg-carrera">
+          <div>
+            <p class="jg-eyebrow jg-eyebrow--lila">Para jugar en el aula</p>
+            <h2 class="jg-h2" id="jg-carrera">Carrera del 20</h2>
+            <p class="jg-intro">Dos jugadores suman 1 o 2 en cada turno. Gana quien llegue primero a 20. Un ejemplo de la exposición sobre situaciones didácticas.</p>
+          </div>
+          <div class="jg-botones">
+            <a class="jg-btn jg-btn--oscuro" href="situaciones.html#carrera">Jugar la Carrera del 20 →</a>
+            <a class="jg-btn jg-btn--claro" href="situaciones.html">Ver la teoría</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/icono-blog.png" width="288" height="288" alt="Icono de Semillas Matemáticas" loading="lazy"></span>
+          <p>Blog de matemáticas para la primera infancia: exposiciones, actividades y juegos construidos en el curso Didáctica de las matemáticas en la primera infancia.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
+            <li><a href="situaciones.html">Situaciones y juegos</a></li>
+            <li><a href="autoevaluaciones.html">Autoevaluaciones</a></li>
+            <li><a href="juegos.html">Jugamos y enseñamos</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos.html">Quiénes somos</a></li>
+            <li><a href="quienes-somos.html#equipo">Nuestro equipo</a></li>
+            <li><a href="quienes-somos.html#proposito">Qué buscamos</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="autoevaluaciones.html">Estudiantes</a></li>
+            <li><a href="exposiciones.html">Docentes</a></li>
+            <li><a href="index.html#etapas">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 2026 Sharon Liset Sánchez Castro, Yuliana Andrea Villada Osorio, Angie Yiset Florez Coronado</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/juegos.js?v=1"></script>
+</body>
+</html>

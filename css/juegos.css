@@ -1,0 +1,126 @@
+/* =========================================================
+   Página «Jugamos y enseñamos»
+   Se carga después de styles.css. Clases propias con prefijo jg-.
+   ========================================================= */
+
+.jg-papel { height: 600px; }
+.jg-mono { margin: 0; font-family: var(--f-mono); font-weight: 500; font-size: 12px; line-height: 1.4; text-transform: uppercase; letter-spacing: .14em; color: var(--texto-2); }
+.jg-centro { text-align: center; }
+.jg-sec { margin-top: 96px; }
+
+/* Migas */
+.jg-migas { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-bottom: 10px; font-family: var(--f-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--texto-2); }
+.jg-migas a { color: var(--texto-2); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.jg-migas a:hover { color: var(--tinta); text-decoration: underline; text-underline-offset: 4px; }
+.jg-migas strong { color: var(--tinta); font-weight: 700; }
+
+/* Botones */
+.jg-botones { display: flex; flex-wrap: wrap; gap: 14px 16px; }
+.jg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 28px; border-radius: 999px; font: 700 16px/1.2 var(--f-texto); text-decoration: none; text-align: center; white-space: nowrap; transition: transform .2s var(--curva), box-shadow .2s var(--curva), background-color .2s; }
+.jg-btn--oscuro { background: var(--tinta); color: #fff; box-shadow: 0 5px 0 #0C1226; }
+.jg-btn--oscuro:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #0C1226; }
+.jg-btn--oscuro:active { transform: translateY(4px); box-shadow: 0 1px 0 #0C1226; }
+.jg-btn--claro { background: #fff; color: var(--tinta); border: 2px solid var(--tinta); box-shadow: 0 4px 0 var(--tinta); }
+.jg-btn--claro:hover { background: #FFE9A3; transform: translateY(-2px); box-shadow: 0 6px 0 var(--tinta); }
+.jg-btn--claro:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--tinta); }
+.jg-btn:focus-visible, .jg-edad:focus-visible, .jg-fb:focus-visible, .jg-juego:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+
+/* Portada */
+.jg-portada { position: relative; overflow: hidden; display: grid; grid-template-columns: 7fr 6fr; gap: 44px; align-items: center; padding: 56px; background: #DDF1FD; border-radius: 44px; }
+.jg-portada::after { content: ""; position: absolute; top: -90px; right: -70px; width: 280px; height: 280px; border: 2px dashed #7FB6DE; border-radius: 50%; animation: jg-gira 80s linear infinite; pointer-events: none; }
+@keyframes jg-gira { to { transform: rotate(360deg); } }
+.jg-portada > * { position: relative; z-index: 1; }
+.jg-pildora { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 20px; padding: 8px 16px; background: #fff; border: 2px solid var(--tinta); border-radius: 999px; box-shadow: 0 4px 0 rgba(31,42,68,.18); font-family: var(--f-mono); font-weight: 500; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--tinta); }
+.jg-pildora span { display: inline-flex; gap: 4px; }
+.jg-pildora i { width: 9px; height: 9px; border-radius: 2px; }
+.jg-pildora i:nth-child(1) { background: var(--coral); } .jg-pildora i:nth-child(2) { background: var(--sol); } .jg-pildora i:nth-child(3) { background: var(--menta); }
+.jg-portada h1 { margin: 0 0 20px; font-family: var(--f-titulo); font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 1; letter-spacing: -.025em; color: var(--tinta); }
+.jg-portada__sub { margin: 0 0 30px; max-width: 560px; font-size: 20px; line-height: 1.55; color: #33415F; }
+.jg-portada__edades .jg-mono { margin-bottom: 8px; }
+.jg-edades { display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); justify-content: center; gap: 34px 34px; margin: 0; padding: 0; list-style: none; }
+.jg-edad { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 24px 0 0; background: none; border: 0; font: inherit; color: var(--tinta); cursor: pointer; container-type: inline-size; }
+.jg-edad:hover .edad__bloque { transform: translateY(-8px) rotate(-2deg); }
+.jg-edad .edad__texto { margin-top: 16px; }
+
+/* Encabezados de sección */
+.jg-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 12px; font-family: var(--f-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--texto-2); }
+.jg-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--menta); }
+.jg-eyebrow--sol::before { background: var(--sol); } .jg-eyebrow--lila::before { background: var(--lila); }
+.jg-h2 { margin: 0; font-family: var(--f-titulo); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.05; letter-spacing: -.02em; color: var(--tinta); }
+.jg-intro { margin: 14px 0 0; max-width: 640px; font-size: 18px; line-height: 1.55; color: var(--texto-2); }
+
+/* Filtro */
+.jg-filtro { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; margin: 28px 0 40px; padding: 14px; background: #fff; border: 2px solid var(--tinta); border-radius: 999px; box-shadow: 0 5px 0 rgba(31,42,68,.14); }
+.jg-filtro__botones { display: flex; flex-wrap: wrap; gap: 6px; }
+.jg-fb { min-height: 44px; padding: 0 20px; background: transparent; border: 0; border-radius: 999px; font: 700 15px/1 var(--f-texto); color: var(--tinta); cursor: pointer; transition: background-color .2s; }
+.jg-fb:hover { background: #FFE9A3; }
+.jg-fb[aria-pressed="true"] { background: var(--tinta); color: #fff; }
+.jg-contador { padding-right: 12px; }
+
+/* Paneles por edad */
+.jg-paneles { display: grid; gap: 44px; }
+.jg-panel { --p: #FFE3DF; position: relative; overflow: hidden; padding: 44px 40px; background: var(--p); border-radius: 40px; scroll-margin-top: 24px; }
+.jg-panel[hidden] { display: none; }
+.jg-panel::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 200px; height: 200px; border: 2px dashed rgba(31,42,68,.2); border-radius: 50%; pointer-events: none; }
+.jg-panel > * { position: relative; z-index: 1; }
+.jg-panel__cab { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px 28px; margin-bottom: 32px; }
+.jg-panel__id { display: flex; align-items: center; gap: 24px; min-width: 0; }
+.jg-panel__id h2 { margin: 6px 0 6px; font-family: var(--f-titulo); font-weight: 800; font-size: clamp(26px, 3vw, 40px); line-height: 1.05; letter-spacing: -.02em; color: var(--tinta); }
+.jg-panel__fr { margin: 0; max-width: 620px; font-size: 17px; line-height: 1.5; color: #33415F; }
+.jg-mini { flex: 0 0 96px; width: 96px; margin-top: 14px; border-radius: 22px; }
+.jg-mini .edad__num { font-size: 56px; }
+
+/* Tarjetas de juego */
+.jg-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+.jg-juego { --e: #FFE3DF; display: flex; flex-direction: column; height: 100%; padding: 20px; background: #fff; border: 2px solid var(--tinta); border-radius: 26px; box-shadow: 0 5px 0 rgba(31,42,68,.14); color: var(--tinta); text-decoration: none; transition: transform .2s var(--curva), box-shadow .2s var(--curva); }
+.jg-juego:hover { transform: translateY(-6px); box-shadow: 0 12px 0 rgba(31,42,68,.14); }
+.jg-juego__emoji { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: 16px; background: var(--e); border: 2px solid var(--tinta); border-radius: 20px; font-size: 36px; line-height: 1; }
+.jg-juego h3 { margin: 0 0 8px; font-family: var(--f-titulo); font-weight: 800; font-size: 21px; line-height: 1.15; }
+.jg-juego p { margin: 0 0 16px; font-size: 15px; line-height: 1.45; color: #4A5676; }
+.jg-juego__pie { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+.jg-chip { padding: 5px 10px; background: rgba(31,42,68,.07); border-radius: 14px; font-family: var(--f-mono); font-weight: 500; font-size: 11px; line-height: 1.3; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta); }
+.jg-burbuja { flex: 0 0 34px; display: grid; place-items: center; width: 34px; height: 34px; background: var(--p); border-radius: 50%; }
+.jg-burbuja svg { transition: transform .2s var(--curva); }
+.jg-juego:hover .jg-burbuja svg { transform: translateX(4px); }
+.jg-panel { --p: #FFE3DF; }
+.jg-burbuja { background: var(--p); }
+
+/* Cómo acompañar */
+.jg-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 28px; }
+.jg-tip { padding: 28px; background: var(--b); border: 2px solid var(--tinta); border-radius: 30px; box-shadow: 0 6px 0 rgba(31,42,68,.14); }
+.jg-tip h3 { margin: 18px 0 8px; font-family: var(--f-titulo); font-weight: 800; font-size: 24px; line-height: 1.1; }
+.jg-tip p { margin: 0; font-size: 16px; line-height: 1.55; color: #33415F; }
+.jg-fig { display: block; width: 26px; height: 26px; border: 2px solid var(--tinta); }
+.jg-fig--circ { background: var(--coral); border-radius: 50%; }
+.jg-fig--cuad { background: var(--sol); border-radius: 8px; }
+.jg-fig--tri { width: 0; height: 0; border: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 26px solid var(--menta); filter: drop-shadow(0 0 0 var(--tinta)); }
+
+/* Carrera del 20 */
+.jg-carrera { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 28px 40px; padding: 48px 56px; background: #ECE7FD; border-radius: 44px; }
+.jg-carrera > div:first-child { flex: 1 1 380px; max-width: 640px; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .jg-portada { grid-template-columns: 1fr; padding: 44px 36px; }
+  .jg-portada__edades { max-width: 520px; width: 100%; margin-inline: auto; }
+  .jg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .jg-sec { margin-top: 72px; }
+  .jg-portada { padding: 36px 22px; border-radius: 32px; }
+  .jg-portada__sub { font-size: 18px; }
+  .jg-edades { gap: 22px 18px; }
+  .jg-filtro { border-radius: 28px; padding: 10px; }
+  .jg-fb { padding: 0 14px; }
+  .jg-contador { width: 100%; padding: 0 8px 4px; }
+  .jg-panel { padding: 28px 20px; border-radius: 32px; }
+  .jg-panel__id { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .jg-grid { grid-template-columns: 1fr; }
+  .jg-carrera { padding: 36px 24px; border-radius: 32px; }
+  .jg-botones .jg-btn, .jg-panel__cab > .jg-btn { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-portada::after { animation: none; }
+  .jg-btn, .jg-juego, .jg-burbuja svg { transition: none; }
+  .jg-juego:hover, .jg-edad:hover .edad__bloque { transform: none; }
+}
