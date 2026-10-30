@@ -411,6 +411,7 @@
 .qs-cta__texto .qs-h2 { margin-bottom: 16px; }
 .qs-cta__texto > p:last-child { color: #4A4630; font-size: 18px; }
 .qs-cta__acciones { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.qs-cta__contacto ul { display: grid; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 15px; }
 .qs-cta__botones { display: flex; flex-wrap: wrap; gap: 14px 16px; }
 
 /* ---------- Adaptación ---------- */
