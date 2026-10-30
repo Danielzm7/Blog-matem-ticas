@@ -3,7 +3,7 @@
   var guion = document.currentScript && document.currentScript.src;
   var base = guion ? guion.replace(/js\/menu\.js.*$/, '') : '';
   var PAGINAS = [
-    ['index.html', 'inicio portada semillas matematicas blog'],
+    ['', 'inicio portada semillas matematicas blog'],
     ['quienes-somos.html', 'quienes somos equipo sharon yuliana angie autoras estudiantes contexto objetivo'],
     ['temas.html', 'temas evaluacion formativa retroalimentacion ticket de salida retos matematicos bingo emisario'],
     ['exposiciones.html', 'exposiciones presentaciones diapositivas clase'],
@@ -34,7 +34,7 @@
         var n = palabras.filter(function (w) { return norm(p[1]).indexOf(w) !== -1; }).length;
         if (n > max) { max = n; mejor = p[0]; }
       });
-      if (mejor) { window.location.href = base + mejor; return; }
+      if (mejor !== null) { window.location.href = base + mejor; return; }
       campo.setCustomValidity('No encontramos resultados. Prueba con «3 años», «exposiciones» o «juegos».');
       campo.reportValidity();
     });
