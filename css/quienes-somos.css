@@ -301,6 +301,7 @@
 .qs-detalle dt:first-child { margin-top: 0; }
 .qs-detalle dd { margin: 4px 0 0; font-size: 16px; }
 .qs-detalle .chips { margin-top: 6px; }
+.qs-correo { font-weight: 700; color: var(--tinta); text-decoration: underline; text-decoration-color: var(--c); text-decoration-thickness: 3px; text-underline-offset: 4px; overflow-wrap: anywhere; }
 .qs-detalle .chip { background: var(--t); border: 1.5px solid var(--c); font-size: 13px; padding: 6px 12px; }
 
 /* ---------- 4. Propósito ---------- */

@@ -158,6 +158,7 @@
   .in-expos { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
+  .in-solo-pc { display: none; }
   .in-temas { grid-template-columns: minmax(0, 1fr); }
   .in-qs { padding: 32px 18px; border-radius: 30px; }
   .in-qs__igual { right: 70px; top: 14px; font-size: 44px; } .in-qs__mas { right: 22px; top: 28px; font-size: 30px; }
