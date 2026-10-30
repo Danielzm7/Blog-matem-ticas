@@ -1,11 +1,10 @@
-# Blog-matem-ticas
-Blog de la materia de matemáticas
+# Semillas Matemáticas
+Blog de matemáticas para la primera infancia, construido en el curso **Didáctica de las matemáticas en la primera infancia** (Universidad del Quindío).
 
-Maqueta de la página de inicio de **Didáctica de las matemáticas en la primera infancia**
-(Licenciatura en Educación Infantil, Universidad del Quindío).
+Sitio estático (HTML, CSS y JavaScript sin dependencias):
 
-- `index.html`: estructura de la página de inicio con textos provisionales.
-- `css/styles.css`: estilos, colores, tipografía, animaciones y versiones responsive.
-- `js/menu.js`: menú desplegable del celular.
+- `index.html`: inicio. `quienes-somos.html`, `temas.html`, `exposiciones.html` y `exposicion-1..4.html`, `situaciones.html`, `autoevaluaciones.html`.
+- `actividades/`: juegos de matemáticas para 3, 4, 5, 6, 7 y 8 años o más.
+- `css/` y `js/`: estilos y scripts de cada página; `img/`: imágenes.
 
-Para verla basta con abrir `index.html` en el navegador.
+Para verlo basta con abrir `index.html` en el navegador.
