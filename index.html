@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=11">
-  <link rel="stylesheet" href="css/inicio.css?v=5">
+  <link rel="stylesheet" href="css/inicio.css?v=6">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -207,10 +207,13 @@
       <div class="in-qs">
         <span class="in-qs__signo in-qs__igual" aria-hidden="true">=</span>
         <span class="in-qs__signo in-qs__mas" aria-hidden="true">+</span>
+        <div class="in-qs__cab">
         <div class="in-qs__texto">
           <p class="in-eti" style="--c:#B7A6F2">Quiénes somos</p>
           <h2 id="qs-titulo">Conoce al grupo</h2>
           <p>Tres estudiantes de IV semestre de la Licenciatura en Matemáticas que escriben este blog para aprender, enseñar y compartir matemáticas<span class="in-solo-pc"> desde la primera infancia</span>.</p>
+        </div>
+        <div class="in-qs__btn"><a class="in-btn in-btn--oscuro" href="quienes-somos.html">Quiénes somos <span aria-hidden="true">→</span></a></div>
         </div>
         <ul class="in-qs__grupo">
           <li>
@@ -256,7 +259,6 @@
             </article>
           </li>
         </ul>
-        <div class="in-qs__btn"><a class="in-btn in-btn--oscuro" href="quienes-somos.html">Quiénes somos <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
 
