@@ -12,6 +12,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=11">
+  <link rel="stylesheet" href="css/inicio.css?v=2">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -195,70 +202,250 @@
         </div>
       </section>
 
-    <!-- 2. Explora por noción -->
-    <section class="seccion contenedor" aria-labelledby="nociones-titulo">
-      <div class="encabezado-nociones">
-        <p class="etiqueta encabezado-nociones__etiqueta">Nociones matemáticas</p>
-        <h2 class="encabezado-nociones__titulo" id="nociones-titulo">Explora por noción</h2>
-        <p class="encabezado-nociones__apoyo">Texto de apoyo provisional para presentar las categorías del blog.</p>
-        <a class="boton-globo" href="#">
-          <svg class="boton-globo__estrella" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#FFD45E" stroke="#1F2A44" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          <span class="boton-globo__punto" aria-hidden="true"></span>
-          <span class="boton-globo__texto">Ver todas las categorías</span>
-          <span class="boton-globo__flecha" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <!-- 2. Quiénes somos -->
+    <section class="seccion contenedor in-rev" aria-labelledby="qs-titulo">
+      <div class="in-qs">
+        <span class="in-qs__signo in-qs__igual" aria-hidden="true">=</span>
+        <span class="in-qs__signo in-qs__mas" aria-hidden="true">+</span>
+        <div class="in-qs__texto">
+          <p class="in-eti" style="--c:#B7A6F2">Quiénes somos</p>
+          <h2 id="qs-titulo">Conoce al grupo</h2>
+          <p>Tres futuras licenciadas en Educación Infantil que escriben este blog para aprender, enseñar y compartir matemáticas desde la primera infancia.</p>
+        </div>
+        <ul class="in-qs__grupo">
+          <li>
+            <article class="in-per">
+              <a class="in-per__top" href="quienes-somos.html" aria-label="Conocer a Sharon en Quiénes somos">
+                <span class="in-per__signo" aria-hidden="true">+</span>
+                <span class="in-per__tag" aria-hidden="true">Autora</span>
+                <span class="in-per__arco"><img src="img/integrante-1-completa.jpg" width="480" height="480" alt="Sharon" loading="lazy"></span>
+              </a>
+              <div class="in-per__info">
+                <h3 class="in-per__nombre"><i aria-hidden="true"></i>Sharon</h3>
+                <p class="in-per__lic">Licenciatura en Educación Infantil</p>
+                <p class="in-per__txt">Texto provisional. Aquí irá una breve presentación de Sharon y de lo que aporta al blog.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="in-per in-per--y">
+              <a class="in-per__top" href="quienes-somos.html" aria-label="Conocer a Yuliana en Quiénes somos">
+                <span class="in-per__signo" aria-hidden="true">÷</span>
+                <span class="in-per__tag" aria-hidden="true">Autora</span>
+                <span class="in-per__arco"><img src="img/integrante-2.jpg" width="480" height="480" alt="Yuliana" loading="lazy"></span>
+              </a>
+              <div class="in-per__info">
+                <h3 class="in-per__nombre"><i aria-hidden="true"></i>Yuliana</h3>
+                <p class="in-per__lic">Licenciatura en Educación Infantil</p>
+                <p class="in-per__txt">Texto provisional. Aquí irá una breve presentación de Yuliana y de lo que aporta al blog.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="in-per in-per--a">
+              <a class="in-per__top" href="quienes-somos.html" aria-label="Conocer a Angie en Quiénes somos">
+                <span class="in-per__signo" aria-hidden="true">×</span>
+                <span class="in-per__tag" aria-hidden="true">Autora</span>
+                <span class="in-per__arco"><img src="img/integrante-3.jpg" width="480" height="480" alt="Angie" loading="lazy"></span>
+              </a>
+              <div class="in-per__info">
+                <h3 class="in-per__nombre"><i aria-hidden="true"></i>Angie</h3>
+                <p class="in-per__lic">Licenciatura en Educación Infantil</p>
+                <p class="in-per__txt">Texto provisional. Aquí irá una breve presentación de Angie y de lo que aporta al blog.</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+        <div class="in-qs__btn"><a class="in-btn in-btn--oscuro" href="quienes-somos.html">Quiénes somos <span aria-hidden="true">→</span></a></div>
+      </div>
+    </section>
+
+    <!-- 3. Explora por tema -->
+    <section class="seccion contenedor in-rev" aria-labelledby="temas-titulo">
+      <div class="in-cab">
+        <div>
+          <p class="in-eti" style="--c:#5BB8F0">Temas del semestre</p>
+          <h2 id="temas-titulo">Explora por tema</h2>
+          <p class="in-intro">Los temas y actividades que trabajamos en clase, en el mismo orden en que los explicamos en la sección Temas.</p>
+        </div>
+        <a class="in-enlace" href="temas.html">Ver todos los temas →</a>
+      </div>
+      <ul class="in-temas">
+          <li><a class="in-tema" href="temas.html#t1" style="--s:#FFF3C9">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><circle cx="10" cy="24" r="8" fill="#FFD45E"/><circle cx="38" cy="24" r="8" fill="#1F2A44"/><path d="M19 24h10M25 19l5 5-5 5" stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><span class="in-tema__num">01</span></div>
+            <h3>Actividad del emisario</h3>
+            <p>Un circuito en grupos para responder seis preguntas de saberes previos.</p>
+            <span class="in-tema__pie"><span>ACTIVIDAD</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t2" style="--s:#DDF1FD">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="6" width="30" height="37" rx="6" fill="#5BB8F0"/><rect x="17" y="3" width="14" height="8" rx="3" fill="#1F2A44"/><path d="M16 26l6 6 11-12" stroke="#1F2A44" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><span class="in-tema__num">02</span></div>
+            <h3>Evaluación</h3>
+            <p>Qué es evaluar y cómo se hace según las necesidades de los estudiantes.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t3" style="--s:#FFE3DF">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="9" r="6" fill="#1F2A44"/><path d="M24 15v7M8 28v-6h32v6" stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="8" cy="35" r="5" fill="#FF7A6B"/><circle cx="19" cy="38" r="5" fill="#FF7A6B"/><circle cx="30" cy="38" r="5" fill="#FF7A6B"/><circle cx="41" cy="35" r="5" fill="#FF7A6B"/></svg></span><span class="in-tema__num">03</span></div>
+            <h3>Tipos de evaluación</h3>
+            <p>Cuatro tipos que se desglosan del tema de la evaluación.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t4" style="--s:#D9F5E9">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 22L44 5 31 43 22 28z" fill="#7FD8B5"/><path d="M44 5L22 28" stroke="#1F2A44" stroke-width="3" stroke-linecap="round"/><path d="M22 28l1 10 6-7" fill="#1F2A44" stroke="#1F2A44" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="in-tema__num">04</span></div>
+            <h3>Evaluación formativa</h3>
+            <p>Un proceso continuo para acompañar y mejorar el aprendizaje, más allá de la nota.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t5" style="--s:#ECE7FD">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 8h24a4 4 0 014 4v12a4 4 0 01-4 4H16l-8 7v-7H5a4 4 0 01-4-4V12a4 4 0 014-4z" fill="#B7A6F2"/><path d="M36 18h7a4 4 0 014 4v10a4 4 0 01-4 4h-2v6l-7-6h-8a4 4 0 01-4-4v-2" fill="#1F2A44"/></svg></span><span class="in-tema__num">05</span></div>
+            <h3>Retroalimentación</h3>
+            <p>Orientar al estudiante para que vea qué hizo bien, qué mejorar y cómo.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t6" style="--s:#FFF3C9">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 12a3 3 0 013-3h34a3 3 0 013 3v7a5 5 0 000 10v7a3 3 0 01-3 3H7a3 3 0 01-3-3v-7a5 5 0 000-10z" fill="#FFD45E"/><path d="M31 11v26" stroke="#1F2A44" stroke-width="3" stroke-dasharray="3 4" stroke-linecap="round"/><path d="M12 19h12M12 26h8" stroke="#1F2A44" stroke-width="3" stroke-linecap="round"/></svg></span><span class="in-tema__num">06</span></div>
+            <h3>Ticket de salida</h3>
+            <p>Completar frases para reflexionar sobre nuestra experiencia como estudiantes.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t7" style="--s:#FFE3DF">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 14h10a6 6 0 1112 0h10v10a6 6 0 110 12v6H8V36a6 6 0 100-12z" fill="#FF7A6B" transform="translate(0 -4)"/><circle cx="24" cy="27" r="4" fill="#1F2A44"/></svg></span><span class="in-tema__num">07</span></div>
+            <h3>Retos matemáticos</h3>
+            <p>Problemas lúdicos que invitan a los niños a explorar y encontrar soluciones.</p>
+            <span class="in-tema__pie"><span>TEMA</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+          <li><a class="in-tema" href="temas.html#t8" style="--s:#D9F5E9">
+            <div class="in-tema__fila"><span class="in-tema__icono"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="7" fill="#7FD8B5"/><g fill="#fff"><rect x="10" y="10" width="8" height="8" rx="2"/><rect x="20" y="10" width="8" height="8" rx="2"/><rect x="30" y="10" width="8" height="8" rx="2"/><rect x="10" y="20" width="8" height="8" rx="2"/><rect x="30" y="20" width="8" height="8" rx="2"/><rect x="10" y="30" width="8" height="8" rx="2"/><rect x="20" y="30" width="8" height="8" rx="2"/></g><circle cx="24" cy="24" r="5" fill="#1F2A44"/><circle cx="34" cy="34" r="4" fill="#1F2A44"/></svg></span><span class="in-tema__num">08</span></div>
+            <h3>Bingo evaluativo</h3>
+            <p>Un juego para evaluar lo aprendido en las exposiciones y dar retroalimentación.</p>
+            <span class="in-tema__pie"><span>ACTIVIDAD</span><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F2A44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          </a></li>
+      </ul>
+      <div class="in-banda">
+        <div>
+          <h3>Mira cómo se conectan los temas</h3>
+          <p>La evaluación fue uno de los primeros temas del semestre y de ella se desglosan los tipos de evaluación.</p>
+        </div>
+        <a class="in-btn" href="temas.html#mapa">Ver el mapa de temas <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- 4. Entradas recientes = las cuatro exposiciones -->
+    <section class="seccion contenedor in-rev" aria-labelledby="entradas-titulo">
+      <div class="in-cab">
+        <div>
+          <p class="in-eti" style="--c:#7FD8B5">Exposiciones del semestre</p>
+          <h2 id="entradas-titulo" style="margin:0">Entradas recientes</h2>
+        </div>
+        <a class="in-globo" href="exposiciones.html"><span>Ver todas las exposiciones</span><i aria-hidden="true">→</i></a>
+      </div>
+      <ol class="in-expos">
+        <li><article class="in-expo in-expo--1">
+          <a class="in-expo__img" href="exposicion-1.html" tabindex="-1" aria-hidden="true"><img src="img/exposicion-1/s01.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"></a>
+          <div class="in-expo__cuerpo">
+            <p class="in-expo__etq">Exposición 01</p>
+            <h3>Referentes curriculares</h3>
+            <p>Presentación del Capítulo 2 de los Lineamientos Curriculares de Matemáticas del Ministerio de Educación.</p>
+            <a class="in-globo" href="exposicion-1.html" aria-label="Ver la exposición 1: Referentes curriculares"><span>Ver la exposición</span><i aria-hidden="true">→</i></a>
+          </div>
+        </article></li>
+        <li><article class="in-expo in-expo--2">
+          <a class="in-expo__img" href="exposicion-2.html" tabindex="-1" aria-hidden="true"><img src="img/expo2/s01.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"></a>
+          <div class="in-expo__cuerpo">
+            <p class="in-expo__etq">Exposición 02</p>
+            <h3>Pensamiento numérico y sistemas numéricos</h3>
+            <p>Comprender los números, las cantidades y sus relaciones para resolver situaciones de la vida cotidiana.</p>
+            <a class="in-globo" href="exposicion-2.html" aria-label="Ver la exposición 2: Pensamiento numérico y sistemas numéricos"><span>Ver la exposición</span><i aria-hidden="true">→</i></a>
+          </div>
+        </article></li>
+        <li><article class="in-expo in-expo--3">
+          <a class="in-expo__img in-expo__img--contain" href="exposicion-3.html" tabindex="-1" aria-hidden="true"><img src="img/expo3/portada.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"></a>
+          <div class="in-expo__cuerpo">
+            <p class="in-expo__etq">Exposición 03</p>
+            <h3>Pensamiento espacial y sistemas geométricos</h3>
+            <p>La geometría intuitiva recupera la importancia del pensamiento espacial: aprender con experiencias prácticas y con la exploración del espacio.</p>
+            <a class="in-globo" href="exposicion-3.html" aria-label="Ver la exposición 3: Pensamiento espacial y sistemas geométricos"><span>Ver la exposición</span><i aria-hidden="true">→</i></a>
+          </div>
+        </article></li>
+        <li><article class="in-expo in-expo--4">
+          <a class="in-expo__img" href="exposicion-4.html" tabindex="-1" aria-hidden="true"><img src="img/expo4/portada.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"></a>
+          <div class="in-expo__cuerpo">
+            <p class="in-expo__etq">Exposición 04</p>
+            <h3>La visión del niño desde sus dimensiones del desarrollo</h3>
+            <p>El desarrollo infantil ocurre de manera integral: todas las dimensiones del niño están relacionadas y se desarrollan al mismo tiempo. Cada niño es único y tiene su propio ritmo de aprendizaje.</p>
+            <a class="in-globo" href="exposicion-4.html" aria-label="Ver la exposición 4: La visión del niño desde sus dimensiones del desarrollo"><span>Ver la exposición</span><i aria-hidden="true">→</i></a>
+          </div>
+        </article></li>
+      </ol>
+    </section>
+
+    <!-- 5. Situaciones didácticas y juegos -->
+    <section class="contenedor in-rev" aria-labelledby="situaciones-titulo">
+      <div class="in-sit">
+        <div>
+          <p class="in-eti" style="--c:#B7A6F2">Teoría de situaciones didácticas</p>
+          <h2 id="situaciones-titulo">Situaciones didácticas y juegos</h2>
+          <p class="in-sit__p">La teoría de las situaciones didácticas, propuesta por Guy Brousseau, explica cómo los estudiantes construyen conocimientos matemáticos al resolver problemas en situaciones organizadas por el docente.</p>
+          <ol class="in-mom">
+            <li><i style="--c:#FF7A6B" aria-hidden="true"></i><span><b>Acción.</b> El estudiante explora el problema y busca cómo resolverlo.</span></li>
+            <li><i style="--c:#5BB8F0" aria-hidden="true"></i><span><b>Formulación.</b> Comunica las estrategias y respuestas que encontró.</span></li>
+            <li><i style="--c:#FFD45E" aria-hidden="true"></i><span><b>Validación.</b> Comprueba y argumenta si sus respuestas son correctas.</span></li>
+            <li><i style="--c:#7FD8B5" aria-hidden="true"></i><span><b>Institucionalización.</b> El docente retoma lo descubierto y lo relaciona con el conocimiento matemático.</span></li>
+          </ol>
+          <div class="in-sit__botones">
+            <a class="in-btn in-btn--oscuro" href="situaciones.html">Conocer la teoría</a>
+            <a class="in-btn in-btn--claro" href="situaciones.html#carrera">Jugar la Carrera del 20</a>
+          </div>
+        </div>
+        <a class="in-ej" href="situaciones.html#carrera" aria-label="Ejemplo de la exposición: Carrera del 20">
+          <div class="in-ej__hoja">
+            <div class="in-ej__banda">Ejemplo de la exposición</div>
+            <div class="in-ej__cuerpo">
+              <h3>Carrera del 20</h3>
+              <dl>
+                <div><dt>Jugadores</dt><dd>A y B</dd></div>
+                <div><dt>En cada turno</dt><dd>Suman 1 o 2</dd></div>
+                <div><dt>Meta</dt><dd>Llegar a 20</dd></div>
+                <div><dt>Gana</dt><dd>Quien llegue primero</dd></div>
+              </dl>
+              <p class="in-ej__rot">Así se ve una partida</p>
+              <ol class="in-ej__cas" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li></ol>
+              <p class="in-ej__rot">Los cuatro momentos</p>
+              <ul class="in-ej__chips"><li>Acción</li><li>Formulación</li><li>Validación</li><li>Institucionalización</li></ul>
+              <div class="in-ej__pie"><ul class="in-ej__chips"><li>Situación didáctica</li><li>Situación adidáctica</li></ul></div>
+            </div>
+          </div>
         </a>
       </div>
+    </section>
 
-      <ul class="nociones">
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-coral"><svg aria-hidden="true"><use href="#i-conteo"/></svg></span>
-          <h3>Conteo</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+    <!-- 6. Autoevaluaciones -->
+    <section class="seccion contenedor in-rev" aria-labelledby="auto-titulo">
+      <div class="in-cab">
+        <div>
+          <p class="in-eti" style="--c:#FF7A6B">Autoevaluaciones</p>
+          <h2 id="auto-titulo">Lo que cada una se lleva del curso</h2>
+          <p class="in-intro">Tres miradas al propio proceso de aprendizaje, contadas con sus palabras.</p>
+        </div>
+        <a class="in-btn in-btn--oscuro in-cab__btn" href="autoevaluaciones.html">Ver las autoevaluaciones <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="in-notas">
+        <li><a class="in-nota" href="autoevaluaciones.html#sharon">
+          <span class="in-nota__com" aria-hidden="true">“</span>
+          <p>A lo largo del curso, comprendí la importancia del juego, el material manipulativo y los retos matemáticos para promover experiencias significativas que despierten la curiosidad y fortalezcan el pensamiento matemático.</p>
+          <span class="in-nota__pie"><span class="in-nota__nom"><i aria-hidden="true"></i>Sharon</span><span class="in-nota__leer">Leer completa →</span></span>
         </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-cielo"><svg aria-hidden="true"><use href="#i-clasificacion"/></svg></span>
-          <h3>Clasificación</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        <li><a class="in-nota in-nota--y" href="autoevaluaciones.html#yuliana">
+          <span class="in-nota__com" aria-hidden="true">“</span>
+          <p>Me llevo aprendizajes que puedo aplicar en mi formación y en mi práctica, especialmente la importancia de explicar los temas de distintas maneras y de tener en cuenta los ritmos de aprendizaje de cada estudiante.</p>
+          <span class="in-nota__pie"><span class="in-nota__nom"><i aria-hidden="true"></i>Yuliana</span><span class="in-nota__leer">Leer completa →</span></span>
         </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-sol"><svg aria-hidden="true"><use href="#i-seriacion"/></svg></span>
-          <h3>Seriación</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-menta"><svg aria-hidden="true"><use href="#i-patrones"/></svg></span>
-          <h3>Patrones</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-lila"><svg aria-hidden="true"><use href="#i-medicion"/></svg></span>
-          <h3>Medición</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-coral"><svg aria-hidden="true"><use href="#i-espacio"/></svg></span>
-          <h3>Espacio y forma</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a></li>
-        <li><a class="tarjeta tarjeta-nocion" href="#">
-          <span class="tarjeta-nocion__icono tinte-sol"><svg aria-hidden="true"><use href="#i-problemas"/></svg></span>
-          <h3>Resolución de problemas</h3>
-          <p>Descripción breve provisional de la noción.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a></li>
-        <li><a class="tarjeta tarjeta-nocion tarjeta-nocion--oscura" href="#">
-          <span class="tarjeta-nocion__formas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <h3>Todas las actividades</h3>
-          <p>Texto provisional para invitar a ver el listado completo.</p>
-          <span class="tarjeta-nocion__pie"><span class="dato">00 actividades</span><svg class="flecha" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        <li><a class="in-nota in-nota--a" href="autoevaluaciones.html#angie">
+          <span class="in-nota__com" aria-hidden="true">“</span>
+          <p>Poco a poco he ganado mayor confianza al enfrentar actividades que requieren análisis, interpretación y uso de estrategias matemáticas, logrando avances significativos en mi proceso de aprendizaje.</p>
+          <span class="in-nota__pie"><span class="in-nota__nom"><i aria-hidden="true"></i>Angie</span><span class="in-nota__leer">Leer completa →</span></span>
         </a></li>
       </ul>
+      <div class="in-notas__btn"><a class="in-btn in-btn--oscuro" href="autoevaluaciones.html">Ver las autoevaluaciones <span aria-hidden="true">→</span></a></div>
     </section>
 
     <!-- 3. Actividades para cada etapa -->
@@ -301,188 +488,25 @@
       </div>
     </section>
 
-    <!-- 4. Entradas recientes -->
-    <section class="seccion contenedor" aria-labelledby="entradas-titulo">
-      <div class="seccion__encabezado">
-        <div>
-          <p class="etiqueta">Blog</p>
-          <h2 id="entradas-titulo">Entradas recientes</h2>
-        </div>
-        <a class="boton-menta" href="#">
-          <span class="boton-menta__punto" aria-hidden="true"></span>
-          <span>Ver todas las entradas</span>
-          <span class="boton-menta__flecha" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-      </div>
-
-      <div class="entradas">
-        <article class="tarjeta entrada-destacada">
-          <div class="espacio-imagen espacio-imagen--16x9"><span class="dato">Imagen 16:9</span></div>
-          <div class="entrada-destacada__cuerpo">
-            <div class="meta"><span class="chip chip--coral">Conteo</span><span class="dato">00 / 00 / 0000</span></div>
-            <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
-            <p>Descripción provisional de la entrada destacada. Dos o tres líneas que resumen de qué trata la publicación.</p>
-          </div>
-        </article>
-
-        <div class="entradas__lista">
-          <article class="tarjeta entrada-h">
-            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--sol"></div>
-            <div>
-              <div class="meta"><span class="chip chip--cielo">Clasificación</span><span class="dato">00 / 00 / 0000</span></div>
-              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
-              <p>Descripción provisional breve.</p>
-            </div>
-          </article>
-          <article class="tarjeta entrada-h">
-            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--menta"></div>
-            <div>
-              <div class="meta"><span class="chip chip--menta">Patrones</span><span class="dato">00 / 00 / 0000</span></div>
-              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
-              <p>Descripción provisional breve.</p>
-            </div>
-          </article>
-          <article class="tarjeta entrada-h">
-            <div class="espacio-imagen espacio-imagen--mini espacio-imagen--lila"></div>
-            <div>
-              <div class="meta"><span class="chip chip--lila">Medición</span><span class="dato">00 / 00 / 0000</span></div>
-              <h3><a class="enlace-estirado" href="#">Nombre de la entrada</a></h3>
-              <p>Descripción provisional breve.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Situaciones didácticas y juegos -->
-    <section class="contenedor" aria-labelledby="situaciones-titulo">
-      <div class="bloque-seccion bloque-seccion--lila situaciones">
-        <div class="situaciones__texto">
-          <p class="etiqueta">Jugamos y enseñamos</p>
-          <h2 id="situaciones-titulo">Situaciones didácticas y juegos</h2>
-          <p class="seccion__intro">Texto provisional que presenta cómo se describe cada situación didáctica en el blog.</p>
-          <ol class="puntos">
-            <li><span class="bloque bloque--coral bloque--xs" aria-hidden="true">1</span><div><strong>Noción, edad y tiempo</strong><span>Descripción provisional del punto.</span></div></li>
-            <li><span class="bloque bloque--sol bloque--xs" aria-hidden="true">2</span><div><strong>Materiales concretos</strong><span>Descripción provisional del punto.</span></div></li>
-            <li><span class="bloque bloque--menta bloque--xs" aria-hidden="true">3</span><div><strong>Qué observar</strong><span>Descripción provisional del punto.</span></div></li>
-          </ol>
-          <a class="btn btn--principal" href="#">Ver situaciones</a>
-        </div>
-
-        <div class="ficha-pila">
-          <div class="ficha-pila__fondo ficha-pila__fondo--sol" aria-hidden="true"></div>
-          <div class="ficha-pila__fondo ficha-pila__fondo--menta" aria-hidden="true"></div>
-          <article class="ficha" aria-label="Ejemplo de ficha de situación didáctica">
-            <header class="ficha__cabeza">
-              <span class="dato">Ficha de situación didáctica</span>
-              <span class="dato ficha__num">N.º 00</span>
-            </header>
-            <h3>Nombre de la situación</h3>
-            <dl class="ficha__campos">
-              <div><dt>Noción</dt><dd>Nombre de la noción</dd></div>
-              <div><dt>Edad sugerida</dt><dd>0 años</dd></div>
-              <div><dt>Tiempo</dt><dd>00 min</dd></div>
-              <div class="ficha__ancho"><dt>Materiales</dt><dd>Lista provisional de materiales</dd></div>
-              <div class="ficha__ancho"><dt>Momentos</dt><dd class="chips"><span class="chip chip--coral">Inicio</span><span class="chip chip--cielo">Exploración</span><span class="chip chip--sol">Juego guiado</span><span class="chip chip--menta">Cierre</span></dd></div>
-              <div class="ficha__ancho"><dt>Qué observar</dt><dd>Texto provisional sobre lo que se observa durante la situación.</dd></div>
-            </dl>
-            <div class="ficha__versiones">
-              <div class="tinte-menta"><span class="dato">Más sencilla</span><p>Variación provisional.</p></div>
-              <div class="tinte-coral"><span class="dato">Más retadora</span><p>Variación provisional.</p></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Recursos para imprimir -->
-    <section class="seccion contenedor" aria-labelledby="recursos-titulo">
-      <div class="seccion__encabezado">
-        <div>
-          <p class="etiqueta">Recursos</p>
-          <h2 id="recursos-titulo">Recursos para imprimir</h2>
-        </div>
-        <a class="enlace-flecha" href="#">Ver todos los recursos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
-      </div>
-
-      <ul class="recursos">
-        <li class="tarjeta recurso">
-          <div class="hoja tinte-coral" aria-hidden="true">
-            <div class="hoja__papel prev-tarjetas"><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="recurso__cuerpo">
-            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
-            <h3>Tarjetas imprimibles</h3>
-            <a class="btn btn--pequeno" href="#" aria-label="Descargar Tarjetas imprimibles"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
-          </div>
-        </li>
-        <li class="tarjeta recurso">
-          <div class="hoja tinte-sol" aria-hidden="true">
-            <div class="hoja__papel prev-tablero"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="recurso__cuerpo">
-            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
-            <h3>Tablero de juego</h3>
-            <a class="btn btn--pequeno" href="#" aria-label="Descargar Tablero de juego"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
-          </div>
-        </li>
-        <li class="tarjeta recurso">
-          <div class="hoja tinte-cielo" aria-hidden="true">
-            <div class="hoja__papel prev-registro"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="recurso__cuerpo">
-            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
-            <h3>Plantilla de registro</h3>
-            <a class="btn btn--pequeno" href="#" aria-label="Descargar Plantilla de registro"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
-          </div>
-        </li>
-        <li class="tarjeta recurso">
-          <div class="hoja tinte-menta" aria-hidden="true">
-            <div class="hoja__papel prev-guia"><b></b><i></i><i></i><i></i><u></u><i></i><i></i></div>
-          </div>
-          <div class="recurso__cuerpo">
-            <div class="meta"><span class="chip chip--pdf">PDF</span><span class="dato">00 páginas</span></div>
-            <h3>Guía para familias</h3>
-            <a class="btn btn--pequeno" href="#" aria-label="Descargar Guía para familias"><svg aria-hidden="true"><use href="#i-descargar"/></svg>Descargar</a>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- 7. Orientaciones pedagógicas -->
-    <section class="contenedor" aria-labelledby="orientaciones-titulo">
-      <div class="bloque-seccion bloque-seccion--tinta orientaciones">
+    <!-- 8. Cómo enseñar matemáticas en la primera infancia -->
+    <section class="contenedor in-rev" aria-labelledby="orientaciones-titulo">
+      <div class="bloque-seccion bloque-seccion--tinta orientaciones in-or" style="padding:72px 56px">
         <div class="orientaciones__intro">
-          <p class="etiqueta etiqueta--clara">Enfoque</p>
-          <h2 id="orientaciones-titulo">Orientaciones pedagógicas</h2>
-          <p class="seccion__intro">Texto provisional que introduce los principios que orientan las propuestas del blog.</p>
+          <p class="in-eti in-eti--clara" style="--c:#FFD45E">Orientaciones pedagógicas</p>
+          <h2 id="orientaciones-titulo">Cómo enseñar matemáticas en la primera infancia</h2>
+          <p class="seccion__intro">En la primera infancia las matemáticas se construyen jugando, explorando y resolviendo situaciones reales. Este blog reúne exposiciones, actividades y juegos para acompañar ese camino en el aula.</p>
+          <a class="in-btn in-btn--sol" href="temas.html">Explorar los temas <span aria-hidden="true">→</span></a>
         </div>
         <ol class="orientaciones__lista">
-          <li><span class="forma forma--circulo" aria-hidden="true"></span><div><h3>El juego como método</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">01</span></li>
-          <li><span class="forma forma--cuadrado" aria-hidden="true"></span><div><h3>Exploración con materiales concretos</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">02</span></li>
-          <li><span class="forma forma--triangulo" aria-hidden="true"></span><div><h3>Resolución de problemas</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">03</span></li>
-          <li><span class="forma forma--rombo" aria-hidden="true"></span><div><h3>Experiencias cotidianas</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">04</span></li>
-          <li><span class="forma forma--aro" aria-hidden="true"></span><div><h3>Evaluación formativa</h3><p>Descripción provisional de la orientación.</p></div><span class="dato">05</span></li>
+          <li><a class="in-or__fila" href="situaciones.html"><span class="forma forma--circulo" aria-hidden="true"></span><span><h3>El juego como método</h3><p>Situaciones didácticas y juegos que convierten contar, comparar y medir en experiencias que disfrutan.</p></span></a></li>
+          <li><a class="in-or__fila" href="temas.html"><span class="forma forma--cuadrado" aria-hidden="true"></span><span><h3>Exploración con materiales concretos</h3><p>Material manipulativo para tocar, agrupar y comparar antes de pasar a los símbolos.</p></span></a></li>
+          <li><a class="in-or__fila" href="temas.html"><span class="forma forma--triangulo" aria-hidden="true"></span><span><h3>Resolución de problemas</h3><p>Retos matemáticos que invitan a pensar, probar estrategias y explicar cómo se llegó a la respuesta.</p></span></a></li>
+          <li><a class="in-or__fila" href="actividades/3-anios.html"><span class="forma forma--rombo" aria-hidden="true"></span><span><h3>Experiencias cotidianas</h3><p>Actividades por edad, de 3 a 8 años, que parten de lo que los niños viven cada día.</p></span></a></li>
+          <li><a class="in-or__fila" href="temas.html"><span class="forma forma--aro" aria-hidden="true"></span><span><h3>Evaluación formativa</h3><p>Retroalimentación y tickets de salida para acompañar el proceso, no solo medir el resultado.</p></span></a></li>
         </ol>
       </div>
     </section>
 
-    <!-- 8. Conoce al grupo -->
-    <section class="seccion contenedor" aria-labelledby="grupo-titulo">
-      <div class="tarjeta grupo">
-        <div class="grupo__fotos">
-          <span class="foto foto--coral foto--real"><img src="img/integrante-1-completa.jpg" width="480" height="480" alt="Integrante 1 del grupo" loading="lazy"></span>
-          <span class="foto foto--cielo foto--real"><img src="img/integrante-2.jpg" width="480" height="480" alt="Integrante 2 del grupo" loading="lazy"></span>
-          <span class="foto foto--menta foto--real"><img src="img/integrante-3.jpg" width="480" height="480" alt="Integrante 3 del grupo" loading="lazy"></span>
-        </div>
-        <div class="grupo__texto">
-          <p class="etiqueta">Quiénes somos</p>
-          <h2 id="grupo-titulo">Conoce al grupo</h2>
-          <p>Texto provisional de presentación del grupo que escribe el blog.</p>
-        </div>
-        <a class="btn btn--principal" href="quienes-somos.html#equipo">Conocer al grupo</a>
-      </div>
-    </section>
     </main>
 
   <!-- 9. Pie de página -->
@@ -496,11 +520,11 @@
         <nav aria-labelledby="pie-explorar">
           <h2 id="pie-explorar" class="dato">Explorar</h2>
           <ul>
-            <li><a href="exposiciones.html">Exposiciones</a></li>
-            <li><a href="#">Jugamos y enseñamos</a></li>
             <li><a href="temas.html">Temas</a></li>
+            <li><a href="exposiciones.html">Exposiciones</a></li>
             <li><a href="situaciones.html">Situaciones y juegos</a></li>
             <li><a href="autoevaluaciones.html">Autoevaluaciones</a></li>
+            <li><a href="#">Jugamos y enseñamos</a></li>
           </ul>
         </nav>
         <nav aria-labelledby="pie-sobre">
@@ -528,6 +552,7 @@
   </footer>
 
   <script src="js/menu.js"></script>
+  <script src="js/inicio.js?v=1"></script>
   <script src="js/operaciones.js"></script>
 </body>
 </html>
