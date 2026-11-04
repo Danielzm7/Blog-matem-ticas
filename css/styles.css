@@ -997,8 +997,9 @@ main > section + section { margin-top: 112px; }
   .logo--uni { grid-area: uni; }
   .logo--programa { grid-area: esc; }
   .menu { grid-area: menu; justify-self: center; }
-  .menu > ul { flex-wrap: nowrap; gap: 2px; padding: 3px; background: rgba(255, 255, 255, .82); border: 1px solid rgba(225, 233, 247, .9); border-radius: 999px; }
+  .menu > ul { flex-wrap: nowrap; gap: 3px; padding: 4px; background: rgba(255, 255, 255, .82); border: 1px solid rgba(225, 233, 247, .9); border-radius: 999px; }
   .buscador { grid-area: bus; justify-self: center; width: 100%; max-width: 560px; margin-top: -6px; }
+  .menu a { min-height: 48px; padding: 0 8px; font-size: 1rem; }
 }
 @media (min-width: 1400px) {
   .cabecera__fila.contenedor { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "uni menu bus esc"; }
@@ -1006,11 +1007,17 @@ main > section + section { margin-top: 112px; }
   .cabecera .buscador input { padding: 0 8px 0 42px; font-size: .9rem; }
   .cabecera .buscador__icono { left: 14px; }
   /* Hay espacio de sobra: el menú crece un poco. */
-  .menu a { padding: 0 6px; font-size: .98rem; }
+  .menu a { padding: 0 5px; font-size: .98rem; }
+}
+@media (min-width: 1440px) {
+  .menu a { padding: 0 6px; }
+}
+@media (min-width: 1460px) {
+  .menu a { padding: 0 7px; font-size: .99rem; }
 }
 @media (min-width: 1700px) {
-  .cabecera__fila.contenedor { max-width: 1624px; }
-  .menu a { padding: 0 9px; font-size: 1.05rem; }
+  .cabecera__fila.contenedor { max-width: 1700px; }
+  .menu a { padding: 0 12px; font-size: 1.1rem; }
   .cabecera .buscador { width: 230px; }
   .cabecera .buscador input { font-size: 1rem; }
 }
