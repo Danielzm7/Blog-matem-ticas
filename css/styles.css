@@ -291,7 +291,7 @@ main, .pie { position: relative; z-index: 1; }
 .panel-movil .buscador { width: 100%; margin-bottom: 12px; }
 .panel-movil__lista { display: grid; gap: 0; }
 /* Línea azul delgada entre opciones */
-.panel-movil__lista > li { padding: 4px 0; border-bottom: 1.5px solid var(--cielo); }
+.panel-movil__lista > li { padding: 4px 0; border-bottom: 1.5px solid #1F6FA8; }
 .panel-movil__lista > li:last-child { border-bottom: 0; }
 .panel-movil__fila { display: flex; align-items: center; gap: 6px; }
 .panel-movil__fila a { flex: 1 1 auto; }
