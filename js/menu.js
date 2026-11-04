@@ -12,6 +12,7 @@
     ['exposicion-3', 'pensamiento espacial sistemas geometricos geometria exposicion 3'],
     ['exposicion-4', 'vision del nino dimensiones del desarrollo exposicion 4'],
     ['juegos', 'jugamos y ensenamos juegos todos los juegos por edad'],
+    ['evidencias', 'evidencias fotos fotografias capturas imagenes clase registro'],
     ['situaciones', 'situaciones didacticas juegos carrera del 20 juego'],
     ['autoevaluaciones', 'autoevaluaciones autoevaluacion reflexion aprendizaje'],
     ['actividades/3-anios', '3 anos tres contar cuenta objetos colores figuras actividades'],

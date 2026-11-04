@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <title>Evidencias · Semillas Matemáticas</title>
+  <meta name="description" content="Fotos y capturas reales del curso: actividades en clase, exposiciones y situaciones didácticas, sin alteraciones.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=13">
+  <link rel="stylesheet" href="css/evidencias.css?v=1">
+  <script>
+    // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js');
+    }
+  </script>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="qs-persona" viewBox="0 0 100 100">
+      <circle cx="50" cy="36" r="17" fill="currentColor"/>
+      <path d="M16 96C16 72 32 60 50 60S84 72 84 96Z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <div class="papel ev-papel" aria-hidden="true"></div>
+
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a class="logo logo--uni" href="./" aria-label="Inicio">
+          <img src="img/logo-universidad-del-quindio.png" width="148" height="186" alt="Logo de la Universidad del Quindío">
+        </a>
+
+        <div class="cabecera__centro">
+          <nav class="menu" aria-label="Principal">
+            <ul>
+              <li><a href="./">Inicio</a></li>
+              <li><a href="quienes-somos">Quiénes somos</a></li>
+              <li><a href="temas">Temas</a></li>
+              <li><a href="exposiciones">Exposiciones</a></li>
+              <li><a href="situaciones">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones">Autoevaluaciones</a></li>
+              <li><a href="evidencias" aria-current="page">Evidencias</a></li>
+              <li class="menu__sub">
+                <a href="juegos" aria-haspopup="true">Jugamos y enseñamos <span class="menu__flecha" aria-hidden="true">▾</span></a>
+                <ul class="submenu">
+                  <li><a href="actividades/3-anios">Actividades de 3 años</a></li>
+                  <li><a href="actividades/4-anios">Actividades de 4 años</a></li>
+                  <li><a href="actividades/5-anios">Actividades de 5 años</a></li>
+                  <li><a href="actividades/6-anios">Actividades de 6 años</a></li>
+                  <li><a href="actividades/7-anios">Actividades de 7 años</a></li>
+                  <li><a href="actividades/8-anios">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <form class="buscador" role="search" action="#">
+            <label class="sr-only" for="buscar">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+        </div>
+
+        <span class="logo logo--programa">
+          <img src="img/escudo-licenciatura-matematicas.png" width="258" height="260" alt="Escudo del programa de la Universidad del Quindío">
+        </span>
+
+        <div class="cabecera__acciones">
+          <button class="boton-icono" type="button" data-abrir-busqueda aria-label="Buscar actividades" aria-controls="panel-movil" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          </button>
+          <button class="boton-icono boton-menu" type="button" data-abrir-menu aria-label="Abrir menú" aria-controls="panel-movil" aria-expanded="false">
+            <span class="boton-menu__barras" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-movil" id="panel-movil" hidden>
+        <div class="contenedor">
+          <form class="buscador buscador--panel" role="search" action="#">
+            <label class="sr-only" for="buscar-movil">Buscar actividades</label>
+            <svg class="buscador__icono" aria-hidden="true"><use href="#i-buscar"/></svg>
+            <input id="buscar-movil" type="search" name="q" placeholder="Buscar actividades" autocomplete="off">
+          </form>
+          <nav aria-label="Principal (celular)">
+            <ul class="panel-movil__lista">
+              <li><a href="./">Inicio</a></li>
+              <li><a href="quienes-somos">Quiénes somos</a></li>
+              <li><a href="temas">Temas</a></li>
+              <li><a href="exposiciones">Exposiciones</a></li>
+              <li><a href="situaciones">Situaciones y juegos</a></li>
+              <li><a href="autoevaluaciones">Autoevaluaciones</a></li>
+              <li><a href="evidencias" aria-current="page">Evidencias</a></li>
+              <li><a href="juegos">Jugamos y enseñamos</a></li>
+              <li><a class="panel-movil__sub" href="actividades/3-anios">↳ Actividades de 3 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/4-anios">↳ Actividades de 4 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/5-anios">↳ Actividades de 5 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/6-anios">↳ Actividades de 6 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/7-anios">↳ Actividades de 7 años</a></li>
+              <li><a class="panel-movil__sub" href="actividades/8-anios">↳ Actividades de 8 años o más</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+
+      <nav class="contenedor ev-migas" aria-label="Migas de pan">
+        <a href="./">Inicio</a><span aria-hidden="true">/</span><strong aria-current="page">Evidencias</strong>
+      </nav>
+
+      <section class="contenedor" aria-labelledby="ev-titulo">
+        <div class="ev-portada">
+          <p class="ev-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Fotos y capturas reales</p>
+          <h1 id="ev-titulo">Evidencias</h1>
+          <p class="ev-portada__sub">Las imágenes de nuestro trabajo en el curso, tal como las guardamos: sin retoques ni recortes. Toca una para verla en grande.</p>
+          <ul class="ev-indice" aria-label="Ir a una sección"><li><a class="ev-chip" href="#grupo" style="--c:#FFE3DF">Nuestro grupo <span>1</span></a></li><li><a class="ev-chip" href="#clase" style="--c:#DDF1FD">Actividades desarrolladas en clase <span>12</span></a></li><li><a class="ev-chip" href="#exposiciones" style="--c:#FFF3C9">Exposiciones <span>7</span></a></li><li><a class="ev-chip" href="#situaciones" style="--c:#ECE7FD">Situaciones didácticas y juegos <span>2</span></a></li></ul>
+        </div>
+      </section>
+
+      <section class="contenedor ev-sec" id="grupo" aria-labelledby="ev-t-grupo">
+        <div class="ev-panel" style="--p:#FFE3DF">
+          <p class="ev-eyebrow">1 imagen</p>
+          <h2 class="ev-h2" id="ev-t-grupo">Nuestro grupo</h2>
+          <p class="ev-intro">Las tres integrantes que construyeron este blog.</p>
+          <ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="1" aria-label="Ampliar: Foto del grupo"><img src="img/evidencias/grupo.jpg" width="1600" height="1066" alt="Foto: Foto del grupo. Angie, Yuliana y Sharon, estudiantes de IV semestre." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Foto del grupo</strong><span>Angie, Yuliana y Sharon, estudiantes de IV semestre.</span></figcaption>
+            </figure></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contenedor ev-sec" id="clase" aria-labelledby="ev-t-clase">
+        <div class="ev-panel" style="--p:#DDF1FD">
+          <p class="ev-eyebrow">12 imágenes</p>
+          <h2 class="ev-h2" id="ev-t-clase">Actividades desarrolladas en clase</h2>
+          <p class="ev-intro">Lo que trabajamos durante el semestre: evaluación, retos matemáticos y juegos de aula.</p>
+          <h3 class="ev-h3">Actividad del emisario</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="2" aria-label="Ampliar: Saberes previos"><img src="img/evidencias/emisario-saberes-previos.jpg" width="1125" height="588" alt="Captura: Saberes previos. Diapositiva con las seis preguntas de saberes previos, vista en la clase virtual." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--captura">Captura</span><strong>Saberes previos</strong><span>Diapositiva con las seis preguntas de saberes previos, vista en la clase virtual.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Evaluación</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="3" aria-label="Ampliar: Evaluación diagnóstica"><img src="img/evidencias/evaluacion-diagnostica-padlet.png" width="1902" height="893" alt="Captura: Evaluación diagnóstica. Respuestas del grupo en el tablero de Padlet." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--captura">Captura</span><strong>Evaluación diagnóstica</strong><span>Respuestas del grupo en el tablero de Padlet.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="4" aria-label="Ampliar: Preguntas sobre la evaluación"><img src="img/evidencias/evaluacion-preguntas.png" width="1600" height="776" alt="Captura: Preguntas sobre la evaluación. «¿Por qué se evalúa?», «¿Para quién?», «¿Para qué sirve?»…" loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--captura">Captura</span><strong>Preguntas sobre la evaluación</strong><span>«¿Por qué se evalúa?», «¿Para quién?», «¿Para qué sirve?»…</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="5" aria-label="Ampliar: Modalidades y tipos de evaluación"><img src="img/evidencias/evaluacion-tipos.png" width="1237" height="661" alt="Diapositiva: Modalidades y tipos de evaluación. Diagnóstica, formativa, sumativa y auténtica." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Modalidades y tipos de evaluación</strong><span>Diagnóstica, formativa, sumativa y auténtica.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Evaluación formativa y retroalimentación</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="6" aria-label="Ampliar: Evaluación formativa"><img src="img/evidencias/evaluacion-formativa.png" width="1585" height="816" alt="Diapositiva: Evaluación formativa. La evaluación como el trabajo de un piloto durante un viaje." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Evaluación formativa</strong><span>La evaluación como el trabajo de un piloto durante un viaje.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="7" aria-label="Ampliar: Retroalimentación formativa"><img src="img/evidencias/retroalimentacion-formativa.jpg" width="1427" height="802" alt="Diapositiva: Retroalimentación formativa. Seis ideas para orientar al estudiante mientras aprende." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Retroalimentación formativa</strong><span>Seis ideas para orientar al estudiante mientras aprende.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Ticket de salida</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="8" aria-label="Ampliar: Foro «Ticket de salida»"><img src="img/evidencias/ticket-de-salida.png" width="1526" height="875" alt="Captura: Foro «Ticket de salida». Actividad de cierre en el aula virtual para reflexionar sobre la evaluación." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--captura">Captura</span><strong>Foro «Ticket de salida»</strong><span>Actividad de cierre en el aula virtual para reflexionar sobre la evaluación.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Retos matemáticos</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="9" aria-label="Ampliar: Curiosidades matemáticas"><img src="img/evidencias/retos-curiosidades.png" width="1637" height="905" alt="Diapositiva: Curiosidades matemáticas. ¿Qué número sigue en la serie?" loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Curiosidades matemáticas</strong><span>¿Qué número sigue en la serie?</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="10" aria-label="Ampliar: Retos matemáticos"><img src="img/evidencias/retos-valor-interrogante.png" width="1661" height="908" alt="Diapositiva: Retos matemáticos. Calcula el valor del interrogante sabiendo el valor de cada color." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Retos matemáticos</strong><span>Calcula el valor del interrogante sabiendo el valor de cada color.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="11" aria-label="Ampliar: Reto en el salón"><img src="img/evidencias/retos-triangulos-aula.jpg" width="1280" height="720" alt="Foto: Reto en el salón. Retirar 3 palillos para que queden formados solo 3 triángulos." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Reto en el salón</strong><span>Retirar 3 palillos para que queden formados solo 3 triángulos.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Bingo evaluativo</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="12" aria-label="Ampliar: Bingo en el salón"><img src="img/evidencias/bingo-aula-1.jpg" width="1280" height="591" alt="Foto: Bingo en el salón. Jugando el bingo para repasar lo aprendido en las exposiciones." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Bingo en el salón</strong><span>Jugando el bingo para repasar lo aprendido en las exposiciones.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="13" aria-label="Ampliar: Bingo proyectado"><img src="img/evidencias/bingo-aula-2.jpg" width="1280" height="591" alt="Foto: Bingo proyectado. La pantalla del bingo evaluativo en clase." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Bingo proyectado</strong><span>La pantalla del bingo evaluativo en clase.</span></figcaption>
+            </figure></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contenedor ev-sec" id="exposiciones" aria-labelledby="ev-t-exposiciones">
+        <div class="ev-panel" style="--p:#FFF3C9">
+          <p class="ev-eyebrow">7 imágenes</p>
+          <h2 class="ev-h2" id="ev-t-exposiciones">Exposiciones</h2>
+          <p class="ev-intro">Las cuatro exposiciones del semestre, en el aula y en sus diapositivas.</p>
+          <h3 class="ev-h3">Referentes curriculares</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="14" aria-label="Ampliar: Índice de la exposición"><img src="img/evidencias/expo1-indice.png" width="1045" height="586" alt="Diapositiva: Índice de la exposición. Contenido de la presentación sobre los referentes curriculares." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Índice de la exposición</strong><span>Contenido de la presentación sobre los referentes curriculares.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="15" aria-label="Ampliar: Presentando en clase"><img src="img/evidencias/expo1-presentando.jpg" width="1600" height="1200" alt="Foto: Presentando en clase. Exposición frente al grupo." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Presentando en clase</strong><span>Exposición frente al grupo.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Pensamiento numérico y sistemas numéricos</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="16" aria-label="Ampliar: Presentando en clase"><img src="img/evidencias/expo2-presentando.jpg" width="1280" height="960" alt="Foto: Presentando en clase. Exposición sobre el pensamiento numérico." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--foto">Foto</span><strong>Presentando en clase</strong><span>Exposición sobre el pensamiento numérico.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">Pensamiento espacial y sistemas geométricos</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="17" aria-label="Ampliar: Contenido de la exposición"><img src="img/evidencias/expo3-contenido.png" width="935" height="640" alt="Captura: Contenido de la exposición. Presentación vista en la clase virtual." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--captura">Captura</span><strong>Contenido de la exposición</strong><span>Presentación vista en la clase virtual.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="18" aria-label="Ampliar: Portada"><img src="img/evidencias/expo3-portada.png" width="800" height="601" alt="Diapositiva: Portada. Conocimientos básicos: pensamiento espacial y sistemas geométricos." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Portada</strong><span>Conocimientos básicos: pensamiento espacial y sistemas geométricos.</span></figcaption>
+            </figure></li>
+          </ul><h3 class="ev-h3">La visión del niño desde sus dimensiones del desarrollo</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="19" aria-label="Ampliar: Índice"><img src="img/evidencias/expo4-indice.png" width="1255" height="704" alt="Diapositiva: Índice. Dimensiones del desarrollo infantil que se abordaron." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Índice</strong><span>Dimensiones del desarrollo infantil que se abordaron.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="20" aria-label="Ampliar: Portada"><img src="img/evidencias/expo4-portada.png" width="2048" height="1152" alt="Diapositiva: Portada. La visión del niño desde sus dimensiones del desarrollo." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Portada</strong><span>La visión del niño desde sus dimensiones del desarrollo.</span></figcaption>
+            </figure></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contenedor ev-sec" id="situaciones" aria-labelledby="ev-t-situaciones">
+        <div class="ev-panel" style="--p:#ECE7FD">
+          <p class="ev-eyebrow">2 imágenes</p>
+          <h2 class="ev-h2" id="ev-t-situaciones">Situaciones didácticas y juegos</h2>
+          <p class="ev-intro">Ejemplos de la teoría de las situaciones didácticas y la Carrera del 20.</p>
+          <h3 class="ev-h3">Teoría de situaciones didácticas</h3><ul class="ev-grid">
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="21" aria-label="Ampliar: Carrera del 20"><img src="img/evidencias/carrera-del-20.png" width="1632" height="861" alt="Diapositiva: Carrera del 20. Dos jugadores suman 1 o 2 por turno; gana quien llegue primero a 20." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Carrera del 20</strong><span>Dos jugadores suman 1 o 2 por turno; gana quien llegue primero a 20.</span></figcaption>
+            </figure></li>
+            <li><figure class="ev-fig">
+              <button class="ev-ver" type="button" data-n="22" aria-label="Ampliar: Situación didáctica y adidáctica"><img src="img/evidencias/situacion-didactica-adidactica.png" width="1667" height="897" alt="Diapositiva: Situación didáctica y adidáctica. Qué hace el docente y qué hace el estudiante en cada una." loading="lazy" decoding="async"></button>
+              <figcaption><span class="ev-tipo ev-tipo--diapositiva">Diapositiva</span><strong>Situación didáctica y adidáctica</strong><span>Qué hace el docente y qué hace el estudiante en cada una.</span></figcaption>
+            </figure></li>
+          </ul>
+        </div>
+      </section>
+
+      <dialog class="ev-modal" id="ev-modal" aria-label="Imagen ampliada">
+        <button class="ev-cerrar" type="button" id="ev-cerrar" aria-label="Cerrar">×</button>
+        <button class="ev-nav ev-nav--ant" type="button" id="ev-ant" aria-label="Anterior">‹</button>
+        <figure><img id="ev-img" alt=""><figcaption id="ev-leyenda"></figcaption></figure>
+        <button class="ev-nav ev-nav--sig" type="button" id="ev-sig" aria-label="Siguiente">›</button>
+      </dialog>
+    </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__columnas">
+        <div class="pie__marca">
+          <span class="logo logo--pie"><img src="img/icono-blog.png" width="288" height="288" alt="Icono de Semillas Matemáticas" loading="lazy"></span>
+          <p>Blog de matemáticas para la primera infancia: exposiciones, actividades y juegos construidos en el curso Didáctica de las matemáticas en la primera infancia.</p>
+        </div>
+        <nav aria-labelledby="pie-explorar">
+          <h2 id="pie-explorar" class="dato">Explorar</h2>
+          <ul>
+            <li><a href="temas">Temas</a></li>
+            <li><a href="exposiciones">Exposiciones</a></li>
+            <li><a href="situaciones">Situaciones y juegos</a></li>
+            <li><a href="autoevaluaciones">Autoevaluaciones</a></li>
+            <li><a href="evidencias">Evidencias</a></li>
+            <li><a href="juegos">Jugamos y enseñamos</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-sobre">
+          <h2 id="pie-sobre" class="dato">Sobre el blog</h2>
+          <ul>
+            <li><a href="quienes-somos">Quiénes somos</a></li>
+            <li><a href="quienes-somos#equipo">Nuestro equipo</a></li>
+            <li><a href="quienes-somos#proposito">Qué buscamos</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="pie-para">
+          <h2 id="pie-para" class="dato">Para quién</h2>
+          <ul>
+            <li><a href="autoevaluaciones">Estudiantes</a></li>
+            <li><a href="exposiciones">Docentes</a></li>
+            <li><a href="./#etapas">Familias</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__final">
+        <p>Universidad del Quindío · Licenciatura en Educación Infantil</p>
+        <p>© 2026 Sharon Liset Sánchez Castro, Yuliana Andrea Villada Osorio, Angie Yiset Florez Coronado</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/evidencias.js?v=1"></script>
+</body>
+</html>
