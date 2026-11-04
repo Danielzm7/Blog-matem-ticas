@@ -289,7 +289,19 @@ main, .pie { position: relative; z-index: 1; }
   box-shadow: var(--sombra-suave);
 }
 .panel-movil .buscador { width: 100%; margin-bottom: 12px; }
-.panel-movil__lista { display: grid; gap: 4px; }
+.panel-movil__lista { display: grid; gap: 0; }
+/* Línea azul delgada entre opciones */
+.panel-movil__lista > li { padding: 4px 0; border-bottom: 1.5px solid var(--cielo); }
+.panel-movil__lista > li:last-child { border-bottom: 0; }
+.panel-movil__fila { display: flex; align-items: center; gap: 6px; }
+.panel-movil__fila a { flex: 1 1 auto; }
+.panel-movil__mas { flex: 0 0 52px; display: grid; place-items: center; width: 52px; height: 52px; background: transparent; border: 0; border-radius: 16px; color: var(--tinta); cursor: pointer; }
+.panel-movil__mas:hover { background: var(--fondo); }
+.panel-movil__mas:focus-visible { outline: 3px solid var(--tinta); outline-offset: -3px; }
+.panel-movil__mas svg { transition: transform .2s var(--curva); }
+.panel-movil__mas[aria-expanded="true"] svg { transform: rotate(180deg); }
+.panel-movil__subs { display: grid; gap: 2px; margin: 0; padding: 0 0 6px; list-style: none; }
+.panel-movil__subs[hidden] { display: none; }
 .panel-movil__lista a {
   display: flex; align-items: center;
   min-height: 52px; padding: 0 18px;
@@ -1094,6 +1106,7 @@ main > section + section { margin-top: 112px; }
    Movimiento reducido: sin animaciones ni desplazamientos
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {
+  .panel-movil__mas svg { transition: none; }
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;

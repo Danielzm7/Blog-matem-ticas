@@ -74,6 +74,19 @@
     });
   }
 
+  // «Jugamos y enseñamos»: las actividades por edad se muestran solo al desplegarlas.
+  var mas = panel.querySelector('.panel-movil__mas');
+  var subs = panel.querySelector('.panel-movil__subs');
+  if (mas && subs) {
+    function desplegar(abierto) {
+      subs.hidden = !abierto;
+      mas.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      mas.setAttribute('aria-label', abierto ? 'Ocultar actividades por edad' : 'Mostrar actividades por edad');
+    }
+    mas.addEventListener('click', function () { desplegar(subs.hidden); });
+    if (subs.querySelector('[aria-current]')) desplegar(true);
+  }
+
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !panel.hidden) {
       cerrar();

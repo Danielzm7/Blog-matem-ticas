@@ -102,13 +102,20 @@
               <li><a href="../situaciones">Situaciones y juegos</a></li>
               <li><a href="../autoevaluaciones">Autoevaluaciones</a></li>
               <li><a href="../evidencias">Evidencias</a></li>
-              <li><a href="../juegos" aria-current="page">Jugamos y enseñamos</a></li>
-              <li><a class="panel-movil__sub" href="3-anios">↳ Actividades de 3 años</a></li>
-              <li><a class="panel-movil__sub" href="4-anios">↳ Actividades de 4 años</a></li>
-              <li><a class="panel-movil__sub" href="5-anios">↳ Actividades de 5 años</a></li>
-              <li><a class="panel-movil__sub" href="6-anios">↳ Actividades de 6 años</a></li>
-              <li><a class="panel-movil__sub" href="7-anios" aria-current="page">↳ Actividades de 7 años</a></li>
-              <li><a class="panel-movil__sub" href="8-anios">↳ Actividades de 8 años o más</a></li>
+              <li class="panel-movil__grupo">
+                <div class="panel-movil__fila">
+                  <a href="../juegos" aria-current="page">Jugamos y enseñamos</a>
+                  <button class="panel-movil__mas" type="button" aria-expanded="false" aria-controls="panel-sub-juegos" aria-label="Mostrar actividades por edad"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                </div>
+                <ul class="panel-movil__subs" id="panel-sub-juegos" hidden>
+                <li><a class="panel-movil__sub" href="3-anios">Actividades de 3 años</a></li>
+                <li><a class="panel-movil__sub" href="4-anios">Actividades de 4 años</a></li>
+                <li><a class="panel-movil__sub" href="5-anios">Actividades de 5 años</a></li>
+                <li><a class="panel-movil__sub" href="6-anios">Actividades de 6 años</a></li>
+                <li><a class="panel-movil__sub" href="7-anios" aria-current="page">Actividades de 7 años</a></li>
+                <li><a class="panel-movil__sub" href="8-anios">Actividades de 8 años o más</a></li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>
