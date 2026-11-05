@@ -118,9 +118,10 @@
   function esLibre() { return actual === FIGURAS.length; }
 
   // ---------- Geometría de una pieza ----------
+  var ESC = 1; // aumento de piezas y silueta; se ajusta a cada figura para aprovechar el tablero
   function ptsLocales(p) {
     var b = BASE[p.t], c = centroide(b);
-    return b.map(function (v) { return [v[0] - c[0], v[1] - c[1]]; });
+    return b.map(function (v) { return [(v[0] - c[0]) * ESC, (v[1] - c[1]) * ESC]; });
   }
   function ptsMundo(p) {
     var r = (p.rot % 360) * Math.PI / 180, co = Math.cos(r), si = Math.sin(r), f = p.flip ? -1 : 1;
@@ -150,15 +151,19 @@
   var slots = [], contorno = [], areaObjetivo = 0, cajaObj = null;
   function prepararFigura() {
     slots = []; contorno = []; areaObjetivo = 0; cajaObj = null;
-    if (esLibre()) return;
+    if (esLibre()) { ESC = modo === ANCHO ? 1.3 : 1.15; return; }
     var f = FIGURAS[actual], xs = [], ys = [];
     f.piezas.forEach(function (p) { p.p.forEach(function (v) { xs.push(v[0]); ys.push(v[1]); }); });
     var minx = Math.min.apply(null, xs), maxx = Math.max.apply(null, xs), miny = Math.min.apply(null, ys), maxy = Math.max.apply(null, ys);
     var cx = modo === ANCHO ? 5.5 : 6, cy = modo === ANCHO ? 6 : 5;
-    var dx = cx - (minx + maxx) / 2, dy = cy - (miny + maxy) / 2;
+    // Se agranda cuanto quepa en la zona de la silueta (con un máximo para que las piezas sueltas sigan cabiendo)
+    var libreW = modo === ANCHO ? 10 : 11.2, libreH = modo === ANCHO ? 11 : 9.2;
+    ESC = Math.max(1, Math.min(modo === ANCHO ? 1.3 : 1.2, libreW / (maxx - minx), libreH / (maxy - miny)));
+    var dx = cx - ESC * (minx + maxx) / 2, dy = cy - ESC * (miny + maxy) / 2;
     f.piezas.forEach(function (p) {
-      slots.push({ t: p.t, pts: p.p.map(function (v) { return [v[0] + dx, v[1] + dy]; }) });
+      slots.push({ t: p.t, pts: p.p.map(function (v) { return [v[0] * ESC + dx, v[1] * ESC + dy]; }) });
     });
+    minx *= ESC; maxx *= ESC; miny *= ESC; maxy *= ESC;
     cajaObj = [minx + dx, miny + dy, maxx + dx, maxy + dy];
     // vértices del borde exterior (los que tienen puntos cercanos fuera de la silueta)
     var vistos = {};
@@ -198,7 +203,7 @@
   function posicionesBandeja() {
     var pos = [];
     if (modo === ANCHO) {
-      var cx = [12.6, 15.4, 18.2], cy = [2.1, 6, 9.9];
+      var cx = [12.6, 15.4, 18.2], cy = [2.8, 6.7, 10.2];
       [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [1, 2]].forEach(function (c) { pos.push([cx[c[0]], cy[c[1]]]); });
     } else {
       var cx2 = [2.4, 6, 9.6], cy2 = [12.2, 15.6, 18.4];
@@ -212,7 +217,7 @@
     capaPiezas.textContent = '';
     var antes = piezas;
     piezas = JUEGO.map(function (j, i) {
-      var p = { id: i, t: j.t, color: j.color, x: pos[i][0], y: pos[i][1], rot: ROT0[i], flip: false };
+      var p = { id: i, t: j.t, color: j.color, x: pos[i][0], y: pos[i][1], rot: (i === 1 && modo === ANCHO) ? 90 : ROT0[i], flip: false };
       if (mezclar) { p.rot = ROT0[(i + 3) % 7] + (Math.random() < 0.5 ? 0 : 90); p.flip = j.t === 'P' && Math.random() < 0.5; }
       var g = el('g', { class: 'tg-pieza', tabindex: '0', role: 'button', 'aria-label': 'Pieza ' + (i + 1) + ': ' + NOMBRE[j.t] }, capaPiezas);
       el('polygon', { points: puntosPoly(ptsLocales(p)), fill: j.color }, g);
