@@ -12,7 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=19">
-  <link rel="stylesheet" href="css/temas.css?v=5">
+  <link rel="stylesheet" href="css/temas.css?v=6">
+  <link rel="stylesheet" href="css/tangram.css?v=1">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -138,7 +139,7 @@
           <span class="tm-portada__borde" aria-hidden="true"></span>
           <span class="tm-portada__disco" aria-hidden="true"></span>
           <div class="tm-portada__texto">
-            <p class="tm-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Ocho temas</p>
+            <p class="tm-pildora"><span aria-hidden="true"><i></i><i></i><i></i></span>Nueve temas</p>
             <h1 id="tm-titulo">Temas</h1>
             <p class="tm-portada__parrafo">Aquí reunimos los principales temas y actividades que trabajamos en clase durante el semestre: de qué trató cada uno y cómo se conectan entre sí.</p>
             <div class="tm-portada__botones">
@@ -378,6 +379,43 @@
           </article>
         </section>
 
+        <!-- 09 · Tangram -->
+        <section class="tm-seccion tm-rev" aria-labelledby="t9-titulo">
+          <article class="tm-tema tm-card tm-card--tinte tm-t9" id="t9">
+            <header class="tm-cab"><span class="tm-num">09</span><div><span class="tm-tipo tm-tipo--act">Actividad</span><h2 id="t9-titulo" class="tm-h2">Tangram</h2></div></header>
+            <p class="tm-p">El <strong>tangram</strong> es un rompecabezas de origen chino, conocido como la «tabla de la sabiduría», compuesto por siete piezas geométricas que se combinan para formar diferentes figuras sin superponerse.</p>
+
+            <div class="tg-datos">
+              <div class="tg-dato">
+                <svg viewBox="0 0 40 24" aria-hidden="true"><polygon points="2,22 22,22 12,2" fill="#FF7A6B"/><polygon points="22,22 36,22 29,10" fill="#7FD8B5"/></svg>
+                <p><strong>5 triángulos</strong><span>2 grandes, 1 mediano y 2 pequeños</span></p>
+              </div>
+              <div class="tg-dato">
+                <svg viewBox="0 0 40 24" aria-hidden="true"><polygon points="20,2 34,12 20,22 6,12" fill="#B7A6F2"/></svg>
+                <p><strong>1 cuadrado</strong><span>una de las siete piezas poligonales</span></p>
+              </div>
+              <div class="tg-dato">
+                <svg viewBox="0 0 40 24" aria-hidden="true"><polygon points="2,20 22,20 38,4 18,4" fill="#5BB8F0"/></svg>
+                <p><strong>1 paralelogramo</strong><span>la pieza que puede voltearse</span></p>
+              </div>
+            </div>
+
+            <p class="tm-mono tm-rotulo tg-rot">Pruébalo · arma las figuras con las siete piezas</p>
+            <div id="tg-app" class="tg"></div>
+            <noscript><p class="tm-p">Para armar el tangram en pantalla se necesita activar JavaScript. Mientras tanto, puedes verlo en las evidencias de la clase.</p></noscript>
+
+            <p class="tm-mono tm-rotulo tg-rot tg-rot--sep">Propósito</p>
+            <ul class="tg-prop">
+              <li><span aria-hidden="true">1</span><p>Recrear siluetas de <strong>animales, personas, letras o formas geométricas</strong>.</p></li>
+              <li><span aria-hidden="true">2</span><p>Ayuda al desarrollo de la <strong>memoria visual, la orientación espacial, el razonamiento lógico y la creatividad</strong>.</p></li>
+            </ul>
+            <div class="tm-pie-tema">
+              <p class="tm-fuente tg-fuente">En clase armamos un pez con las siete piezas: es una de las figuras del juego.</p>
+              <a class="tm-btn tm-btn--oscuro tm-btn--chico" href="evidencias#tangram">Ver las fotos de la clase <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </section>
+
         <!-- Cierre -->
         <section class="tm-seccion tm-fin tm-rev" aria-labelledby="tm-h-cierre">
           <div class="tm-cierre">
@@ -436,7 +474,8 @@
     </div>
   </footer>
 
-  <script src="js/menu.js?v=3"></script>
-  <script src="js/temas.js?v=3"></script>
+  <script src="js/menu.js?v=4"></script>
+  <script src="js/temas.js?v=4"></script>
+  <script src="js/tangram.js?v=1"></script>
 </body>
 </html>

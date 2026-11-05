@@ -16,7 +16,8 @@
     { numero: '05', tipo: 'tema',      titulo: 'Retroalimentación',      a: '#B7A6F2', t: '#ECE7FD', id: 't5' },
     { numero: '06', tipo: 'tema',      titulo: 'Ticket de salida',       a: '#FFD45E', t: '#FFF3C9', id: 't6' },
     { numero: '07', tipo: 'tema',      titulo: 'Retos matemáticos',      a: '#5BB8F0', t: '#DDF1FD', id: 't7' },
-    { numero: '08', tipo: 'actividad', titulo: 'Bingo evaluativo',       a: '#FF7A6B', t: '#FFE3DF', id: 't8' }
+    { numero: '08', tipo: 'actividad', titulo: 'Bingo evaluativo',       a: '#FF7A6B', t: '#FFE3DF', id: 't8' },
+    { numero: '09', tipo: 'actividad', titulo: 'Tangram',                a: '#B7A6F2', t: '#ECE7FD', id: 't9' }
   ];
 
   // Los cuatro tipos de evaluación del tema 03.
@@ -82,7 +83,8 @@
     // el 04 baja al 05 y la segunda fila (05 a 08) vuelve hacia la izquierda.
     if (i < 3) li.classList.add('tm-conecta');
     else if (i === 3) li.classList.add('tm-conecta', 'tm-conecta--abajo');
-    else if (i < TEMAS.length - 1) li.classList.add('tm-conecta', 'tm-conecta--izq');
+    else if (i < 7) li.classList.add('tm-conecta', 'tm-conecta--izq');
+    else if (i === 7 && TEMAS.length > 8) li.classList.add('tm-conecta', 'tm-conecta--abajo');
     if (i >= 4) li.classList.add('tm-fila2-' + (i + 1));
     nodos.appendChild(li);
   });

@@ -137,6 +137,7 @@
 .tm-nodos > li.tm-fila2-6 { grid-column: 3; grid-row: 2; }
 .tm-nodos > li.tm-fila2-7 { grid-column: 2; grid-row: 2; }
 .tm-nodos > li.tm-fila2-8 { grid-column: 1; grid-row: 2; }
+.tm-nodos > li.tm-fila2-9 { grid-column: 1; grid-row: 3; }
 .tm-leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-top: 36px; font-size: 13px; color: var(--texto-2); }
 .tm-leyenda span { display: inline-flex; align-items: center; gap: 8px; }
 .tm-leyenda i { display: inline-block; width: 26px; height: 16px; border: 2px solid var(--tinta); border-radius: 8px; box-sizing: border-box; }

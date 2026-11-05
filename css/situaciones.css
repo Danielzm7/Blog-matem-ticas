@@ -123,6 +123,39 @@
 .sd-cierre p { margin: 10px 0 0; font-size: 18px; color: var(--texto-2); }
 .sd-cierre__botones { display: flex; flex-wrap: wrap; gap: 14px; }
 
+/* ---------- Ejercicios de situaciones didácticas ---------- */
+.sd-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sd-ejs-intro { margin: 18px 0 0; max-width: 62ch; font-size: 19px; line-height: 1.7; color: #3A4A6E; }
+.sd-ejs-intro + .sd-ejemplo { margin-top: 40px; }
+.sd-pie-foto a { color: var(--tinta); text-underline-offset: 3px; }
+.sd-menta { --a: #7FD8B5; } .sd-lila { --a: #B7A6F2; }
+.sd-fuente { margin: 14px 0 0; font-size: 14px; color: var(--texto-2); }
+.sd-fotos2 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: 32px; align-items: start; }
+.sd-foto-v .sd-marco { max-width: 340px; }
+
+.sd-tabla__ayuda { margin: 4px 0 0; font-size: 16px; color: var(--texto-2); }
+.sd-tabla__scroll { margin-top: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sd-tabla__t { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 6px; table-layout: fixed; }
+.sd-tabla__t th { padding: 8px 4px; font: 700 14px/1.2 var(--f-titulo); color: var(--tinta); text-align: center; background: var(--menta-t); border-radius: 12px; }
+.sd-tabla__t tbody th { background: var(--lila-t); text-align: left; padding-left: 12px; }
+.sd-tabla__t thead td { width: 18%; }
+.sd-celda { display: block; width: 100%; height: 52px; padding: 0; text-align: center; background: var(--fondo); border: 2px solid var(--borde); border-radius: 12px; font: 800 20px/1 var(--f-titulo); color: var(--tinta); transition: background-color .25s, border-color .25s, transform .25s var(--curva); }
+.sd-celda:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.sd-celda.is-resalta { background: #FFD45E; border-color: var(--tinta); transform: scale(1.03); }
+.sd-celda.is-resalta2 { background: #B7A6F2; border-color: var(--tinta); transform: scale(1.03); }
+.sd-celda.is-mal { background: #FFE3DF; border-color: #FF7A6B; }
+.sd-preguntas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.sd-preg { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 6px 18px 6px 8px; background: #fff; border: 2px solid var(--tinta); border-radius: 999px; box-shadow: 0 3px 0 var(--tinta); font: 700 15px/1.2 var(--f-texto); color: var(--tinta); cursor: pointer; text-align: left; transition: transform .2s var(--curva), box-shadow .2s var(--curva), background-color .2s; }
+.sd-preg b { flex: 0 0 30px; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: var(--lila-t); border: 2px solid var(--tinta); border-radius: 50%; font: 800 14px/1 var(--f-titulo); }
+.sd-preg:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--tinta); background: var(--sol-t); }
+.sd-preg[aria-pressed="true"] { background: var(--tinta); color: #fff; }
+.sd-preg[aria-pressed="true"] b { background: #FFD45E; color: var(--tinta); }
+.sd-preg:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.sd-tabla__resp { background: var(--sol-t); font-size: 18px; }
+@media (max-width: 900px) { .sd-fotos2 { grid-template-columns: minmax(0, 1fr); } .sd-foto-v .sd-marco { max-width: 300px; } }
+@media (max-width: 640px) { .sd-tabla__t { min-width: 0; border-spacing: 3px; } .sd-tabla__t th { font-size: 11px; padding: 6px 2px; } .sd-tabla__t tbody th { padding-left: 6px; } .sd-tabla__t thead td { width: 17%; } .sd-celda { height: 44px; font-size: 16px; border-radius: 9px; } .sd-preg { flex: 1 1 100%; } }
+@media (prefers-reduced-motion: reduce) { .sd-celda, .sd-preg { transition: none; } .sd-preg:hover, .sd-celda.is-resalta, .sd-celda.is-resalta2, .sd-celda.is-mal { transform: none; } }
+
 @media (max-width: 1100px) {
   .sd-momentos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sd-mom::after { display: none; }

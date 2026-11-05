@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=19">
-  <link rel="stylesheet" href="css/situaciones.css?v=1">
+  <link rel="stylesheet" href="css/situaciones.css?v=2">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -249,6 +249,76 @@
           </div>
         </section>
 
+        <section class="sd-sec sd-rev" id="ejercicios" aria-labelledby="sd-h-ejercicios">
+          <p class="sd-eyebrow" style="--c:var(--menta)">Ejercicios</p>
+          <h2 id="sd-h-ejercicios">Ejercicios de situaciones didácticas</h2>
+          <p class="sd-ejs-intro">Estos son los ejercicios de situaciones didácticas que trabajamos en clase: trabajo en parejas, una tabla para registrar los puntajes y preguntas para comentar los resultados en plenaria.</p>
+
+          <div class="sd-ejemplo" style="--a:#7FD8B5">
+            <div class="sd-ej-cab"><span class="sd-chip">Ejercicio 01</span><h3>Tarea 3: la tabla de puntajes</h3></div>
+            <div class="sd-ej">
+              <figure style="margin:0">
+                <div class="sd-marco"><img src="img/evidencias/ejercicios-tarea-3.jpg" alt="Diapositiva de la Tarea 3: una tabla con cuatro parejas y cinco turnos para registrar puntajes, y cinco preguntas para hacer mientras se completa" loading="lazy" decoding="async" width="1280" height="591"></div>
+                <figcaption class="sd-pie-foto">Diapositiva de la presentación · <a href="evidencias#ejercicios-situaciones">Ver en Evidencias</a></figcaption>
+              </figure>
+              <div class="sd-tarjetas">
+                <div class="sd-tarjeta sd-menta">
+                  <h4>Tarea 3</h4>
+                  <ul>
+                    <li>En plenaria, completar una tabla como la que aparece en la diapositiva, registrando los puntajes obtenidos por cada pareja de estudiantes.</li>
+                  </ul>
+                  <p class="sd-fuente">Torres y Gutiérrez (2015)</p>
+                </div>
+                <div class="sd-tarjeta sd-lila">
+                  <h4>Mientras se completa la tabla, preguntar</h4>
+                  <ul>
+                    <li>¿Cuál es el mayor número?, ¿por qué es mayor?</li>
+                    <li>¿Cuál es el menor número?, ¿por qué es menor?</li>
+                    <li>¿Cuándo da igual?</li>
+                    <li>¿Dónde están los doces? ¿Dónde están los veintiuno?</li>
+                    <li>¿Están bien escritos los números?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sd-juego sd-tabla" aria-labelledby="sd-h-tabla">
+              <p class="sd-eyebrow" id="sd-h-tabla" style="--c:var(--menta)">Completa la tabla</p>
+              <p class="sd-tabla__ayuda">Escribe un puntaje en cada casilla y toca una pregunta para verla sobre la tabla.</p>
+              <div class="sd-tabla__scroll">
+                <table class="sd-tabla__t" id="sd-tabla-t">
+                  <caption class="sd-sr">Puntajes de cuatro parejas en cinco turnos</caption>
+                  <thead><tr><td></td><th scope="col">Turno 1</th><th scope="col">Turno 2</th><th scope="col">Turno 3</th><th scope="col">Turno 4</th><th scope="col">Turno 5</th></tr></thead>
+                  <tbody id="sd-tabla-b"></tbody>
+                </table>
+              </div>
+              <div class="sd-preguntas" id="sd-preguntas" role="group" aria-label="Preguntas para hacer mientras se completa la tabla">
+                <button type="button" class="sd-preg" data-p="mayor" aria-pressed="false"><b aria-hidden="true">a</b>¿Cuál es el mayor número?</button>
+                <button type="button" class="sd-preg" data-p="menor" aria-pressed="false"><b aria-hidden="true">b</b>¿Cuál es el menor número?</button>
+                <button type="button" class="sd-preg" data-p="igual" aria-pressed="false"><b aria-hidden="true">c</b>¿Cuándo da igual?</button>
+                <button type="button" class="sd-preg" data-p="docesveintiuno" aria-pressed="false"><b aria-hidden="true">d</b>¿Dónde están los doces y los veintiuno?</button>
+                <button type="button" class="sd-preg" data-p="escritura" aria-pressed="false"><b aria-hidden="true">e</b>¿Están bien escritos los números?</button>
+              </div>
+              <p class="sd-final sd-tabla__resp" id="sd-tabla-resp" role="status" aria-live="polite">Elige una pregunta para ver qué casillas responden.</p>
+              <div class="sd-controles"><button class="sd-reiniciar" id="sd-tabla-limpiar" type="button">Borrar la tabla</button></div>
+            </div>
+          </div>
+
+          <div class="sd-ejemplo" style="--a:#B7A6F2">
+            <div class="sd-ej-cab"><span class="sd-chip">Ejercicio 02</span><h3>Así lo trabajamos en clase</h3></div>
+            <div class="sd-fotos2">
+              <figure style="margin:0">
+                <div class="sd-marco"><img src="img/evidencias/ejercicios-parejas.jpg" alt="Dos compañeras sentadas en pupitres trabajan en pareja con sus tableros de papel y un cuaderno" loading="lazy" decoding="async" width="1280" height="591"></div>
+                <figcaption class="sd-pie-foto">Trabajo en parejas con los tableros · <a href="evidencias#ejercicios-situaciones">Ver en Evidencias</a></figcaption>
+              </figure>
+              <figure class="sd-foto-v" style="margin:0">
+                <div class="sd-marco"><img src="img/evidencias/ejercicios-dibujo-cuadricula.jpg" alt="Dibujo coloreado sobre una hoja cuadriculada" loading="lazy" decoding="async" width="899" height="1599"></div>
+                <figcaption class="sd-pie-foto">Dibujo coloreado sobre cuadrícula</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
         <section class="sd-sec sd-rev" aria-labelledby="sd-h-cierre">
           <div class="sd-cierre">
             <div>
@@ -306,7 +376,7 @@
     </div>
   </footer>
 
-  <script src="js/menu.js?v=3"></script>
-  <script src="js/situaciones.js?v=1"></script>
+  <script src="js/menu.js?v=4"></script>
+  <script src="js/situaciones.js?v=2"></script>
 </body>
 </html>
