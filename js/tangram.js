@@ -131,7 +131,8 @@
     });
   }
   function transformar(p) {
-    return 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + p.rot + 'deg) scale(' + (p.flip ? -1 : 1) + ',1)';
+    var k = p.bandeja ? 1 / ESC : 1; // las piezas sueltas se ven a tamaño normal; al tomarlas crecen al de la silueta
+    return 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + p.rot + 'deg) scale(' + (p.flip ? -k : k) + ',' + k + ')';
   }
   function pintar(p) { p.g.style.transform = transformar(p); }
 
@@ -158,7 +159,7 @@
     var cx = modo === ANCHO ? 5.5 : 6, cy = modo === ANCHO ? 6 : 5;
     // Se agranda cuanto quepa en la zona de la silueta (con un máximo para que las piezas sueltas sigan cabiendo)
     var libreW = modo === ANCHO ? 10 : 11.2, libreH = modo === ANCHO ? 11 : 9.2;
-    ESC = Math.max(1, Math.min(modo === ANCHO ? 1.3 : 1.2, libreW / (maxx - minx), libreH / (maxy - miny)));
+    ESC = Math.max(1, Math.min(modo === ANCHO ? 2.2 : 2, libreW / (maxx - minx), libreH / (maxy - miny)));
     var dx = cx - ESC * (minx + maxx) / 2, dy = cy - ESC * (miny + maxy) / 2;
     f.piezas.forEach(function (p) {
       slots.push({ t: p.t, pts: p.p.map(function (v) { return [v[0] * ESC + dx, v[1] * ESC + dy]; }) });
@@ -203,7 +204,7 @@
   function posicionesBandeja() {
     var pos = [];
     if (modo === ANCHO) {
-      var cx = [12.6, 15.4, 18.2], cy = [2.8, 6.7, 10.2];
+      var cx = [12.6, 15.4, 18.2], cy = [2.1, 6, 9.9];
       [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [1, 2]].forEach(function (c) { pos.push([cx[c[0]], cy[c[1]]]); });
     } else {
       var cx2 = [2.4, 6, 9.6], cy2 = [12.2, 15.6, 18.4];
@@ -217,7 +218,7 @@
     capaPiezas.textContent = '';
     var antes = piezas;
     piezas = JUEGO.map(function (j, i) {
-      var p = { id: i, t: j.t, color: j.color, x: pos[i][0], y: pos[i][1], rot: (i === 1 && modo === ANCHO) ? 90 : ROT0[i], flip: false };
+      var p = { id: i, t: j.t, color: j.color, x: pos[i][0], y: pos[i][1], rot: ROT0[i], flip: false, bandeja: true };
       if (mezclar) { p.rot = ROT0[(i + 3) % 7] + (Math.random() < 0.5 ? 0 : 90); p.flip = j.t === 'P' && Math.random() < 0.5; }
       var g = el('g', { class: 'tg-pieza', tabindex: '0', role: 'button', 'aria-label': 'Pieza ' + (i + 1) + ': ' + NOMBRE[j.t] }, capaPiezas);
       el('polygon', { points: puntosPoly(ptsLocales(p)), fill: j.color }, g);
@@ -260,6 +261,7 @@
     if (ganado && !esLibre()) return;
     e.preventDefault();
     var ya = sel === p;
+    p.bandeja = false; pintar(p);
     elegir(p);
     var q = puntoSvg(e);
     arrastre = { p: p, dx: p.x - q.x, dy: p.y - q.y, mov: 0, ya: ya, id: e.pointerId };
@@ -295,8 +297,8 @@
   }
 
   // ---------- Girar, voltear, imantar ----------
-  function girar(p, grados) { p.rot += grados; pintar(p); imantar(p); revisar(); anunciar('Pieza girada.'); }
-  function voltear(p) { p.flip = !p.flip; pintar(p); imantar(p); revisar(); anunciar(p.flip ? 'Pieza volteada.' : 'Pieza en su lado original.'); }
+  function girar(p, grados) { p.bandeja = false; p.rot += grados; pintar(p); imantar(p); revisar(); anunciar('Pieza girada.'); }
+  function voltear(p) { p.bandeja = false; p.flip = !p.flip; pintar(p); imantar(p); revisar(); anunciar(p.flip ? 'Pieza volteada.' : 'Pieza en su lado original.'); }
   function imantar(p) {
     var cand = [];
     if (!esLibre()) {
@@ -316,6 +318,7 @@
   function teclas(e, p) {
     var k = e.key, paso = e.shiftKey ? 0.5 : 0.25, usado = true;
     if (ganado && !esLibre()) return;
+    if (k.indexOf('Arrow') === 0) p.bandeja = false;
     if (k === 'ArrowLeft') p.x -= paso;
     else if (k === 'ArrowRight') p.x += paso;
     else if (k === 'ArrowUp') p.y -= paso;
