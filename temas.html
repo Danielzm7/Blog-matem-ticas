@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/styles.css?v=19">
   <link rel="stylesheet" href="css/temas.css?v=6">
   <link rel="stylesheet" href="css/tangram.css?v=1">
+  <link rel="stylesheet" href="css/bingo.css?v=2">
   <script>
     // La aparición al desplazarse solo se activa si el navegador la soporta y no se pidió reducir movimiento.
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -376,6 +377,11 @@
                 </div>
               </div>
             </div>
+            <div class="bg" id="bingo">
+              <p class="tm-mono tm-rotulo">Juega el bingo · gira el sombrero y responde la pregunta</p>
+              <div id="bg-app" class="bgapp"></div>
+              <noscript><p class="tm-p">Para jugar el bingo en pantalla se necesita activar JavaScript.</p></noscript>
+            </div>
           </article>
         </section>
 
@@ -477,5 +483,6 @@
   <script src="js/menu.js?v=4"></script>
   <script src="js/temas.js?v=4"></script>
   <script src="js/tangram.js?v=3"></script>
+  <script src="js/bingo.js?v=2"></script>
 </body>
 </html>

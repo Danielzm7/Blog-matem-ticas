@@ -1,0 +1,143 @@
+/* =========================================================
+   Bingo evaluativo interactivo (tema 08 de «Temas»)
+   Se carga después de styles.css y temas.css. Prefijo propio: bg-.
+   ========================================================= */
+
+.bg { margin-top: 32px; padding-top: 28px; border-top: 2px dashed rgba(31, 42, 68, .2); }
+.bg-cuerpo { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; align-items: start; }
+.bg-izq { display: flex; flex-direction: column; align-items: center; }
+
+/* ---------- Ruleta con sombrero ---------- */
+.bg-ruleta { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1; }
+.bg-ruleta__svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.bg-disco { transform-box: fill-box; transform-origin: center; will-change: transform; }
+.bg-gajo path { stroke: #1F2A44; stroke-width: 2px; transition: opacity .4s, filter .4s; }
+.bg-gajo text { font: 800 17px var(--f-titulo); fill: #1F2A44; pointer-events: none; }
+.bg-gajo.is-salio path { opacity: .28; }
+.bg-gajo.is-salio text { opacity: .5; }
+.bg-aro { fill: none; stroke: #1F2A44; stroke-width: 3px; }
+.bg-puntero { fill: #1F2A44; stroke: #fff; stroke-width: 2px; stroke-linejoin: round; filter: drop-shadow(0 2px 0 rgba(31, 42, 68, .25)); }
+.bg-sombrero { position: absolute; left: 50%; top: 50%; width: 40%; aspect-ratio: 1; translate: -50% -48%; pointer-events: none; }
+.bg-sombrero > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 0 rgba(31, 42, 68, .2)); }
+.bg-ruleta.is-gira .bg-sombrero > svg { animation: bg-tambalea .55s ease-in-out infinite; }
+@keyframes bg-tambalea { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) translateY(-3%); } }
+.bg-ruleta.is-sale .bg-sombrero > svg { animation: bg-saluda .8s var(--curva) 1; }
+@keyframes bg-saluda { 0% { transform: scale(1); } 35% { transform: scale(1.1) rotate(-5deg); } 70% { transform: scale(.97) rotate(3deg); } 100% { transform: none; } }
+
+.bg-tarjeta {
+  position: absolute; left: 50%; top: 4%; width: 52%; aspect-ratio: .8; translate: -50% 40%; opacity: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--c, #FFD45E); color: var(--tinta); border: 3px solid var(--tinta); border-radius: 12px;
+  font: 800 clamp(26px, 7vw, 46px)/1 var(--f-titulo); box-shadow: 0 5px 0 rgba(31, 42, 68, .25);
+  transition: translate .6s var(--curva), opacity .3s, rotate .6s var(--curva);
+  rotate: -5deg;
+}
+.bg-ruleta.is-gira .bg-tarjeta { opacity: 1; translate: -50% 4%; }
+.bg-ruleta.is-sale .bg-tarjeta { opacity: 1; translate: -50% -56%; rotate: 4deg; animation: bg-pop .7s var(--curva) 1; }
+@keyframes bg-pop { 0% { scale: .5; } 60% { scale: 1.18; } 100% { scale: 1; } }
+
+.bg-chispas { position: absolute; inset: 0; pointer-events: none; }
+.bg-chispas i { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; background: #FFD45E; border: 2px solid var(--tinta); border-radius: 50%; opacity: 0; }
+.bg-chispas i:nth-child(even) { background: #fff; width: 8px; height: 8px; margin: -4px 0 0 -4px; }
+.bg-ruleta.is-sale .bg-chispas i { animation: bg-chispa .9s ease-out 1; }
+@keyframes bg-chispa { 0% { opacity: 1; transform: rotate(var(--a)) translateY(-40px); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-185px) scale(.4); } }
+
+/* ---------- Botones ---------- */
+.bg-acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+.bg-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 10px 22px;
+  background: var(--tinta); color: #fff; border: 2px solid var(--tinta); border-radius: 999px;
+  font: 700 16px/1.15 var(--f-texto); cursor: pointer; box-shadow: 0 5px 0 #0C1226;
+  transition: transform .2s var(--curva), box-shadow .2s var(--curva), background-color .2s, opacity .2s;
+}
+.bg-btn > span[aria-hidden] { font-size: 19px; line-height: 1; }
+.bg-btn--grande { min-height: 58px; padding: 12px 30px; font-size: 18px; background: #FF7A6B; color: var(--tinta); box-shadow: 0 6px 0 var(--tinta); }
+.bg-btn--claro { background: #fff; color: var(--tinta); box-shadow: 0 4px 0 var(--tinta); }
+.bg-btn--chico { min-height: 44px; padding: 8px 18px; font-size: 15px; }
+.bg-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.bg-btn--grande:hover:not(:disabled) { background: #FF9183; box-shadow: 0 8px 0 var(--tinta); }
+.bg-btn--claro:hover:not(:disabled) { background: #FFE9A3; box-shadow: 0 6px 0 var(--tinta); }
+.bg-btn:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 currentColor; }
+.bg-btn:disabled { opacity: .5; cursor: not-allowed; }
+.bg-estado { min-height: 1.5em; margin: 16px 0 0; text-align: center; font-size: 16px; line-height: 1.45; color: var(--texto-2); }
+
+/* ---------- Pregunta ---------- */
+.bg-pregunta { --c: #FFD45E; position: relative; min-height: 360px; padding: 24px 26px 26px; background: #FFFDF6; border: 3px solid var(--tinta); border-radius: 30px; box-shadow: 0 8px 0 rgba(31, 42, 68, .18); animation: bg-entra .5s var(--curva) both; }
+@keyframes bg-entra { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.bg-pregunta__cab { display: flex; align-items: center; gap: 16px; }
+.bg-ficha { flex: 0 0 76px; width: 76px; height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 3px solid var(--tinta); border-radius: 20px; box-shadow: 0 5px 0 var(--tinta); rotate: -4deg; }
+.bg-ficha small { font: 700 13px/1 var(--f-mono); letter-spacing: .1em; }
+.bg-ficha b { font: 800 34px/1 var(--f-titulo); }
+.bg-pregunta__rot { margin: 0; font: 500 12px/1.4 var(--f-mono); text-transform: uppercase; letter-spacing: .14em; color: var(--texto-2); }
+.bg-fuente { margin: 4px 0 0; font-size: 14.5px; line-height: 1.35; color: var(--texto-2); }
+.bg-q { margin: 20px 0 0; font: 800 clamp(20px, 2.2vw, 27px)/1.25 var(--f-titulo); color: var(--tinta); outline: none; }
+.bg-ops { display: grid; gap: 10px; margin: 20px 0 0; padding: 0; list-style: none; }
+.bg-op {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: 54px; padding: 8px 16px 8px 10px; text-align: left;
+  background: #fff; color: var(--tinta); border: 2px solid var(--tinta); border-radius: 18px; box-shadow: 0 3px 0 var(--tinta);
+  font: 600 16.5px/1.35 var(--f-texto); cursor: pointer;
+  transition: transform .2s var(--curva), box-shadow .2s var(--curva), background-color .2s;
+}
+.bg-op b { flex: 0 0 34px; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; background: var(--c); border: 2px solid var(--tinta); border-radius: 50%; font: 800 15px/1 var(--f-titulo); }
+.bg-op:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 5px 0 var(--tinta); background: #FFF3C9; }
+.bg-op:disabled { cursor: default; }
+.bg-op.is-ok { background: #D9F5E9; border-color: #1F2A44; animation: bg-ok .5s var(--curva); }
+.bg-op.is-mal { background: #FFE3DF; animation: bg-no .4s; }
+.bg-op:disabled:not(.is-ok):not(.is-mal) { opacity: .6; }
+@keyframes bg-ok { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes bg-no { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.bg-pregunta > .bg-btn { margin-top: 16px; }
+.bg-pregunta > .bg-btn[hidden] { display: none; }
+.bg-fb { margin-top: 18px; padding: 14px 18px; border: 2px solid var(--tinta); border-radius: 20px; font-size: 16px; line-height: 1.5; color: #2B3A5E; animation: bg-entra .4s var(--curva) both; }
+.bg-fb[hidden] { display: none; }
+.bg-fb strong { display: block; margin-bottom: 4px; font: 800 19px/1.2 var(--f-titulo); color: var(--tinta); }
+.bg-fb--ok { background: #D9F5E9; } .bg-fb--mal { background: #FFE3DF; } .bg-fb--ver { background: #DDF1FD; }
+.bg-vacio { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 300px; text-align: center; color: var(--texto-2); font-size: 18px; }
+.bg-vacio p { margin: 0; max-width: 22em; }
+.bg-vacio__ic { display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 84px; background: #FFD45E; border: 3px solid var(--tinta); border-radius: 26px; box-shadow: 0 6px 0 var(--tinta); font: 800 46px/1 var(--f-titulo); color: var(--tinta); rotate: -6deg; animation: bg-flota 3.5s ease-in-out infinite; }
+@keyframes bg-flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* ---------- Tablero BINGO y mi tabla ---------- */
+.bg-abajo { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; margin-top: 32px; align-items: start; }
+.bg-caja { padding: 20px 22px 24px; background: #fff; border: 2px solid var(--borde); border-radius: 28px; }
+.bg-caja__rot { margin: 0 0 14px; font: 500 12px/1.4 var(--f-mono); text-transform: uppercase; letter-spacing: .14em; color: var(--texto-2); }
+.bg-caja__ayuda { margin: 14px 0; font-size: 14.5px; line-height: 1.5; color: var(--texto-2); }
+.bg-tablero { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.bg-col { display: grid; gap: 8px; align-content: start; }
+.bg-col__letra { display: flex; align-items: center; justify-content: center; height: 46px; border: 2px solid var(--tinta); border-radius: 14px; font: 800 24px/1 var(--f-titulo); }
+.bg-num {
+  position: relative; display: flex; align-items: center; justify-content: center; height: 50px; padding: 0;
+  background: var(--fondo); color: var(--tinta); border: 2px solid var(--borde); border-radius: 14px;
+  font: 800 20px/1 var(--f-titulo); cursor: default; transition: background-color .3s, border-color .3s, transform .3s var(--curva);
+}
+.bg-num.is-salio { background: var(--c); border-color: var(--tinta); cursor: pointer; animation: bg-sello .5s var(--curva); }
+.bg-num.is-salio:hover { transform: translateY(-2px) scale(1.04); }
+.bg-num.is-actual { outline: 3px solid var(--tinta); outline-offset: 2px; transform: scale(1.06); }
+.bg-num:focus-visible, .bg-op:focus-visible, .bg-btn:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+@keyframes bg-sello { 0% { transform: scale(.7); } 60% { transform: scale(1.14); } 100% { transform: scale(1); } }
+.bg-leyenda { margin: 16px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--texto-2); }
+.bg-mia { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.bg-mia__c { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #fff; border: 2px solid rgba(31, 42, 68, .35); border-radius: 12px; font: 800 18px/1 var(--f-titulo); color: var(--tinta); transition: background-color .3s, border-color .3s; }
+.bg-mia__c.is-salio { background: var(--c); border-color: var(--tinta); }
+.bg-mia__c.is-actual { outline: 3px solid var(--tinta); outline-offset: 2px; animation: bg-sello .6s var(--curva); }
+
+@media (max-width: 1000px) {
+  .bg-cuerpo, .bg-abajo { grid-template-columns: minmax(0, 1fr); }
+  .bg-ruleta { max-width: 360px; }
+}
+@media (max-width: 620px) {
+  .bg-pregunta { padding: 20px 16px 22px; min-height: 0; border-radius: 24px; }
+  .bg-ficha { flex-basis: 64px; width: 64px; height: 64px; border-radius: 16px; }
+  .bg-ficha b { font-size: 28px; }
+  .bg-caja { padding: 16px 14px 20px; border-radius: 22px; }
+  .bg-tablero { gap: 6px; }
+  .bg-num { height: 44px; font-size: 18px; }
+  .bg-col__letra { height: 40px; font-size: 20px; }
+  .bg-btn--grande { width: 100%; }
+  .bg-acciones .bg-btn { flex: 1 1 100%; }
+  .bg-vacio { min-height: 180px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-ruleta.is-gira .bg-sombrero > svg, .bg-ruleta.is-sale .bg-sombrero > svg, .bg-ruleta.is-sale .bg-tarjeta, .bg-ruleta.is-sale .bg-chispas i, .bg-vacio__ic, .bg-pregunta, .bg-fb, .bg-num.is-salio, .bg-mia__c.is-actual, .bg-op.is-ok, .bg-op.is-mal { animation: none; }
+  .bg-tarjeta, .bg-btn, .bg-op, .bg-num { transition: none; }
+}
