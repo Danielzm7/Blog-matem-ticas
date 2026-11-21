@@ -312,13 +312,14 @@ main{overflow-x:clip}
 .brand span[data-nombre-corto]{white-space:normal;max-width:9.5em}
 .brand .logo{width:46px;height:46px;border:0;background:none;box-shadow:none;border-radius:0;transform:none;transition:transform .4s cubic-bezier(.3,1.4,.5,1);display:block}
 .brand:hover .logo{transform:rotate(-6deg) scale(1.08)}
+.brand .logo img{width:100%;height:100%;display:block}
 .nav{background:rgba(255,255,255,.92);border:2px solid var(--ink);box-shadow:0 3px 0 rgba(32,45,74,.14);gap:3px}
 .nav a:hover{background:var(--sky)}
 .nav a.on{background:var(--sun-d);box-shadow:none;color:var(--ink)}
 .drawer a:hover{color:var(--coral)}
 @media(min-width:1180px){.hdr .wrap{flex-wrap:wrap}.nav{order:3;width:100%;margin:0 0 12px}.hdr .burger{order:2;margin-left:auto}.hdr .brand{height:72px}}
 @media(min-width:1380px){.hdr .wrap{max-width:1360px;flex-wrap:nowrap}.nav{order:2;width:auto;margin:0 auto}.hdr .burger{order:3;margin-left:0}.hdr .brand{height:78px;font-size:21px}.brand span[data-nombre-corto]{white-space:nowrap;max-width:none}.nav a{padding:11px 15px;font-size:15px}}
-@media(max-width:480px){.brand{font-size:17px}.brand .logo,.brand .logo svg{width:42px;height:42px}}
+@media(max-width:480px){.brand{font-size:17px}.brand .logo,.brand .logo svg,.brand .logo img{width:42px;height:42px}}
 
 .btn.dark{box-shadow:0 4px 0 #0E1730}
 .btn.dark:hover{box-shadow:0 7px 0 #0E1730}
@@ -419,7 +420,7 @@ main{overflow-x:clip}
 <header class="hdr">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      <span class="logo" aria-hidden="true"><svg width="46" height="46" viewBox="0 0 64 64"><use href="#i-logo"/></svg></span>
+      <span class="logo" aria-hidden="true"><img src="img/icono-blog.png" width="46" height="46" alt="" decoding="async"></span>
       <span data-nombre-corto>Semillas de Conocimiento</span>
     </a>
     <nav class="nav" aria-label="Principal" id="nav">
@@ -600,7 +601,7 @@ main{overflow-x:clip}
 
 <footer class="foot">
   <div class="wrap">
-    <a class="brand" href="#inicio"><span class="logo" aria-hidden="true"><svg width="46" height="46" viewBox="0 0 64 64"><use href="#i-logo"/></svg></span><span data-nombre-corto>Semillas de Conocimiento</span></a>
+    <a class="brand" href="#inicio"><span class="logo" aria-hidden="true"><img src="img/icono-blog.png" width="46" height="46" alt="" decoding="async"></span><span data-nombre-corto>Semillas de Conocimiento</span></a>
     <nav aria-label="Pie"><a href="#sobre-mi">Sobre mí</a><a href="#areas">Áreas</a><a href="#trabajo">Mi trabajo</a><a href="#talleres">Talleres</a><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a></nav>
     <span class="mono" style="font-size:12px;color:var(--ink-2)">© <span id="yr">2026</span> <span data-nombre>Sharon Sánchez</span> · Docente</span>
   </div>
