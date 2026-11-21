@@ -649,7 +649,7 @@ const CONFIG = {
 /* Cada área tendrá su propio subdominio. Cuando exista, escribe su dirección en `url`
    y el botón de la ventana pasará a llevar allí. Mientras tanto queda vacío. */
 const AREAS = [
-  { id:'matematicas', key:'mate', nombre:'Matemáticas', icon:'i-mate', t:'var(--sky)', c:'var(--sky-d)', url:'',
+  { id:'matematicas', key:'mate', nombre:'Matemáticas', icon:'i-mate', t:'var(--sky)', c:'var(--sky-d)', url:'/matematicas/',
     desc:'Contar, medir y resolver con material que se toca y retos que se juegan.',
     muestra:'Tangram de figuras · Bingo de operaciones',
     meto:'Primero se toca y se juega, después se dibuja y al final se escribe el número. Así cada idea tiene sentido antes de volverse símbolo.',
@@ -869,7 +869,7 @@ function fillModal(tab){
   const hasUrl = !!a.url;
   $('#md-s').style.display = hasUrl ? 'none' : 'block';
   $('#md-s').textContent = 'Esta área tendrá su propio sitio con muchas más actividades. Mientras tanto, escríbeme y te comparto lo que necesites.';
-  const u = $('#md-url'); u.style.display = hasUrl ? 'inline-flex' : 'none'; if (hasUrl) { u.href = a.url; u.target = '_blank'; u.rel = 'noopener'; u.textContent = 'Ir a ' + a.nombre.toLowerCase(); }
+  const u = $('#md-url'); u.style.display = hasUrl ? 'inline-flex' : 'none'; if (hasUrl) { u.href = a.url; if (/^https?:/.test(a.url)){ u.target = '_blank'; u.rel = 'noopener'; } else { u.removeAttribute('target'); u.removeAttribute('rel'); } u.textContent = 'Ir a ' + a.nombre.toLowerCase(); }
   const w = $('#md-wa'); w.href = wa('Hola, quiero información sobre ' + a.nombre + '.'); w.target = '_blank'; w.rel = 'noopener';
 }
 function openModal(i, tab){
