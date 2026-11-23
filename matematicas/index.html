@@ -833,6 +833,11 @@ main{overflow-x:clip}
 .hdr .brand .logo,.hdr .brand .logo img{width:62px;height:62px}
 footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
 @media(max-width:480px){.hdr .brand .logo,.hdr .brand .logo img{width:54px;height:54px}}
+/* ícono del juego: pequeño, en la esquina izquierda, para no tapar la escena */
+.gc .th{display:block}
+.gc .th .gicon{position:absolute;left:10px;top:10px;z-index:2;width:52px;height:52px;border-width:2px;box-shadow:0 3px 0 rgba(32,45,74,.25)}
+.gc .th .gicon svg{width:32px!important;height:32px!important}
+.gc:hover .gicon{transform:scale(1.08) rotate(-6deg)}
 </style>
 </head>
 <body>
