@@ -66,6 +66,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .hdr .burger{order:2;margin-left:auto}
 .brand{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px/1 var(--display);letter-spacing:-.02em}
 .brand .logo{width:42px;height:42px;border-radius:14px;background:var(--sun);border:2px solid var(--ink);display:grid;place-items:center;box-shadow:0 3px 0 var(--ink);transform:rotate(-6deg);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.brand .logo img{width:100%;height:100%;display:block}
 .brand:hover .logo{transform:rotate(6deg) scale(1.06)}
 .nav{order:3;width:100%;display:flex;align-items:center;gap:2px;margin:0 0 12px;padding:5px;background:rgba(255,255,255,.9);border:2px solid var(--ink);border-radius:999px;box-shadow:0 3px 0 rgba(32,45,74,.14);overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
@@ -867,7 +868,7 @@ main{overflow-x:clip}
 <header class="hdr">
   <div class="wrap">
     <a class="brand" id="brand" href="#inicio" aria-label="Semillas de Conocimiento, ir al inicio">
-      <span class="logo" aria-hidden="true"><svg width="46" height="46" viewBox="0 0 64 64"><use href="#i-logo"/></svg></span>
+      <span class="logo" aria-hidden="true"><img src="/img/icono-blog.png" width="46" height="46" alt="" decoding="async"></span>
       <span data-nombre-corto>Semillas de Conocimiento</span>
     </a>
     <nav class="nav" aria-label="Matemáticas" id="nav">
@@ -1020,7 +1021,7 @@ main{overflow-x:clip}
 
 <footer class="foot">
   <div class="wrap">
-    <a class="brand" href="#" data-home><span class="logo" aria-hidden="true"><svg width="46" height="46" viewBox="0 0 64 64"><use href="#i-logo"/></svg></span><span data-nombre-corto>Semillas de Conocimiento</span></a>
+    <a class="brand" href="#" data-home><span class="logo" aria-hidden="true"><img src="/img/icono-blog.png" width="46" height="46" alt="" decoding="async"></span><span data-nombre-corto>Semillas de Conocimiento</span></a>
     <nav aria-label="Pie"><a href="#" data-home>Inicio</a><a href="#juegos">Jugar</a><a href="#reto">Reto del día</a><a href="#videos">Videos</a><a href="#materiales">Materiales</a></nav>
     <span class="mono" style="font-size:12px;color:var(--ink-2)">Tu progreso se guarda solo en este dispositivo · sin registro ni datos personales</span>
   </div>
