@@ -838,6 +838,13 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
 .gc .th .gicon{position:absolute;left:10px;top:10px;z-index:2;width:52px;height:52px;border-width:2px;box-shadow:0 3px 0 rgba(32,45,74,.25)}
 .gc .th .gicon svg{width:32px!important;height:32px!important}
 .gc:hover .gicon{transform:scale(1.08) rotate(-6deg)}
+/* pantalla previa: edad y reto */
+.win{overflow:auto}
+.win .setup{display:grid;gap:10px;justify-items:center;max-width:min(100%,520px)}
+.win .setup .frow{justify-content:center}
+.win .setup .fbtn{padding:8px 14px;font-size:14px}
+.win .setup .frow>b{min-width:0}
+.win .setup .note2{margin:2px 0 0;font-size:14px}
 </style>
 </head>
 <body>
@@ -1481,7 +1488,15 @@ function renderFree(){
 }
 
 /* ============ ventana de juego ============ */
-const G = {tok:0, spec:null, done:0, total:0, mistakes:0, busy:false, opener:null, S:{}};
+const G = {tok:0, spec:null, done:0, total:0, mistakes:0, busy:false, opener:null, S:{}, diff:1};
+/* ---- dificultad: la edad sugiere un punto de partida y quien acompaña puede ajustarlo ----
+   0 = más fácil · 1 = justo (como en la maqueta) · 2 = con más reto. Se guarda solo en este dispositivo. */
+const DIFF_NAMES = ['Más fácil', 'Justo para su edad', 'Con más reto'];
+const AGE_BASE = {3:0, 4:1, 5:1, 6:2};
+let PREF = store.get('sc_mate_pref', {age:0, adj:0});
+const savePref = () => store.set('sc_mate_pref', PREF);
+const calcDiff = () => Math.max(0, Math.min(2, (PREF.age ? AGE_BASE[PREF.age] : 1) + (PREF.adj || 0)));
+const curInstr = () => { const e = G.spec.eng; return e.instrFor ? e.instrFor(G.diff) : e.instr; };
 const OKMSG = ['¡Muy bien!','¡Eso es!','¡Excelente!','¡Lo lograste!','¡Genial!'];
 const BADMSG = ['Casi… ¡inténtalo otra vez!','Mira con calma y prueba de nuevo.','¡Tú puedes! Otra vez.'];
 const gov = $('#gov'), gbox = $('#gbox'), stage = $('#g-s');
@@ -1502,7 +1517,7 @@ const A = {
   get S(){ return G.S; },
   get busy(){ return G.busy; },
   say(m, c = ''){
-    const f = $('#g-fb'); f.textContent = m || (G.spec ? G.spec.eng.instr : ''); f.className = c;
+    const f = $('#g-fb'); f.textContent = m || (G.spec ? curInstr() : ''); f.className = c;
     setMood(c === 'ok' ? 'cheer' : c === 'bad' ? 'oops' : 'happy');
     clearTimeout(moodT); if (c) { const t = G.tok; moodT = setTimeout(() => { if (t === G.tok) setMood('happy'); }, 1800); }
   },
@@ -1535,18 +1550,42 @@ function openSession(spec){
   showIntro(true);
   $('#g-x').focus();
 }
+function setupHTML(){
+  const ages = [3,4,5,6].map(a => `<button class="fbtn" type="button" data-pa="${a}" aria-pressed="${PREF.age === a}">${a === 6 ? '6 o más' : a}</button>`).join('');
+  const dif = DIFF_NAMES.map((n, i) => `<button class="fbtn" type="button" data-pd="${i - 1}" aria-pressed="${(PREF.adj || 0) === i - 1}">${n}</button>`).join('');
+  return `<div class="setup"><div class="frow"><b>Años</b>${ages}</div><div class="frow"><b>Reto</b>${dif}</div><p class="note2" id="pref-note"></p></div>`;
+}
+function prefNote(){
+  const n = $('#pref-note'); if (!n) return; const g = G.spec && G.spec.gid ? gameById(G.spec.gid) : null;
+  let t = 'Este juego se jugará: ' + DIFF_NAMES[calcDiff()].toLowerCase() + '.';
+  if (g && PREF.age && g.edades.length && !g.edades.includes(PREF.age) && !(PREF.age === 6 && g.edades.includes(6))) t += ' Está pensado para ' + agesTxt(g) + ', pero puedes jugarlo igual.';
+  n.textContent = t;
+}
 function showIntro(first){
   const e = G.spec.eng, w = document.createElement('div'); w.className = 'win';
-  w.innerHTML = `<h4>${esc(G.spec.titulo)}</h4><div class="introm">${mascot('happy', 120)}${pic(G.spec.pic || 'p-star', 84)}</div><p style="font:700 clamp(18px,2.6vw,24px)/1.3 var(--body);max-width:30ch">${esc(e.instr)}</p><button class="btn dark" type="button" id="g-go">${first ? '¡Vamos!' : '¡Seguir jugando!'} <svg width="18" height="18"><use href="#i-arr"/></svg></button>`;
+  const withSetup = first && !G.spec.free;
+  w.innerHTML = `<h4>${esc(G.spec.titulo)}</h4><div class="introm">${mascot('happy', withSetup ? 90 : 120)}${pic(G.spec.pic || 'p-star', withSetup ? 64 : 84)}</div><p id="intro-ins" style="font:700 clamp(17px,2.4vw,22px)/1.3 var(--body);max-width:30ch">${esc(e.instrFor ? e.instrFor(calcDiff()) : e.instr)}</p>${withSetup ? setupHTML() : ''}<button class="btn dark" type="button" id="g-go">${first ? '¡Vamos!' : '¡Seguir jugando!'} <svg width="18" height="18"><use href="#i-arr"/></svg></button>`;
   stage.appendChild(w);
   A.say('');
+  if (withSetup){
+    prefNote();
+    w.addEventListener('click', ev => {
+      const a = ev.target.closest('[data-pa]'), d = ev.target.closest('[data-pd]'); if (!a && !d) return;
+      if (a){ const v = +a.dataset.pa; PREF.age = PREF.age === v ? 0 : v; }
+      if (d){ PREF.adj = +d.dataset.pd; }
+      savePref();
+      $$('[data-pa]', w).forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.pa === PREF.age)));
+      $$('[data-pd]', w).forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.pd === (PREF.adj || 0))));
+      prefNote(); const ins = $('#intro-ins'); if (ins && e.instrFor) ins.textContent = e.instrFor(calcDiff());
+    });
+  }
   $('#g-go').addEventListener('click', () => { w.remove(); if (first) begin(); });
   $('#g-go').focus();
 }
 function begin(){
   G.tok++; if (dndCtl) dndCtl.abort(); const e = G.spec.eng;
   G.done = 0; G.mistakes = 0; G.round = 0; G.busy = false; G.S = {};
-  G.total = G.spec.free ? 0 : e.rounds; dots(); A.say('');
+  G.diff = calcDiff(); G.total = G.spec.free ? 0 : (e.roundsFor ? e.roundsFor(G.diff) : e.rounds); dots(); A.say('');
   stage.innerHTML = '';
   if (e.mode === 'once') e.setup(A); else e.setup(0, A);
 }
@@ -1572,14 +1611,14 @@ function openGame(id){
   const g = gameById(id);
   if (!g || !isPlayable(g)){ toast('¡Este juego llega muy pronto!'); return; }
   const c = catById(g.cat);
-  openSession({id:g.id, titulo:g.titulo, eng:ENG[g.motor], pic:g.pic, cat:g.cat, tint:col(c.col)[0], free:false});
+  openSession({id:g.id, gid:g.id, titulo:g.titulo, eng:ENG[g.motor], pic:g.pic, cat:g.cat, tint:col(c.col)[0], free:false});
 }
 function openFree(id){
   const f = FREE.find(x => x.id === id);
   openSession({id:'free-' + id, titulo:f.titulo, eng:FENG[id], pic:f.pic, cat:'', tint:col(f.col)[0], free:true});
 }
 $('#g-x').addEventListener('click', closeGame);
-$('#g-say').addEventListener('click', () => speak($('#g-fb').textContent || G.spec.eng.instr));
+$('#g-say').addEventListener('click', () => speak($('#g-fb').textContent || curInstr()));
 $('#g-rst').addEventListener('click', begin);
 $('#g-help').addEventListener('click', () => { if (!$('#g-go')) showIntro(false); });
 $('#g-snd').addEventListener('click', e => { SND = !SND; store.set('sc_mate_snd', SND); e.currentTarget.setAttribute('aria-pressed', SND); if (SND) S_OK(); });
@@ -1645,8 +1684,8 @@ const OBJNAMES = ['manzana','flor','pelota','pez','globo'];
 /* ============ motores de juego ============ */
 const ENG = {
   count: {rounds:4, instr:'Toca cada objeto para contarlo. Después elige el número.', setup(i, A){
-    const ns = A.S.ns || (A.S.ns = shuffle([2,3,4,5])), n = ns[i], k = OBJ[pick(OBJNAMES)]; let c = 0;
-    A.stage.innerHTML = `<div class="gq">¿Cuántos hay? ¡Cuéntalos tocándolos!</div><div class="scatter big">${Array.from({length:n}, (_, j) => `<button type="button" class="co" aria-label="Objeto ${j+1}">${objSvg(k)}<b></b></button>`).join('')}</div><div class="rowc" id="opts">${optButtons(shuffle([n, ...distract(n, 1, 6)]))}</div>`;
+    const D = G.diff, ns = A.S.ns || (A.S.ns = shuffle(D === 0 ? [1,2,3,4] : D === 2 ? [4,5,6,7] : [2,3,4,5])), n = ns[i], k = OBJ[pick(OBJNAMES)]; let c = 0;
+    A.stage.innerHTML = `<div class="gq">¿Cuántos hay? ¡Cuéntalos tocándolos!</div><div class="scatter big">${Array.from({length:n}, (_, j) => `<button type="button" class="co" aria-label="Objeto ${j+1}">${objSvg(k)}<b></b></button>`).join('')}</div><div class="rowc" id="opts">${optButtons(shuffle([n, ...distract(n, D === 2 ? 2 : 1, D === 2 ? 9 : D === 0 ? 4 : 6)]))}</div>`;
     $$('.co', A.stage).forEach(b => b.addEventListener('click', () => {
       if (b.classList.contains('on') || A.busy) return;
       c++; b.classList.add('on'); b.querySelector('b').textContent = c; tone([[420 + c * 70, .12]]); speak(String(c), true);
@@ -1655,8 +1694,8 @@ const ENG = {
     $('#opts').addEventListener('click', e => { const b = e.target.closest('.bigopt'); if (!b || A.busy) return;
       if (+b.dataset.v === n){ b.classList.add('good'); speak(String(n), true); A.ok(); } else { b.classList.add('no'); A.later(() => b.classList.remove('no'), 450); A.bad(); } });
   }},
-  sort: {rounds:6, mode:'once', tol:[1,3], instr:'Arrastra cada figura hasta su casa. También puedes tocar la figura y luego su casa.', setup(A){
-    const cols = shuffle(Object.values(SC)), items = shuffle(['circle','square','tri','circle','square','tri']);
+  sort: {rounds:6, roundsFor: D => [3,6,9][D], mode:'once', tol:[1,3], instr:'Arrastra cada figura hasta su casa. También puedes tocar la figura y luego su casa.', setup(A){
+    const cols = shuffle(Object.values(SC)), items = shuffle(['circle','square','tri','circle','square','tri','circle','square','tri'].slice(0, [3,6,9][G.diff]));
     A.stage.innerHTML = `<div class="gq">Lleva cada figura a su casa</div>
       <div class="zones">${['circle','square','tri'].map(k => `<div class="drop bin" data-k="${k}" ${dropAttrs('Casa de los ' + KNAME[k] + 's')}><span class="lab">${shape(k, null, '', 'width="44" height="44"')}</span><div class="got"></div></div>`).join('')}</div>
       <div class="tray">${items.map((k, j) => `<button type="button" class="dr" data-k="${k}" aria-label="Figura: ${KNAME[k]}">${shape(k, cols[j % cols.length])}</button>`).join('')}</div>`;
@@ -1667,7 +1706,7 @@ const ENG = {
   }},
   seq: {rounds:4, instr:'Mira el collar de figuras y toca la figura que sigue.', setup(i, A){
     const T = [['circle',SC.sky],['square',SC.coral],['tri',SC.sun],['circle',SC.mint],['square',SC.lilac],['star',SC.coral]];
-    const pats = A.S.pats || (A.S.pats = shuffle(['ABABAB','AABAAB','ABCABC','ABBABB'])), pat = pats[i], tk = shuffle(T), L = {A:tk[0], B:tk[1], C:tk[2]};
+    const pats = A.S.pats || (A.S.pats = G.diff === 0 ? shuffle(['ABABAB','AABAAB','ABABAB','AABAAB']) : G.diff === 2 ? shuffle(['ABCABC','ABBABB','ABCABC','ABBABB']) : shuffle(['ABABAB','AABAAB','ABCABC','ABBABB'])), pat = pats[i], tk = shuffle(T), L = {A:tk[0], B:tk[1], C:tk[2]};
     const ans = L[pat[5]], same = (a, b) => a[0] === b[0] && a[1] === b[1];
     const others = shuffle(T.filter(t => !same(t, ans))).slice(0, 2), opts = shuffle([ans, ...others]);
     A.stage.innerHTML = `<div class="gq">¿Qué figura sigue?</div><div class="rowc beads-row">${[...pat.slice(0,5)].map(ch => shape(L[ch][0], L[ch][1])).join('')}<span class="tile" id="qs" style="background:#fff;border-style:dashed" aria-label="¿Cuál sigue?">?</span></div>
@@ -1675,11 +1714,12 @@ const ENG = {
     $('#opts').addEventListener('click', e => { const b = e.target.closest('.pick'); if (!b || A.busy) return;
       if (same(opts[+b.dataset.j], ans)){ b.classList.add('good'); $('#qs').outerHTML = shape(ans[0], ans[1], 'obj popin'); A.ok(); } else { b.classList.add('no'); A.later(() => b.classList.remove('no'), 450); A.bad(); } });
   }},
-  order: {rounds:5, mode:'once', tol:[1,3], instr:'Sube la escalera: pon los números en orden, del 1 al 5. Arrástralos o tócalos y toca su escalón.', setup(A){
-    const cs = [SC.sky, SC.sun, SC.coral, SC.mint, SC.lilac];
+  order: {rounds:5, roundsFor: D => [3,5,7][D], mode:'once', tol:[1,3], instr:'Sube la escalera: pon los números en orden, del 1 al 5. Arrástralos o tócalos y toca su escalón.', instrFor: D => 'Sube la escalera: pon los números en orden, del 1 al ' + [3,5,7][D] + '. Arrástralos o tócalos y toca su escalón.', setup(A){
+    const N = [3,5,7][G.diff], NS = Array.from({length:N}, (_, j) => j + 1);
+    const cs5 = [SC.sky, SC.sun, SC.coral, SC.mint, SC.lilac], cs = [...cs5, cs5[0], cs5[1]];
     A.stage.innerHTML = `<div class="gq">Del más pequeño al más grande</div>
-      <div class="rowc stairs" style="align-items:flex-end;gap:6px">${[1,2,3,4,5].map(n => `<div style="display:grid;gap:6px;justify-items:center"><div class="drop slot" data-n="${n}" style="height:${46 + n * 22}px" ${dropAttrs('Escalón ' + n)}></div><small class="mono" style="font-size:11px;color:var(--ink-2);background:#fff;border-radius:8px;padding:1px 6px">${n === 1 ? 'primero' : n === 5 ? 'último' : '&nbsp;'}</small></div>`).join('')}</div>
-      <div class="tray">${shuffle([1,2,3,4,5]).map(n => `<button type="button" class="dr tile" data-n="${n}" style="--c:${cs[n-1]}" aria-label="Número ${n}">${n}</button>`).join('')}</div>`;
+      <div class="rowc stairs" style="align-items:flex-end;gap:6px">${NS.map(n => `<div style="display:grid;gap:6px;justify-items:center"><div class="drop slot" data-n="${n}" style="height:${46 + n * 22}px" ${dropAttrs('Escalón ' + n)}></div><small class="mono" style="font-size:11px;color:var(--ink-2);background:#fff;border-radius:8px;padding:1px 6px">${n === 1 ? 'primero' : n === N ? 'último' : '&nbsp;'}</small></div>`).join('')}</div>
+      <div class="tray">${shuffle(NS).map(n => `<button type="button" class="dr tile" data-n="${n}" style="--c:${cs[n-1]}" aria-label="Número ${n}">${n}</button>`).join('')}</div>`;
     dnd(A.stage, (el, slot) => {
       if (slot.classList.contains('fill')) return;
       if (el.dataset.n === slot.dataset.n){ slot.textContent = el.dataset.n; slot.classList.add('fill'); slot.style.background = el.style.getPropertyValue('--c'); el.classList.add('used'); speak(el.dataset.n, true); A.ok(); }
@@ -1687,19 +1727,21 @@ const ENG = {
     });
   }},
   more: {rounds:4, instr:'Mira los dos lados de la balanza y toca el lado correcto, sin contar uno por uno.', setup(i, A){
-    const k = OBJ[pick(OBJNAMES)], a = 1 + rnd(6); let b = 1 + rnd(6); while (b === a) b = 1 + rnd(6);
+    const D = G.diff, k = OBJ[pick(OBJNAMES)], hi = D === 0 ? 4 : D === 2 ? 8 : 6; let a = 1 + rnd(hi), b = 1 + rnd(hi);
+    if (D === 2){ a = 2 + rnd(7); b = a + (rnd(2) ? 1 : -1); } else if (D === 0){ while (Math.abs(a - b) < 2) { a = 1 + rnd(hi); b = 1 + rnd(hi); } }
+    while (b === a) b = 1 + rnd(hi);
     const more = i < 2, want = more ? (a > b ? 0 : 1) : (a < b ? 0 : 1), ns = [a, b];
     A.stage.innerHTML = `<div class="gq">¿Dónde hay ${more ? 'más' : 'menos'}?</div><div class="bal" id="bal"><div class="beam" aria-hidden="true"></div><div class="pans" id="opts">${ns.map((n, j) => `<button type="button" class="pick pan" data-j="${j}" aria-label="Lado ${j+1}"><div class="rowc">${Array.from({length:n}, () => objSvg(k)).join('')}</div></button>`).join('')}</div><i class="fulc" aria-hidden="true"></i></div>`;
     $('#opts').addEventListener('click', e => { const bt = e.target.closest('.pick'); if (!bt || A.busy) return;
       if (+bt.dataset.j === want){ bt.classList.add('good'); $('#bal').dataset.t = a > b ? 'l' : 'r'; A.ok(); } else { bt.classList.add('no'); A.later(() => bt.classList.remove('no'), 450); A.bad(); } });
   }},
-  build: {rounds:3, instr:'Mira el modelo. Arrastra las figuras al cuadro (o tócalas y toca el cuadro) hasta armarlo.', setup(i, A){
+  build: {rounds:3, roundsFor: D => D === 0 ? 2 : 3, instr:'Mira el modelo. Arrastra las figuras al cuadro (o tócalas y toca el cuadro) hasta armarlo.', setup(i, A){
     const M = [
       {n:'una casa', need:{square:1, tri:1}, svg:'<svg viewBox="0 0 100 100"><rect x="25" y="46" width="50" height="44" rx="5" fill="#59B9E9" stroke="#202D4A" stroke-width="3"/><path d="M50 10L84 46H16Z" fill="#FF827C" stroke="#202D4A" stroke-width="3" stroke-linejoin="round"/></svg>'},
       {n:'un muñeco de nieve', need:{circle:2, tri:1}, svg:'<svg viewBox="0 0 100 100"><circle cx="50" cy="68" r="24" fill="#FFD66B" stroke="#202D4A" stroke-width="3"/><circle cx="50" cy="29" r="16" fill="#FFD66B" stroke="#202D4A" stroke-width="3"/><path d="M50 22L58 36H42Z" fill="#FF827C" stroke="#202D4A" stroke-width="3" stroke-linejoin="round"/></svg>'},
       {n:'un tren', need:{square:2, circle:2}, svg:'<svg viewBox="0 0 100 100"><rect x="6" y="28" width="40" height="40" rx="5" fill="#59B9E9" stroke="#202D4A" stroke-width="3"/><rect x="54" y="28" width="40" height="40" rx="5" fill="#59B9E9" stroke="#202D4A" stroke-width="3"/><circle cx="26" cy="78" r="11" fill="#FFD66B" stroke="#202D4A" stroke-width="3"/><circle cx="74" cy="78" r="11" fill="#FFD66B" stroke="#202D4A" stroke-width="3"/></svg>'}
     ];
-    const m = (A.S.m || (A.S.m = shuffle(M)))[i], have = {circle:0, square:0, tri:0};
+    const m = (A.S.m || (A.S.m = G.diff === 0 ? shuffle(M.slice(0, 2)) : shuffle(M)))[i], have = {circle:0, square:0, tri:0};
     A.stage.innerHTML = `<div class="gq">Arma ${m.n}</div>
       <div class="model"><div class="mv">${m.svg}</div><div class="reqs">${Object.entries(m.need).map(([k, n]) => `<span data-k="${k}">${shape(k, null, '', 'width="26" height="26"')}<b>0 de ${n}</b></span>`).join('')}</div></div>
       <div class="pal">${['circle','square','tri'].map(k => `<button type="button" class="dr" data-k="${k}" aria-label="Figura: ${KNAME[k]}">${shape(k, null, '', 'width="38" height="38"')}</button>`).join('')}</div>
@@ -1721,10 +1763,10 @@ const ENG = {
     $('#b-clr').addEventListener('click', () => { if (!A.busy) $$('.it', cv).forEach(remove); });
   }},
   train: {rounds:3, instr:'Completa los números que faltan en el tren. Arrastra o toca el número y luego el vagón vacío.', setup(i, A){
-    const R = [{s:1, st:1, miss:[1,3]}, {s:3, st:1, miss:[0,2]}, {s:2, st:2, miss:[1,3]}], r = R[i];
+    const R = G.diff === 0 ? [{s:1, st:1, miss:[2]}, {s:3, st:1, miss:[1]}, {s:2, st:1, miss:[3]}] : G.diff === 2 ? [{s:2, st:2, miss:[1,2,4]}, {s:5, st:5, miss:[0,3]}, {s:3, st:3, miss:[1,3,4]}] : [{s:1, st:1, miss:[1,3]}, {s:3, st:1, miss:[0,2]}, {s:2, st:2, miss:[1,3]}], r = R[i];
     const nums = Array.from({length:5}, (_, j) => r.s + r.st * j), need = r.miss.map(j => nums[j]), decoy = nums[4] + r.st, cs = [SC.sky, SC.sun, SC.mint, SC.lilac, SC.coral];
     let filled = 0;
-    A.stage.innerHTML = `<div class="gq">${r.st === 2 ? 'Contamos de 2 en 2' : 'Contamos de 1 en 1'}</div>
+    A.stage.innerHTML = `<div class="gq">Contamos de ${r.st} en ${r.st}</div>
       <div class="train"><div class="wag loco"><div class="body" aria-hidden="true">${shape('circle', '#fff', '', 'width="40" height="40"')}</div><div class="wh"><i></i><i></i></div></div>
       ${nums.map((n, j) => `<div class="wag">${r.miss.includes(j) ? `<div class="drop" data-n="${n}" ${dropAttrs('Vagón vacío')}></div>` : `<div class="body" style="--c:${cs[j]}">${n}</div>`}<div class="wh"><i></i><i></i></div></div>`).join('')}</div>
       <div class="tray">${shuffle([...need, decoy]).map(n => `<button type="button" class="dr tile" data-n="${n}" style="--c:${cs[(n + 2) % 5]}" aria-label="Número ${n}">${n}</button>`).join('')}</div>`;
@@ -1734,8 +1776,8 @@ const ENG = {
       else { shakeEl(d); A.bad(); }
     });
   }},
-  pairs: {rounds:4, mode:'once', tol:[3,6], instr:'Voltea dos cartas: busca el número y la cantidad que van juntos.', setup(A){
-    const ns = shuffle([1,2,3,4,5]).slice(0, 4), cards = shuffle(ns.flatMap(n => [{t:'num', n}, {t:'qty', n}]));
+  pairs: {rounds:4, roundsFor: D => [3,4,6][D], mode:'once', tol:[3,6], instr:'Voltea dos cartas: busca el número y la cantidad que van juntos.', setup(A){
+    const ns = shuffle([1,2,3,4,5,6].slice(0, G.diff === 2 ? 6 : 5)).slice(0, [3,4,6][G.diff]), cards = shuffle(ns.flatMap(n => [{t:'num', n}, {t:'qty', n}]));
     A.stage.innerHTML = `<div class="gq">Encuentra las parejas</div><div class="mem">${cards.map((c, j) => `<button type="button" class="mc2" data-j="${j}" aria-label="Carta ${j+1}"><span class="in"><span class="f">${pic('p-star', 40, 'width:44%;height:44%')}</span><span class="b">${c.t === 'num' ? c.n : `<span class="qty">${Array.from({length:c.n}, () => '<i></i>').join('')}</span>`}</span></span></button>`).join('')}</div>`;
     let open = [], lock = false;
     $('.mem').addEventListener('click', e => { const b = e.target.closest('.mc2'); if (!b || lock || b.classList.contains('flip') || b.classList.contains('done')) return;
@@ -1747,8 +1789,8 @@ const ENG = {
       }
     });
   }},
-  where: {rounds:4, instr:'La caja está en el centro. Mira dónde está la figura y toca la palabra correcta.', setup(i, A){
-    const pos = A.S.pos || (A.S.pos = shuffle([1,3,5,7])), p = pos[i], T = [['la estrella','p-star'],['la pelota','o-ball'],['el pez','o-fish'],['la flor','o-flower']], [nm, id] = T[i % 4];
+  where: {rounds:4, roundsFor: D => [3,4,6][D], instr:'La caja está en el centro. Mira dónde está la figura y toca la palabra correcta.', setup(i, A){
+    const pos = A.S.pos || (A.S.pos = G.diff === 2 ? [...shuffle([1,3,5,7]), ...shuffle([1,3,5,7]).slice(0, 2)] : shuffle([1,3,5,7])), p = pos[i], T = [['la estrella','p-star'],['la pelota','o-ball'],['el pez','o-fish'],['la flor','o-flower']], [nm, id] = T[i % 4];
     const W = {1:'Arriba', 7:'Abajo', 3:'A la izquierda', 5:'A la derecha'}, AR = {1:'↑', 7:'↓', 3:'←', 5:'→'};
     A.stage.innerHTML = `<div class="gq">¿Dónde está ${nm}?</div><div class="scene3">${Array.from({length:9}, (_, c) => `<div>${c === 4 ? objSvg('s-square', 'obj') : c === p ? objSvg(id) : ''}</div>`).join('')}</div>
       <div class="rowc" id="opts">${[1,7,3,5].map(k => `<button class="bigopt txt" type="button" data-v="${k}">${AR[k]} ${W[k]}</button>`).join('')}</div>`;
@@ -1756,9 +1798,9 @@ const ENG = {
       if (+b.dataset.v === p){ b.classList.add('good'); A.ok(); } else { b.classList.add('no'); A.later(() => b.classList.remove('no'), 450); A.bad(); } });
   }},
   sum: {rounds:4, instr:'Junta los dos grupos y toca cuántos hay en total.', setup(i, A){
-    const P2 = [[1,1],[2,1],[2,2],[3,2]], [a, b] = P2[i], t = a + b, k = OBJ[pick(OBJNAMES)];
+    const P2 = G.diff === 0 ? [[1,1],[1,2],[2,1],[1,1]] : G.diff === 2 ? [[3,3],[4,2],[4,3],[5,4]] : [[1,1],[2,1],[2,2],[3,2]], [a, b] = P2[i], t = a + b, k = OBJ[pick(OBJNAMES)];
     A.stage.innerHTML = `<div class="gq">¿Cuántos hay en total?</div><div class="rowc"><div class="scatter" style="min-height:0;min-width:110px;justify-content:center">${Array.from({length:a}, () => objSvg(k)).join('')}</div><b style="font:800 44px var(--display)">+</b><div class="scatter" style="min-height:0;min-width:110px;justify-content:center">${Array.from({length:b}, () => objSvg(k)).join('')}</div><b style="font:800 44px var(--display)">=</b><span class="tile" id="qt" style="background:#fff;border-style:dashed">?</span></div>
-      <div class="rowc" id="opts">${optButtons(shuffle([t, ...distract(t, 1, 7)]))}</div>`;
+      <div class="rowc" id="opts">${optButtons(shuffle([t, ...distract(t, 1, G.diff === 2 ? 10 : 7)]))}</div>`;
     $('#opts').addEventListener('click', e => { const bt = e.target.closest('.bigopt'); if (!bt || A.busy) return;
       if (+bt.dataset.v === t){ bt.classList.add('good'); const q = $('#qt'); q.textContent = t; q.style.cssText = 'background:#83D7BC;border-style:solid'; q.classList.add('popin'); speak(String(t), true); A.ok(); } else { bt.classList.add('no'); A.later(() => bt.classList.remove('no'), 450); A.bad(); } });
   }}
