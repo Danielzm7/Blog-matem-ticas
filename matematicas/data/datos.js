@@ -1,6 +1,7 @@
 /* Datos de la sección Matemáticas. Aquí viven los juegos, mundos, niveles, el reto del día,
    los videos y los materiales. La página los lee desde este archivo: para agregar un juego,
    un video o un material basta con añadir un elemento a la lista que corresponda.
+   - games con url:'/ruta/' abren su propia página en lugar del visor de la sección (sin estrellas ni exploración libre).
    - videos: {id, titulo, desc, tipo:'archivo'|'enlace', archivo:'/matematicas/archivos/video.mp4' | enlace:'https://www.youtube.com/watch?v=...', pic, col, edad, cat, fecha}
    - mats:   {id, titulo, desc, tipo:'PDF', edad, cat, archivo:'/matematicas/archivos/ficha.pdf', miniatura:'(opcional) /matematicas/archivos/ficha.jpg', col}
 */
@@ -39,6 +40,8 @@ window.DATOS_MATE = {
       fam:{meta:'Usar palabras de posición: arriba, abajo, izquierda y derecha.', acompanar:'Jueguen con objetos reales: «pon el osito arriba de la caja».', materiales:'Una caja y un juguete.', observar:'Si distingue izquierda y derecha o solo arriba y abajo.'}},
     {id:'g10', motor:'sum', titulo:'Junta y cuenta', cat:'desafios', edades:[5,6], nivel:'desafio', habilidad:'Juntar grupos', tiempo:'4 min', estado:'publicado', pic:'o-flower',
       fam:{meta:'Reunir dos grupos y encontrar cuántos hay en total.', acompanar:'Que junte los grupos con las manos antes de contestar.', materiales:'Fichas o botones en dos montoncitos.', observar:'Si cuenta todo desde 1 o continúa desde el primer grupo.'}},
+    {id:'g12', motor:'', url:'/matematicas/juegos/robots-forma-expandida/', titulo:'Robots: forma expandida', cat:'contemos', edades:[7,8,9], nivel:'desafio', habilidad:'Forma expandida de números de tres cifras', tiempo:'5 min', estado:'publicado', pic:'p-abacus',
+      fam:{meta:'Descomponer un número de tres cifras según el valor de cada dígito (centenas, decenas y unidades).', acompanar:'Pídele que explique por qué el 7 de 788 vale 700 y no 7.', materiales:'Tarjetas de valor posicional (100, 10, 1) o bloques base diez.', observar:'Si confunde el valor posicional con el dígito suelto y cómo trata los ceros (305).'}},
     {id:'g11', motor:'', titulo:'Mi primer mapa', cat:'espacio', edades:[5,6], nivel:'desafio', habilidad:'Leer un mapa sencillo', tiempo:'5 min', estado:'proximamente', pic:'p-map',
       fam:{meta:'Seguir un recorrido sencillo sobre un mapa.', acompanar:'Dibujen juntos el mapa del cuarto.', materiales:'Papel y lápices de colores.', observar:'Cómo describe el camino.'}}
   ],

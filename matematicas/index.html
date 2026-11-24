@@ -1121,7 +1121,7 @@ loadData();
 const catById = id => DATA.cats.find(c => c.id === id) || {nombre:id, col:'sky', pic:'p-ring'};
 const lvlById = id => DATA.niveles.find(n => n.id === id) || {nombre:id, col:'sky'};
 const col = k => COLORS[k] || COLORS.sky;
-const isPlayable = g => g.estado === 'publicado' && ENG[g.motor];
+const isPlayable = g => g.estado === 'publicado' && (ENG[g.motor] || g.url);
 const gameById = id => DATA.games.find(g => g.id === id);
 const agesTxt = g => { const a = [...g.edades].sort((x,y)=>x-y); return a.length === 1 ? a[0] + ' años' : (a.length > 1 && a[a.length-1]-a[0] === a.length-1 ? a[0] + ' a ' + a[a.length-1] + ' años' : a.join(', ') + ' años'); };
 
@@ -1308,7 +1308,7 @@ function buildWheel(){
 }
 function spinWheel(){
   if (spinning) return;
-  const ok = wheelCats.map((c, i) => ({c, i})).filter(o => visibleGames().some(g => g.cat === o.c.id && isPlayable(g)));
+  const ok = wheelCats.map((c, i) => ({c, i})).filter(o => visibleGames().some(g => g.cat === o.c.id && isPlayable(g) && !g.url));
   const box = $('#rbox');
   if (!ok.length){ box.innerHTML = '<p class="big">Aún no hay juegos publicados.</p>'; return; }
   spinning = true; const sp = $('#spin'); if (sp) sp.disabled = true; $('#hub').disabled = true;
@@ -1319,7 +1319,7 @@ function spinWheel(){
   box.innerHTML = `<div class="rmas">${mascot('wow', 120)}</div><span class="eyebrow" style="--c:var(--coral)"><i></i>Girando…</span><p class="big">¿Qué nos tocará?</p>`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   setTimeout(() => {
-    const g = pick(visibleGames().filter(g => g.cat === w.c.id && isPlayable(g)));
+    const g = pick(visibleGames().filter(g => g.cat === w.c.id && isPlayable(g) && !g.url));
     box.innerHTML = `<div class="rmas">${mascot('cheer', 120)}</div><span class="eyebrow" style="--c:var(--coral)"><i></i>Te tocó</span><p class="big" id="r-cat">${esc(w.c.nombre)}</p><p class="lead" style="font-size:18px">Juega «${esc(g.titulo)}»: ${esc(g.habilidad.toLowerCase())}.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><button class="btn dark" type="button" id="r-go" data-play="${esc(g.id)}">¡Empezar! <svg width="18" height="18"><use href="#i-arr"/></svg></button><button class="btn" type="button" id="spin">Girar otra vez</button></div>`;
     box.classList.remove('pop'); void box.offsetWidth; box.classList.add('pop');
@@ -1404,7 +1404,7 @@ function confetti(host){
 
 /* ============ vista mejorada: mundos ilustrados, mascota, plantita ============ */
 const starsRow = (n, max = 3, size = 18) => Array.from({length: max}, (_, i) => `<svg viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true" style="--c:${i < n ? '#FFD66B' : '#E6EAF2'}"><use href="#i-star"/></svg>`).join('');
-const catProg = id => { const gs = visibleGames().filter(g => g.cat === id && isPlayable(g)); return {tot: gs.length * 3, got: gs.reduce((s, g) => s + (P.best[g.id] || 0), 0)}; };
+const catProg = id => { const gs = visibleGames().filter(g => g.cat === id && isPlayable(g) && !g.url); return {tot: gs.length * 3, got: gs.reduce((s, g) => s + (P.best[g.id] || 0), 0)}; };
 
 function renderHero(){
   const rm = $('#rbox .rmas'); if (rm && !rm.innerHTML) rm.innerHTML = mascot('happy', 110);
@@ -1610,6 +1610,7 @@ function closeGame(){
 function openGame(id){
   const g = gameById(id);
   if (!g || !isPlayable(g)){ toast('¡Este juego llega muy pronto!'); return; }
+  if (g.url){ location.href = g.url; return; }   // juegos con página propia
   const c = catById(g.cat);
   openSession({id:g.id, gid:g.id, titulo:g.titulo, eng:ENG[g.motor], pic:g.pic, cat:g.cat, tint:col(c.col)[0], free:false});
 }

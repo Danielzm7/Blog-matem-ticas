@@ -12,13 +12,15 @@
    ============================================================ */
 :root{
   --p1:#2b1456;--p2:#5b2bb5;--b1:#2a7de1;--b2:#4fc3ff;--o:#ff8a1f;--g:#ffc928;--ink:#1d1a4d;
-  --W:min(100vw - 16px,(100dvh - 16px)*1.6);
+  --W:min(100vw - 16px,(100dvh - 52px)*1.6);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:#12082e;color:var(--ink);
   font-family:'Fredoka','Nunito','Baloo 2','Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif;font-weight:700}
 button{font:inherit;color:inherit}
-#wrap{min-height:100dvh;display:grid;place-items:center;padding:8px}
+#wrap{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;gap:6px}
+.volver{align-self:center;color:#cfe3fb;text-decoration:none;font-size:15px;min-height:28px;display:inline-flex;align-items:center;padding:0 12px;border-radius:99px;background:rgba(255,255,255,.08)}
+.volver:hover{background:rgba(255,255,255,.18);color:#fff}
 #stage{position:relative;width:var(--W);aspect-ratio:16/10;container-type:inline-size;overflow:hidden;
   border-radius:calc(var(--W)*.022);background:#2b1456;isolation:isolate;
   box-shadow:0 calc(var(--W)*.015) calc(var(--W)*.05) rgba(0,0,0,.55);user-select:none;-webkit-user-select:none;touch-action:manipulation}
@@ -183,7 +185,7 @@ button.hex:active{transform:scale(.96)}
 
 /* ---------- Celular en vertical: escenario más alto para que los botones sean grandes ---------- */
 @media (max-width:700px) and (orientation:portrait){
-  :root{--W:min(100vw - 16px,(100dvh - 16px)*.6)}
+  :root{--W:min(100vw - 16px,(100dvh - 52px)*.6)}
   #stage{aspect-ratio:3/5;background:#2b1456}
   #scene{height:100%;top:-18%}
   #hudA{left:2cqw;top:2cqw}
@@ -237,6 +239,7 @@ button.hex:active{transform:scale(.96)}
 </head>
 <body>
 <div id="wrap">
+<a class="volver" href="/matematicas/#juegos">← Volver a Matemáticas</a>
 <div id="stage" class="mode-select">
   <div id="world">
     <!-- Ciudad futurista: se dibuja desde JavaScript -->
