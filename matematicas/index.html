@@ -868,6 +868,7 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
 </svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="o-apple" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 20C22 12 8 18 9 33C10 47 20 58 32 54C44 58 54 47 55 33C56 18 42 12 32 20Z" fill="#FF827C"/><path d="M32 20C32 14 34 10 38 7" fill="none"/><path d="M38 14C44 8 50 10 52 12C48 18 42 18 38 14Z" fill="#83D7BC"/></g></symbol>
+<symbol id="o-robot" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 14V6" fill="none"/><circle cx="32" cy="5" r="3.5" fill="#FF8A7A"/><rect x="11" y="14" width="42" height="36" rx="10" fill="#FFD36B"/><rect x="17" y="23" width="30" height="16" rx="6" fill="#202D4A" stroke="none"/><circle cx="25" cy="31" r="3.6" fill="#6FD0FF" stroke="none"/><circle cx="39" cy="31" r="3.6" fill="#6FD0FF" stroke="none"/><path d="M26 44h12" fill="none"/><path d="M6 28v12M58 28v12" fill="none"/></g></symbol>
 <symbol id="o-flower" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 40V60" fill="none"/><circle cx="32" cy="14" r="9" fill="#F7C8D9"/><circle cx="48" cy="26" r="9" fill="#F7C8D9"/><circle cx="42" cy="44" r="9" fill="#F7C8D9"/><circle cx="22" cy="44" r="9" fill="#F7C8D9"/><circle cx="16" cy="26" r="9" fill="#F7C8D9"/><circle cx="32" cy="32" r="9" fill="#FFD66B"/></g></symbol>
 <symbol id="o-ball" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="25" fill="#59B9E9"/><path d="M10 24C24 30 40 30 54 24M10 42C24 36 40 36 54 42" fill="none"/><path d="M32 7V57" fill="none"/></g></symbol>
 <symbol id="o-fish" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M6 32C16 16 36 14 46 28L58 18V46L46 36C36 50 16 48 6 32Z" fill="#B9A5F1"/><circle cx="19" cy="29" r="3" fill="#202D4A"/><path d="M30 24C33 30 33 36 30 41" fill="none"/></g></symbol>
@@ -1230,6 +1231,30 @@ const SCENES = {
 };
 const sceneSvg = (k, cls = 'sc') => `<svg class="${cls}" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${(SCENES[k] || SCENES.contemos)()}</svg>`;
 const catScene = c => sceneSvg(SCENES[c] ? c : 'contemos');
+/* portada propia del juego «Robots: forma expandida»: robot, número y su descomposición */
+const portadaRobots = () => `<svg class="sc" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="prg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B1456"/><stop offset="1" stop-color="#7A4BD6"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#prg)"/>
+  <g fill="#fff"><circle cx="70" cy="18" r="1.6"/><circle cx="130" cy="12" r="1.2"/><circle cx="240" cy="16" r="1.4"/><circle cx="300" cy="62" r="1.2"/><circle cx="20" cy="70" r="1.2"/></g>
+  <circle cx="296" cy="26" r="13" fill="#FFF3C4"/><circle cx="291" cy="23" r="3" fill="#E8D79A"/>
+  <g stroke="#202D4A" stroke-width="2"><rect x="8" y="104" width="30" height="46" fill="#3A1F7A"/><rect x="226" y="110" width="26" height="40" fill="#4B2A94"/></g>
+  <g fill="#FFC928" opacity=".85"><rect x="15" y="114" width="5" height="7"/><rect x="26" y="128" width="5" height="7"/><rect x="234" y="120" width="5" height="7"/></g>
+  <rect y="150" width="320" height="30" fill="#5B2BB5"/><path d="M0 150H320" stroke="#202D4A" stroke-width="2"/>
+  <g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+   <rect x="98" y="22" width="124" height="46" rx="10" fill="#F4F9FF"/>
+   <path d="M160 68v10" fill="none"/>
+   <rect x="44" y="80" width="62" height="32" rx="8" fill="#FF8A7A"/><rect x="128" y="80" width="46" height="32" rx="8" fill="#FFD36B"/><rect x="196" y="80" width="34" height="32" rx="8" fill="#6FD0FF"/>
+  </g>
+  <g font-family="Fredoka,Nunito,Arial Rounded MT Bold,sans-serif" font-weight="800" text-anchor="middle" fill="#202D4A"><text x="160" y="58" font-size="38" fill="#2B1456" letter-spacing="4">788</text>
+   <text x="75" y="103" font-size="19">700</text><text x="151" y="103" font-size="19">80</text><text x="213" y="103" font-size="19">8</text>
+   <text x="117" y="102" font-size="18">+</text><text x="185" y="102" font-size="18">+</text></g>
+  <g transform="translate(250 108)" stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+   <path d="M28 4V-4" fill="none"/><circle cx="28" cy="-7" r="3.5" fill="#FF8A7A"/>
+   <rect x="9" y="4" width="38" height="28" rx="9" fill="#FFD36B"/><rect x="14" y="11" width="28" height="12" rx="5" fill="#202D4A" stroke="none"/>
+   <circle cx="22" cy="17" r="3" fill="#6FD0FF" stroke="none"/><circle cx="34" cy="17" r="3" fill="#6FD0FF" stroke="none"/>
+   <rect x="13" y="32" width="30" height="18" rx="7" fill="#FF8A1F"/><path d="M13 36l-6 8M43 36l6 8" fill="none"/>
+  </g>
+</svg>`;
 
 /* fondos de los juegos por mundo */
 const THEMES = {
@@ -1434,7 +1459,7 @@ function renderGames(){
   $('#gl').innerHTML = list.length ? list.map(g => {
     const c = catById(g.cat), [t, d] = col(c.col), lv = lvlById(g.nivel), play = isPlayable(g), fav = P.favs.includes(g.id);
     return `<article class="gc ${play ? '' : 'soon'}" style="--t:${t};--c:${d};--t2:${col(lv.col)[1]}">
-      <div class="th">${catScene(g.cat)}${play ? '' : '<span class="tagsoon">Próximamente</span>'}
+      <div class="th">${g.portada === 'robots' ? portadaRobots() : catScene(g.cat)}${play ? '' : '<span class="tagsoon">Próximamente</span>'}
         <button class="fav" type="button" data-fav="${esc(g.id)}" aria-pressed="${fav}" aria-label="${fav ? 'Quitar de' : 'Guardar en'} favoritos: ${esc(g.titulo)}"><svg viewBox="0 0 24 24" stroke-linejoin="round"><use href="#i-heart2"/></svg></button>
         <span class="gicon">${pic(g.pic, 60)}</span>
         <span class="gstars" aria-label="${P.best[g.id] || 0} de 3 estrellas">${starsRow(P.best[g.id] || 0, 3, 22)}</span></div>
