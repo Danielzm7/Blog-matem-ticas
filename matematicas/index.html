@@ -869,6 +869,9 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="o-apple" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 20C22 12 8 18 9 33C10 47 20 58 32 54C44 58 54 47 55 33C56 18 42 12 32 20Z" fill="#FF827C"/><path d="M32 20C32 14 34 10 38 7" fill="none"/><path d="M38 14C44 8 50 10 52 12C48 18 42 18 38 14Z" fill="#83D7BC"/></g></symbol>
 <symbol id="o-robot" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 14V6" fill="none"/><circle cx="32" cy="5" r="3.5" fill="#FF8A7A"/><rect x="11" y="14" width="42" height="36" rx="10" fill="#FFD36B"/><rect x="17" y="23" width="30" height="16" rx="6" fill="#202D4A" stroke="none"/><circle cx="25" cy="31" r="3.6" fill="#6FD0FF" stroke="none"/><circle cx="39" cy="31" r="3.6" fill="#6FD0FF" stroke="none"/><path d="M26 44h12" fill="none"/><path d="M6 28v12M58 28v12" fill="none"/></g></symbol>
+<symbol id="o-alien" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M22 14 18 5M42 14l4-9" fill="none"/><circle cx="17" cy="4" r="3.5" fill="#FF8A7A"/><circle cx="47" cy="4" r="3.5" fill="#FF8A7A"/><ellipse cx="32" cy="35" rx="23" ry="21" fill="#8EE07A"/><path d="M13 29c2 6 9 10 14 6-1-7-9-11-14-6zM51 29c-2 6-9 10-14 6 1-7 9-11 14-6z" fill="#202D4A"/><path d="M26 47q6 4 12 0" fill="none"/></g></symbol>
+<symbol id="o-momia" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="12" y="6" width="40" height="52" rx="18" fill="#F4E8C8"/><path d="M13 22h38M14 44h36M18 52l28-6M18 14l28 6" fill="none"/><circle cx="24" cy="31" r="4.5" fill="#fff"/><circle cx="40" cy="31" r="4.5" fill="#fff"/><circle cx="24" cy="31" r="1.8" fill="#202D4A" stroke="none"/><circle cx="40" cy="31" r="1.8" fill="#202D4A" stroke="none"/></g></symbol>
+<symbol id="o-ufo" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M20 28c0-12 24-12 24 0z" fill="#B8EEFF"/><ellipse cx="32" cy="32" rx="28" ry="10" fill="#9A6CF0"/><path d="M24 38 14 58M40 38l10 20M32 42v16" stroke="#FFD36B" fill="none"/><circle cx="16" cy="32" r="2" fill="#FFD36B" stroke="none"/><circle cx="32" cy="35" r="2" fill="#FFD36B" stroke="none"/><circle cx="48" cy="32" r="2" fill="#FFD36B" stroke="none"/></g></symbol>
 <symbol id="o-flower" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 40V60" fill="none"/><circle cx="32" cy="14" r="9" fill="#F7C8D9"/><circle cx="48" cy="26" r="9" fill="#F7C8D9"/><circle cx="42" cy="44" r="9" fill="#F7C8D9"/><circle cx="22" cy="44" r="9" fill="#F7C8D9"/><circle cx="16" cy="26" r="9" fill="#F7C8D9"/><circle cx="32" cy="32" r="9" fill="#FFD66B"/></g></symbol>
 <symbol id="o-ball" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="25" fill="#59B9E9"/><path d="M10 24C24 30 40 30 54 24M10 42C24 36 40 36 54 42" fill="none"/><path d="M32 7V57" fill="none"/></g></symbol>
 <symbol id="o-fish" viewBox="0 0 64 64"><g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M6 32C16 16 36 14 46 28L58 18V46L46 36C36 50 16 48 6 32Z" fill="#B9A5F1"/><circle cx="19" cy="29" r="3" fill="#202D4A"/><path d="M30 24C33 30 33 36 30 41" fill="none"/></g></symbol>
@@ -1256,6 +1259,55 @@ const portadaRobots = () => `<svg class="sc" viewBox="0 0 320 180" preserveAspec
   </g>
 </svg>`;
 
+const portadaAlien = () => `<svg class="sc" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="pra" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B3FB5"/><stop offset="1" stop-color="#FF9AB8"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#pra)"/>
+  <g fill="#fff" opacity=".9"><circle cx="70" cy="16" r="1.5"/><circle cx="140" cy="10" r="1.2"/><circle cx="20" cy="60" r="1.2"/><circle cx="205" cy="14" r="1.4"/></g>
+  <circle cx="286" cy="30" r="14" fill="#FFD36B" stroke="#202D4A" stroke-width="2.5"/><ellipse cx="286" cy="30" rx="26" ry="6" fill="none" stroke="#202D4A" stroke-width="2.5" transform="rotate(-18 286 30)"/>
+  <g stroke="#202D4A" stroke-width="2.5" stroke-linejoin="round"><path d="M0 150 40 112 78 150Z" fill="#B8372E"/><path d="M190 150 232 108 270 150Z" fill="#B8372E"/><path d="M120 150 150 128 180 150Z" fill="#D9503F"/></g>
+  <rect y="150" width="320" height="30" fill="#C8453A"/><path d="M0 150H320" stroke="#202D4A" stroke-width="2.5"/><path d="M0 166q40-8 80 0t80 0 80 0 80 0" fill="none" stroke="#FF9A3D" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="96" y="40" width="128" height="38" rx="10" fill="#fff"/>
+   <rect x="82" y="92" width="42" height="28" rx="8" fill="#FFD36B"/><rect x="139" y="92" width="42" height="28" rx="8" fill="#8EE07A"/><rect x="196" y="92" width="42" height="28" rx="8" fill="#6FD0FF"/></g>
+  <g font-family="Fredoka,Nunito,Arial Rounded MT Bold,sans-serif" font-weight="800" text-anchor="middle" fill="#202D4A"><text x="160" y="68" font-size="26">13 − 4 = ?</text><text x="103" y="112" font-size="18">7</text><text x="160" y="112" font-size="18">9</text><text x="217" y="112" font-size="18">17</text></g>
+  <g transform="translate(252 96)" stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+   <path d="M16 10 12 0M40 10l4-10" fill="none"/><circle cx="11" cy="-3" r="3.5" fill="#FF8A7A"/><circle cx="45" cy="-3" r="3.5" fill="#FF8A7A"/>
+   <ellipse cx="28" cy="26" rx="22" ry="19" fill="#8EE07A"/><path d="M10 20c2 6 9 9 13 5-1-6-8-10-13-5zM46 20c-2 6-9 9-13 5 1-6 8-10 13-5z" fill="#202D4A"/><path d="M22 36q6 4 12 0" fill="none"/>
+   <rect x="16" y="44" width="24" height="10" rx="5" fill="#5BBF4F"/></g>
+</svg>`;
+const portadaMomias = () => `<svg class="sc" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="prm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B2142"/><stop offset="1" stop-color="#7A4C9C"/></linearGradient><radialGradient id="prf"><stop offset="0" stop-color="#FF9A3D" stop-opacity=".85"/><stop offset="1" stop-color="#FF9A3D" stop-opacity="0"/></radialGradient></defs>
+  <rect width="320" height="180" fill="url(#prm)"/>
+  <ellipse cx="160" cy="156" rx="170" ry="36" fill="url(#prf)"/>
+  <g fill="#8B86A8" opacity=".55"><circle cx="48" cy="86" r="9"/><circle cx="58" cy="72" r="12"/><circle cx="72" cy="58" r="14"/><circle cx="238" cy="66" r="9"/><circle cx="248" cy="52" r="12"/></g>
+  <g stroke="#202D4A" stroke-width="2.5" stroke-linejoin="round"><path d="M10 150V108l12-8 8 12 10-6v44Z" fill="#2E2A55"/><rect x="46" y="94" width="10" height="56" fill="#3A3468"/><path d="M200 150V112l14-10 6 14 12-8 10 6v36Z" fill="#2E2A55"/><rect x="248" y="86" width="10" height="64" fill="#3A3468"/></g>
+  <g fill="#FFC928" opacity=".8"><rect x="16" y="120" width="5" height="7"/><rect x="214" y="124" width="5" height="7"/></g>
+  <rect y="150" width="320" height="30" fill="#4A2F6B"/><path d="M0 150H320" stroke="#202D4A" stroke-width="2.5"/>
+  <g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="96" y="40" width="128" height="38" rx="10" fill="#F4F9FF"/><rect x="104" y="92" width="48" height="28" rx="8" fill="#FFD36B"/><rect x="168" y="92" width="48" height="28" rx="8" fill="#8EE07A"/></g>
+  <g font-family="Fredoka,Nunito,Arial Rounded MT Bold,sans-serif" font-weight="800" text-anchor="middle" fill="#202D4A"><text x="160" y="68" font-size="26">84 − 23</text><text x="128" y="112" font-size="18">61</text><text x="192" y="112" font-size="18">53</text></g>
+  <g transform="translate(258 92)" stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+   <rect x="6" y="0" width="38" height="58" rx="17" fill="#F4E8C8"/><path d="M7 14h36M8 34h34M10 46l30-5M10 6l30 6" fill="none"/>
+   <circle cx="19" cy="22" r="4.5" fill="#fff"/><circle cx="32" cy="22" r="4.5" fill="#fff"/><circle cx="19" cy="22" r="1.8" fill="#202D4A" stroke="none"/><circle cx="32" cy="22" r="1.8" fill="#202D4A" stroke="none"/>
+   <path d="M6 36-8 30M44 36l14-6" fill="none"/></g>
+</svg>`;
+const portadaInvasion = () => `<svg class="sc" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="pru" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F1B3D"/><stop offset="1" stop-color="#2D6A6A"/></linearGradient><linearGradient id="prb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3A0" stop-opacity=".9"/><stop offset="1" stop-color="#FFF3A0" stop-opacity=".25"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#pru)"/>
+  <g fill="#fff"><circle cx="30" cy="80" r="1.3"/><circle cx="90" cy="14" r="1.3"/><circle cx="290" cy="76" r="1.3"/></g>
+  <circle cx="300" cy="22" r="11" fill="#FFF3C4"/>
+  <g fill="#FFE45C"><circle cx="40" cy="132" r="2.2"/><circle cx="118" cy="140" r="2.2"/><circle cx="290" cy="138" r="2.2"/></g>
+  <rect y="150" width="320" height="30" fill="#2E8B57"/><path d="M0 150H320" stroke="#202D4A" stroke-width="2.5"/>
+  <path d="M146 50 112 152H246L210 50Z" fill="url(#prb)"/>
+  <g stroke="#202D4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+   <ellipse cx="178" cy="46" rx="48" ry="13" fill="#9A6CF0"/><path d="M156 42c0-18 44-18 44 0z" fill="#B8EEFF"/><circle cx="146" cy="48" r="2.4" fill="#FFD36B" stroke="none"/><circle cx="178" cy="53" r="2.4" fill="#FFD36B" stroke="none"/><circle cx="210" cy="48" r="2.4" fill="#FFD36B" stroke="none"/>
+   <g transform="translate(150 88)"><rect x="6" y="6" width="46" height="24" rx="10" fill="#fff"/><circle cx="20" cy="16" r="5" fill="#202D4A" stroke="none"/><circle cx="38" cy="20" r="4" fill="#202D4A" stroke="none"/><rect x="48" y="2" width="20" height="18" rx="8" fill="#fff"/><circle cx="58" cy="10" r="1.6" fill="#202D4A" stroke="none"/><path d="M12 30v10M24 30v10M40 30v10M50 30v10" fill="none"/><path d="M6 12-2 8" fill="none"/></g>
+   <rect x="274" y="104" width="38" height="46" fill="#D9503F"/><path d="M270 106 293 82 316 106Z" fill="#fff"/><rect x="284" y="124" width="18" height="26" fill="#8B2B22"/>
+   <rect x="14" y="84" width="96" height="38" rx="10" fill="#4FC3FF"/>
+  </g>
+  <path d="M8 140V128M30 140V128M52 140V128M0 134H60" stroke="#202D4A" stroke-width="3" fill="none" stroke-linecap="round" display="none"/>
+  <g font-family="Fredoka,Nunito,Arial Rounded MT Bold,sans-serif" font-weight="800" text-anchor="middle" fill="#fff"><text x="62" y="112" font-size="28" stroke="#202D4A" stroke-width="4" paint-order="stroke">30 ÷ 5</text></g>
+</svg>`;
+const PORTADAS = {robots: portadaRobots, alien: portadaAlien, momias: portadaMomias, invasion: portadaInvasion};
+
 /* fondos de los juegos por mundo */
 const THEMES = {
   contemos:{s:['#A9DCF7','#E8F6FF'], h:['#83D7BC','#B7E8D4'], stars:0}, figuras:{s:['#FFE29A','#FFF6DA'], h:['#B7E86B','#D9F5A0'], stars:0},
@@ -1459,7 +1511,7 @@ function renderGames(){
   $('#gl').innerHTML = list.length ? list.map(g => {
     const c = catById(g.cat), [t, d] = col(c.col), lv = lvlById(g.nivel), play = isPlayable(g), fav = P.favs.includes(g.id);
     return `<article class="gc ${play ? '' : 'soon'}" style="--t:${t};--c:${d};--t2:${col(lv.col)[1]}">
-      <div class="th">${g.portada === 'robots' ? portadaRobots() : catScene(g.cat)}${play ? '' : '<span class="tagsoon">Próximamente</span>'}
+      <div class="th">${PORTADAS[g.portada] ? PORTADAS[g.portada]() : catScene(g.cat)}${play ? '' : '<span class="tagsoon">Próximamente</span>'}
         <button class="fav" type="button" data-fav="${esc(g.id)}" aria-pressed="${fav}" aria-label="${fav ? 'Quitar de' : 'Guardar en'} favoritos: ${esc(g.titulo)}"><svg viewBox="0 0 24 24" stroke-linejoin="round"><use href="#i-heart2"/></svg></button>
         <span class="gicon">${pic(g.pic, 60)}</span>
         <span class="gstars" aria-label="${P.best[g.id] || 0} de 3 estrellas">${starsRow(P.best[g.id] || 0, 3, 22)}</span></div>

@@ -181,6 +181,20 @@ button.hex:active{transform:scale(.96)}
 
 /* ---------- Modos de pantalla ---------- */
 .mode-select :is(#hudA,#hudB,#clock,#speed,#card,#opts,#enemy,#msg){display:none}
+.mode-title :is(#hudA,#hudB,#clock,#speed,#card,#opts,#enemy,#msg,#sel,#player){display:none}
+#title{position:absolute;inset:0;z-index:5;display:none;flex-direction:column;align-items:center;padding-top:7cqw;text-align:center}
+.mode-title #title{display:flex}
+#title h1{margin:0;font-size:max(40px,14cqw);line-height:1;letter-spacing:.06em;font-weight:800;color:#8ff7ff;
+  text-shadow:0 0 .8cqw #4fc3ff,0 0 2.6cqw #2a7de1,0 .9cqw 0 #1b4a99,0 1.4cqw 2cqw rgba(0,0,0,.5);animation:neon 3s ease-in-out infinite}
+@keyframes neon{50%{filter:brightness(1.25)}}
+#title .sub{margin:.8cqw 0 2.6cqw;font-size:max(16px,3.6cqw);color:#fff;letter-spacing:.14em;text-transform:lowercase;text-shadow:0 0 1.2cqw #ff4fd8,0 .3cqw 0 #5b2bb5}
+#desfile{position:absolute;left:0;right:0;bottom:6.5cqw;height:15cqw;overflow:hidden;pointer-events:none}
+#pista{position:absolute;left:0;bottom:0;display:flex;gap:5cqw;animation:marcha 26s linear infinite}
+#pista .mr{display:block;width:10cqw}
+#pista .mr svg{display:block;width:100%;height:auto;animation:salto .55s ease-in-out infinite alternate}
+#pista .mr:nth-child(2n) svg{animation-delay:.2s}#pista .mr:nth-child(3n) svg{animation-delay:.38s}
+@keyframes marcha{from{transform:translateX(100cqw)}to{transform:translateX(-100%)}}
+@keyframes salto{to{transform:translateY(-8%) rotate(2deg)}}
 .mode-game #sel{display:none}
 
 /* ---------- Celular en vertical: escenario más alto para que los botones sean grandes ---------- */
@@ -207,6 +221,8 @@ button.hex:active{transform:scale(.96)}
   #enemy{right:1cqw}
   #enemy .pos{--advd:9cqw}
   .mode-select #player{left:0;bottom:6cqw;width:40cqw}
+  #title{padding-top:26cqw}#title .sub{font-size:max(15px,5.4cqw)}#title h1{font-size:max(40px,19cqw)}
+  #desfile{bottom:58cqw;height:42cqw}#pista .mr{width:26cqw}
   #card{left:6cqw;width:88cqw;top:32cqw;padding:2.5cqw 2cqw}
   #card small{font-size:max(12px,3.4cqw)}
   #qnum{font-size:max(40px,18cqw)}
@@ -231,7 +247,8 @@ button.hex:active{transform:scale(.96)}
   .plus{font-size:max(16px,5.4cqw)}
 }
 @media (prefers-reduced-motion:reduce){
-  .actor svg,.rb-eyes,.rays,#clock.warn text{animation:none!important}
+  .actor svg,.rb-eyes,.rays,#clock.warn text,#title h1{animation:none!important}
+  #pista{animation:none;left:8cqw}#pista .mr svg{animation:none}
   #dim{transition:none}
 }
 .paused *{animation-play-state:paused!important}
@@ -240,7 +257,7 @@ button.hex:active{transform:scale(.96)}
 <body>
 <div id="wrap">
 <a class="volver" href="/matematicas/#juegos">← Volver a Matemáticas</a>
-<div id="stage" class="mode-select">
+<div id="stage" class="mode-title">
   <div id="world">
     <!-- Ciudad futurista: se dibuja desde JavaScript -->
     <svg id="scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
@@ -288,6 +305,14 @@ button.hex:active{transform:scale(.96)}
     <div id="slash"><svg viewBox="0 0 240 140" aria-hidden="true"><defs><linearGradient id="slg" x1="0" x2="1"><stop offset="0" stop-color="#4fc3ff" stop-opacity="0"/><stop offset=".5" stop-color="#e8fbff"/><stop offset="1" stop-color="#4fc3ff" stop-opacity="0"/></linearGradient></defs><path d="M10 120 Q120 60 230 12 Q130 74 10 120Z" fill="url(#slg)"/><path d="M30 126 Q120 84 220 36 Q128 92 30 126Z" fill="#4fc3ff" opacity=".7"/></svg></div>
     <div id="flash"></div>
 
+    <!-- Título -->
+    <section id="title" aria-label="Pantalla de título">
+      <h1>ROBOTS</h1>
+      <p class="sub">forma expandida</p>
+      <button class="btn" id="btnEmpezar" type="button">JUGAR</button>
+      <div id="desfile" aria-hidden="true"><div id="pista"></div></div>
+    </section>
+
     <!-- Selección de robot -->
     <section id="sel" aria-label="Selección de robot">
       <span class="pill">Selecciona tu robot</span>
@@ -305,7 +330,7 @@ button.hex:active{transform:scale(.96)}
   <div class="overlay" id="ovAyuda">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tAyuda">
       <span class="pill" id="tAyuda">Instrucciones</span>
-      <p>La <b>forma expandida</b> de un número muestra cuánto vale cada dígito según su lugar: centenas, decenas y unidades.</p>
+      <p>La <b>forma expandida</b> es una manera de escribir un número sumando el valor posicional de cada dígito.</p>
       <div class="ej"><p>Ejemplo: <b>723</b></p><p>En forma expandida: <b>700 + 20 + 3</b></p></div>
       <p>Elige la forma expandida correcta antes de que se acabe el tiempo. ¡Cada acierto derrota al robot enemigo!</p>
       <p>Tienes 3 vidas y 40 preguntas. Teclas: 1 a 4 para responder, P pausa, M silencio.</p>
@@ -375,7 +400,7 @@ const store = {
 
 /* ============================ 2. ESTADO ============================ */
 const S = {
-  pantalla: 'select', robot: 0, vidas: CFG.VIDAS, punt: 0, idx: 0, resp: 0, vel: 0,
+  pantalla: 'title', robot: 0, vidas: CFG.VIDAS, punt: 0, idx: 0, resp: 0, vel: 0,
   usados: new Set(), pausas: new Set(), tRest: CFG.SEG, esperando: false, resolver: null,
   corrida: 0, enemigo: -1, anterior: -1, q: null, record: parseInt(store.get(CFG.K_REC) || '0', 10) || 0
 };
@@ -888,6 +913,10 @@ function nuevaPartida() {
   $('stage').className = 'mode-game';
   partida();
 }
+function irASeleccion() {
+  Snd.sfx('clic'); S.pantalla = 'select'; $('stage').className = 'mode-select';
+  setTimeout(() => { const b = document.querySelector('.rob[aria-checked="true"]'); if (b) b.focus(); }, 30);
+}
 function volverASeleccion() {
   S.corrida++; vivas.forEach(a => a.cancel()); vivas.clear(); S.pantalla = 'select'; S.esperando = false;
   S.pausas.clear(); $('stage').classList.remove('paused');
@@ -929,6 +958,7 @@ function iniciaEventos() {
     const d = { ArrowRight: 1, ArrowDown: 5, ArrowLeft: -1, ArrowUp: -5 }[e.key]; if (!d) return;
     e.preventDefault(); const n = S.robot + d; if (n < 0 || n > 9) return; S.robot = n; ponRobotElegido(); document.querySelectorAll('.rob')[n].focus(); Snd.sfx('clic');
   });
+  $('btnEmpezar').addEventListener('click', irASeleccion);
   $('btnJugar').addEventListener('click', () => { Snd.sfx('clic'); nuevaPartida(); });
   $('btnOtra').addEventListener('click', () => { Snd.sfx('clic'); volverASeleccion(); });
   $('btnAyuda').addEventListener('click', abreAyuda);
@@ -943,6 +973,11 @@ function iniciaEventos() {
     if (k === 'escape' && $('ovAyuda').classList.contains('on')) { cierraAyuda(); return; }
     if ($('ovAyuda').classList.contains('on')) return;
     if (k === 'm') { Snd.setMudo(!Snd.esMudo()); return; }
+    // Enter: del título pasa a la selección y de la selección empieza la partida
+    if (e.key === 'Enter' && !e.repeat && !e.target.closest('#btnAyuda,#btnSonido,#speed,#btnOtra,#btnContinuar')) {
+      if (S.pantalla === 'title') { e.preventDefault(); irASeleccion(); return; }
+      if (S.pantalla === 'select') { e.preventDefault(); Snd.sfx('clic'); nuevaPartida(); return; }
+    }
     if (S.pantalla !== 'juego') return;
     if (k === 'p') { if (S.pausas.has('manual')) { reanudar('manual'); reanudar('foco'); } else pausar('manual'); return; }
     if (['1', '2', '3', '4'].includes(k)) elegir(+k - 1);
@@ -960,6 +995,7 @@ function iniciaEventos() {
 /* ============================ ARRANQUE ============================ */
 (function iniciar() {
   $('scene').innerHTML = ciudadSVG();
+  $('pista').innerHTML = ROBOTS.map((_, i) => `<span class="mr">${robotSVG(i)}</span>`).join('');
   iniciaHUD(); pintaRobots(); pintaMudo(); aplicaComp(0); setVidas(); setPunt(0); ponVel(); pintaReloj();
   iniciaEventos(); requestAnimationFrame(bucle);
   window.__rfe = { S, Motor, CFG };   // gancho de pruebas (solo lectura de estado)
