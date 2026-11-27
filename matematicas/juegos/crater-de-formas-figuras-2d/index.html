@@ -142,7 +142,7 @@ button.hex:active{transform:scale(.96)}
   #msg{top:50cqw;font-size:max(18px,6cqw)}
 }
 
-</style>
+.piedra.rota{pointer-events:none;opacity:.45;filter:grayscale(1);transform:rotate(-6deg) scale(.9)}.piedra.rota .roca{clip-path:polygon(0 0,48% 0,52% 40%,40% 55%,55% 100%,0 100%)}</style>
 </head>
 <body>
 <div id="wrap">
@@ -430,18 +430,22 @@ function mensaje(txt, tipo) {
 
 /* ====================== 6. FLUJO ====================== */
 async function ronda() {
-  const q = Motor.crearPregunta({ usados: S.usados }); S.q = q; pintaPiedras(q); S.tRest = CFG.SEG_PREG; pintaTiempo(); setTimeout(() => decir(q.pista), 200);
-  const r = await new Promise(res => { S.esperando = true; S.resolver = res; });
-  S.esperando = false; const bs = [...$('piedras').querySelectorAll('.piedra')]; bs.forEach(b => { b.disabled = true; });
-  const bien = r === q.ok;
-  if (r !== null) bs[r].classList.add(bien ? 'ok' : 'mal'); if (!bien) bs[q.ok].classList.add('ok');
-  if (bien) {
-    S.paso++; if (S.energia < CFG.ENERGIA) S.energia++; Snd.sfx('acierto'); mensaje('¡Bien!', 'ok'); pintaCamino(); pintaEnergia();
-    if (S.paso >= CFG.PASOS) { S.fin = true; await esperar(900); return termina(true); }
-    await esperar(CFG.PAUSA_ACIERTO);
-  } else {
-    S.errores++; S.energia--; Snd.sfx('error'); mensaje(r === null ? '¡Se acabó el tiempo!' : 'Esa no era', 'bad'); pintaEnergia(); $('stage').classList.add('tiembla'); setTimeout(() => $('stage').classList.remove('tiembla'), 400);
-    if (S.energia <= 0) { S.fin = true; await esperar(900); return termina(false); }
+  const q = Motor.crearPregunta({ usados: S.usados }); S.q = q; pintaPiedras(q); setTimeout(() => decir(q.pista), 200);
+  const bs = [...$('piedras').querySelectorAll('.piedra')];
+  for (;;) {   // ficha: cada error rompe esa piedra y se reintenta la misma consigna con las que quedan
+    S.tRest = CFG.SEG_PREG; pintaTiempo();
+    const r = await new Promise(res => { S.esperando = true; S.resolver = res; });
+    S.esperando = false;
+    if (r === q.ok) {
+      bs.forEach(b => { b.disabled = true; }); bs[r].classList.add('ok');
+      S.paso++; Snd.sfx('acierto'); mensaje('¡Bien!', 'ok'); pintaCamino();
+      if (S.paso >= CFG.PASOS) { S.fin = true; await esperar(900); return termina(true); }
+      return esperar(CFG.PAUSA_ACIERTO);
+    }
+    S.errores++; S.energia--; Snd.sfx('error'); mensaje(r === null ? '¡Se acabó el tiempo!' : 'Esa piedra se rompió', 'bad'); pintaEnergia();
+    $('stage').classList.add('tiembla'); setTimeout(() => $('stage').classList.remove('tiembla'), 400);
+    if (r !== null) { bs[r].classList.add('mal', 'rota'); bs[r].disabled = true; }
+    if (S.energia <= 0) { bs.forEach(b => { b.disabled = true; }); S.fin = true; await esperar(900); return termina(false); }
     await esperar(CFG.PAUSA_ERROR);
   }
 }
@@ -465,7 +469,7 @@ async function nuevaPartida() {
   try { while (!S.fin) await ronda(); } catch (e) { if (e !== CANCEL) throw e; }
 }
 function aTitulo() { S.corrida++; S.fin = false; S.esperando = false; irA('titulo'); $('fin').classList.remove('on'); setTimeout(() => $('btnEmpezar').focus(), 30); }
-function elegir(i) { if (S.pantalla === 'juego' && S.esperando && !S.pausas.size && S.resolver) { const f = S.resolver; S.resolver = null; f(i); } }
+function elegir(i) { if (S.pantalla === 'juego' && S.esperando && !S.pausas.size && S.resolver && !(($('piedras').children[i] || {}).disabled)) { const f = S.resolver; S.resolver = null; f(i); } }
 
 /* ====================== 7. EVENTOS ====================== */
 (function iniciar() {

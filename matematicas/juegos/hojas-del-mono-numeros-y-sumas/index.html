@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Hojas del mono: toca las hojas que caen con el número o la suma pedidos antes de que se acabe el tiempo. Para niños de 5 a 8 años.">
-<title>Hojas del mono: números y sumas</title>
+<meta name="description" content="Hojas del mono: toca las hojas con números en orden, del 1 al 9, mientras caen y se amontonan. Para niños de 5 a 7 años.">
+<title>Hojas del mono: toca los números en orden</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:#12082e;color:var(--ink);
@@ -132,6 +132,9 @@ button.hex:active{transform:scale(.96)}
 }
 .bola{border-radius:6% 78% 6% 78%!important;rotate:-20deg;background:linear-gradient(135deg,#FFC928,#F07A1A 60%,#C2622E)!important;border:max(2px,.3cqw) solid #7A3A10!important;box-shadow:none!important}
 .burb{transform:translate(-50%,0)}.burb .op{color:#fff;text-shadow:0 .2cqw 0 #7A3A10}
+#cielo{top:19cqw!important;height:46cqw!important}#tiempoR{background:#27D9C6!important}#tiempo.poco #tiempoR{background:#ff5a4a!important}#pts{background:#E8362F;border-radius:1cqw;color:#fff!important;padding:.2cqw 1.2cqw}
+.burb.hoja{width:max(52px,11cqw)}.burb.hoja .op{font-size:max(18px,3.4cqw)}
+@media (max-width:700px) and (orientation:portrait){#cielo{top:52cqw!important;height:98cqw!important}.burb.hoja{width:max(52px,22cqw)}.burb.hoja .op{font-size:max(18px,8cqw)}}
 #titulo h1{text-shadow:0 .6cqw 0 #E8362F,0 1.2cqw 0 #7A1010,0 2cqw 2cqw rgba(0,0,0,.3)!important}
 
 </style>
@@ -142,7 +145,7 @@ button.hex:active{transform:scale(.96)}
 <div id="stage" class="mode-titulo">
   <div id="world">
     <svg id="scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
-    <section id="titulo" aria-label="Título"><h1>HOJAS DEL MONO</h1><p class="sub">toca las hojas correctas</p><div id="erizoT" aria-hidden="true"></div><div id="niv" role="group" aria-label="Elige el reto"></div></section>
+    <section id="titulo" aria-label="Título"><h1>HOJAS DEL MONO</h1><p class="sub">toca las hojas en orden</p><div id="erizoT" aria-hidden="true"></div><div id="niv" role="group" aria-label="Elige el reto"></div></section>
     <div id="hudB"><div id="erizo" aria-hidden="true"></div><b id="pts">0</b><div id="reloj"><div id="tiempo"><i id="tiempoR"></i></div><span id="seg"></span></div></div>
     <div id="obj" role="status" aria-live="polite"></div>
     <div id="cielo"></div>
@@ -191,23 +194,21 @@ const mezclar = (a, azar = Math.random) => { for (let i = a.length - 1; i > 0; i
 const ent = (azar, lo, hi) => lo + Math.floor(azar() * (hi - lo + 1));
 const elige = (a, azar = Math.random) => a[Math.floor(azar() * a.length)];
 /* ============================================================
-   HOJAS DEL MONO: toca las hojas que cumplen el objetivo antes de que se acabe el tiempo
+   HOJAS DEL MONO: toca las hojas en orden (1, 2, 3...) mientras caen y se amontonan
    Estructura: 1 config · 2 estado · 3 motor · 4 arte · 5 render · 6 flujo · 7 eventos
    ============================================================ */
 /* ====================== 1. CONFIG ====================== */
 const CFG = {
-  MODOS: [
-    { id: 'n10', nombre: 'Números 1 a 10', tipo: 'numero', lo: 1, hi: 10 }, { id: 'n20', nombre: 'Números 11 a 20', tipo: 'numero', lo: 11, hi: 20 },
-    { id: 's10', nombre: 'Sumas 1 a 10', tipo: 'suma', lo: 1, hi: 10 }, { id: 's20', nombre: 'Sumas 10 a 20', tipo: 'suma', lo: 10, hi: 20 }
-  ],   // No confirmado en la ficha: la consigna exacta; aquí se pide un número o una suma
-  SEG: 60,                // duración de la ronda
-  PENAL: 2,               // No confirmado en la ficha: segundos que se pierden al reventar una burbuja equivocada
-  CAMBIA: 4,              // aciertos antes de cambiar de objetivo
-  MAX_BURB: 5, CADA: 1.0, PROB_BUENA: .45, VEL: [{ x: 1, f: 1, ritmo: 1 }], VEL_BURB: [13, 20],   // % de la altura por segundo (las hojas caen)
-  K_REC: 'hoj_mejor_', K_MUDO: 'sc_mute'
+  MODOS: [{ id: 'n9', nombre: 'Hojas del 1 al 9', n: 9 }, { id: 'n20', nombre: 'Hojas del 1 al 20', n: 20 }],
+  SEG: 60,               // No confirmado en la ficha: duración de la barra de tiempo
+  REINICIA: true,        // No confirmado en la ficha: al tocar la última hoja la secuencia vuelve a empezar en 1
+  CADA: 1.1,             // segundos entre hojas nuevas
+  CAE: [9, 15],          // % de la altura por segundo mientras caen
+  DERIVA: 2.2,           // % por segundo de deriva lateral cuando ya están en el montón
+  VEL: [{ x: 1, f: 1, ritmo: 1 }], K_REC: 'hoj_mejor_', K_MUDO: 'sc_mute'
 };
 /* ====================== 2. ESTADO ====================== */
-const S = { pantalla: 'titulo', corrida: 0, pausas: new Set(), vel: 0, fin: false, modo: 0, objetivo: null, puntos: 0, errores: 0, seguidos: 0, tRest: 0, burb: [], sig: 0, ult: 0, cuenta: 0, tSpawn: 0 };
+const S = { pantalla: 'titulo', corrida: 0, pausas: new Set(), vel: 0, fin: false, modo: 0, sig: 1, puntos: 0, errores: 0, vueltas: 0, tRest: 0, hojas: [], cola: [], id: 0, ult: 0, tSpawn: 0 };
 
 const vivas = new Set();
 const D = ms => RM ? ms * 0.3 : ms * CFG.VEL[S.vel].f;     // duración según velocidad visual
@@ -339,40 +340,13 @@ function iniciaComun(alTecla) {
 
 
 /* ====================== 3. MOTOR ====================== */
-const FORMAS = {
-  circulo: { n: 'círculo', art: 'el', d: 'M50 8a42 42 0 1 0 .01 0z' }, cuadrado: { n: 'cuadrado', art: 'el', d: 'M14 14H86V86H14z' }, triangulo: { n: 'triángulo', art: 'el', d: 'M50 8L94 88H6z' },
-  rombo: { n: 'rombo', art: 'el', d: 'M50 4L94 50L50 96L6 50z' }, pentagono: { n: 'pentágono', art: 'el', d: 'M50 6L94 38L77 90H23L6 38z' }, hexagono: { n: 'hexágono', art: 'el', d: 'M27 10H73L96 50L73 90H27L4 50z' },
-  estrella: { n: 'estrella', art: 'la', d: 'M50 4l14 30 32 4-24 22 7 32-29-17-29 17 7-32-24-22 32-4z' }
-};
-const COLORES = ['#E8362F', '#2A7DE1', '#2FA65A', '#FFC928', '#F07A1A', '#8A4BE0'];
 const Motor = {
-  /* nuevoObjetivo({modo, previo}) -> {clave, texto}: número o figura que hay que reventar */
-  nuevoObjetivo({ modo, previo = null, azar = Math.random } = {}) {
-    const m = CFG.MODOS[modo];
-    for (let i = 0; i < 50; i++) {
-      let o;
-      if (m.tipo === 'forma') { const k = elige(Object.keys(FORMAS), azar); o = { clave: k, texto: FORMAS[k].art + ' ' + FORMAS[k].n }; }
-      else { const v = m.lo + Math.floor(azar() * (m.hi - m.lo + 1)); o = { clave: String(v), texto: String(v) }; }
-      if (!previo || o.clave !== previo.clave) return o;
-    }
-  },
-  /* crearBurbuja({modo, objetivo, buena}) -> {clave, txt|forma, color}: si buena, cumple el objetivo; si no, no lo cumple */
-  crearBurbuja({ modo, objetivo, buena, azar = Math.random }) {
-    const m = CFG.MODOS[modo], R = k => Math.floor(azar() * k);
-    if (m.tipo === 'forma') {
-      let k = objetivo.clave; if (!buena) { const otras = Object.keys(FORMAS).filter(x => x !== objetivo.clave); k = elige(otras, azar); }
-      return { clave: k, forma: k, color: elige(COLORES, azar) };
-    }
-    const t = +objetivo.clave;
-    if (m.tipo === 'numero') { let v = t; if (!buena) { do { v = m.lo + R(m.hi - m.lo + 1); } while (v === t); } return { clave: String(v), txt: String(v) }; }
-    for (let i = 0; i < 100; i++) {
-      let res, a, b;
-      if (m.tipo === 'suma') { res = buena ? t : Math.max(0, t + elige([-3, -2, -1, 1, 2, 3, 5], azar)); a = R(res + 1); b = res - a; }
-      else { res = buena ? t : Math.max(0, t + elige([-3, -2, -1, 1, 2, 3, 5], azar)); const mx = m.hi === 10 ? 10 : 20; if (res > mx) continue; b = R(mx - res + 1); a = res + b; }
-      if (buena !== (res === t)) continue;
-      return { clave: String(res), txt: m.tipo === 'suma' ? `${a}+${b}` : `${a}−${b}` };
-    }
-    return { clave: String(t), txt: `${t}+0` };
+  /* nuevaCola(n) -> números 1..n mezclados: una hoja de cada número por vuelta */
+  nuevaCola(n, azar = Math.random) { return mezclar(Array.from({ length: n }, (_, i) => i + 1), azar); },
+  /* siguiente(cola, hojas, objetivo) -> número que se suelta: si el objetivo aún no está en pantalla, sale él */
+  siguiente(cola, hojas, objetivo) {
+    if (!hojas.some(h => h.n === objetivo) && cola.includes(objetivo)) { cola.splice(cola.indexOf(objetivo), 1); return objetivo; }
+    return cola.shift();
   }
 };
 
@@ -389,68 +363,68 @@ function monoSVG() {   // mono propio, colgado de una rama
    <circle cx="62" cy="52" r="32" fill="#9A6A3A"/><ellipse cx="62" cy="60" rx="22" ry="20" fill="#F4D9A8" stroke="none"/><circle cx="52" cy="50" r="4" fill="#202D4A" stroke="none"/><circle cx="72" cy="50" r="4" fill="#202D4A" stroke="none"/><path d="M52 66q10 8 20 0" fill="none"/>
    <path d="M20 112q-10 8 0 16M104 112q10 8 0 16" fill="none" stroke="#9A6A3A" stroke-width="8"/></g></svg>`;
 }
-function burbujaFondo() { return '<span class="bola"></span>'; }
 
 /* ====================== 5. RENDER ====================== */
-function formaSVG(k, c) { return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="${FORMAS[k].d}" fill="${c}" stroke="#202D4A" stroke-width="5" stroke-linejoin="round"/></svg>`; }
-function pintaObjetivo() { $('obj').innerHTML = (CFG.MODOS[S.modo].tipo === 'numero' ? 'Toca las hojas con el número ' : 'Toca las hojas que dan ') + '<b>' + S.objetivo.texto + '</b>'; }
-function pintaHud() { $('pts').textContent = S.puntos; $('tiempoR').style.transform = `scaleX(${Math.max(0, S.tRest) / CFG.SEG})`; $('tiempo').classList.toggle('poco', S.tRest < 10); $('seg').textContent = Math.ceil(Math.max(0, S.tRest)) + ' s'; }
+function pintaObjetivo() { $('obj').innerHTML = 'Toca la hoja <b>' + S.sig + '</b>'; }
+function pintaHud() { $('pts').textContent = S.puntos; $('tiempoR').style.transform = `scaleX(${1 - Math.max(0, S.tRest) / CFG.SEG})`; $('tiempo').classList.toggle('poco', S.tRest < 10); $('seg').textContent = Math.ceil(Math.max(0, S.tRest)) + ' s'; }
 function mensaje(t, tipo) { const m = $('msg'); m.className = tipo; m.textContent = t; m.style.opacity = 1; clearTimeout(mensaje.t); mensaje.t = setTimeout(() => { m.style.opacity = 0; }, 700); }
 
 /* ====================== 6. FLUJO ====================== */
-function creaBurbuja() {
-  const buena = Math.random() < CFG.PROB_BUENA, d = Motor.crearBurbuja({ modo: S.modo, objetivo: S.objetivo, buena });
-  const el = document.createElement('button'); el.type = 'button'; el.className = 'burb'; const id = ++S.sig; el.dataset.id = id;
-  el.innerHTML = '<span class="bola"></span>' + (d.forma ? `<span class="fig">${formaSVG(d.forma, d.color)}</span>` : `<span class="op">${d.txt}</span>`);
-  el.setAttribute('aria-label', d.forma ? FORMAS[d.forma].n : d.txt.replace('−', ' menos ').replace('+', ' más '));
-  const b = { id, el, d, x: 8 + Math.random() * 84, y: -22, v: CFG.VEL_BURB[0] + Math.random() * (CFG.VEL_BURB[1] - CFG.VEL_BURB[0]), f: Math.random() * 6, vivo: true };
-  S.burb.push(b); $('cielo').appendChild(el); colocar(b);
+function colocar(h) { h.el.style.left = (h.x + Math.sin(h.f) * 2) + '%'; h.el.style.top = h.y + '%'; h.el.style.rotate = (h.rot + Math.sin(h.f * .8) * 12) + 'deg'; }
+function creaHoja() {
+  if (!S.cola.length) S.cola = Motor.nuevaCola(CFG.MODOS[S.modo].n);
+  const n = Motor.siguiente(S.cola, S.hojas, S.sig);
+  const el = document.createElement('button'); el.type = 'button'; el.className = 'burb hoja'; el.dataset.id = ++S.id;
+  el.innerHTML = '<span class="bola"></span><span class="op">' + n + '</span>'; el.setAttribute('aria-label', 'Hoja ' + n);
+  const h = { id: S.id, el, n, x: 10 + Math.random() * 80, y: -24, v: CFG.CAE[0] + Math.random() * (CFG.CAE[1] - CFG.CAE[0]), f: Math.random() * 6, rot: -30 + Math.random() * 60, suelo: 44 + Math.random() * 16, vx: (Math.random() < .5 ? -1 : 1) * (.5 + Math.random()) * CFG.DERIVA / 2 };
+  S.hojas.push(h); $('cielo').appendChild(el); colocar(h);
 }
-function colocar(b) { b.el.style.left = (b.x + Math.sin(b.f) * 4) + '%'; b.el.style.top = b.y + '%'; }
 function bucle(t) {
   const dt = Math.min(100, t - (S.ult || t)) / 1000; S.ult = t;
   if (S.pantalla === 'juego' && !S.fin && !S.pausas.size) {
     S.tRest -= dt; S.tSpawn -= dt;
-    S.burb.forEach(b => { b.y += b.v * dt * (RM ? .6 : 1); b.f += dt * 1.6; colocar(b); });
-    S.burb = S.burb.filter(b => { if (b.y > 104 || !b.vivo) { if (b.vivo) b.el.remove(); return b.vivo && b.y <= 104; } return true; });
-    if (S.tSpawn <= 0 && S.burb.length < CFG.MAX_BURB) { creaBurbuja(); S.tSpawn = CFG.CADA * (.7 + Math.random() * .6); }
-    // garantiza que haya al menos una burbuja que sirva
-    if (S.burb.length >= 3 && !S.burb.some(b => b.d.clave === S.objetivo.clave)) { const x = S.burb[0]; Object.assign(x.d, Motor.crearBurbuja({ modo: S.modo, objetivo: S.objetivo, buena: true })); repinta(x); }
+    S.hojas.forEach(h => {
+      h.f += dt * 1.4;
+      if (h.y < h.suelo) { h.y = Math.min(h.suelo, h.y + h.v * dt * (RM ? .6 : 1)); h.x += Math.sin(h.f) * dt * 4; }     // cae derivando
+      else { h.x += h.vx * dt * (RM ? .5 : 1); if (h.x < 6 || h.x > 94) h.vx = -h.vx; h.x = Math.max(6, Math.min(94, h.x)); }   // en el montón sigue moviéndose
+      colocar(h);
+    });
+    if (S.tSpawn <= 0 && S.hojas.length < CFG.MODOS[S.modo].n + 2) { creaHoja(); S.tSpawn = CFG.CADA * (.8 + Math.random() * .4); }
     pintaHud(); if (S.tRest <= 0) termina();
   }
   requestAnimationFrame(bucle);
 }
-function repinta(b) { const d = b.d; b.el.innerHTML = '<span class="bola"></span>' + (d.forma ? `<span class="fig">${formaSVG(d.forma, d.color)}</span>` : `<span class="op">${d.txt}</span>`); }
-function revienta(id) {
+function toca(id) {
   if (S.pantalla !== 'juego' || S.fin || S.pausas.size) return;
-  const b = S.burb.find(x => x.id === id); if (!b || !b.vivo) return;
-  if (b.d.clave === S.objetivo.clave) {
-    b.vivo = false; S.puntos++; S.seguidos++; Snd.sfx('moneda'); b.el.classList.add('pop'); setTimeout(() => b.el.remove(), 260);
-    if (S.seguidos >= CFG.CAMBIA) { S.seguidos = 0; S.objetivo = Motor.nuevoObjetivo({ modo: S.modo, previo: S.objetivo }); pintaObjetivo(); mensaje('¡Nuevo objetivo!', 'ok'); decir(S.objetivo.texto); }
-  } else { S.errores++; S.tRest -= CFG.PENAL; Snd.sfx('error'); b.el.classList.remove('mal'); void b.el.offsetWidth; b.el.classList.add('mal'); mensaje('−' + CFG.PENAL + ' s', 'bad'); }
-  pintaHud();
+  const h = S.hojas.find(x => x.id === id); if (!h) return;
+  if (h.n !== S.sig) { S.errores++; Snd.sfx('clic'); h.el.classList.remove('mal'); void h.el.offsetWidth; h.el.classList.add('mal'); return; }   // ficha: fuera de orden no suma
+  S.puntos++; Snd.sfx('moneda'); h.el.classList.add('pop'); setTimeout(() => h.el.remove(), 260); S.hojas = S.hojas.filter(x => x !== h);
+  if (S.sig >= CFG.MODOS[S.modo].n) {
+    if (CFG.REINICIA) { S.sig = 1; S.vueltas++; S.cola = Motor.nuevaCola(CFG.MODOS[S.modo].n); mensaje('¡Vuelta completa!', 'ok'); Snd.sfx('acierto'); } else return termina();
+  } else S.sig++;
+  pintaObjetivo(); pintaHud();
 }
 function termina() {
-  S.fin = true; $('cielo').querySelectorAll('.burb').forEach(e => e.remove()); S.burb = [];
+  S.fin = true; $('cielo').querySelectorAll('.burb').forEach(e => e.remove()); S.hojas = [];
   const k = CFG.K_REC + CFG.MODOS[S.modo].id, mej = parseInt(store.get(k) || '0', 10) || 0, nuevo = S.puntos > mej; if (nuevo) store.set(k, String(S.puntos));
-  mostrarFin('¡Se acabó el tiempo!', 'Hojas: ' + S.puntos, 'Récord: ' + Math.max(mej, S.puntos) + (nuevo ? ' ¡Nuevo!' : ''), 'Errores: ' + S.errores, S.puntos >= 8);
+  mostrarFin('¡Se acabó el tiempo!', 'Hojas: ' + S.puntos, 'Récord: ' + Math.max(mej, S.puntos) + (nuevo ? ' ¡Nuevo!' : ''), 'Vueltas: ' + S.vueltas, S.puntos >= 9);
 }
 function nuevaPartida(m) {
-  S.modo = m; S.corrida++; S.pausas.clear(); S.fin = false; S.puntos = 0; S.errores = 0; S.seguidos = 0; S.tRest = CFG.SEG; S.tSpawn = .2; S.burb = [];
+  S.modo = m; S.corrida++; S.pausas.clear(); S.fin = false; S.puntos = 0; S.errores = 0; S.vueltas = 0; S.sig = 1; S.tRest = CFG.SEG; S.tSpawn = .1; S.hojas = []; S.cola = Motor.nuevaCola(CFG.MODOS[m].n);
   $('cielo').innerHTML = ''; $('fin').classList.remove('on'); $('ovPausa').classList.remove('on'); $('stage').classList.remove('paused'); $('msg').style.opacity = 0;
-  S.objetivo = Motor.nuevoObjetivo({ modo: m }); irA('juego'); pintaObjetivo(); pintaHud(); decir(S.objetivo.texto);
+  irA('juego'); pintaObjetivo(); pintaHud(); decir('Toca las hojas en orden, empieza por el uno');
 }
-function aTitulo() { S.corrida++; S.fin = false; S.burb = []; $('cielo').innerHTML = ''; irA('titulo'); $('fin').classList.remove('on'); setTimeout(() => { const b = document.querySelector('.nivbtn'); if (b) b.focus(); }, 30); }
+function aTitulo() { S.corrida++; S.fin = false; S.hojas = []; $('cielo').innerHTML = ''; irA('titulo'); $('fin').classList.remove('on'); setTimeout(() => { const b = document.querySelector('.nivbtn'); if (b) b.focus(); }, 30); }
 
 /* ====================== 7. EVENTOS ====================== */
 (function iniciar() {
   $('scene').innerHTML = otonoSVG(); $('erizo').innerHTML = monoSVG(); $('erizoT').innerHTML = monoSVG(); pintaMudo();
   $('niv').innerHTML = CFG.MODOS.map((n, i) => `<button class="btn nivbtn" type="button" data-n="${i}">${n.nombre}</button>`).join('');
   $('niv').addEventListener('click', e => { const b = e.target.closest('.nivbtn'); if (b) { Snd.sfx('clic'); nuevaPartida(+b.dataset.n); } });
-  $('cielo').addEventListener('click', e => { const b = e.target.closest('.burb'); if (b) revienta(+b.dataset.id); });
+  $('cielo').addEventListener('click', e => { const b = e.target.closest('.burb'); if (b) toca(+b.dataset.id); });
   $('btnOtra').addEventListener('click', () => { Snd.sfx('clic'); aTitulo(); });
   $('btnInicio').addEventListener('click', () => { Snd.sfx('clic'); aTitulo(); });
-  iniciaComun((e, k) => { if (S.pantalla === 'titulo' && /^[1-4]$/.test(k)) { Snd.sfx('clic'); nuevaPartida(+k - 1); } });
+  iniciaComun((e, k) => { if (S.pantalla === 'titulo' && /^[1-2]$/.test(k)) { Snd.sfx('clic'); nuevaPartida(+k - 1); } });
   requestAnimationFrame(bucle); window.__hoj = { S, CFG, Motor };   // gancho de pruebas
 })();
 </script>
