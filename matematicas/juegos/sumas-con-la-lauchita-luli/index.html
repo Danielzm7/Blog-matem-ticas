@@ -104,7 +104,7 @@ button.hex:active{transform:scale(.96)}
 #titulo h1{margin:0;font-size:6.4cqw;line-height:1;color:#fff;letter-spacing:.02em;text-shadow:0 .6cqw 0 #E0409A,0 1.2cqw 0 #8A1A5A,0 2cqw 2cqw rgba(0,0,0,.3);padding:0 8cqw}
 #titulo .sub{margin:.8cqw 0 .6cqw;font-size:max(14px,2.8cqw);color:#7A1A4A}
 #rataT{width:11cqw}#rataT svg,#rata svg{width:100%;display:block;filter:drop-shadow(0 .6cqw .6cqw rgba(0,0,0,.3))}
-#niv{display:grid;grid-template-columns:repeat(2,1fr);gap:2cqw;margin-top:2.4cqw;width:60%}#niv .btn{font-size:max(15px,2.8cqw);padding:1.4cqw .6cqw;min-height:52px;white-space:nowrap}
+#niv{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin-top:2.4cqw;width:70%}#niv .btn{font-size:max(15px,2.8cqw);padding:1.4cqw .6cqw;min-height:52px;white-space:nowrap}#bol .grande{font-size:max(20px,3.6cqw);color:#5A0A3A;background:#ffffffaa;border-radius:2cqw;padding:1cqw 3cqw}
 #prog{position:absolute;left:2cqw;top:2cqw;z-index:6;color:#fff;background:#8A1A5Add;border:max(2px,.3cqw) solid #FFE9A8;border-radius:1.4cqw;padding:.3cqw 1.8cqw;font-size:max(18px,3cqw)}
 #ecu{position:absolute;left:0;right:0;top:5cqw;z-index:6;display:flex;justify-content:center;gap:2.4cqw;align-items:center;font-size:max(34px,8.4cqw);color:#5A0A3A;text-shadow:0 .4cqw 0 #fff}
 .hueco{display:grid;place-items:center;min-width:11cqw;height:10.5cqw;padding:0 1cqw;border-radius:2cqw;border:max(3px,.5cqw) dashed #8A1A5A;background:#ffffffaa;color:#8A1A5A;text-shadow:none}.hueco.lleno{border-style:solid;border-color:#35B86A;color:#1E7A44;background:#fff}
@@ -186,7 +186,7 @@ const elige = (a, azar = Math.random) => a[Math.floor(azar() * a.length)];
    ============================================================ */
 /* ====================== 1. CONFIG ====================== */
 const CFG = {
-  NIVELES: [{ id: 's10', nombre: 'Hasta 10', max: 10 }, { id: 's20', nombre: 'Hasta 20', max: 20 }],
+  NIVELES: [{ id: 's10', nombre: 'Hasta 10', max: 10 }, { id: 's20', nombre: 'Hasta 20', max: 20 }, { id: 's50', nombre: 'Hasta 50', max: 50 }],
   RONDAS: 10, OPCIONES: 3,   // No confirmado en la ficha: cantidad de rondas, pantalla final y qué pasa al fallar (aquí: sin castigo, no cuenta como acierto a la primera)
   MS_SIGUE: 1300,
   VEL: [{ x: 1, f: 1, ritmo: 1 }], K_REC: 'rat_mejor_', K_MUDO: 'sc_mute'
@@ -359,7 +359,7 @@ function tarroSVG() { return `<svg viewBox="0 0 100 100" aria-hidden="true"><g s
 function pintaPregunta() {
   const q = S.q; $('prog').textContent = (S.n + 1) + '/' + CFG.RONDAS;
   $('ecu').innerHTML = `<span>${q.a}</span><span>+</span><span>${q.b}</span><span>=</span><span id="hueco" class="hueco">?</span>`;
-  $('bol').innerHTML = `<div class="gr">${bolitaSVG('#2A9DF4').repeat(q.a)}</div><div class="gr">${bolitaSVG('#F59A1B').repeat(q.b)}</div>`; $('bol').dataset.n = q.a + q.b;
+  $('bol').innerHTML = `<div class="gr">${bolitaSVG('#2A9DF4').repeat(q.a)}</div><div class="gr">${bolitaSVG('#F59A1B').repeat(q.b)}</div>`; $('bol').dataset.n = q.a + q.b; if (q.a + q.b > 20) $('bol').innerHTML = '<div class="grande">' + q.a + ' y ' + q.b + '</div>';   // con totales grandes no se dibujan las bolitas
   $('opts').innerHTML = q.opciones.map((o, i) => `<button type="button" class="ficha" data-i="${i}" aria-label="Ficha ${o}">${o}</button>`).join('');
   $('fb').textContent = ''; $('fb').className = ''; $('rata').innerHTML = lauchitaSVG('normal');
 }
