@@ -929,7 +929,7 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
       <span data-nombre-corto>Semillas de Conocimiento</span>
     </a>
     <nav class="nav" aria-label="Matemáticas" id="nav">
-      <a href="#juegos">Jugar</a><a href="#reto">Reto del día</a><a href="#videos">Aprendamos juntos</a><a href="#materiales">Mi rincón de materiales</a><a href="#libre">Exploración libre</a><a href="#familias">Familias y docentes</a>
+      <a href="#juegos">Jugar</a><a href="#reto">Reto del día</a><a href="#videos">Aprendamos juntos</a><a href="#materiales">Mi rincón de materiales</a><a href="#libre">Exploración libre</a><a href="#familias">Familias y docentes</a><a href="/matematicas/perfil/">Mi perfil y ruta</a><a href="/matematicas/docente/">Docentes</a>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir el menú" aria-expanded="false" aria-controls="drawer">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#202D4A" stroke-width="2.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -937,7 +937,7 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
   </div>
 </header>
 <div class="drawer" id="drawer">
-  <a href="#logros">Mis logros</a><a href="#" data-home>Volver al inicio</a>
+  <a href="#logros">Mis logros</a><a href="/matematicas/perfil/">Mi perfil y ruta</a><a href="/matematicas/docente/">Docentes</a><a href="#" data-home>Volver al inicio</a>
 </div>
 
 <main>
@@ -1000,6 +1000,8 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
     <div class="fbar" role="group" aria-label="Filtros de juegos">
       <div class="frow"><b>Mundo</b><span id="f-cat-txt" style="font-weight:700">Todos</span><button type="button" class="linkbtn" id="f-cat-clear" style="margin:0 0 0 6px;display:none">Quitar</button></div>
       <div class="frow" id="f-age"><b>Edad</b></div>
+      <div class="frow" id="f-grado"><b>Grado</b></div>
+      <div class="frow" id="f-hab"><b>Habilidad</b></div>
       <div class="frow" id="f-lvl"><b>Nivel</b></div>
       <div class="frow"><b>Más</b><button class="fbtn" id="f-fav" type="button" aria-pressed="false">♥ Mis favoritos</button><button class="linkbtn" id="f-reset" type="button" style="margin:0 0 0 8px">Quitar filtros</button></div>
     </div>
@@ -1121,6 +1123,7 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
 <div id="toast" role="status" aria-live="polite" style="position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);z-index:400;background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:all .3s;max-width:calc(100% - 32px);text-align:center"></div>
 
 <script src="data/datos.js"></script>
+<script src="data/sitio-datos.js"></script>
 <script>
 /* ============ CONFIGURACIÓN: edita solo esta parte ============ */
 const CONFIG = {
@@ -1792,12 +1795,15 @@ function heroArt(){
 }
 
 /* ============ vista del sitio ============ */
-const F = {cat:null, age:'all', lvl:'all', fav:false};
+const F = {cat:null, age:'all', lvl:'all', fav:false, grado:'all', hab:'all'};
+const META = window.SC_META || {grados:[], habilidades:[], temas:{}};
 const visibleGames = () => DATA.games.filter(g => g.estado !== 'oculto' && (DATA.cats.find(c => c.id === g.cat) || {}).activa !== false && DATA.cats.some(c => c.id === g.cat));
 
 function renderFilters(){
   const ages = [['all','Todas'],['3','3 años'],['4','4 años'],['5','5 años'],['otras','Otras']];
   $('#f-age').innerHTML = '<b>Edad</b>' + ages.map(([k,l]) => `<button class="fbtn" type="button" data-age="${k}" aria-pressed="${F.age === k}">${l}</button>`).join('');
+  $('#f-grado').innerHTML = '<b>Grado</b>' + [['all','Todos',[]], ...META.grados].map(([k,l]) => `<button class="fbtn" type="button" data-grado="${k}" aria-pressed="${F.grado === k}">${l}</button>`).join('');
+  $('#f-hab').innerHTML = '<b>Habilidad</b>' + [['all','Todas',[]], ...META.habilidades].map(([k,l]) => `<button class="fbtn" type="button" data-hab="${k}" aria-pressed="${F.hab === k}">${l}</button>`).join('');
   $('#f-lvl').innerHTML = '<b>Nivel</b>' + [{id:'all',nombre:'Todos'}, ...DATA.niveles].map(n => `<button class="fbtn" type="button" data-lvl="${esc(n.id)}" aria-pressed="${F.lvl === n.id}">${esc(n.nombre)}</button>`).join('');
   $('#f-cat-txt').textContent = F.cat ? catById(F.cat).nombre : 'Todos';
   $('#f-cat-clear').style.display = F.cat ? '' : 'none';
@@ -1808,9 +1814,11 @@ function filteredGames(){
     (!F.cat || g.cat === F.cat) &&
     (F.lvl === 'all' || g.nivel === F.lvl) &&
     (F.age === 'all' || (F.age === 'otras' ? g.edades.some(a => a < 3 || a > 5) : g.edades.includes(+F.age))) &&
+    (F.grado === 'all' || ((META.grados.find(x => x[0] === F.grado) || [0,0,[]])[2]).some(a => g.edades.includes(a))) &&
+    (F.hab === 'all' || ((META.habilidades.find(x => x[0] === F.hab) || [0,0,[]])[2]).includes(g.tema)) &&
     (!F.fav || P.favs.includes(g.id)));
 }
-function resetFilters(){ F.cat = null; F.age = 'all'; F.lvl = 'all'; F.fav = false; renderCats(); renderFilters(); renderGames(); }
+function resetFilters(){ F.cat = null; F.age = 'all'; F.lvl = 'all'; F.fav = false; F.grado = 'all'; F.hab = 'all'; renderCats(); renderFilters(); renderGames(); }
 
 /* ruleta */
 const HEX = {sky:'#59B9E9', sun:'#FFD66B', rose:'#FF827C', mint:'#83D7BC', lilac:'#B9A5F1', pink:'#F7C8D9'};
@@ -2454,6 +2462,8 @@ document.addEventListener('click', e => {
   let el;
   if ((el = t.closest('[data-cat]'))){ F.cat = F.cat === el.dataset.cat ? null : el.dataset.cat; renderCats(); renderFilters(); renderGames(); if (F.cat) $('#juegos .sec-h').scrollIntoView({behavior:'smooth', block:'start'}); return; }
   if ((el = t.closest('[data-age]'))){ F.age = el.dataset.age; renderFilters(); renderGames(); return; }
+  if ((el = t.closest('[data-grado]'))){ F.grado = el.dataset.grado; renderFilters(); renderGames(); return; }
+  if ((el = t.closest('[data-hab]'))){ F.hab = el.dataset.hab; renderFilters(); renderGames(); return; }
   if ((el = t.closest('[data-lvl]'))){ F.lvl = el.dataset.lvl; renderFilters(); renderGames(); return; }
   if (t.closest('#f-cat-clear')){ F.cat = null; renderCats(); renderFilters(); renderGames(); return; }
   if (t.closest('#f-fav')){ F.fav = !F.fav; renderFilters(); renderGames(); return; }
@@ -2497,7 +2507,7 @@ document.addEventListener('click', e => { if (drawer.classList.contains('open') 
 
 /* menú activo según la sección */
 const navLinks = $$('#nav a'), secMap = {};
-navLinks.forEach(a => { const s = $(a.getAttribute('href')); if (s) secMap[s.id] = a; });
+navLinks.forEach(a => { const h = a.getAttribute('href'); const s = h.startsWith('#') ? $(h) : null; if (s) secMap[s.id] = a; });
 if ('IntersectionObserver' in window){
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ navLinks.forEach(a => a.classList.remove('on')); const a = secMap[en.target.id]; if (a){ a.classList.add('on'); const nv = $('#nav'), nr = nv.getBoundingClientRect(), ar = a.getBoundingClientRect(); if (nv.scrollWidth > nv.clientWidth) nv.scrollTo({left: nv.scrollLeft + (ar.left - nr.left) - (nr.width - ar.width) / 2, behavior: 'smooth'}); } } }), {rootMargin:'-35% 0px -60% 0px'});
   Object.keys(secMap).forEach(id => io.observe($('#' + id)));

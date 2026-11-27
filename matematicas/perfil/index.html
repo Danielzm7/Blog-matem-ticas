@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi perfil y mi ruta · Semillas Matemáticas</title>
+<meta name="description" content="Elige tu perfil, sigue tu ruta de juegos por grado, gana estrellas e insignias. Todo se guarda solo en este dispositivo.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/matematicas/css/panel.css">
+<script src="/matematicas/js/i18n.js"></script>
+<script src="/matematicas/js/sitio.js"></script>
+<script src="/matematicas/data/datos.js"></script>
+<script src="/matematicas/data/sitio-datos.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/matematicas/"><img src="/img/icono-blog.png" alt="" width="40" height="40">Semillas de Conocimiento</a>
+  <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a><span aria-hidden="true">›</span><a href="/matematicas/">Matemáticas</a><span aria-hidden="true">›</span><span aria-current="page">Mi perfil</span></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Mi perfil y mi ruta</h1>
+  <p class="lead">Elige quién juega, sigue la ruta de tu grado y gana estrellas e insignias. Lo que juegas queda guardado solo en este dispositivo.</p>
+  <p class="aviso" role="note">Aquí no se guardan datos personales: usa un apodo. Los datos viven solo en este navegador; si borras la memoria (caché) del navegador, se eliminan.</p>
+
+  <section class="bloque" aria-labelledby="t-quien">
+    <h2 id="t-quien">¿Quién juega?</h2>
+    <div class="grid" id="perfiles" role="list"></div>
+    <form id="nuevo" class="fila" style="margin-top:18px;align-items:flex-end" autocomplete="off">
+      <div><label for="nom" style="display:block;font-weight:700;margin-bottom:4px">Apodo (sin apellidos)</label><input type="text" id="nom" maxlength="18" required placeholder="Ej.: Luna"></div>
+      <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:700;margin-bottom:4px">Avatar</legend><div class="avs" id="avs"></div></fieldset>
+      <button class="btn dark" type="submit">Crear perfil</button>
+    </form>
+  </section>
+
+  <section class="bloque" aria-labelledby="t-ruta">
+    <h2 id="t-ruta">Mi ruta por grado</h2>
+    <p class="lead" style="margin-bottom:12px">Una secuencia sugerida de juegos. Cada juego da hasta 3 estrellas: 1 con 60 % de aciertos, 2 con 80 % y 3 con 95 %.</p>
+    <div class="tabs" role="tablist" id="grados" aria-label="Grado"></div>
+    <p id="ruta-nota" class="lead" style="margin-bottom:8px"></p>
+    <div class="barra" aria-hidden="true"><i id="ruta-bar" style="width:0"></i></div>
+    <p id="ruta-txt" style="font-weight:700;margin:0 0 12px"></p>
+    <ol class="ruta" id="ruta"></ol>
+  </section>
+
+  <section class="bloque" aria-labelledby="t-ins">
+    <h2 id="t-ins">Mis insignias</h2>
+    <div class="ins" id="ins"></div>
+  </section>
+
+  <section class="bloque" aria-labelledby="t-mis">
+    <h2 id="t-mis">Mis juegos</h2>
+    <div class="tabla-w"><table id="tabla"><caption class="sr">Juegos jugados por el perfil elegido</caption><thead><tr><th>Juego</th><th>Veces</th><th>Mejor puntaje</th><th>% de aciertos</th><th>Última vez</th></tr></thead><tbody></tbody></table></div>
+    <p id="vacio" style="display:none;color:var(--ink-2)">Todavía no hay partidas guardadas. ¡Juega y vuelve!</p>
+  </section>
+
+  <section class="bloque" aria-labelledby="t-cod">
+    <h2 id="t-cod">Tengo un código de actividad</h2>
+    <p class="lead" style="margin-bottom:12px">Si tu docente te dio un código o un enlace, pégalo aquí y empieza la lista de juegos.</p>
+    <form id="cod" class="fila" autocomplete="off"><label class="sr" for="cod-in">Código de actividad</label><input type="text" id="cod-in" placeholder="Pega aquí el código o el enlace" style="flex:1;min-width:220px"><button class="btn dark" type="submit">Empezar</button></form>
+    <p id="cod-msg" role="status" style="margin:10px 0 0"></p>
+  </section>
+  <p><a class="btn" href="/matematicas/docente/">Zona docente</a> <a class="btn" href="/matematicas/#juegos">Ir a los juegos</a></p>
+</main>
+<footer class="pie"><div class="wrap">Semillas de Conocimiento · Datos solo en este navegador.</div></footer>
+
+<script>
+(function () {
+  'use strict';
+  const SC = window.SC, esc = SC.esc, M = window.SC_META, G = window.DATOS_MATE.games, $ = id => document.getElementById(id);
+  const slugDe = g => g.url ? g.url.split('/').filter(Boolean).pop() : null;
+  const juego = id => G.find(g => g.id === id);
+  let gradoSel = null;
+
+  /* ---------- perfiles ---------- */
+  $('avs').innerHTML = M.avatares.map((a, i) => `<label><input type="radio" name="av" value="${a}" ${i === 0 ? 'checked' : ''}><span aria-label="Avatar ${i + 1}">${a}</span></label>`).join('');
+  function pintaPerfiles() {
+    const d = SC.leer(), ids = Object.keys(d.perfiles);
+    $('perfiles').innerHTML = ids.length ? ids.map(id => {
+      const p = d.perfiles[id], n = Object.keys(p.juegos).length;
+      return `<div class="perfil ${d.actual === id ? 'act' : ''}" role="listitem"><span class="av" aria-hidden="true">${esc(p.avatar)}</span><h3>${esc(p.nombre)}</h3><span style="font-size:14px;color:var(--ink-2)">${n} ${n === 1 ? 'juego' : 'juegos'} · ${p.dias.length} ${p.dias.length === 1 ? 'día' : 'días'}</span>
+        <div class="fila"><button class="btn sm ${d.actual === id ? '' : 'dark'}" type="button" data-sel="${id}" ${d.actual === id ? 'aria-pressed="true" disabled' : ''}>${d.actual === id ? 'Jugando' : 'Jugar como ' + esc(p.nombre)}</button><button class="btn sm rojo" type="button" data-del="${id}" aria-label="Borrar el perfil ${esc(p.nombre)}">Borrar</button></div></div>`;
+    }).join('') : '<p style="color:var(--ink-2);grid-column:1/-1">Aún no hay perfiles. Crea el primero abajo.</p>';
+  }
+  $('perfiles').addEventListener('click', e => {
+    const s = e.target.closest('[data-sel]'), x = e.target.closest('[data-del]'), d = SC.leer();
+    if (s) { d.actual = s.dataset.sel; SC.guardar(d); render(); }
+    if (x) {
+      if (x.dataset.ok) { delete d.perfiles[x.dataset.del]; if (d.actual === x.dataset.del) d.actual = Object.keys(d.perfiles)[0] || null; SC.guardar(d); render(); }
+      else { x.dataset.ok = '1'; x.textContent = '¿Seguro? Toca otra vez'; setTimeout(() => { if (x.isConnected) { delete x.dataset.ok; x.textContent = 'Borrar'; } }, 3500); }
+    }
+  });
+  $('nuevo').addEventListener('submit', e => {
+    e.preventDefault(); const nom = $('nom').value.trim(); if (!nom) return;
+    SC.crearPerfil(nom, (document.querySelector('input[name=av]:checked') || {}).value); $('nom').value = ''; render();
+  });
+
+  /* ---------- ruta por grado ---------- */
+  const actual = () => { const a = SC.perfilActual(false); return a ? a.p : null; };
+  function pintaGrados() {
+    $('grados').innerHTML = M.rutas.map(r => `<button type="button" role="tab" id="tab-${r.grado}" aria-selected="${r.grado === gradoSel}" tabindex="${r.grado === gradoSel ? 0 : -1}" data-g="${r.grado}">${esc(r.nombre)}</button>`).join('');
+  }
+  $('grados').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { gradoSel = b.dataset.g; render(); b.focus(); } });
+  $('grados').addEventListener('keydown', e => {
+    const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!k) return; const i = M.rutas.findIndex(r => r.grado === gradoSel), n = (i + k + M.rutas.length) % M.rutas.length;
+    gradoSel = M.rutas[n].grado; render(); document.getElementById('tab-' + gradoSel).focus();
+  });
+  function pintaRuta() {
+    const r = M.rutas.find(x => x.grado === gradoSel) || M.rutas[0], p = actual(); let ganadas = 0;
+    $('ruta-nota').textContent = r.nota;
+    $('ruta').innerHTML = r.juegos.map((id, i) => {
+      const g = juego(id); if (!g) return '';
+      const j = p && g.url ? p.juegos[slugDe(g)] : null, e = SC.estrellas(j); ganadas += e;
+      return `<li class="${e ? 'hecho' : ''}"><span class="n" aria-hidden="true">${i + 1}</span><div><h3>${esc(g.titulo)}</h3><span class="est" role="img" aria-label="${e} de 3 estrellas">${[1, 2, 3].map(k => `<i class="${k <= e ? 'on' : ''}">★</i>`).join('')}</span> <span style="font-size:14px;color:var(--ink-2)">${j ? j.n + (j.n === 1 ? ' vez' : ' veces') + (j.mejorPct != null ? ' · mejor ' + j.mejorPct + ' %' : '') : 'Sin jugar'}</span></div>
+        ${g.url ? `<a class="btn sm dark" href="${esc(g.url)}">${j ? 'Jugar otra vez' : 'Jugar'}</a>` : ''}</li>`;
+    }).join('');
+    const tot = r.juegos.length * 3; $('ruta-bar').style.width = Math.round(100 * ganadas / tot) + '%';
+    $('ruta-txt').textContent = p ? `${ganadas} de ${tot} estrellas${ganadas === tot ? ' · ¡Ruta completa!' : ''}` : 'Crea o elige un perfil para guardar tus estrellas.';
+  }
+
+  /* ---------- insignias ---------- */
+  function insignias(p) {
+    const js = p ? Object.values(p.juegos) : [], dom = js.filter(j => (j.mejorPct || 0) >= 80).length, dias = p ? p.dias.length : 0;
+    const rutaOk = M.rutas.filter(r => p && r.juegos.every(id => { const g = juego(id); return g && g.url && SC.estrellas(p.juegos[slugDe(g)]) >= 1; }));
+    return [
+      { ic: '📅', n: 'Constancia', d: 'Jugar 5 días distintos', on: dias >= 5, prog: `${Math.min(dias, 5)} de 5 días` },
+      { ic: '🏅', n: 'Dominio', d: '3 juegos con 80 % o más de aciertos', on: dom >= 3, prog: `${Math.min(dom, 3)} de 3 juegos` },
+      { ic: '🗺️', n: 'Ruta completa', d: 'Ganar al menos una estrella en todos los juegos de una ruta', on: rutaOk.length > 0, prog: rutaOk.length ? 'Ruta de ' + rutaOk[0].nombre : 'Aún no' },
+      { ic: '🌟', n: 'Primera partida', d: 'Terminar tu primer juego', on: js.length > 0, prog: js.length ? '¡Listo!' : 'Aún no' }
+    ];
+  }
+  function pintaIns() {
+    $('ins').innerHTML = insignias(actual()).map(i => `<div class="${i.on ? 'on' : ''}"><div class="ic" aria-hidden="true">${i.ic}</div><h3>${i.n}</h3><p style="margin:0 0 4px;font-size:15px">${i.d}</p><b>${i.on ? '¡Conseguida!' : i.prog}</b></div>`).join('');
+  }
+
+  /* ---------- mis juegos ---------- */
+  function pintaTabla() {
+    const p = actual(), tb = $('tabla').tBodies[0], filas = p ? Object.entries(p.juegos) : [];
+    tb.innerHTML = filas.sort((a, b) => (b[1].ult || '').localeCompare(a[1].ult || '')).map(([slug, j]) => {
+      const g = G.find(x => x.url && slugDe(x) === slug), pm = SC.pctMedio(j);
+      return `<tr><td>${esc(g ? g.titulo : slug)}</td><td>${j.n}</td><td>${j.mejorPts || '—'}</td><td>${pm == null ? '—' : pm + ' %'}</td><td>${esc(j.ult || '')}</td></tr>`;
+    }).join('');
+    $('tabla').parentNode.style.display = filas.length ? '' : 'none'; $('vacio').style.display = filas.length ? 'none' : '';
+  }
+
+  /* ---------- código de actividad ---------- */
+  $('cod').addEventListener('submit', e => {
+    e.preventDefault(); const a = SC.decodifica($('cod-in').value), m = $('cod-msg');
+    if (!a) { m.className = 'error'; m.textContent = 'Ese código no es válido. Pídele a tu docente que lo copie otra vez.'; return; }
+    m.className = 'ok'; m.textContent = 'Abriendo «' + a.t + '»…'; location.href = SC.enlaceActividad(a, 0);
+  });
+
+  function render() {
+    const d = SC.leer(); if (!gradoSel) { const p = d.actual && d.perfiles[d.actual]; gradoSel = (p && p.grado) || 'pre'; }
+    pintaPerfiles(); pintaGrados(); pintaRuta(); pintaIns(); pintaTabla();
+  }
+  render();
+})();
+</script>
+</body>
+</html>

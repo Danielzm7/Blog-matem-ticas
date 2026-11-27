@@ -125,6 +125,8 @@ button.hex:active{transform:scale(.96)}
 }
 
 </style>
+<script src="/matematicas/js/i18n.js"></script>
+<script src="/matematicas/js/sitio.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -390,7 +392,7 @@ function repetir() { if (S.pantalla === 'juego' && S.act !== null) { Snd.sfx('cl
 async function elegir(n, el) {
   if (!S.esperando || S.pausas.size || S.fin) return;
   if (n !== S.act) {
-    S.errores++; return;   // ficha: el error no muestra nada ni penaliza; solo se cuenta para el récord
+    S.errores++; if (window.SC) SC.error(); return;   // ficha: el error no muestra nada ni penaliza; solo se cuenta para el récord
     decir(palabras(S.act)); return;
   }
   S.esperando = false; S.marcados.add(n); Snd.sfx('acierto'); el.classList.add('marcada'); pintaMarcador(); mensaje('¡Muy bien!', 'ok');

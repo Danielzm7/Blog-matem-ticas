@@ -138,6 +138,8 @@ button.hex:active{transform:scale(.96)}
 #titulo h1{text-shadow:0 .6cqw 0 #E8362F,0 1.2cqw 0 #7A1010,0 2cqw 2cqw rgba(0,0,0,.3)!important}
 
 </style>
+<script src="/matematicas/js/i18n.js"></script>
+<script src="/matematicas/js/sitio.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -397,7 +399,7 @@ function bucle(t) {
 function toca(id) {
   if (S.pantalla !== 'juego' || S.fin || S.pausas.size) return;
   const h = S.hojas.find(x => x.id === id); if (!h) return;
-  if (h.n !== S.sig) { S.errores++; Snd.sfx('clic'); h.el.classList.remove('mal'); void h.el.offsetWidth; h.el.classList.add('mal'); return; }   // ficha: fuera de orden no suma
+  if (h.n !== S.sig) { S.errores++; Snd.sfx('clic'); if (window.SC) SC.error(); h.el.classList.remove('mal'); void h.el.offsetWidth; h.el.classList.add('mal'); return; }   // ficha: fuera de orden no suma
   S.puntos++; Snd.sfx('moneda'); h.el.classList.add('pop'); setTimeout(() => h.el.remove(), 260); S.hojas = S.hojas.filter(x => x !== h);
   if (S.sig >= CFG.MODOS[S.modo].n) {
     if (CFG.REINICIA) { S.sig = 1; S.vueltas++; S.cola = Motor.nuevaCola(CFG.MODOS[S.modo].n); mensaje('¡Vuelta completa!', 'ok'); Snd.sfx('acierto'); } else return termina();

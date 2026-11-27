@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Zona docente · Semillas Matemáticas</title>
+<meta name="description" content="Reporte de aciertos por tema, exportación a CSV y códigos de actividad para el aula. Los datos viven solo en este navegador.">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/matematicas/css/panel.css">
+<script src="/matematicas/js/i18n.js"></script>
+<script src="/matematicas/js/sitio.js"></script>
+<script src="/matematicas/data/datos.js"></script>
+<script src="/matematicas/data/sitio-datos.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/matematicas/"><img src="/img/icono-blog.png" alt="" width="40" height="40">Semillas de Conocimiento</a>
+  <nav class="migas" aria-label="Ruta"><a href="/">Inicio</a><span aria-hidden="true">›</span><a href="/matematicas/">Matemáticas</a><span aria-hidden="true">›</span><span aria-current="page">Docente</span></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Zona docente</h1>
+  <p class="lead">Mira cómo van los perfiles de este dispositivo, descarga el reporte y arma listas de juegos para compartir con el grupo.</p>
+  <p class="aviso" role="note"><b>Importante:</b> los datos de progreso viven solo en el navegador de este dispositivo y no se envían a ningún servidor. Si se borra la memoria (caché) del navegador, se eliminan. No se guardan nombres reales ni datos sensibles: pide a los niños usar un apodo. El PIN solo evita que un niño abra esta pantalla por error; no es una medida de seguridad fuerte.</p>
+
+  <!-- PIN -->
+  <section class="bloque" id="pin" aria-labelledby="t-pin">
+    <h2 id="t-pin">Entrar</h2>
+    <form id="pin-f" class="fila" autocomplete="off">
+      <label for="pin-in" id="pin-lbl" style="font-weight:700">PIN</label>
+      <input type="password" id="pin-in" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" required autocomplete="off" aria-describedby="pin-msg">
+      <button class="btn dark" type="submit" id="pin-ok">Entrar</button>
+      <button class="btn sm" type="button" id="pin-olvido" style="display:none">Olvidé mi PIN</button>
+    </form>
+    <p id="pin-msg" role="status" style="margin:10px 0 0"></p>
+  </section>
+
+  <div id="panel" hidden>
+    <section class="bloque" aria-labelledby="t-res">
+      <div class="fila" style="justify-content:space-between"><h2 id="t-res" style="margin:0">Resumen por perfil y tema</h2>
+        <div class="fila noprint"><button class="btn sm" type="button" id="b-csv">Descargar CSV</button><button class="btn sm" type="button" id="b-print">Imprimir</button><button class="btn sm" type="button" id="b-json">Copia de datos</button><button class="btn sm" type="button" id="b-imp">Importar copia</button></div></div>
+      <p class="solo-print" id="p-fecha"></p>
+      <p style="color:var(--ink-2);margin:8px 0 12px">Porcentaje medio de aciertos por tema. <span class="apoyo">Apoyo</span> aparece cuando las últimas 3 sesiones del tema quedaron por debajo del 60 %.</p>
+      <div class="tabla-w"><table id="t-resumen"><caption class="sr">Porcentaje de aciertos por perfil y tema</caption><thead></thead><tbody></tbody></table></div>
+      <p id="sin-datos" style="display:none;color:var(--ink-2)">Todavía no hay partidas guardadas en este dispositivo.</p>
+      <div id="alertas" style="margin-top:14px"></div>
+      <input type="file" id="f-imp" accept="application/json,.json" hidden>
+      <p id="msg-datos" role="status" style="margin:10px 0 0"></p>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-det">
+      <h2 id="t-det">Detalle por juego</h2>
+      <div class="tabla-w"><table id="t-det-t"><caption class="sr">Detalle de juegos por perfil</caption><thead><tr><th>Perfil</th><th>Juego</th><th>Tema</th><th>Veces</th><th>Mejor puntaje</th><th>% medio</th><th>Última vez</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="bloque noprint" aria-labelledby="t-act">
+      <h2 id="t-act">Código de actividad</h2>
+      <p class="lead" style="margin-bottom:12px">Elige de 3 a 5 juegos. Si quieres, indica el nivel (1, 2, 3…, según los botones de la pantalla de inicio del juego); si lo dejas vacío, el niño lo elige. Comparte el enlace o el código con el grupo: al abrirlo, juegan la lista en orden.</p>
+      <div class="fila" style="margin-bottom:12px"><div><label for="a-tit" style="display:block;font-weight:700">Título de la actividad</label><input type="text" id="a-tit" maxlength="60" value="Repaso de la semana"></div>
+        <div><label for="a-bus" style="display:block;font-weight:700">Buscar juego</label><input type="search" id="a-bus" placeholder="Ej.: sumas"></div></div>
+      <div class="lista-j" id="a-lista" role="group" aria-label="Juegos disponibles"></div>
+      <p id="a-cuenta" style="font-weight:700;margin:10px 0"></p>
+      <div class="fila"><button class="btn dark" type="button" id="a-gen">Crear enlace y código</button></div>
+      <div id="a-out" hidden style="margin-top:14px">
+        <label for="a-enl" style="font-weight:700">Enlace para compartir</label><textarea id="a-enl" readonly rows="3"></textarea>
+        <div class="fila" style="margin:8px 0"><button class="btn sm" type="button" id="a-c1">Copiar enlace</button><button class="btn sm" type="button" id="a-c2">Copiar solo el código</button></div>
+        <label for="a-cod" style="font-weight:700">Código</label><textarea id="a-cod" readonly rows="2"></textarea>
+        <p id="a-msg" role="status" class="ok" style="margin:8px 0 0"></p>
+      </div>
+    </section>
+
+    <section class="bloque noprint" aria-labelledby="t-cfg">
+      <h2 id="t-cfg">Ajustes</h2>
+      <div class="fila"><button class="btn sm" type="button" id="b-pin">Cambiar PIN</button><button class="btn sm" type="button" id="b-salir">Salir de la zona docente</button><button class="btn sm rojo" type="button" id="b-borrar">Borrar todos los datos de progreso</button></div>
+      <p id="cfg-msg" role="status" style="margin:10px 0 0"></p>
+    </section>
+  </div>
+  <p class="noprint"><a class="btn" href="/matematicas/perfil/">Perfiles y rutas</a> <a class="btn" href="/matematicas/#juegos">Ir a los juegos</a></p>
+</main>
+<footer class="pie"><div class="wrap">Semillas de Conocimiento · Datos solo en este navegador.</div></footer>
+
+<script>
+(function () {
+  'use strict';
+  const SC = window.SC, esc = SC.esc, M = window.SC_META, G = window.DATOS_MATE.games, $ = id => document.getElementById(id);
+  const slugDe = g => g.url ? g.url.split('/').filter(Boolean).pop() : null;
+  const JUEGOS = G.filter(g => g.url && g.estado === 'publicado');
+  const porSlug = s => JUEGOS.find(g => slugDe(g) === s);
+  const tema = s => { const g = porSlug(s); return g ? g.tema : 'otros'; };
+  const nomTema = k => M.temas[k] || k;
+
+  /* ---------- PIN local ---------- */
+  const PIN_K = 'sc_docente_pin', SES_K = 'sc_docente_ok';
+  const hash = s => { let h = 5381; const t = 'sc|' + s; for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0; return String(h >>> 0); };
+  const ses = { get: () => { try { return sessionStorage.getItem(SES_K) === '1'; } catch (e) { return false; } }, set: v => { try { v ? sessionStorage.setItem(SES_K, '1') : sessionStorage.removeItem(SES_K); } catch (e) { /* sin sesión */ } } };
+  function pintaPin() {
+    const hay = !!SC.LS.get(PIN_K, null);
+    $('pin-lbl').textContent = hay ? 'PIN docente' : 'Crea un PIN de 4 a 8 números'; $('pin-ok').textContent = hay ? 'Entrar' : 'Crear PIN y entrar'; $('pin-olvido').style.display = hay ? '' : 'none';
+    $('pin-in').autocomplete = hay ? 'current-password' : 'new-password';
+  }
+  $('pin-f').addEventListener('submit', e => {
+    e.preventDefault(); const v = $('pin-in').value.trim(), m = $('pin-msg'), g = SC.LS.get(PIN_K, null);
+    if (!/^\d{4,8}$/.test(v)) { m.className = 'error'; m.textContent = 'El PIN son de 4 a 8 números.'; return; }
+    if (!g) { SC.LS.set(PIN_K, hash(v)); ses.set(true); abre(); return; }
+    if (g === hash(v)) { ses.set(true); abre(); } else { m.className = 'error'; m.textContent = 'PIN incorrecto.'; $('pin-in').select(); }
+  });
+  $('pin-olvido').addEventListener('click', () => {
+    const m = $('pin-msg');
+    if ($('pin-olvido').dataset.ok) { try { localStorage.removeItem(PIN_K); } catch (e) { /* sin acceso */ } delete $('pin-olvido').dataset.ok; pintaPin(); m.className = 'ok'; m.textContent = 'PIN borrado. Crea uno nuevo (los datos de progreso no se tocaron).'; }
+    else { $('pin-olvido').dataset.ok = '1'; m.className = 'error'; m.textContent = 'Esto borra solo el PIN, no el progreso. Toca otra vez para confirmar.'; }
+  });
+  function abre() { $('pin').hidden = true; $('panel').hidden = false; $('pin-in').value = ''; render(); const h = document.getElementById('t-res'); if (h) { h.tabIndex = -1; h.focus(); } }
+
+  /* ---------- análisis ---------- */
+  const alerta = (p, tk) => {   // últimas 3 sesiones del tema (todos los juegos del tema), cada una < 60 %
+    const ses3 = []; Object.entries(p.juegos).forEach(([s, j]) => { if (tema(s) === tk) (j.ses || []).forEach(x => { if (x.p != null) ses3.push(x); }); });
+    ses3.sort((a, b) => (a.h || 0) - (b.h || 0)); const u = ses3.slice(-3); return u.length === 3 && u.every(x => x.p < 60);
+  };
+  const pctTema = (p, tk) => { const v = []; Object.entries(p.juegos).forEach(([s, j]) => { if (tema(s) === tk) (j.ses || []).forEach(x => { if (x.p != null) v.push(x.p); }); }); return v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length) : null; };
+  const clase = v => v == null ? '' : v < 60 ? 'bajo' : v < 80 ? 'medio' : 'alto';
+
+  function render() {
+    const d = SC.leer(), ids = Object.keys(d.perfiles);
+    const usados = new Set(); ids.forEach(id => Object.keys(d.perfiles[id].juegos).forEach(s => usados.add(tema(s))));
+    const cols = Object.keys(M.temas).filter(k => usados.has(k)).concat(usados.has('otros') ? ['otros'] : []);
+    $('t-resumen').tHead.innerHTML = '<tr><th>Perfil</th><th>Juegos</th><th>Días</th>' + cols.map(k => `<th>${esc(nomTema(k))}</th>`).join('') + '</tr>';
+    const alertas = [];
+    $('t-resumen').tBodies[0].innerHTML = ids.map(id => {
+      const p = d.perfiles[id];
+      return `<tr><td>${esc(p.avatar)} ${esc(p.nombre)}</td><td>${Object.keys(p.juegos).length}</td><td>${p.dias.length}</td>` + cols.map(k => {
+        const v = pctTema(p, k), al = v != null && alerta(p, k); if (al) alertas.push(`${p.nombre}: ${nomTema(k)}`);
+        return `<td class="pct ${clase(v)}">${v == null ? '—' : v + ' %'}${al ? '<span class="apoyo">Apoyo</span>' : ''}</td>`;
+      }).join('') + '</tr>';
+    }).join('');
+    $('sin-datos').style.display = ids.length ? 'none' : ''; $('t-resumen').parentNode.style.display = ids.length ? '' : 'none';
+    $('alertas').innerHTML = alertas.length ? `<div class="aviso" style="background:#ffe3df;border-color:#ff9b8f"><b>Alerta de apoyo:</b> ${alertas.map(esc).join('; ')}. Conviene reforzar esos temas con actividad guiada.</div>` : '';
+    const filas = []; ids.forEach(id => { const p = d.perfiles[id]; Object.entries(p.juegos).forEach(([s, j]) => { const g = porSlug(s); filas.push({ perfil: p.nombre, juego: g ? g.titulo : s, tema: nomTema(tema(s)), n: j.n, pts: j.mejorPts || 0, pct: SC.pctMedio(j), ult: j.ult || '' }); }); });
+    $('t-det-t').tBodies[0].innerHTML = filas.map(f => `<tr><td>${esc(f.perfil)}</td><td>${esc(f.juego)}</td><td>${esc(f.tema)}</td><td>${f.n}</td><td>${f.pts || '—'}</td><td class="pct ${clase(f.pct)}">${f.pct == null ? '—' : f.pct + ' %'}</td><td>${esc(f.ult)}</td></tr>`).join('');
+    $('p-fecha').textContent = 'Reporte generado el ' + SC.hoy();
+    window.__filas = filas;
+  }
+
+  /* ---------- CSV / imprimir / copia ---------- */
+  const celda = v => { v = String(v == null ? '' : v); return /[",;\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  function descarga(nombre, txt, tipo) { const b = new Blob([txt], { type: tipo }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = nombre; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+  $('b-csv').addEventListener('click', () => {
+    const f = window.__filas || [], cab = ['Perfil', 'Juego', 'Tema', 'Veces jugado', 'Mejor puntaje', 'Porcentaje medio de aciertos', 'Última vez'];
+    const txt = '﻿' + [cab.map(celda).join(',')].concat(f.map(r => [r.perfil, r.juego, r.tema, r.n, r.pts, r.pct == null ? '' : r.pct, r.ult].map(celda).join(','))).join('\r\n');
+    descarga('reporte-matematicas-' + SC.hoy() + '.csv', txt, 'text/csv;charset=utf-8'); $('msg-datos').className = 'ok'; $('msg-datos').textContent = 'Reporte descargado.';
+  });
+  $('b-print').addEventListener('click', () => window.print());
+  $('b-json').addEventListener('click', () => { descarga('copia-progreso-' + SC.hoy() + '.json', JSON.stringify(SC.leer()), 'application/json'); $('msg-datos').className = 'ok'; $('msg-datos').textContent = 'Copia descargada. Sirve para juntar datos de varios dispositivos con «Importar copia».'; });
+  $('b-imp').addEventListener('click', () => $('f-imp').click());
+  $('f-imp').addEventListener('change', e => {
+    const f = e.target.files[0]; if (!f) return; const r = new FileReader(), m = $('msg-datos');
+    r.onload = () => {
+      try {
+        const n = JSON.parse(r.result); if (!n || typeof n.perfiles !== 'object') throw 0; const d = SC.leer(); let k = 0;
+        Object.entries(n.perfiles).forEach(([id, p]) => { if (!p || typeof p.nombre !== 'string' || typeof p.juegos !== 'object') return; const nid = d.perfiles[id] ? 'i' + id + Date.now().toString(36).slice(-3) : id; d.perfiles[nid] = { nombre: String(p.nombre).slice(0, 18), avatar: String(p.avatar || '🙂').slice(0, 4), creado: String(p.creado || ''), juegos: p.juegos || {}, dias: Array.isArray(p.dias) ? p.dias : [] }; k++; });
+        SC.guardar(d); render(); m.className = 'ok'; m.textContent = 'Se importaron ' + k + ' perfiles.';
+      } catch (x) { m.className = 'error'; m.textContent = 'Ese archivo no es una copia válida.'; }
+      e.target.value = '';
+    };
+    r.readAsText(f);
+  });
+
+  /* ---------- código de actividad ---------- */
+  const sel = new Map();   // slug -> nivel (texto)
+  function pintaLista() {
+    const q = $('a-bus').value.trim().toLowerCase();
+    $('a-lista').innerHTML = JUEGOS.filter(g => !q || (g.titulo + ' ' + nomTema(g.tema)).toLowerCase().includes(q)).map(g => {
+      const s = slugDe(g), on = sel.has(s);
+      return `<label><input type="checkbox" data-s="${s}" ${on ? 'checked' : ''}><span>${esc(g.titulo)} <small style="color:var(--ink-2)">· ${esc(nomTema(g.tema))}</small></span><input type="number" min="1" max="9" data-n="${s}" placeholder="Nivel" aria-label="Nivel para ${esc(g.titulo)}" value="${on && sel.get(s) ? sel.get(s) : ''}" ${on ? '' : 'disabled'}></label>`;
+    }).join('') || '<p style="margin:8px">No hay juegos con ese nombre.</p>';
+    const n = sel.size; $('a-cuenta').textContent = n + (n === 1 ? ' juego elegido' : ' juegos elegidos') + (n >= 3 && n <= 5 ? '' : ' (elige de 3 a 5)');
+  }
+  $('a-bus').addEventListener('input', pintaLista);
+  $('a-lista').addEventListener('change', e => {
+    const c = e.target.closest('[data-s]'), n = e.target.closest('[data-n]');
+    if (c) { if (c.checked) { if (sel.size >= 5) { c.checked = false; $('a-cuenta').textContent = 'Máximo 5 juegos por actividad.'; return; } sel.set(c.dataset.s, ''); } else sel.delete(c.dataset.s); pintaLista(); }
+    if (n) sel.set(n.dataset.n, n.value);
+  });
+  $('a-gen').addEventListener('click', () => {
+    const m = $('a-msg'); $('a-out').hidden = false;
+    if (sel.size < 3 || sel.size > 5) { m.className = 'error'; m.textContent = 'Elige de 3 a 5 juegos.'; $('a-enl').value = ''; $('a-cod').value = ''; return; }
+    const act = { t: $('a-tit').value.trim() || 'Actividad', j: [...sel].map(([s, n]) => [s, n ? Math.max(0, (+n | 0) - 1) : null]) };
+    $('a-enl').value = SC.enlaceActividad(act, 0); $('a-cod').value = SC.codifica(act); m.className = 'ok'; m.textContent = 'Listo. Pega el enlace en tu aula virtual o en el grupo del curso.';
+  });
+  const cop = async (id, txt) => { const m = $('a-msg'); try { await navigator.clipboard.writeText($(id).value); m.className = 'ok'; m.textContent = txt; } catch (e) { $(id).select(); m.className = 'ok'; m.textContent = 'Selecciona el texto y cópialo (Ctrl+C).'; } };
+  $('a-c1').addEventListener('click', () => cop('a-enl', 'Enlace copiado.')); $('a-c2').addEventListener('click', () => cop('a-cod', 'Código copiado.'));
+
+  /* ---------- ajustes ---------- */
+  $('b-salir').addEventListener('click', () => { ses.set(false); $('panel').hidden = true; $('pin').hidden = false; pintaPin(); $('pin-in').focus(); });
+  $('b-pin').addEventListener('click', () => { try { localStorage.removeItem(PIN_K); } catch (e) { /* sin acceso */ } ses.set(false); $('panel').hidden = true; $('pin').hidden = false; pintaPin(); $('pin-msg').className = 'ok'; $('pin-msg').textContent = 'Crea el nuevo PIN.'; $('pin-in').focus(); });
+  $('b-borrar').addEventListener('click', e => {
+    const b = e.currentTarget, m = $('cfg-msg');
+    if (b.dataset.ok) { SC.guardar({ actual: null, perfiles: {} }); delete b.dataset.ok; b.textContent = 'Borrar todos los datos de progreso'; render(); m.className = 'ok'; m.textContent = 'Se borró el progreso de este dispositivo.'; }
+    else { b.dataset.ok = '1'; b.textContent = '¿Seguro? Toca otra vez para borrar'; m.className = 'error'; m.textContent = 'Esto elimina todos los perfiles y el progreso de este dispositivo. No se puede deshacer.'; setTimeout(() => { if (b.dataset.ok) { delete b.dataset.ok; b.textContent = 'Borrar todos los datos de progreso'; } }, 4500); }
+  });
+
+  pintaPin(); pintaLista(); if (ses.get() && SC.LS.get(PIN_K, null)) abre();
+})();
+</script>
+</body>
+</html>
