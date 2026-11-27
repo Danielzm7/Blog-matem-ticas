@@ -2464,7 +2464,7 @@ function armSure(btn, label, fn){
 
 /* ============ eventos ============ */
 function setHome(){
-  $$('[data-home], #brand').forEach(a => { a.href = CONFIG.inicio; a.target = '_blank'; a.rel = 'noopener'; });
+  $$('[data-home], #brand').forEach(a => { a.href = CONFIG.inicio; });
   $$('[data-wa]').forEach(a => { a.href = waLink(); a.target = '_blank'; a.rel = 'noopener'; });
 }
 document.addEventListener('click', e => {
