@@ -41,21 +41,13 @@ function deco(i){
 function poster(d){return '/mis-clases/posters/clase-'+d.f+'.jpg'}
 function vid(d){return '/mis-clases/videos/clase-'+d.f+'.mp4'}
 
-function chips(){
-  var h='<button type="button" class="chip t" data-f="all" aria-pressed="'+(filtro==='all')+'">Todas · '+data.length+'</button>';
-  meses.forEach(function(m,i){
-    var n=data.filter(function(d){return d.mes===m.k}).length,c=COL[(i+1)%COL.length];
-    h+='<button type="button" class="chip" data-f="'+m.k+'" style="--c:'+c[1]+'" aria-pressed="'+(filtro===m.k)+'">'+m.n+' · '+n+'</button>';
-  });
-  $('#chips').innerHTML=h;
-}
 function cards(){
   lista=data.filter(function(d){return filtro==='all'||d.mes===filtro});
   $('#count').textContent=(lista.length===1?'Mostrando 1 clase':'Mostrando '+lista.length+' clases');
   $('#grid').innerHTML=lista.map(function(d,i){
-    return '<button type="button" class="card" data-i="'+i+'" style="--t:'+d.col[0]+';--c:'+d.col[1]+';animation-delay:'+(i*55)+'ms" aria-label="Ver '+esc(d.titulo)+', '+esc(d.larga)+'">'+
+    return '<button type="button" class="card" data-i="'+i+'" style="--t:'+d.col[0]+';--c:'+d.col[1]+';animation-delay:'+(i*55)+'ms" aria-label="Ver '+esc(d.titulo)+'">'+
       '<span class="th">'+deco(d.n)+'<img alt="" loading="lazy" decoding="async" width="540" height="960" data-src="'+poster(d)+'"><span class="num">Clase '+d.n+'</span><span class="dur">'+d.dur+'</span><span class="play">'+PLAY+'</span></span>'+
-      '<span class="bd"><span class="meta"><span class="tag">'+esc(d.corta)+'</span><span class="tag">'+esc(d.mesNombre)+'</span></span><h3>'+esc(d.titulo)+'</h3><p>'+esc(d.desc)+'</p><span class="ver">Ver la clase '+ARR+'</span></span></button>';
+      '<span class="bd"><h3>'+esc(d.titulo)+'</h3><p>'+esc(d.desc)+'</p><span class="ver">Ver la clase '+ARR+'</span></span></button>';
   }).join('');
   lazy();
 }
@@ -75,7 +67,7 @@ var modal=$('#modal'),frame=$('#frame'),cur=-1,opener=null;
 function abrir(i,from){
   cur=i;var d=lista[i];if(!d)return;
   if(from)opener=from;
-  $('#m-t').textContent=d.titulo;$('#m-d').textContent=d.desc;$('#m-f').textContent=d.larga+' · '+d.dur+' min';$('#m-n').textContent='Clase '+d.n+' de '+data.length;
+  $('#m-t').textContent=d.titulo;$('#m-d').textContent=d.desc;$('#m-f').textContent='Duración: '+d.dur+' min';$('#m-n').textContent='Clase '+d.n+' de '+data.length;
   frame.innerHTML='';
   var v=document.createElement('video');v.controls=true;v.playsInline=true;v.setAttribute('playsinline','');v.preload='metadata';v.poster=poster(d);v.src=vid(d);v.setAttribute('controlslist','nodownload');v.setAttribute('aria-label',d.titulo);
   frame.appendChild(v);
@@ -90,7 +82,7 @@ function cerrar(){
 }
 document.addEventListener('click',function(e){
   var c=e.target.closest('.card');if(c){abrir(+c.dataset.i,c);return}
-  var f=e.target.closest('[data-f]');if(f){filtro=f.dataset.f;chips();cards();return}
+  var f=e.target.closest('[data-f]');if(f){filtro=f.dataset.f;cards();return}
   if(e.target.closest('#cerrar')||e.target===modal){cerrar();return}
   if(e.target.closest('#prev')&&cur>0){abrir(cur-1);return}
   if(e.target.closest('#next')&&cur<lista.length-1){abrir(cur+1);return}
@@ -107,6 +99,5 @@ document.addEventListener('keydown',function(e){
   }
 });
 $('#n-total').textContent=data.length;
-$('#n-desde').textContent=data[0].mesNombre.toLowerCase()+' de '+data[0].mes.slice(0,4);
-chips();cards();
+cards();
 })();
