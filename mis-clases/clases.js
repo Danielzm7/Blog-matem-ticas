@@ -4,14 +4,14 @@
 var CLASES = [
   {n:'01', fecha:'2026-08-21', seg:19, titulo:'Lectura, bloques y juego digital', descripcion:'Una hoja de comprensión lectora, piezas de colores y un juego en el computador.'},
   {n:'02', fecha:'2026-08-24', seg:12, titulo:'Armamos palabras con rompecabezas', descripcion:'Rompecabezas con dibujos y letras para formar palabras sobre la mesa.'},
-  {n:'03', fecha:'2026-08-24', seg:21, titulo:'Aros, rompecabezas y hojas de palabras', descripcion:'Aros de colores en el piso, pelotas y hojas de trabajo con palabras y dibujos.'},
+  {n:'03', fecha:'2026-08-24', seg:21, titulo:'Aros, rompecabezas y hojas de palabras', descripcion:'Clase centrada en el método silábico de lectura y escritura, con aros, rompecabezas y hojas de palabras.'},
   {n:'04', fecha:'2026-08-29', seg:14, titulo:'Torres de vasos y pelotas', descripcion:'Vasos apilados y pelotas de colores que se trasladan con una cuchara.'},
-  {n:'05', fecha:'2026-08-29', seg:19, titulo:'Movimiento con vasos y aros', descripcion:'Una actividad de movimiento con vasos, aros y papeles de colores.'},
+  {n:'05', fecha:'2026-08-29', seg:19, titulo:'Movimiento con vasos y aros', descripcion:'Juegos de memoria con vasos y aros, previos a los contenidos de operaciones matemáticas.'},
   {n:'06', fecha:'2026-10-09', seg:10, titulo:'Circuito de aros y figuras', descripcion:'Un circuito con aros y pelotas, y una hoja de figuras geométricas para colorear.'},
   {n:'07', fecha:'2026-10-09', seg:22, titulo:'Aros, pelotas y hojas de trabajo', descripcion:'Recorrido con aros y pelotas, combinado con hojas de actividades.'},
-  {n:'08', fecha:'2026-10-17', seg:12, titulo:'Tulipanes, aros y vasos', descripcion:'Una hoja de trabajo con tulipanes, aros en el piso y vasos con pelotas.'},
+  {n:'08', fecha:'2026-10-17', seg:12, titulo:'Tulipanes, aros y vasos', descripcion:'Potencia la motricidad fina, la coordinación y la lateralidad; en lo conceptual, se enfoca en reconocer palabras silábicas.'},
   {n:'09', fecha:'2026-11-24', seg:22, titulo:'Tablero de colores y sumas', descripcion:'Un tablero de colores, una hoja de sumas con llevadas y un juego con aros.'},
-  {n:'10', fecha:'2026-11-24', seg:11, titulo:'Cuchara, pelota y patrones', descripcion:'Equilibrio con cuchara y pelota, y una hoja de patrones de colores y números.'}
+  {n:'10', fecha:'2026-11-24', seg:11, titulo:'Cuchara, pelota y patrones', descripcion:'Lectura de sílabas inversas, posición numérica y reconocimiento de cantidades.'}
 ];
 (function(){
 'use strict';
