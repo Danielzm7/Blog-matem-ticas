@@ -24,6 +24,12 @@
   const hoy = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
   const slugActual = () => { const m = location.pathname.match(/\/juegos\/([^/]+)/); return m ? m[1] : null; };
 
+  /* ---------- idioma ---------- */
+  W.SC_LANG = LS.get('sc_lang', 'es'); if (!(W.SC_I18N && W.SC_I18N[W.SC_LANG])) W.SC_LANG = 'es';
+  D.documentElement.setAttribute('lang', W.SC_LANG);
+  const CARGA_JUEGO = /\/juegos\/[^/]+/.test(location.pathname);
+  if (CARGA_JUEGO) { D.documentElement.classList.add('sc-carga'); setTimeout(() => D.documentElement.classList.remove('sc-carga'), 4000); }   // seguro: nunca deja el juego oculto
+
   /* ---------- accesibilidad (23-A) ---------- */
   const ACC_K = 'sc_acc';
   const acc = Object.assign({ calma: false, texto: 0, contraste: false, anim: false }, LS.get(ACC_K, {}));
@@ -135,6 +141,14 @@
 #sc-toast.on{opacity:1}
 #sc-bar :focus-visible,#sc-foot :focus-visible,#sc-act :focus-visible,#sc-pan :focus-visible,#sc-salir:focus-visible{outline:3px solid #FFE066;outline-offset:2px}
 @media (max-width:700px){#sc-mig{display:none}#sc-btns{width:100%;justify-content:center}#sc-btns .lb{display:none}#sc-bar button,#sc-bar a.scb{padding:0 12px}}
+/* pantalla de carga */
+html.sc-carga #wrap{visibility:hidden}
+#sc-carga{position:fixed;inset:0;z-index:500;background:radial-gradient(circle at 50% 35%,#4a2a8a,#12082e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#fff;font:800 22px 'Fredoka','Nunito',system-ui,sans-serif;text-align:center;padding:20px;transition:opacity .35s}
+#sc-carga.fuera{opacity:0;pointer-events:none}
+#sc-carga svg{width:120px;height:120px;animation:scsalta .8s ease-in-out infinite alternate}@keyframes scsalta{to{transform:translateY(-12px)}}
+#sc-carga .bar{width:min(70vw,320px);height:18px;border-radius:99px;border:3px solid #fff;overflow:hidden;background:rgba(255,255,255,.15)}
+#sc-carga .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7CFF9C,#FFD84A)}
+#sc-carga small{font:700 15px 'Nunito',system-ui,sans-serif;opacity:.85}
 /* accesibilidad */
 html.acc-anim *,html.acc-anim *::before,html.acc-anim *::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
 html.acc-contraste #stage{filter:contrast(1.28) saturate(1.1)}
@@ -159,10 +173,44 @@ html[data-acc-texto="1"] :is(#sc-bar,#sc-foot,#sc-act){font-size:17px}html[data-
     try { const a = D.createElement('textarea'); a.value = txt; a.style.cssText = 'position:fixed;opacity:0'; D.body.appendChild(a); a.select(); const ok = D.execCommand('copy'); a.remove(); return ok; } catch (e) { return false; }
   }
 
+  /* mascota propia de la carga: una semilla brotando */
+  const SEMI = '<svg viewBox="0 0 120 120" aria-hidden="true"><g stroke="#2A1A4A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M60 40Q58 24 46 18Q40 32 52 42z" fill="#4ADE80"/><path d="M60 40Q64 22 80 16Q84 34 68 42z" fill="#7CFF9C"/><path d="M60 38V46" fill="none"/><path d="M60 44C86 44 98 66 96 88C94 108 78 114 60 114C42 114 26 108 24 88C22 66 34 44 60 44z" fill="#FFD84A"/><ellipse cx="46" cy="76" rx="6" ry="8" fill="#fff"/><ellipse cx="74" cy="76" rx="6" ry="8" fill="#fff"/><circle cx="47" cy="78" r="3" fill="#2A1A4A" stroke="none"/><circle cx="75" cy="78" r="3" fill="#2A1A4A" stroke="none"/><path d="M50 94Q60 104 70 94" fill="none"/><circle cx="36" cy="92" r="5" fill="#FF8FB1" stroke="none" opacity=".7"/><circle cx="84" cy="92" r="5" fill="#FF8FB1" stroke="none" opacity=".7"/></g></svg>';
+  function cargaInicial(titulo) {
+    const rm = W.matchMedia('(prefers-reduced-motion: reduce)').matches, dur = rm ? 300 : 1100;
+    const o = D.createElement('div'); o.id = 'sc-carga'; o.setAttribute('role', 'progressbar'); o.setAttribute('aria-label', t('cargando') + ' ' + titulo); o.setAttribute('aria-valuemin', '0'); o.setAttribute('aria-valuemax', '100'); o.setAttribute('aria-valuenow', '0');
+    o.innerHTML = SEMI + '<div>' + esc(t('cargando')) + '…</div><div class="bar"><i></i></div><small>' + esc(titulo) + '</small>';
+    D.body.appendChild(o); D.documentElement.classList.remove('sc-carga');
+    const barra = o.querySelector('i'), t0 = performance.now();
+    (function paso(now) {
+      const f = Math.min(1, (now - t0) / dur); barra.style.width = Math.round(f * 100) + '%'; o.setAttribute('aria-valuenow', String(Math.round(f * 100)));
+      if (f < 1) requestAnimationFrame(paso); else { o.classList.add('fuera'); setTimeout(() => o.remove(), 450); }
+    })(t0);
+  }
+
+  /* ---------- traducción de la interfaz común (si el idioma no es español) ---------- */
+  function traduce(raiz) {
+    const I = W.SC_I18N || {}, ui = (I[W.SC_LANG] || {}).ui; if (!ui || W.SC_LANG === 'es') return;
+    const w = D.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) {
+      const tx = n.nodeValue, tr = tx.trim(); if (!tr) continue;
+      let nuevo = ui[tr];
+      if (nuevo == null) { const m = tr.match(/^([^:]{2,24}:)\s*(.*)$/); if (m && ui[m[1]]) nuevo = ui[m[1]] + ' ' + m[2]; }
+      if (nuevo == null && (I[W.SC_LANG].sub || []).length) { let r = tr; I[W.SC_LANG].sub.forEach(([a, b]) => { r = r.split(a).join(b); }); if (r !== tr) nuevo = r; }
+      if (nuevo != null && nuevo !== tr) n.nodeValue = tx.replace(tr, nuevo);
+    }
+  }
+  function iniciaTraduccion(stage) {
+    if (W.SC_LANG === 'es') return;
+    let pend = false; const run = () => { pend = false; traduce(stage); };
+    traduce(stage);
+    new MutationObserver(() => { if (!pend) { pend = true; requestAnimationFrame(run); } }).observe(stage, { childList: true, subtree: true, characterData: true });
+  }
+
   function iniciaJuego() {
     const slug = slugActual(), stage = D.getElementById('stage'), wrap = D.getElementById('wrap') || stage.parentNode;
     const titulo = (D.title || '').replace(/\s*[|·].*$/, '');
     const st = D.createElement('style'); st.textContent = CSS; D.head.appendChild(st);
+    cargaInicial(titulo);
 
     /* ----- actividad (código del docente) ----- */
     const sp = new URLSearchParams(location.search), act = decodifica(sp.get('act')), ai = Math.max(0, Math.min(act ? act.j.length - 1 : 0, +sp.get('i') || 0));
@@ -217,10 +265,12 @@ html[data-acc-texto="1"] :is(#sc-bar,#sc-foot,#sc-act){font-size:17px}html[data-
 
     /* ----- panel de accesibilidad ----- */
     const pan = D.createElement('div'); pan.id = 'sc-pan'; pan.setAttribute('role', 'dialog'); pan.setAttribute('aria-modal', 'true'); pan.setAttribute('aria-labelledby', 'sc-pan-t');
+    const idiomas = () => Object.keys(W.SC_I18N || {}).map(k => [k, (W.SC_I18N[k] || {}).nombre || (k === 'es' ? 'Español' : k)]);
     const pintaPan = () => {
       pan.innerHTML = `<div class="caja"><h2 id="sc-pan-t">${esc(t('accesibilidad'))}</h2>
         <label><input type="checkbox" id="a-calma" ${acc.calma ? 'checked' : ''}><span>${esc(t('calma'))}<small>${esc(t('calmaAyuda'))}</small></span></label>
         <div class="txt" role="group" aria-label="${esc(t('texto'))}"><b>${esc(t('texto'))}:</b>${[['0', 'textoN'], ['1', 'textoG'], ['2', 'textoXG']].map(([v, k]) => `<button type="button" data-tx="${v}" aria-pressed="${String(acc.texto) === v}">${esc(t(k))}</button>`).join('')}</div>
+        ${idiomas().length > 1 ? `<div class="txt"><label for="a-idioma" style="border:0;padding:0"><b>${esc(t('idioma'))}:</b></label><select id="a-idioma" style="min-height:44px;font:700 15px inherit;border:2px solid #2A7DE1;border-radius:12px;padding:0 10px">${idiomas().map(([k, n]) => `<option value="${k}" ${W.SC_LANG === k ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select></div>` : ''}
         <label><input type="checkbox" id="a-con" ${acc.contraste ? 'checked' : ''}><span>${esc(t('contraste'))}</span></label>
         <label><input type="checkbox" id="a-anim" ${acc.anim ? 'checked' : ''}><span>${esc(t('anim'))}<small>Se aplica al abrir el juego de nuevo.</small></span></label>
         <p class="aviso">${esc(t('avisoDatos'))}</p><button type="button" class="cerrar" id="a-x">${esc(t('cerrar'))}</button></div>`;
@@ -233,6 +283,7 @@ html[data-acc-texto="1"] :is(#sc-bar,#sc-foot,#sc-act){font-size:17px}html[data-
     });
     pan.addEventListener('change', e => {
       if (e.target.id === 'a-calma') { acc.calma = e.target.checked; aplicaCalma(); aviso(acc.calma ? 'Modo calma activado: empieza una partida nueva' : 'Modo calma desactivado'); }
+      if (e.target.id === 'a-idioma') { LS.set('sc_lang', e.target.value); location.reload(); return; }
       if (e.target.id === 'a-con') acc.contraste = e.target.checked;
       if (e.target.id === 'a-anim') acc.anim = e.target.checked;
       W.SC.guardarAcc();
@@ -242,6 +293,8 @@ html[data-acc-texto="1"] :is(#sc-bar,#sc-foot,#sc-act){font-size:17px}html[data-
       try { if (typeof S !== 'undefined' && S.pantalla === 'juego' && !S.fin && S.pausas && !S.pausas.size && typeof pausar === 'function') pausar('panel'); } catch (e) { /* sin pausa */ }
       pintaPan(); pan.classList.add('on'); D.getElementById('a-x').focus();
     });
+
+    iniciaTraduccion(stage);
 
     /* ----- modo calma: sin cronómetro ni vidas (se aplica a la configuración del juego) ----- */
     const orig = {};
