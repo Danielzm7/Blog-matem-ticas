@@ -440,6 +440,8 @@ main{overflow-x:clip}
 .fbar .fbtn:hover{background:#fff;box-shadow:0 3px 0 var(--c)}
 .fbar .fbtn[aria-pressed="true"]{background:var(--c);color:var(--ink);box-shadow:0 3px 0 var(--ink)}
 @media(min-width:1420px){.fbar{margin-left:-100px;margin-right:-100px}}
+.fbar #f-cat{gap:8px 6px}.fbar #f-cat .fbtn{padding:9px 12px}
+@media(min-width:1520px){.fbar{margin-left:-150px;margin-right:-150px}}
 .rcount{margin-top:22px;font:500 13px/1.3 var(--mono);color:var(--ink-2);letter-spacing:.06em}
 .gl{display:grid;gap:20px;margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
 .gc{position:relative;display:flex;flex-direction:column;background:#fff;border:2px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:0 6px 0 rgba(32,45,74,.14);transition:transform .3s cubic-bezier(.2,.8,.3,1),box-shadow .3s ease}
@@ -1038,7 +1040,7 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
     <h2 class="h2">Los juegos</h2>
     <p class="lead" style="margin-top:14px">Combina los filtros para encontrar el juego perfecto.</p></div>
     <div class="fbar" role="group" aria-label="Filtros de juegos">
-      <div class="frow"><b>Mundo</b><span id="f-cat-txt" style="font-weight:700">Todos</span><button type="button" class="linkbtn" id="f-cat-clear" style="margin:0 0 0 6px;display:none">Quitar</button></div>
+      <div class="frow" id="f-cat"><b>Mundo</b></div>
       <div class="frow" id="f-age"><b>Edad</b></div>
       <div class="frow" id="f-grado"><b>Grado</b></div>
       <div class="frow" id="f-hab"><b>Habilidad</b></div>
@@ -1854,8 +1856,7 @@ function renderFilters(){
   $('#f-grado').innerHTML = '<b>Grado</b>' + [['all','Todos',[]], ...META.grados].map(([k,l]) => `<button class="fbtn" type="button" data-grado="${k}" aria-pressed="${F.grado === k}">${l}</button>`).join('');
   $('#f-hab').innerHTML = '<b>Habilidad</b>' + [['all','Todas',[]], ...META.habilidades].map(([k,l]) => `<button class="fbtn" type="button" data-hab="${k}" aria-pressed="${F.hab === k}">${l}</button>`).join('');
   $('#f-lvl').innerHTML = '<b>Nivel</b>' + [{id:'all',nombre:'Todos'}, ...DATA.niveles].map(n => `<button class="fbtn" type="button" data-lvl="${esc(n.id)}" aria-pressed="${F.lvl === n.id}">${esc(n.nombre)}</button>`).join('');
-  $('#f-cat-txt').textContent = F.cat ? catById(F.cat).nombre : 'Todos';
-  $('#f-cat-clear').style.display = F.cat ? '' : 'none';
+  $('#f-cat').innerHTML = '<b>Mundo</b>' + [{id:null,nombre:'Todos'}, ...DATA.cats.filter(c => c.activa !== false)].map(c => `<button class="fbtn" type="button" data-fcat="${esc(c.id || '')}" aria-pressed="${(F.cat || null) === c.id}">${esc(c.nombre)}</button>`).join('');
   $('#f-fav').setAttribute('aria-pressed', F.fav);
 }
 function filteredGames(){
@@ -2514,7 +2515,7 @@ document.addEventListener('click', e => {
   if ((el = t.closest('[data-grado]'))){ F.grado = el.dataset.grado; renderFilters(); renderGames(); return; }
   if ((el = t.closest('[data-hab]'))){ F.hab = el.dataset.hab; renderFilters(); renderGames(); return; }
   if ((el = t.closest('[data-lvl]'))){ F.lvl = el.dataset.lvl; renderFilters(); renderGames(); return; }
-  if (t.closest('#f-cat-clear')){ F.cat = null; renderCats(); renderFilters(); renderGames(); return; }
+  if ((el = t.closest('[data-fcat]'))){ F.cat = el.dataset.fcat || null; renderCats(); renderFilters(); renderGames(); return; }
   if (t.closest('#f-fav')){ F.fav = !F.fav; renderFilters(); renderGames(); return; }
   if (t.closest('#f-reset') || t.closest('#f-reset2')){ resetFilters(); return; }
   if ((el = t.closest('[data-fav]'))){ const id = el.dataset.fav, i = P.favs.indexOf(id); if (i >= 0) P.favs.splice(i, 1); else P.favs.push(id); saveP(); renderGames(); renderLogros(); return; }
