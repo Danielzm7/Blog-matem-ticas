@@ -724,6 +724,19 @@ main{overflow-x:clip}
 @media(min-width:960px){.hero.mh .hero-g{gap:36px}}
 .hero.mh .hb{max-width:42%}
 #camino.sec{padding-top:28px}
+.hero-side{display:none}
+.hero.mh>.wrap{position:relative}
+@media(min-width:1580px){
+  .hero-side{display:flex;position:absolute;top:50%;transform:translateY(-50%);width:220px;flex-direction:column;align-items:center;text-align:center;gap:12px;background:var(--t);border:2px solid var(--ink);border-radius:26px;padding:22px 18px;text-decoration:none;box-shadow:0 6px 0 rgba(32,45,74,.14);transition:transform .25s ease;z-index:3}
+  .hero-side:hover{transform:translateY(calc(-50% - 6px))}
+  .hero-side.l{right:calc(100% + 24px)}
+  .hero-side.r{left:calc(100% + 24px)}
+  .hero-side .n{flex:0 0 46px;width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid var(--ink);display:grid;place-items:center;font:800 22px/1 var(--display)}
+  .hero-side h3{font-size:21px;margin-bottom:4px}
+  .hero-side p{font-size:15px;line-height:1.45;color:var(--ink-2);margin:0}
+  .flow .solo-nar{display:none}
+}
+
 .hm{position:absolute;left:50%;bottom:11%;width:44%;transform:translateX(-50%);z-index:3}
 .hm svg{width:100%;height:auto}
 .hb{position:absolute;left:55%;top:21%;z-index:4;max-width:34%;background:#fff;border:2.5px solid var(--ink);border-radius:18px 18px 18px 4px;padding:9px 13px;font:800 clamp(13px,1.7vw,17px)/1.2 var(--display);box-shadow:0 4px 0 rgba(32,45,74,.2);animation:bobm 4s ease-in-out infinite}
@@ -976,6 +989,8 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
       </div>
       <div class="scene" id="hero-scene" role="img" aria-label="Semi, la mascota, rodeada de números y figuras"></div>
     </div>
+    <a class="hero-side l" href="#juegos" style="--t:var(--sun)"><span class="n">2</span><div><h3>Jugar</h3><p>Filtra por edad y nivel, y empieza a jugar.</p></div></a>
+    <a class="hero-side r" href="#reto" style="--t:var(--lilac)"><span class="n">3</span><div><h3>Descubrir más</h3><p>Reto del día, videos, materiales y exploración libre.</p></div></a>
   </div>
 </section>
 
@@ -986,8 +1001,8 @@ footer .brand .logo,footer .brand .logo img{width:64px;height:64px}
     <p class="lead" style="margin-top:14px">Un recorrido sencillo: eliges un mundo, juegas a tu ritmo y, si quieres seguir, hay mucho más por descubrir.</p></div>
     <div class="flow">
       <a href="#categorias" style="--t:var(--sky)"><span class="n">1</span><div><h3>Explorar</h3><p>Elige uno de los mundos de las matemáticas.</p></div></a>
-      <a href="#juegos" style="--t:var(--sun)"><span class="n">2</span><div><h3>Jugar</h3><p>Filtra por edad y nivel, y empieza a jugar.</p></div></a>
-      <a href="#reto" style="--t:var(--lilac)"><span class="n">3</span><div><h3>Descubrir más</h3><p>Reto del día, videos, materiales y exploración libre.</p></div></a>
+      <a class="solo-nar" href="#juegos" style="--t:var(--sun)"><span class="n">2</span><div><h3>Jugar</h3><p>Filtra por edad y nivel, y empieza a jugar.</p></div></a>
+      <a class="solo-nar" href="#reto" style="--t:var(--lilac)"><span class="n">3</span><div><h3>Descubrir más</h3><p>Reto del día, videos, materiales y exploración libre.</p></div></a>
     </div>
   </div>
 </section>
