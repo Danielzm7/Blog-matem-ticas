@@ -738,15 +738,16 @@ main{overflow-x:clip}
 .hero.mh .quick{margin-top:22px}
 @media(min-width:960px){.hero.mh .hero-g{gap:36px}}
 .hero.mh .hb{max-width:42%}
+@media(min-width:1500px) and (max-width:1699px){.hero-side{min-height:236px}}
 #inicio+#categorias{margin-top:0!important}
 .hero-side{display:none}
 .hero.mh>.wrap{position:relative}
-@media(min-width:1580px){
-  .hero-side{display:flex;position:absolute;top:50%;transform:translateY(-50%);width:200px;flex-direction:column;align-items:center;text-align:center;gap:8px;background:rgba(255,255,255,.55);border:2px solid rgba(32,45,74,.35);border-radius:22px;padding:16px 14px;text-decoration:none;box-shadow:none;transition:background .2s ease;z-index:3}
-  .hero-side{min-height:172px;justify-content:center}
+@media(min-width:1500px){
+  .hero-side{display:flex;position:absolute;top:50%;transform:translateY(-50%);width:clamp(136px,calc((100vw - 1200px)/2 - 28px),200px);flex-direction:column;align-items:center;text-align:center;gap:8px;background:rgba(255,255,255,.55);border:2px solid rgba(32,45,74,.35);border-radius:22px;padding:16px 12px;text-decoration:none;box-shadow:none;transition:background .2s ease;z-index:3}
+  .hero-side{min-height:190px;justify-content:center}
   .hero-side:hover{background:#fff}
-  .hero-side.l{right:calc(100% + 40px)}
-  .hero-side.r{left:calc(100% + 40px)}
+  .hero-side.l{right:calc(100% + clamp(10px,calc((100vw - 1200px)/2 - 220px),40px))}
+  .hero-side.r{left:calc(100% + clamp(10px,calc((100vw - 1200px)/2 - 220px),40px))}
   .hero-side .n{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--t);display:grid;place-items:center}
   .hero-side h3{font-size:19px;margin-bottom:2px}
   .hero-side p{font-size:15px;line-height:1.45;color:var(--ink-2);margin:0}
